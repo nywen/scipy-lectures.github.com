@@ -1,3 +1,6 @@
+.. image:: https://zenodo.org/badge/doi/10.5281/zenodo.31521.svg
+    :target: http://dx.doi.org/10.5281/zenodo.31521
+
 .. image:: https://travis-ci.org/scipy-lectures/scipy-lecture-notes.svg?branch=master
     :target: https://travis-ci.org/scipy-lectures/scipy-lecture-notes
 
@@ -12,7 +15,7 @@ Python.
 These documents are written with the rest markup language (``.rst``
 extension) and built using Sphinx: http://sphinx.pocoo.org/.
 
-You can view the online version at: http://scipy-lectures.github.io
+You can view the online version at: http://scipy-lectures.org
 
 Reusing and distributing
 -------------------------

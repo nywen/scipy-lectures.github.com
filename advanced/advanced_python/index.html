@@ -774,11 +774,11 @@ and <tt class="docutils literal"><span class="pre">__name__</span></tt> (the ful
 <tt class="docutils literal"><span class="pre">__annotations__</span></tt> (extra information about arguments and the return
 value of the function available in Python 3). This can be done
 automatically by using <a class="reference external" href="https://docs.python.org/2.7/library/functools.html#functools.update_wrapper" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">functools.update_wrapper</span></tt></a>.</p>
-<div class="sidebar">
-<p class="first sidebar-title"><a class="reference external" href="https://docs.python.org/2.7/library/functools.html#functools.update_wrapper" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">functools.update_wrapper(wrapper,</span> <span class="pre">wrapped)</span></tt></a></p>
+<div class="topic">
+<p class="topic-title first"><a class="reference external" href="https://docs.python.org/2.7/library/functools.html#functools.update_wrapper" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">functools.update_wrapper(wrapper,</span> <span class="pre">wrapped)</span></tt></a></p>
 <p>&#8220;Update a wrapper function to look like the wrapped function.&#8221;</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">functools</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">better_replacing_decorator_with_args</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">functools</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">replacing_decorator_with_args</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">print</span><span class="p">(</span><span class="s">&quot;defining the decorator&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">def</span> <span class="nf">_decorator</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="k">print</span><span class="p">(</span><span class="s">&quot;doing decoration, </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">)</span>
@@ -787,7 +787,7 @@ automatically by using <a class="reference external" href="https://docs.python.o
 <div class="newline"></div><span class="gp">... </span>          <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="k">return</span> <span class="n">functools</span><span class="o">.</span><span class="n">update_wrapper</span><span class="p">(</span><span class="n">_wrapper</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">return</span> <span class="n">_decorator</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nd">@better_replacing_decorator_with_args</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nd">@replacing_decorator_with_args</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span><span class="k">def</span> <span class="nf">function</span><span class="p">():</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="s">&quot;extensive documentation&quot;</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;inside function&quot;</span><span class="p">)</span>
