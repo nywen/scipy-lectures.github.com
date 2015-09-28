@@ -380,7 +380,6 @@ a.headerlink:after {
     margin-left: -1.1ex;
 }
 
-h1:hover a.headerlink {
 h1:hover a.headerlink, h2:hover a.headerlink, 
 h3:hover a.headerlink, h4:hover a.headerlink {
     visibility: hidden;
