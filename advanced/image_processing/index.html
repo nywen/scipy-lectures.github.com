@@ -194,7 +194,7 @@ tutorial <a class="reference internal" href="../../packages/scikit-image/index.h
 <li><p class="first"><tt class="docutils literal"><span class="pre">numpy</span></tt>: basic array manipulation</p>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">scipy</span></tt>: <tt class="docutils literal"><span class="pre">scipy.ndimage</span></tt> submodule dedicated to image processing
-(n-dimensional images). See <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html">http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html</a></p>
+(n-dimensional images). See the <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html">documentation</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -526,7 +526,8 @@ see the <a class="reference internal" href="../../packages/scikit-image/index.ht
 </div>
 <div class="section" id="mathematical-morphology">
 <h3><a class="toc-backref" href="#id10">2.6.4.4. Mathematical morphology</a><a class="headerlink" href="#mathematical-morphology" title="Permalink to this headline">¶</a></h3>
-<p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Mathematical_morphology">https://en.wikipedia.org/wiki/Mathematical_morphology</a></p>
+<p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Mathematical_morphology">wikipedia</a>
+for a definition of mathematical morphology.</p>
 <p>Probe an image with a simple shape (a <strong>structuring element</strong>), and
 modify this image according to how the shape locally fits or misses the
 image.</p>
@@ -890,8 +891,7 @@ tricks (<a class="reference internal" href="../advanced_numpy/index.html#stride-
 <li><strong>Other measures</strong></li>
 </ul>
 <p>Correlation function, Fourier/wavelet spectrum, etc.</p>
-<p>One example with mathematical morphology: <strong>granulometry</strong>
-(<a class="reference external" href="https://en.wikipedia.org/wiki/Granulometry_%28morphology%29">https://en.wikipedia.org/wiki/Granulometry_%28morphology%29</a>)</p>
+<p>One example with mathematical morphology: <a class="reference external" href="https://en.wikipedia.org/wiki/Granulometry_%28morphology%29">granulometry</a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">disk_structure</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">struct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">indices</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>

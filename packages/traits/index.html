@@ -190,14 +190,12 @@ under a BSD-style license.</p>
 <div class="topic">
 <p class="topic-title first">Requirements</p>
 <ul class="simple">
-<li>Python 2.6 or 2.7 (www.python.org)</li>
-<li>Either wxPython (<a class="reference external" href="http://www.wxpython.org/">http://www.wxpython.org/</a>),
-PyQt (<a class="reference external" href="https://riverbankcomputing.com/software/pyqt/intro">https://riverbankcomputing.com/software/pyqt/intro</a>) or
-PySide (<a class="reference external" href="https://pyside.github.io/docs/pyside/">https://pyside.github.io/docs/pyside/</a>)</li>
-<li>Numpy and Scipy (<a class="reference external" href="http://www.scipy.org">http://www.scipy.org</a>)</li>
-<li>Enthought Tool Suite 3.x or higher (<a class="reference external" href="http://code.enthought.com/projects">http://code.enthought.com/projects</a>)</li>
-<li>All required software can be obtained by installing the EPD Free
-(<a class="reference external" href="https://store.enthought.com/">https://store.enthought.com/</a>)</li>
+<li>Either <a class="reference external" href="http://www.wxpython.org">wxPython</a>,
+<a class="reference external" href="https://riverbankcomputing.com/software/pyqt/intro">PyQt</a> or
+<a class="reference external" href="https://pyside.github.io/docs/pyside/">PySide</a></li>
+<li>Numpy and Scipy</li>
+<li><a class="reference external" href="http://code.enthought.com/projects">Enthought Tool Suite</a></li>
+<li>All required software can be obtained by installing the <a class="reference external" href="https://store.enthought.com/">EPD Free</a></li>
 </ul>
 </div>
 <div class="contents local topic" id="tutorial-content">
@@ -425,10 +423,10 @@ the XXX trait. For example:</p>
 <div class="newline"></div>reservoir.max_storage = &#39;230&#39;
 <div class="newline"></div>---------------------------------------------------------------------------
 <div class="newline"></div>TraitError                                Traceback (most recent call last)
-<div class="newline"></div>/Users/dpinte/projects/scipy-lecture-notes/advanced/traits/&lt;ipython-input-7-979bdff9974a&gt; in &lt;module&gt;()
+<div class="newline"></div>.../scipy-lecture-notes/advanced/traits/&lt;ipython-input-7-979bdff9974a&gt; in &lt;module&gt;()
 <div class="newline"></div>----&gt; 1 reservoir.max_storage = &#39;230&#39;
 <div class="newline"></div>
-<div class="newline"></div>/Users/dpinte/projects/ets/traits/traits/trait_handlers.pyc in error(self, object, name, value)
+<div class="newline"></div>.../traits/trait_handlers.pyc in error(self, object, name, value)
 <div class="newline"></div>    166         &quot;&quot;&quot;
 <div class="newline"></div>    167         raise TraitError( object, name, self.full_info( object, name, value ),
 <div class="newline"></div>--&gt; 168                           value )
@@ -696,10 +694,10 @@ Again, Traits uses magic method names for the property :</p>
 <div class="newline"></div>            <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Spillage [hm3]&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;storage&#39;</span><span class="p">,</span> <span class="s">&#39;inflows&#39;</span><span class="p">,</span> <span class="s">&#39;release&#39;</span><span class="p">]</span>
 <div class="newline"></div>        <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Private traits. ######################################################</span>
+<div class="newline"></div>    <span class="c">### Private traits.</span>
 <div class="newline"></div>    <span class="n">_storage</span> <span class="o">=</span> <span class="n">Float</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits property implementation. ######################################</span>
+<div class="newline"></div>    <span class="c">### Traits property implementation.</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_get_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>        <span class="n">new_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span>
 <div class="newline"></div>        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_storage</span><span class="p">)</span>
@@ -771,7 +769,7 @@ recompute them once invalidated.</p>
 <div class="newline"></div>            <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Spillage [hm3]&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;storage&#39;</span><span class="p">,</span> <span class="s">&#39;inflows&#39;</span><span class="p">,</span> <span class="s">&#39;release&#39;</span><span class="p">]</span>
 <div class="newline"></div>        <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits view ##########################################################</span>
+<div class="newline"></div>    <span class="c">### Traits view</span>
 <div class="newline"></div>    <span class="n">traits_view</span> <span class="o">=</span> <span class="n">View</span><span class="p">(</span>
 <div class="newline"></div>        <span class="n">Group</span><span class="p">(</span>
 <div class="newline"></div>            <span class="n">VGroup</span><span class="p">(</span><span class="n">Item</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">),</span> <span class="n">Item</span><span class="p">(</span><span class="s">&#39;storage&#39;</span><span class="p">),</span> <span class="n">Item</span><span class="p">(</span><span class="s">&#39;spillage&#39;</span><span class="p">),</span>
@@ -781,10 +779,10 @@ recompute them once invalidated.</p>
 <div class="newline"></div>        <span class="p">)</span>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Private traits. ######################################################</span>
+<div class="newline"></div>    <span class="c">### Private traits.</span>
 <div class="newline"></div>    <span class="n">_storage</span> <span class="o">=</span> <span class="n">Float</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits property implementation. ######################################</span>
+<div class="newline"></div>    <span class="c">### Traits property implementation.</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_get_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>        <span class="n">new_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span>
 <div class="newline"></div>        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_storage</span><span class="p">)</span>
@@ -906,7 +904,7 @@ the listeners are called.</p>
 <div class="newline"></div>                <span class="bp">self</span><span class="o">.</span><span class="n">spillage</span><span class="p">)</span>
 <div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits listeners #####################################################</span>
+<div class="newline"></div>    <span class="c">### Traits listeners ###########</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_release_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
 <div class="newline"></div>        <span class="sd">&quot;&quot;&quot;When the release is higher than zero, warn all the inhabitants of</span>
 <div class="newline"></div><span class="sd">        the valley.</span>
@@ -1074,10 +1072,10 @@ remove=True,</li>
 <div class="newline"></div>        <span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Private traits. ######################################################</span>
+<div class="newline"></div>    <span class="c">### Private traits. ##########</span>
 <div class="newline"></div>    <span class="n">_storage</span> <span class="o">=</span> <span class="n">Float</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits property implementation. ######################################</span>
+<div class="newline"></div>    <span class="c">### Traits property implementation.</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_get_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>        <span class="n">new_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span>
 <div class="newline"></div>        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_storage</span><span class="p">)</span>
@@ -1256,7 +1254,7 @@ TraitsUI Item, the ChacoPlotItem:</p>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">month</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s">&#39;stock&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits view ##########################################################</span>
+<div class="newline"></div>    <span class="c">### Traits view ###########</span>
 <div class="newline"></div>    <span class="n">traits_view</span> <span class="o">=</span> <span class="n">View</span><span class="p">(</span>
 <div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">),</span>
 <div class="newline"></div>        <span class="n">Group</span><span class="p">(</span>
@@ -1266,7 +1264,7 @@ TraitsUI Item, the ChacoPlotItem:</p>
 <div class="newline"></div>        <span class="n">resizable</span> <span class="o">=</span> <span class="bp">True</span>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits properties ####################################################</span>
+<div class="newline"></div>    <span class="c">### Traits properties #####</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_get_stock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>        <span class="sd">&quot;&quot;&quot;</span>
 <div class="newline"></div><span class="sd">        fixme: should handle cases where we go over the max storage</span>
@@ -1302,9 +1300,9 @@ TraitsUI Item, the ChacoPlotItem:</p>
 <p class="first admonition-title">See also</p>
 <p>References</p>
 <ul class="last simple">
-<li>ETS repositories: <a class="reference external" href="https://github.com/enthought">https://github.com/enthought</a></li>
-<li>Traits manual: <a class="reference external" href="http://docs.enthought.com/traits/traits_user_manual/index.html">http://docs.enthought.com/traits/traits_user_manual/index.html</a></li>
-<li>Traits UI manual: <a class="reference external" href="http://docs.enthought.com/traitsui/traitsui_user_manual/index.html">http://docs.enthought.com/traitsui/traitsui_user_manual/index.html</a></li>
+<li><a class="reference external" href="https://github.com/enthought">ETS repositories</a></li>
+<li><a class="reference external" href="http://docs.enthought.com/traits/traits_user_manual/index.html">Traits manual</a></li>
+<li><a class="reference external" href="http://docs.enthought.com/traitsui/traitsui_user_manual/index.html">Traits UI manual</a></li>
 <li>Mailing list : <a class="reference external" href="mailto:enthought-dev&#37;&#52;&#48;enthought&#46;com">enthought-dev<span>&#64;</span>enthought<span>&#46;</span>com</a></li>
 </ul>
 </div>
