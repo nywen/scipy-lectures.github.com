@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="2. Advanced topics" href="../index.html" />
     <link rel="next" title="2.3. Debugging code" href="../debugging/index.html" />
-    <link rel="prev" title="2.1. Advanced Python Constructs" href="../advanced_python/index.html" /> 
+    <link rel="prev" title="2.1. Advanced Python Constructs" href="../advanced_python/index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -127,25 +167,17 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="advanced-numpy">
 <span id="id1"></span><h1>2.2. Advanced Numpy<a class="headerlink" href="#advanced-numpy" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">author:</th><td class="field-body">Pauli Virtanen</td>
-</tr>
-</tbody>
-</table>
-<p>Numpy is at the base of Python&#8217;s scientific stack of tools.
-Its purpose is simple: implementing efficient operations on
-many items in a block of memory.  Understanding how it works
-in detail helps in making efficient use of its flexibility,
-taking useful shortcuts, and in building new work based on
-it.</p>
-<p>This tutorial aims to cover:</p>
+<p><strong>Author</strong>: <em>Pauli Virtanen</em></p>
+<p>Numpy is at the base of Python&#8217;s scientific stack of tools. Its purpose
+to implement efficient operations on many items in a block of memory.
+Understanding how it works in detail helps in making efficient use of its
+flexibility, taking useful shortcuts.</p>
+<p>This section covers:</p>
 <ul class="simple">
 <li>Anatomy of Numpy arrays, and its consequences. Tips and
 tricks.</li>
@@ -153,20 +185,16 @@ tricks.</li>
 a new one.</li>
 <li>Integration with other tools: Numpy offers several ways to
 wrap any data in an ndarray, without unnecessary copies.</li>
-<li>Recently added features, and what&#8217;s in them for me: PEP
+<li>Recently added features, and what&#8217;s in them: PEP
 3118 buffers, generalized ufuncs, ...</li>
 </ul>
 <div class="topic">
 <p class="topic-title first">Prerequisites</p>
 <ul class="simple">
-<li>Numpy (&gt;= 1.2; preferably newer...)</li>
-<li>Cython (&gt;= 0.12, for the Ufunc example)</li>
-<li>PIL (used in a couple of examples)</li>
+<li>Numpy</li>
+<li>Cython</li>
+<li>Pillow (Python imaging library, used in a couple of examples)</li>
 </ul>
-</div>
-<p>In this section, numpy will be imported as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<div class="newline"></div></pre></div>
 </div>
 <div class="contents local topic" id="chapter-contents">
 <p class="topic-title first">Chapter contents</p>
@@ -211,6 +239,13 @@ wrap any data in an ndarray, without unnecessary copies.</li>
 </li>
 </ul>
 </div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>In this section, numpy will be imported as follows:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="newline"></div></pre></div>
+</div>
+</div>
 <div class="section" id="life-of-ndarray">
 <h2><a class="toc-backref" href="#id4">2.2.1. Life of ndarray</a><a class="headerlink" href="#life-of-ndarray" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="it-s">
@@ -249,11 +284,11 @@ wrap any data in an ndarray, without unnecessary copies.</li>
 </div>
 <div class="section" id="block-of-memory">
 <h3><a class="toc-backref" href="#id6">2.2.1.2. Block of memory</a><a class="headerlink" href="#block-of-memory" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">data</span>      
-<div class="newline"></div><span class="go">&lt;read-write buffer for ..., size 16, offset 0 at ...&gt;</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<div class="newline"></div><span class="go">&#39;\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00\x04\x00\x00\x00&#39;</span>
+<div class="newline"></div><span class="go">&lt;... at ...&gt;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>  
+<div class="newline"></div><span class="go">&#39;\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Memory address of the data:</p>
@@ -262,7 +297,7 @@ wrap any data in an ndarray, without unnecessary copies.</li>
 <div class="newline"></div></pre></div>
 </div>
 <p>The whole <tt class="docutils literal"><span class="pre">__array_interface__</span></tt>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">__array_interface__</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">__array_interface__</span>  
 <div class="newline"></div><span class="go">{&#39;data&#39;: (35828928, False),</span>
 <div class="newline"></div><span class="go"> &#39;descr&#39;: [(&#39;&#39;, &#39;&lt;i4&#39;)],</span>
 <div class="newline"></div><span class="go"> &#39;shape&#39;: (4,),</span>
@@ -280,10 +315,14 @@ wrap any data in an ndarray, without unnecessary copies.</li>
 <div class="newline"></div></pre></div>
 </div>
 <p>Memory does not need to be owned by an <tt class="xref py py-class docutils literal"><span class="pre">ndarray</span></tt>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="s">&#39;1234&#39;</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">b</span><span class="s">&#39;1234&#39;</span>      <span class="c"># The &#39;b&#39; is for &quot;bytes&quot;, necessary in Python 3</span>
+<div class="newline"></div></pre></div>
+</div>
+<p>x is a string (in Python 3 a bytes), we can represent its data as an
+array of ints:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">data</span>      
-<div class="newline"></div><span class="go">&lt;read-only buffer for ..., size 4, offset 0 at ...&gt;</span>
+<div class="newline"></div><span class="go">&lt;... at ...&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">base</span> <span class="ow">is</span> <span class="n">x</span>
 <div class="newline"></div><span class="go">True</span>
 <div class="newline"></div>
@@ -298,7 +337,6 @@ wrap any data in an ndarray, without unnecessary copies.</li>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">owndata</span></tt> and <tt class="docutils literal"><span class="pre">writeable</span></tt> flags indicate status of the memory
 block.</p>
-<p>See also : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/arrays.interface.html">array interface</a></p>
 </div>
 <div class="section" id="data-types">
 <h3><a class="toc-backref" href="#id7">2.2.1.3. Data types</a><a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h3>
@@ -331,7 +369,7 @@ block.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">type</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">type</span>      
 <div class="newline"></div><span class="go">&lt;type &#39;numpy.int64&#39;&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">itemsize</span>
 <div class="newline"></div><span class="go">8</span>
@@ -396,7 +434,7 @@ block.</p>
 </ul>
 <p>The <tt class="docutils literal"><span class="pre">.wav</span></tt> file header as a Numpy <em>structured</em> data type:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wav_header_dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="p">(</span><span class="s">&quot;chunk_id&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>   <span class="c"># flexible-sized scalar type, item size 4</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="p">(</span><span class="s">&quot;chunk_id&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span> <span class="c"># flexible-sized scalar type, item size 4</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="p">(</span><span class="s">&quot;chunk_size&quot;</span><span class="p">,</span> <span class="s">&quot;&lt;u4&quot;</span><span class="p">),</span>    <span class="c"># little-endian unsigned 32-bit integer</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="p">(</span><span class="s">&quot;format&quot;</span><span class="p">,</span> <span class="s">&quot;S4&quot;</span><span class="p">),</span>         <span class="c"># 4-byte string</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="p">(</span><span class="s">&quot;fmt_id&quot;</span><span class="p">,</span> <span class="s">&quot;S4&quot;</span><span class="p">),</span>
@@ -420,11 +458,11 @@ block.</p>
 <p class="last">wavreader.py</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wav_header_dtype</span><span class="p">[</span><span class="s">&#39;format&#39;</span><span class="p">]</span>
-<div class="newline"></div><span class="go">dtype(&#39;|S4&#39;)</span>
+<div class="newline"></div><span class="go">dtype(&#39;S4&#39;)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">wav_header_dtype</span><span class="o">.</span><span class="n">fields</span>     
-<div class="newline"></div><span class="go">&lt;dictproxy object at ...&gt;</span>
+<div class="newline"></div><span class="go">dict_proxy({&#39;block_align&#39;: (dtype(&#39;uint16&#39;), 32), &#39;format&#39;: (dtype(&#39;S4&#39;), 8), &#39;data_id&#39;: (dtype((&#39;S1&#39;, (2, 2))), 36), &#39;fmt_id&#39;: (dtype(&#39;S4&#39;), 12), &#39;byte_rate&#39;: (dtype(&#39;uint32&#39;), 28), &#39;chunk_id&#39;: (dtype(&#39;S4&#39;), 0), &#39;num_channels&#39;: (dtype(&#39;uint16&#39;), 22), &#39;sample_rate&#39;: (dtype(&#39;uint32&#39;), 24), &#39;bits_per_sample&#39;: (dtype(&#39;uint16&#39;), 34), &#39;chunk_size&#39;: (dtype(&#39;uint32&#39;), 4), &#39;fmt_size&#39;: (dtype(&#39;uint32&#39;), 16), &#39;data_size&#39;: (dtype(&#39;uint32&#39;), 40), &#39;audio_fmt&#39;: (dtype(&#39;uint16&#39;), 20)})</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">wav_header_dtype</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;format&#39;</span><span class="p">]</span>
-<div class="newline"></div><span class="go">(dtype(&#39;|S4&#39;), 8)</span>
+<div class="newline"></div><span class="go">(dtype(&#39;S4&#39;), 8)</span>
 <div class="newline"></div></pre></div>
 </div>
 <ul class="simple">
@@ -447,15 +485,15 @@ of the fields:</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;data/test.wav&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">wav_header</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wav_header_dtype</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">wav_header</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">wav_header</span><span class="p">)</span>   
 <div class="newline"></div><span class="go">[ (&#39;RIFF&#39;, 17402L, &#39;WAVE&#39;, &#39;fmt &#39;, 16L, 1, 1, 16000L, 32000L, 2, 16, [[&#39;d&#39;, &#39;a&#39;], [&#39;t&#39;, &#39;a&#39;]], 17366L)]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">wav_header</span><span class="p">[</span><span class="s">&#39;sample_rate&#39;</span><span class="p">]</span>
 <div class="newline"></div><span class="go">array([16000], dtype=uint32)</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Let&#8217;s try accessing the sub-array:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wav_header</span><span class="p">[</span><span class="s">&#39;data_id&#39;</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wav_header</span><span class="p">[</span><span class="s">&#39;data_id&#39;</span><span class="p">]</span>  
 <div class="newline"></div><span class="go">array([[[&#39;d&#39;, &#39;a&#39;],</span>
 <div class="newline"></div><span class="go">        [&#39;t&#39;, &#39;a&#39;]]],</span>
 <div class="newline"></div><span class="go">      dtype=&#39;|S1&#39;)</span>
@@ -510,7 +548,7 @@ etc. for loading sound data...</p>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
 <div class="newline"></div><span class="go">array([2, 3, 4, 5], dtype=int8)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">+</span> <span class="mi">256</span>
-<div class="newline"></div><span class="go">array([1, 2, 3, 4], dtype=int8)</span>
+<div class="newline"></div><span class="go">array([257, 258, 259, 260], dtype=int16)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">+</span> <span class="mf">256.0</span>
 <div class="newline"></div><span class="go">array([ 257.,  258.,  259.,  260.])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">256</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
@@ -720,45 +758,44 @@ without copying data?</p>
 <h3><a class="toc-backref" href="#id8">2.2.1.4. Indexing scheme: strides</a><a class="headerlink" href="#indexing-scheme-strides" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="main-point">
 <h4>2.2.1.4.1. Main point<a class="headerlink" href="#main-point" title="Permalink to this headline">¶</a></h4>
-<p><strong>The question</strong></p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-<div class="newline"></div><span class="gp">... </span>             <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-<div class="newline"></div><span class="gp">... </span>             <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<p><strong>The question</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<div class="newline"></div><span class="gp">... </span>              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+<div class="newline"></div><span class="gp">... </span>              <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>  
 <div class="newline"></div><span class="go">&#39;\x01\x02\x03\x04\x05\x06\x07\x08\t&#39;</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="go">At which byte in ``x.data`` does the item ``x[1, 2]`` begin?</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>At which byte in <tt class="docutils literal"><span class="pre">x.data</span></tt> does the item <tt class="docutils literal"><span class="pre">x[1,2]</span></tt> begin?</p>
-</div></blockquote>
 <p><strong>The answer</strong> (in Numpy)</p>
 <blockquote>
-<div><ul class="simple">
-<li><strong>strides</strong>: the number of bytes to jump to find the next element</li>
-<li>1 stride per dimension</li>
-</ul>
+<div><ul>
+<li><p class="first"><strong>strides</strong>: the number of bytes to jump to find the next element</p>
+</li>
+<li><p class="first">1 stride per dimension:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strides</span>
-<div class="newline"></div><span class="go">(3, 1)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">byte_offset</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">2</span>   <span class="c"># to find x[1,2]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">byte_offset</span><span class="p">]</span>
-<div class="newline"></div><span class="go">&#39;\x06&#39;</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<div class="newline"></div><span class="go">6</span>
 <div class="newline"></div></pre></div>
 </div>
-<ul class="simple">
-<li>simple, <strong>flexible</strong></li>
+<p>(3, 1)
+&gt;&gt;&gt; byte_offset = 3*1 + 1*2   # to find x[1, 2]
+&gt;&gt;&gt; x.flat[byte_offset]
+6
+&gt;&gt;&gt; x[1, 2]
+6</p>
+</li>
+<li><p class="first">simple, <strong>flexible</strong></p>
+</li>
 </ul>
 </div></blockquote>
 <div class="section" id="c-and-fortran-order">
 <h5>2.2.1.4.1.1. C and Fortran order<a class="headerlink" href="#c-and-fortran-order" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-<div class="newline"></div><span class="gp">... </span>              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-<div class="newline"></div><span class="gp">... </span>              <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">... </span>              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strides</span>
 <div class="newline"></div><span class="go">(6, 2)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<div class="newline"></div><span class="go">&#39;\x01\x00\x02\x00\x03\x00\x04\x00\x05\x00\x06\x00\x07\x00\x08\x00\t\x00&#39;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>  
+<div class="newline"></div><span class="go">&#39;\x01\x00\x02\x00\x03\x00\x04\x00\x05\x00\x06\x00&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
 <ul class="simple">
@@ -767,14 +804,14 @@ without copying data?</p>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;F&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">strides</span>
-<div class="newline"></div><span class="go">(2, 6)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<div class="newline"></div><span class="go">&#39;\x01\x00\x04\x00\x07\x00\x02\x00\x05\x00\x08\x00\x03\x00\x06\x00\t\x00&#39;</span>
+<div class="newline"></div><span class="go">(2, 4)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>  
+<div class="newline"></div><span class="go">&#39;\x01\x00\x04\x00\x02\x00\x05\x00\x03\x00\x06\x00&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
 <ul class="simple">
 <li>Need to jump 2 bytes to find the next row</li>
-<li>Need to jump 6 bytes to find the next column</li>
+<li>Need to jump 4 bytes to find the next column</li>
 </ul>
 <ul>
 <li><p class="first">Similarly to higher dimensions:</p>
@@ -783,7 +820,7 @@ without copying data?</p>
 <li>F: first dimensions vary fastest</li>
 </ul>
 <div class="math">
-<p><img src="../../_images/math/95ec125db02dd68e18b6eea77903b79254ccbc1f.png" alt="\mathrm{shape} &amp;= (d_1, d_2, ..., d_n)
+<p><img src="../../_images/math/c68ffbb00a6071fb59fdf1ae91b2c36e0aaede7f.png" alt="\mathrm{shape} &amp;= (d_1, d_2, ..., d_n)
 \\
 \mathrm{strides} &amp;= (s_1, s_2, ..., s_n)
 \\
@@ -806,9 +843,9 @@ s_j^F &amp;= d_{1} d_{2} ... d_{j-1} \times \mathrm{itemsize}"/></p>
 <div class="newline"></div><span class="go">(1, 2)</span>
 <div class="newline"></div></pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>  
 <div class="newline"></div><span class="go">&#39;\x01\x02\x03\x04&#39;</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>  
 <div class="newline"></div><span class="go">&#39;\x01\x03\x02\x04&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -831,23 +868,20 @@ and possibly adjusting the <tt class="docutils literal"><span class="pre">data</
 <div class="newline"></div><span class="go">array([6, 5, 4, 3, 2, 1], dtype=int32)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">strides</span>
 <div class="newline"></div><span class="go">(-4,)</span>
-<div class="newline"></div></pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">__array_interface__</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">__array_interface__</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <div class="newline"></div><span class="go">8</span>
-<div class="newline"></div></pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strides</span>
 <div class="newline"></div><span class="go">(800, 80, 8)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">[::</span><span class="mi">2</span><span class="p">,::</span><span class="mi">3</span><span class="p">,::</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">strides</span>
 <div class="newline"></div><span class="go">(1600, 240, 32)</span>
 <div class="newline"></div></pre></div>
 </div>
-<ul class="simple">
-<li>Similarly, transposes never make copies (it just swaps strides)</li>
-</ul>
+<ul>
+<li><p class="first">Similarly, transposes never make copies (it just swaps strides):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strides</span>
 <div class="newline"></div><span class="go">(800, 80, 8)</span>
@@ -855,8 +889,10 @@ and possibly adjusting the <tt class="docutils literal"><span class="pre">data</
 <div class="newline"></div><span class="go">(8, 80, 800)</span>
 <div class="newline"></div></pre></div>
 </div>
+</li>
+</ul>
 <p>But: not all reshaping operations can be represented by playing with
-strides.</p>
+strides:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">T</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">strides</span>
@@ -864,7 +900,7 @@ strides.</p>
 <div class="newline"></div></pre></div>
 </div>
 <p>So far, so good. However:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>  
 <div class="newline"></div><span class="go">&#39;\x00\x01\x02\x03\x04\x05&#39;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
 <div class="newline"></div><span class="go">array([[0, 2, 4],</span>
@@ -906,14 +942,16 @@ block bounds...</p>
 </div>
 <p><strong>Exercise</strong></p>
 <blockquote>
-<div><div class="highlight-python"><pre>array([1, 2, 3, 4], dtype=np.int8)
-
--&gt; array([[1, 2, 3, 4],
-          [1, 2, 3, 4],
-          [1, 2, 3, 4]], dtype=np.int8)</pre>
+<div><div class="highlight-python"><div class="highlight"><pre>array([1, 2, 3, 4], dtype=np.int8)
+<div class="newline"></div>
+<div class="newline"></div>-&gt; array([[1, 2, 3, 4],
+<div class="newline"></div>          [1, 2, 3, 4],
+<div class="newline"></div>          [1, 2, 3, 4]], dtype=np.int8)
+<div class="newline"></div></pre></div>
 </div>
 <p>using only <tt class="docutils literal"><span class="pre">as_strided</span></tt>.:</p>
-<div class="highlight-python"><pre>Hint: byte_offset = stride[0]*index[0] + stride[1]*index[1] + ...</pre>
+<div class="highlight-python"><div class="highlight"><pre>Hint: byte_offset = stride[0]*index[0] + stride[1]*index[1] + ...
+<div class="newline"></div></pre></div>
 </div>
 </div></blockquote>
 <p><em>Spoiler</em></p>
@@ -983,11 +1021,12 @@ of <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2
 <blockquote>
 <div><ul>
 <li><p class="first">Pick diagonal entries of the matrix: (assume C memory order):</p>
-<div class="highlight-python"><pre>&gt;&gt;&gt; x = np.array([[1, 2, 3],
-...               [4, 5, 6],
-...               [7, 8, 9]], dtype=np.int32)
-
-&gt;&gt;&gt; x_diag = as_strided(x, shape=(3,), strides=(???,)) </pre>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; x = np.array([[1, 2, 3],
+<div class="newline"></div>...               [4, 5, 6],
+<div class="newline"></div>...               [7, 8, 9]], dtype=np.int32)
+<div class="newline"></div>
+<div class="newline"></div>&gt;&gt;&gt; x_diag = as_strided(x, shape=(3,), strides=(???,)) 
+<div class="newline"></div></pre></div>
 </div>
 </li>
 <li><p class="first">Pick the first super-diagonal entries <tt class="docutils literal"><span class="pre">[2,</span> <span class="pre">6]</span></tt>.</p>
@@ -1019,17 +1058,19 @@ of <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
+<p><strong>Using np.diag</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
 <div class="newline"></div><span class="go">array([2, 6], dtype=int32)</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>However,</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">owndata</span>
-<div class="newline"></div><span class="go">True</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">owndata</span>  
+<div class="newline"></div><span class="go">False</span>
 <div class="newline"></div></pre></div>
 </div>
-<p class="last">It makes a copy?!</p>
+<p class="last"><strong>Note</strong> This behavior has changed: before numpy 1.9, np.diag
+would make a copy.</p>
 </div>
 </div></div></blockquote>
 <div class="admonition seealso">
@@ -1039,11 +1080,11 @@ of <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2
 <p><strong>Challenge</strong></p>
 <blockquote>
 <div><p>Compute the tensor trace:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>      <span class="n">s</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">... </span>   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">... </span>      <span class="n">s</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>by striding, and using <tt class="docutils literal"><span class="pre">sum()</span></tt> on the result.</p>
@@ -1088,8 +1129,8 @@ of <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2
 <ul class="simple">
 <li>CPU pulls data from main memory to its cache in blocks</li>
 <li>If many array items consecutively operated on fit in a single block (small stride):<ul>
-<li><img class="math" src="../../_images/math/843622567e12d686e4e2f94ddfcb444e8ecde0d2.png" alt="\Rightarrow" style="vertical-align: -1px"/> fewer transfers needed</li>
-<li><img class="math" src="../../_images/math/843622567e12d686e4e2f94ddfcb444e8ecde0d2.png" alt="\Rightarrow" style="vertical-align: -1px"/> faster</li>
+<li><img class="math" src="../../_images/math/b44136d575eb0ec64c12cf0b109b3b593bdefbf5.png" alt="\Rightarrow" style="vertical-align: -1px"/> fewer transfers needed</li>
+<li><img class="math" src="../../_images/math/b44136d575eb0ec64c12cf0b109b3b593bdefbf5.png" alt="\Rightarrow" style="vertical-align: -1px"/> faster</li>
 </ul>
 </li>
 </ul>
@@ -1114,7 +1155,7 @@ cache effects in array computing.</p>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">-=</span> <span class="n">x</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>   
 <div class="newline"></div><span class="go">array([[ 0, -1],</span>
 <div class="newline"></div><span class="go">       [ 4,  0]])</span>
 <div class="newline"></div></pre></div>
@@ -1154,7 +1195,8 @@ coherence</li>
 <ul>
 <li><p class="first">Ufunc performs and elementwise operation on all elements of an array.</p>
 <p>Examples:</p>
-<div class="highlight-python"><pre>np.add, np.subtract, scipy.special.*, ...</pre>
+<div class="highlight-python"><div class="highlight"><pre>np.add, np.subtract, scipy.special.*, ...
+<div class="newline"></div></pre></div>
 </div>
 </li>
 <li><p class="first">Automatically support: broadcasting, casting, ...</p>
@@ -1262,10 +1304,10 @@ pre-made ones</p>
 <h3><a class="toc-backref" href="#id12">2.2.2.2. Exercise: building an ufunc from scratch</a><a class="headerlink" href="#exercise-building-an-ufunc-from-scratch" title="Permalink to this headline">¶</a></h3>
 <p>The Mandelbrot fractal is defined by the iteration</p>
 <div class="math">
-<p><img src="../../_images/math/12fd396985abde635f08bb3ec9c0cc9972a595e7.png" alt="z \leftarrow z^2 + c"/></p>
-</div><p>where <img class="math" src="../../_images/math/2c6d8dad307b93654b479ac755c80256da0085bd.png" alt="c = x + i y" style="vertical-align: -6px"/> is a complex number. This iteration is
-repeated &#8211; if <img class="math" src="../../_images/math/b13f21416d84e13708696f34dea81026cda583c9.png" alt="z" style="vertical-align: 0px"/> stays finite no matter how long the iteration
-runs, <img class="math" src="../../_images/math/3372c1cb6d68cf97c2d231acc0b47b95a9ed04cc.png" alt="c" style="vertical-align: 0px"/> belongs to the Mandelbrot set.</p>
+<p><img src="../../_images/math/d5cdc3948dd415ae9f2b6de3aa6ab76d2ef371b0.png" alt="z \leftarrow z^2 + c"/></p>
+</div><p>where <img class="math" src="../../_images/math/8808301f85460f0b2b95239f7c0df290c5feb53e.png" alt="c = x + i y" style="vertical-align: -6px"/> is a complex number. This iteration is
+repeated &#8211; if <img class="math" src="../../_images/math/25294fd9dc66fb934c6259bf38bd29c500101828.png" alt="z" style="vertical-align: 0px"/> stays finite no matter how long the iteration
+runs, <img class="math" src="../../_images/math/e76342811b06d3703a2794f9744a8df6906f358f.png" alt="c" style="vertical-align: 0px"/> belongs to the Mandelbrot set.</p>
 <ul>
 <li><p class="first">Make ufunc called <tt class="docutils literal"><span class="pre">mandel(z0,</span> <span class="pre">c)</span></tt> that computes:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">z</span> <span class="o">=</span> <span class="n">z0</span>
@@ -1419,7 +1461,15 @@ Use it to determine which <cite>c</cite> are in the Mandelbrot set.</p>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<div class="newline"></div><span class="sd">Plot Mandelbrot</span>
+<div class="newline"></div><span class="sd">================</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="sd">Plot the Mandelbrot ensemble.</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="sd">&quot;&quot;&quot;</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">mandel</span>
 <div class="newline"></div><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.7</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <div class="newline"></div><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
@@ -1440,44 +1490,45 @@ Use it to determine which <cite>c</cite> are in the Mandelbrot set.</p>
 </div>
 <p class="rubric">Several accepted input types</p>
 <p>E.g. supporting both single- and double-precision versions</p>
-<div class="highlight-c"><pre>cdef void mandel_single_point(double complex *z_in,
-                              double complex *c_in,
-                              double complex *z_out) nogil:
-   ...
-
-cdef void mandel_single_point_singleprec(float complex *z_in,
-                                         float complex *c_in,
-                                         float complex *z_out) nogil:
-   ...
-
-cdef PyUFuncGenericFunction loop_funcs[2]
-cdef char input_output_types[3*2]
-cdef void *elementwise_funcs[1*2]
-
-loop_funcs[0] = PyUFunc_DD_D
-input_output_types[0] = NPY_CDOUBLE
-input_output_types[1] = NPY_CDOUBLE
-input_output_types[2] = NPY_CDOUBLE
-elementwise_funcs[0] = &lt;void*&gt;mandel_single_point
-
-loop_funcs[1] = PyUFunc_FF_F
-input_output_types[3] = NPY_CFLOAT
-input_output_types[4] = NPY_CFLOAT
-input_output_types[5] = NPY_CFLOAT
-elementwise_funcs[1] = &lt;void*&gt;mandel_single_point_singleprec
-
-mandel = PyUFunc_FromFuncAndData(
-    loop_func,
-    elementwise_funcs,
-    input_output_types,
-    2, # number of supported input types   &lt;----------------
-    2, # number of input args
-    1, # number of output args
-    0, # `identity` element, never mind this
-    "mandel", # function name
-    "mandel(z, c) -&gt; computes iterated z*z + c", # docstring
-    0 # unused
-    )</pre>
+<div class="highlight-c"><div class="highlight"><pre>cdef void mandel_single_point(double complex *z_in,
+<div class="newline"></div>                              double complex *c_in,
+<div class="newline"></div>                              double complex *z_out) nogil:
+<div class="newline"></div>   ...
+<div class="newline"></div>
+<div class="newline"></div>cdef void mandel_single_point_singleprec(float complex *z_in,
+<div class="newline"></div>                                         float complex *c_in,
+<div class="newline"></div>                                         float complex *z_out) nogil:
+<div class="newline"></div>   ...
+<div class="newline"></div>
+<div class="newline"></div>cdef PyUFuncGenericFunction loop_funcs[2]
+<div class="newline"></div>cdef char input_output_types[3*2]
+<div class="newline"></div>cdef void *elementwise_funcs[1*2]
+<div class="newline"></div>
+<div class="newline"></div>loop_funcs[0] = PyUFunc_DD_D
+<div class="newline"></div>input_output_types[0] = NPY_CDOUBLE
+<div class="newline"></div>input_output_types[1] = NPY_CDOUBLE
+<div class="newline"></div>input_output_types[2] = NPY_CDOUBLE
+<div class="newline"></div>elementwise_funcs[0] = &lt;void*&gt;mandel_single_point
+<div class="newline"></div>
+<div class="newline"></div>loop_funcs[1] = PyUFunc_FF_F
+<div class="newline"></div>input_output_types[3] = NPY_CFLOAT
+<div class="newline"></div>input_output_types[4] = NPY_CFLOAT
+<div class="newline"></div>input_output_types[5] = NPY_CFLOAT
+<div class="newline"></div>elementwise_funcs[1] = &lt;void*&gt;mandel_single_point_singleprec
+<div class="newline"></div>
+<div class="newline"></div>mandel = PyUFunc_FromFuncAndData(
+<div class="newline"></div>    loop_func,
+<div class="newline"></div>    elementwise_funcs,
+<div class="newline"></div>    input_output_types,
+<div class="newline"></div>    2, # number of supported input types   &lt;----------------
+<div class="newline"></div>    2, # number of input args
+<div class="newline"></div>    1, # number of output args
+<div class="newline"></div>    0, # `identity` element, never mind this
+<div class="newline"></div>    &quot;mandel&quot;, # function name
+<div class="newline"></div>    &quot;mandel(z, c) -&gt; computes iterated z*z + c&quot;, # docstring
+<div class="newline"></div>    0 # unused
+<div class="newline"></div>    )
+<div class="newline"></div></pre></div>
 </div>
 </div>
 <div class="section" id="generalized-ufuncs">
@@ -1491,17 +1542,19 @@ mandel = PyUFunc_FromFuncAndData(
 <blockquote>
 <div><p><tt class="docutils literal"><span class="pre">output</span></tt> and <tt class="docutils literal"><span class="pre">input</span></tt> can be arrays with a fixed number of dimensions</p>
 <p>For example, matrix trace (sum of diag elements):</p>
-<div class="highlight-python"><pre>input shape = (n, n)
-output shape = ()      i.e.  scalar
-
-(n, n) -&gt; ()</pre>
+<div class="highlight-python"><div class="highlight"><pre>input shape = (n, n)
+<div class="newline"></div>output shape = ()      i.e.  scalar
+<div class="newline"></div>
+<div class="newline"></div>(n, n) -&gt; ()
+<div class="newline"></div></pre></div>
 </div>
 <p>Matrix product:</p>
-<div class="highlight-python"><pre>input_1 shape = (m, n)
-input_2 shape = (n, p)
-output shape  = (m, p)
-
-(m, n), (n, p) -&gt; (m, p)</pre>
+<div class="highlight-python"><div class="highlight"><pre>input_1 shape = (m, n)
+<div class="newline"></div>input_2 shape = (n, p)
+<div class="newline"></div>output shape  = (m, p)
+<div class="newline"></div>
+<div class="newline"></div>(m, n), (n, p) -&gt; (m, p)
+<div class="newline"></div></pre></div>
 </div>
 <ul class="simple">
 <li>This is called the <em>&#8220;signature&#8221;</em> of the generalized ufunc</li>
@@ -1592,17 +1645,18 @@ other library,</li>
 <li>C-level interface; <tt class="docutils literal"><span class="pre">PyBufferProcs</span> <span class="pre">tp_as_buffer</span></tt> in the type object</li>
 <li>But it&#8217;s integrated into Python  (e.g. strings support it)</li>
 </ul>
-<p>Mini-exercise using PIL (Python Imaging Library):</p>
+<p>Mini-exercise using <a class="reference external" href="https://python-pillow.github.io/">Pillow</a> (Python
+Imaging Library):</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last">pilbuffer.py</p>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Image</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">]</span> <span class="c"># Red</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="c"># In PIL, RGBA images consist of 32-bit integers whose bytes are [RR,GG,BB,AA]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="s">&quot;RGBA&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="s">&quot;RGBA&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">data</span><span class="p">,</span> <span class="s">&quot;raw&quot;</span><span class="p">,</span> <span class="s">&quot;RGBA&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;test.png&#39;</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -1612,7 +1666,15 @@ other library,</li>
 </div>
 <div class="section" id="id3">
 <h3><a class="toc-backref" href="#id18">2.2.3.3. The old buffer protocol</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<div class="newline"></div><span class="sd">From buffer</span>
+<div class="newline"></div><span class="sd">============</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="sd">Show how to exchange data between numpy and a library that only knows</span>
+<div class="newline"></div><span class="sd">the buffer interface.</span>
+<div class="newline"></div><span class="sd">&quot;&quot;&quot;</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">Image</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="c"># Let&#39;s make a sample image, RGBA format</span>
@@ -1665,7 +1727,9 @@ other library,</li>
 <div class="newline"></div><span class="go">}</span>
 <div class="newline"></div></pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Image</span>
+<dl class="docutils">
+<dt>::</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;data/test.png&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">img</span><span class="o">.</span><span class="n">__array_interface__</span>     
 <div class="newline"></div><span class="go">{&#39;data&#39;: ...,</span>
@@ -1674,10 +1738,10 @@ other library,</li>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">shape</span>
 <div class="newline"></div><span class="go">(200, 200, 4)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span>
-<div class="newline"></div><span class="go">dtype(&#39;uint8&#39;)</span>
 <div class="newline"></div></pre></div>
 </div>
+</dd>
+</dl>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">A more C-friendly variant of the array interface is also defined.</p>
@@ -1689,12 +1753,12 @@ other library,</li>
 <div class="section" id="chararray-vectorized-string-operations">
 <h3><a class="toc-backref" href="#id21">2.2.4.1. <tt class="xref py py-class docutils literal"><span class="pre">chararray</span></tt>: vectorized string operations</a><a class="headerlink" href="#chararray-vectorized-string-operations" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;  bbb&#39;</span><span class="p">,</span> <span class="s">&#39;  ccc&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">chararray</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>       
 <div class="newline"></div><span class="go">chararray([&#39;a&#39;, &#39;bbb&#39;, &#39;ccc&#39;],</span>
-<div class="newline"></div><span class="go">      dtype=&#39;|S5&#39;)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<div class="newline"></div><span class="go">      dtype=&#39;...&#39;)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>       
 <div class="newline"></div><span class="go">chararray([&#39;A&#39;, &#39;  BBB&#39;, &#39;  CCC&#39;],</span>
-<div class="newline"></div><span class="go">      dtype=&#39;|S5&#39;)</span>
+<div class="newline"></div><span class="go">      dtype=&#39;...&#39;)</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition note">
@@ -1779,7 +1843,7 @@ array back:</p>
 <h4>2.2.4.2.2. Domain-aware functions<a class="headerlink" href="#domain-aware-functions" title="Permalink to this headline">¶</a></h4>
 <p>The masked array package also contains domain-aware functions:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]))</span>
-<div class="newline"></div><span class="go">masked_array(data = [0.0 0.69314718056 -- -- 1.09861228867 --],</span>
+<div class="newline"></div><span class="go">masked_array(data = [0.0 0.6931471805599453 -- -- 1.0986122886681098 --],</span>
 <div class="newline"></div><span class="go">             mask = [False False  True  True False  True],</span>
 <div class="newline"></div><span class="go">       fill_value = 1e+20)</span>
 <div class="newline"></div></pre></div>
@@ -1806,12 +1870,12 @@ time, ignoring the invalid numbers.</p>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">populations</span><span class="p">[</span><span class="n">bad_years</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">populations</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<div class="newline"></div><span class="go">masked_array(data = [40472.7272727 18627.2727273 42400.0],</span>
+<div class="newline"></div><span class="go">masked_array(data = [40472.72727272727 18627.272727272728 42400.0],</span>
 <div class="newline"></div><span class="go">             mask = [False False False],</span>
 <div class="newline"></div><span class="go">       fill_value = 1e+20)</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">populations</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<div class="newline"></div><span class="go">masked_array(data = [21087.656489 15625.7998142 3322.50622558],</span>
+<div class="newline"></div><span class="go">masked_array(data = [21087.656489006717 15625.799814240254 3322.5062255844787],</span>
 <div class="newline"></div><span class="go">             mask = [False False False],</span>
 <div class="newline"></div><span class="go">       fill_value = 1e+20)</span>
 <div class="newline"></div></pre></div>
@@ -1830,7 +1894,7 @@ time, ignoring the invalid numbers.</p>
 <h3><a class="toc-backref" href="#id23">2.2.4.3. <tt class="xref py py-class docutils literal"><span class="pre">recarray</span></tt>: purely convenience</a><a class="headerlink" href="#recarray-purely-convenience" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="p">[(</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;S1&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">arr2</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">recarray</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">arr2</span><span class="o">.</span><span class="n">x</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">arr2</span><span class="o">.</span><span class="n">x</span>       
 <div class="newline"></div><span class="go">chararray([&#39;a&#39;, &#39;b&#39;],</span>
 <div class="newline"></div><span class="go">      dtype=&#39;|S1&#39;)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">arr2</span><span class="o">.</span><span class="n">y</span>
@@ -1891,31 +1955,32 @@ time, ignoring the invalid numbers.</p>
 </ul>
 <div class="section" id="good-bug-report">
 <h4>2.2.6.2.1. Good bug report<a class="headerlink" href="#good-bug-report" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><pre>Title: numpy.random.permutations fails for non-integer arguments
-
-I'm trying to generate random permutations, using numpy.random.permutations
-
-When calling numpy.random.permutation with non-integer arguments
-it fails with a cryptic error message::
-
-    &gt;&gt;&gt; np.random.permutation(12)
-    array([ 6, 11,  4, 10,  2,  8,  1,  7,  9,  3,  0,  5])
-    &gt;&gt;&gt; np.random.permutation(12.)
-    Traceback (most recent call last):
-      File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-      File "mtrand.pyx", line 3311, in mtrand.RandomState.permutation
-      File "mtrand.pyx", line 3254, in mtrand.RandomState.shuffle
-    TypeError: len() of unsized object
-
-This also happens with long arguments, and so
-np.random.permutation(X.shape[0]) where X is an array fails on 64
-bit windows (where shape is a tuple of longs).
-
-It would be great if it could cast to integer or at least raise a
-proper error for non-integer types.
-
-I'm using Numpy 1.4.1, built from the official tarball, on Windows
-64 with Visual studio 2008, on Python.org 64-bit Python.</pre>
+<div class="highlight-python"><div class="highlight"><pre>Title: numpy.random.permutations fails for non-integer arguments
+<div class="newline"></div>
+<div class="newline"></div>I&#39;m trying to generate random permutations, using numpy.random.permutations
+<div class="newline"></div>
+<div class="newline"></div>When calling numpy.random.permutation with non-integer arguments
+<div class="newline"></div>it fails with a cryptic error message::
+<div class="newline"></div>
+<div class="newline"></div>    &gt;&gt;&gt; np.random.permutation(12)
+<div class="newline"></div>    array([ 6, 11,  4, 10,  2,  8,  1,  7,  9,  3,  0,  5])
+<div class="newline"></div>    &gt;&gt;&gt; np.random.permutation(12.)
+<div class="newline"></div>    Traceback (most recent call last):
+<div class="newline"></div>      File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+<div class="newline"></div>      File &quot;mtrand.pyx&quot;, line 3311, in mtrand.RandomState.permutation
+<div class="newline"></div>      File &quot;mtrand.pyx&quot;, line 3254, in mtrand.RandomState.shuffle
+<div class="newline"></div>    TypeError: len() of unsized object
+<div class="newline"></div>
+<div class="newline"></div>This also happens with long arguments, and so
+<div class="newline"></div>np.random.permutation(X.shape[0]) where X is an array fails on 64
+<div class="newline"></div>bit windows (where shape is a tuple of longs).
+<div class="newline"></div>
+<div class="newline"></div>It would be great if it could cast to integer or at least raise a
+<div class="newline"></div>proper error for non-integer types.
+<div class="newline"></div>
+<div class="newline"></div>I&#39;m using Numpy 1.4.1, built from the official tarball, on Windows
+<div class="newline"></div>64 with Visual studio 2008, on Python.org 64-bit Python.
+<div class="newline"></div></pre></div>
 </div>
 <ol class="arabic" start="0">
 <li><p class="first">What are you trying to do?</p>
@@ -1929,12 +1994,12 @@ I'm using Numpy 1.4.1, built from the official tarball, on Windows
 <li><p class="first">Platform (Windows / Linux / OSX, 32/64 bits, x86/PPC, ...)</p>
 </li>
 <li><p class="first">Version of Numpy/Scipy</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">__version__</span> 
-<div class="newline"></div><span class="go">2...</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span> 
+<div class="newline"></div><span class="go">1...</span>
 <div class="newline"></div></pre></div>
 </div>
 <p><strong>Check that the following is what you expect</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">__file__</span> 
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">__file__</span><span class="p">)</span> 
 <div class="newline"></div><span class="go">/...</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -1949,7 +2014,7 @@ I'm using Numpy 1.4.1, built from the official tarball, on Windows
 <ol class="arabic">
 <li><p class="first">Documentation editor</p>
 <ul>
-<li><p class="first"><a class="reference external" href="http://docs.scipy.org/numpy">http://docs.scipy.org/numpy</a></p>
+<li><p class="first"><a class="reference external" href="http://docs.scipy.org/doc/numpy">http://docs.scipy.org/doc/numpy</a></p>
 </li>
 <li><p class="first">Registration</p>
 <ul>
@@ -1967,14 +2032,15 @@ I'm using Numpy 1.4.1, built from the official tarball, on Windows
 </ul>
 </li>
 <li><p class="first">Send a mail &#64; <tt class="docutils literal"><span class="pre">scipy-dev</span></tt> mailing list; ask for activation:</p>
-<div class="highlight-python"><pre>To: scipy-dev@scipy.org
-
-Hi,
-
-I'd like to edit Numpy/Scipy docstrings. My account is XXXXX
-
-Cheers,
-N. N.</pre>
+<div class="highlight-python"><div class="highlight"><pre>To: scipy-dev@scipy.org
+<div class="newline"></div>
+<div class="newline"></div>Hi,
+<div class="newline"></div>
+<div class="newline"></div>I&#39;d like to edit Numpy/Scipy docstrings. My account is XXXXX
+<div class="newline"></div>
+<div class="newline"></div>Cheers,
+<div class="newline"></div>N. N.
+<div class="newline"></div></pre></div>
 </div>
 </li>
 </ul>
@@ -1983,7 +2049,7 @@ N. N.</pre>
 <blockquote>
 <div><ul class="simple">
 <li>Check the style guide:<ul>
-<li><a class="reference external" href="http://docs.scipy.org/numpy/">http://docs.scipy.org/numpy/</a></li>
+<li><a class="reference external" href="http://docs.scipy.org/doc/numpy/">http://docs.scipy.org/doc/numpy/</a></li>
 <li>Don&#8217;t be intimidated; to fix a small thing, just fix it</li>
 </ul>
 </li>
@@ -2010,24 +2076,26 @@ N. N.</pre>
 <li><a class="reference external" href="http://projects.scipy.org/numpy/wiki/GitMirror">http://projects.scipy.org/numpy/wiki/GitMirror</a></li>
 <li><a class="reference external" href="http://www.spheredev.org/wiki/Git_for_the_lazy">http://www.spheredev.org/wiki/Git_for_the_lazy</a></li>
 </ul>
-<div class="highlight-python"><pre># Clone numpy repository
-git clone --origin svn http://projects.scipy.org/git/numpy.git numpy
-cd numpy
-
-# Create a feature branch
-git checkout -b name-of-my-feature-branch  svn/trunk
-
-&lt;edit stuff&gt;
-
-git commit -a</pre>
+<div class="highlight-python"><div class="highlight"><pre># Clone numpy repository
+<div class="newline"></div>git clone --origin svn http://projects.scipy.org/git/numpy.git numpy
+<div class="newline"></div>cd numpy
+<div class="newline"></div>
+<div class="newline"></div># Create a feature branch
+<div class="newline"></div>git checkout -b name-of-my-feature-branch  svn/trunk
+<div class="newline"></div>
+<div class="newline"></div>&lt;edit stuff&gt;
+<div class="newline"></div>
+<div class="newline"></div>git commit -a
+<div class="newline"></div></pre></div>
 </div>
 <ul class="simple">
-<li>Create account on <a class="reference external" href="http://github.com">http://github.com</a>  (or anywhere)</li>
+<li>Create account on <a class="reference external" href="https://github.com">https://github.com</a>  (or anywhere)</li>
 <li>Create a new repository &#64; Github</li>
 <li>Push your work to github</li>
 </ul>
-<div class="highlight-python"><pre>git remote add github git@github:YOURUSERNAME/YOURREPOSITORYNAME.git
-git push github name-of-my-feature-branch</pre>
+<div class="highlight-python"><div class="highlight"><pre>git remote add github git@github:YOURUSERNAME/YOURREPOSITORYNAME.git
+<div class="newline"></div>git push github name-of-my-feature-branch
+<div class="newline"></div></pre></div>
 </div>
 </li>
 </ol>
@@ -2073,6 +2141,108 @@ git push github name-of-my-feature-branch</pre>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.2. Advanced Numpy</a><ul>
+<li><a class="reference internal" href="#life-of-ndarray">2.2.1. Life of ndarray</a><ul>
+<li><a class="reference internal" href="#it-s">2.2.1.1. It&#8217;s...</a></li>
+<li><a class="reference internal" href="#block-of-memory">2.2.1.2. Block of memory</a></li>
+<li><a class="reference internal" href="#data-types">2.2.1.3. Data types</a><ul>
+<li><a class="reference internal" href="#the-descriptor">2.2.1.3.1. The descriptor</a></li>
+<li><a class="reference internal" href="#example-reading-wav-files">2.2.1.3.2. Example: reading <tt class="docutils literal"><span class="pre">.wav</span></tt> files</a></li>
+<li><a class="reference internal" href="#casting-and-re-interpretation-views">2.2.1.3.3. Casting and re-interpretation/views</a><ul>
+<li><a class="reference internal" href="#casting">2.2.1.3.3.1. Casting</a></li>
+<li><a class="reference internal" href="#re-interpretation-viewing">2.2.1.3.3.2. Re-interpretation / viewing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indexing-scheme-strides">2.2.1.4. Indexing scheme: strides</a><ul>
+<li><a class="reference internal" href="#main-point">2.2.1.4.1. Main point</a><ul>
+<li><a class="reference internal" href="#c-and-fortran-order">2.2.1.4.1.1. C and Fortran order</a></li>
+<li><a class="reference internal" href="#slicing-with-integers">2.2.1.4.1.2. Slicing with integers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-fake-dimensions-with-strides">2.2.1.4.2. Example: fake dimensions with strides</a></li>
+<li><a class="reference internal" href="#broadcasting">2.2.1.4.3. Broadcasting</a></li>
+<li><a class="reference internal" href="#more-tricks-diagonals">2.2.1.4.4. More tricks: diagonals</a></li>
+<li><a class="reference internal" href="#cpu-cache-effects">2.2.1.4.5. CPU cache effects</a></li>
+<li><a class="reference internal" href="#example-inplace-operations-caveat-emptor">2.2.1.4.6. Example: inplace operations (caveat emptor)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#findings-in-dissection">2.2.1.5. Findings in dissection</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#universal-functions">2.2.2. Universal functions</a><ul>
+<li><a class="reference internal" href="#what-they-are">2.2.2.1. What they are?</a><ul>
+<li><a class="reference internal" href="#parts-of-an-ufunc">2.2.2.1.1. Parts of an Ufunc</a></li>
+<li><a class="reference internal" href="#making-it-easier">2.2.2.1.2. Making it easier</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exercise-building-an-ufunc-from-scratch">2.2.2.2. Exercise: building an ufunc from scratch</a></li>
+<li><a class="reference internal" href="#solution-building-an-ufunc-from-scratch">2.2.2.3. Solution: building an ufunc from scratch</a></li>
+<li><a class="reference internal" href="#generalized-ufuncs">2.2.2.4. Generalized ufuncs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#interoperability-features">2.2.3. Interoperability features</a><ul>
+<li><a class="reference internal" href="#sharing-multidimensional-typed-data">2.2.3.1. Sharing multidimensional, typed data</a></li>
+<li><a class="reference internal" href="#the-old-buffer-protocol">2.2.3.2. The old buffer protocol</a></li>
+<li><a class="reference internal" href="#id3">2.2.3.3. The old buffer protocol</a></li>
+<li><a class="reference internal" href="#array-interface-protocol">2.2.3.4. Array interface protocol</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#array-siblings-chararray-maskedarray-matrix">2.2.4. Array siblings: <tt class="docutils literal"><span class="pre">chararray</span></tt>, <tt class="docutils literal"><span class="pre">maskedarray</span></tt>, <tt class="docutils literal"><span class="pre">matrix</span></tt></a><ul>
+<li><a class="reference internal" href="#chararray-vectorized-string-operations">2.2.4.1. <tt class="docutils literal"><span class="pre">chararray</span></tt>: vectorized string operations</a></li>
+<li><a class="reference internal" href="#masked-array-missing-data">2.2.4.2. <tt class="docutils literal"><span class="pre">masked_array</span></tt> missing data</a><ul>
+<li><a class="reference internal" href="#the-mask">2.2.4.2.1. The mask</a></li>
+<li><a class="reference internal" href="#domain-aware-functions">2.2.4.2.2. Domain-aware functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recarray-purely-convenience">2.2.4.3. <tt class="docutils literal"><span class="pre">recarray</span></tt>: purely convenience</a></li>
+<li><a class="reference internal" href="#matrix-convenience">2.2.4.4. <tt class="docutils literal"><span class="pre">matrix</span></tt>: convenience?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#summary">2.2.5. Summary</a></li>
+<li><a class="reference internal" href="#contributing-to-numpy-scipy">2.2.6. Contributing to Numpy/Scipy</a><ul>
+<li><a class="reference internal" href="#why">2.2.6.1. Why</a></li>
+<li><a class="reference internal" href="#reporting-bugs">2.2.6.2. Reporting bugs</a><ul>
+<li><a class="reference internal" href="#good-bug-report">2.2.6.2.1. Good bug report</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contributing-to-documentation">2.2.6.3. Contributing to documentation</a></li>
+<li><a class="reference internal" href="#contributing-features">2.2.6.4. Contributing features</a></li>
+<li><a class="reference internal" href="#how-to-help-in-general">2.2.6.5. How to help, in general</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -2110,8 +2280,8 @@ git push github name-of-my-feature-branch</pre>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,11 +24,51 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/copybutton.js"></script>
-    <link rel="top" title="Scipy lecture notes" href="../../../index.html" /> 
+    <link rel="top" title="Scipy lecture notes" href="../../../index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -117,280 +157,430 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <style type="text/css">
-.figure {
-    float: left;
-    margin: 10px;
-    width: auto;
-    height: 200px;
-    width: 180px;
+
+div#sidebarbutton {
+    display: none;
 }
 
-.figure img {
-    display: inline;
-    }
-
-.figure .caption {
-    width: 170px;
-    text-align: center !important;
-}
 </style><div class="section" id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<div class="figure" id="examples-index">
-<a class="reference external image-reference" href="./plot_aliased.html"><img alt="../../../_images/plot_aliased.png" src="../../../_images/plot_aliased.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_aliased.py</em></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_alpha.html"><img alt="../../../_images/plot_alpha.png" src="../../../_images/plot_alpha.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_alpha.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_antialiased.html"><img alt="../../../_images/plot_antialiased.png" src="../../../_images/plot_antialiased.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_antialiased.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_axes-2.html"><img alt="../../../_images/plot_axes-2.png" src="../../../_images/plot_axes-2.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_axes-2.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_axes.html"><img alt="../../../_images/plot_axes.png" src="../../../_images/plot_axes.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_axes.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_bad.html"><img alt="../../../_images/plot_bad.png" src="../../../_images/plot_bad.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_bad.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_bar.html"><img alt="../../../_images/plot_bar.png" src="../../../_images/plot_bar.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_bar.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_bar_ex.html"><img alt="../../../_images/plot_bar_ex.png" src="../../../_images/plot_bar_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_bar_ex.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_boxplot.html"><img alt="../../../_images/plot_boxplot.png" src="../../../_images/plot_boxplot.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_boxplot.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_color.html"><img alt="../../../_images/plot_color.png" src="../../../_images/plot_color.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_color.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_colormaps.html"><img alt="../../../_images/plot_colormaps.png" src="../../../_images/plot_colormaps.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_colormaps.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_contour.html"><img alt="../../../_images/plot_contour.png" src="../../../_images/plot_contour.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_contour.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_contour_ex.html"><img alt="../../../_images/plot_contour_ex.png" src="../../../_images/plot_contour_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_contour_ex.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_dash_capstyle.html"><img alt="../../../_images/plot_dash_capstyle.png" src="../../../_images/plot_dash_capstyle.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_dash_capstyle.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_dash_joinstyle.html"><img alt="../../../_images/plot_dash_joinstyle.png" src="../../../_images/plot_dash_joinstyle.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_dash_joinstyle.py</em></p>
-</div>
-<div class="figure">
+<div class="section" id="examples-for-the-the-matplotlib-chapter">
+<span id="examples-index"></span><h1>Examples for the the Matplotlib chapter<a class="headerlink" href="#examples-for-the-the-matplotlib-chapter" title="Permalink to this headline">¶</a></h1>
+<div class="thumbnailContainer" tooltip="Solution of the excercise 1 with matplotlib. "><div class="figure">
 <a class="reference external image-reference" href="./plot_exercice_1.html"><img alt="../../../_images/plot_exercice_1.png" src="../../../_images/plot_exercice_1.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_exercice_1.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_exercice_1.html#example-plot-exercice-1-py"><em>Excercise 1</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_exercice_10.html"><img alt="../../../_images/plot_exercice_10.png" src="../../../_images/plot_exercice_10.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_exercice_10.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_exercice_2.html"><img alt="../../../_images/plot_exercice_2.png" src="../../../_images/plot_exercice_2.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_exercice_2.py</em></p>
+<div class="thumbnailContainer" tooltip="A plotting example with a few simple tweaks "><div class="figure">
+<a class="reference external image-reference" href="./plot_bad.html"><img alt="../../../_images/plot_bad.png" src="../../../_images/plot_bad.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_bad.html#example-plot-bad-py"><em>A simple plotting example</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_exercice_3.html"><img alt="../../../_images/plot_exercice_3.png" src="../../../_images/plot_exercice_3.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_exercice_3.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_exercice_4.html"><img alt="../../../_images/plot_exercice_4.png" src="../../../_images/plot_exercice_4.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_exercice_4.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_exercice_5.html"><img alt="../../../_images/plot_exercice_5.png" src="../../../_images/plot_exercice_5.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_exercice_5.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_exercice_6.html"><img alt="../../../_images/plot_exercice_6.png" src="../../../_images/plot_exercice_6.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_exercice_6.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_exercice_7.html"><img alt="../../../_images/plot_exercice_7.png" src="../../../_images/plot_exercice_7.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_exercice_7.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_exercice_8.html"><img alt="../../../_images/plot_exercice_8.png" src="../../../_images/plot_exercice_8.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_exercice_8.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_exercice_9.html"><img alt="../../../_images/plot_exercice_9.png" src="../../../_images/plot_exercice_9.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_exercice_9.py</em></p>
-</div>
-<div class="figure">
+<div class="thumbnailContainer" tooltip="Demoing some simple features of matplotlib "><div class="figure">
 <a class="reference external image-reference" href="./plot_good.html"><img alt="../../../_images/plot_good.png" src="../../../_images/plot_good.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_good.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_good.html#example-plot-good-py"><em>A simple, good-looking plot</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_grid.html"><img alt="../../../_images/plot_grid.png" src="../../../_images/plot_grid.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_grid.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_grid_ex.html"><img alt="../../../_images/plot_grid_ex.png" src="../../../_images/plot_grid_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_grid_ex.py</em></p>
+<div class="thumbnailContainer" tooltip="This example shows a couple of simple usage of axes."><div class="figure">
+<a class="reference external image-reference" href="./plot_axes.html"><img alt="../../../_images/plot_axes.png" src="../../../_images/plot_axes.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_axes.html#example-plot-axes-py"><em>Simple axes example</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_gridspec.html"><img alt="../../../_images/plot_gridspec.png" src="../../../_images/plot_gridspec.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_gridspec.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_imshow.html"><img alt="../../../_images/plot_imshow.png" src="../../../_images/plot_imshow.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_imshow.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_imshow_ex.html"><img alt="../../../_images/plot_imshow_ex.png" src="../../../_images/plot_imshow_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_imshow_ex.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_linestyles.html"><img alt="../../../_images/plot_linestyles.png" src="../../../_images/plot_linestyles.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_linestyles.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_linewidth.html"><img alt="../../../_images/plot_linewidth.png" src="../../../_images/plot_linewidth.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_linewidth.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_markers.html"><img alt="../../../_images/plot_markers.png" src="../../../_images/plot_markers.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_markers.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_mec.html"><img alt="../../../_images/plot_mec.png" src="../../../_images/plot_mec.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_mec.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_mew.html"><img alt="../../../_images/plot_mew.png" src="../../../_images/plot_mew.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_mew.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_mfc.html"><img alt="../../../_images/plot_mfc.png" src="../../../_images/plot_mfc.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_mfc.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_ms.html"><img alt="../../../_images/plot_ms.png" src="../../../_images/plot_ms.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_ms.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_multiplot.html"><img alt="../../../_images/plot_multiplot.png" src="../../../_images/plot_multiplot.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_multiplot.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_multiplot_ex.html"><img alt="../../../_images/plot_multiplot_ex.png" src="../../../_images/plot_multiplot_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_multiplot_ex.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_pie.html"><img alt="../../../_images/plot_pie.png" src="../../../_images/plot_pie.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_pie.py</em></p>
-</div>
-<div class="figure">
+<div class="thumbnailContainer" tooltip="A simple pie chart example with matplotlib. "><div class="figure">
 <a class="reference external image-reference" href="./plot_pie_ex.html"><img alt="../../../_images/plot_pie_ex.png" src="../../../_images/plot_pie_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_pie_ex.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_pie_ex.html#example-plot-pie-ex-py"><em>Pie chart</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_plot.html"><img alt="../../../_images/plot_plot.png" src="../../../_images/plot_plot.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_plot.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_plot3d-2.html"><img alt="../../../_images/plot_plot3d-2.png" src="../../../_images/plot_plot3d-2.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_plot3d-2.py</em></p>
+<div class="thumbnailContainer" tooltip="This example demonstrates using alpha for transparency. "><div class="figure">
+<a class="reference external image-reference" href="./plot_alpha.html"><img alt="../../../_images/plot_alpha.png" src="../../../_images/plot_alpha.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_alpha.html#example-plot-alpha-py"><em>Alpha: transparency</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_plot3d.html"><img alt="../../../_images/plot_plot3d.png" src="../../../_images/plot_plot3d.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_plot3d.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
+<div class="thumbnailContainer" tooltip="An example demoing the various colors taken by matplotlib's plot. "><div class="figure">
+<a class="reference external image-reference" href="./plot_color.html"><img alt="../../../_images/plot_color.png" src="../../../_images/plot_color.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_color.html#example-plot-color-py"><em>The colors matplotlib line plots</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Exercise 4 with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_exercice_4.html"><img alt="../../../_images/plot_exercice_4.png" src="../../../_images/plot_exercice_4.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_exercice_4.html#example-plot-exercice-4-py"><em>Exercise 4</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Demo the marker edge widths of matplotlib's markers. "><div class="figure">
+<a class="reference external image-reference" href="./plot_mew.html"><img alt="../../../_images/plot_mew.png" src="../../../_images/plot_mew.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_mew.html#example-plot-mew-py"><em>Marker edge width</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="A simple example of 3D plotting. "><div class="figure">
 <a class="reference external image-reference" href="./plot_plot3d_ex.html"><img alt="../../../_images/plot_plot3d_ex.png" src="../../../_images/plot_plot3d_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_plot3d_ex.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_plot3d_ex.html#example-plot-plot3d-ex-py"><em>3D plotting</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_plot_ex.html"><img alt="../../../_images/plot_plot_ex.png" src="../../../_images/plot_plot_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_plot_ex.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_polar.html"><img alt="../../../_images/plot_polar.png" src="../../../_images/plot_polar.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_polar.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_polar_ex.html"><img alt="../../../_images/plot_polar_ex.png" src="../../../_images/plot_polar_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_polar_ex.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_quiver.html"><img alt="../../../_images/plot_quiver.png" src="../../../_images/plot_quiver.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_quiver.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_quiver_ex.html"><img alt="../../../_images/plot_quiver_ex.png" src="../../../_images/plot_quiver_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_quiver_ex.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_scatter.html"><img alt="../../../_images/plot_scatter.png" src="../../../_images/plot_scatter.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_scatter.py</em></p>
-</div>
-<div class="figure">
+<div class="thumbnailContainer" tooltip="A simple example showing how to plot a scatter of points with matplotlib. "><div class="figure">
 <a class="reference external image-reference" href="./plot_scatter_ex.html"><img alt="../../../_images/plot_scatter_ex.png" src="../../../_images/plot_scatter_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_scatter_ex.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_scatter_ex.html#example-plot-scatter-ex-py"><em>Plotting a scatter of points</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_solid_capstyle.html"><img alt="../../../_images/plot_solid_capstyle.png" src="../../../_images/plot_solid_capstyle.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_solid_capstyle.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_solid_joinstyle.html"><img alt="../../../_images/plot_solid_joinstyle.png" src="../../../_images/plot_solid_joinstyle.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_solid_joinstyle.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_subplot-grid.html"><img alt="../../../_images/plot_subplot-grid.png" src="../../../_images/plot_subplot-grid.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_subplot-grid.py</em></p>
-</div>
-<div class="figure">
+<div class="thumbnailContainer" tooltip="An example showing horizontal arrangement of subplots with matplotlib. "><div class="figure">
 <a class="reference external image-reference" href="./plot_subplot-horizontal.html"><img alt="../../../_images/plot_subplot-horizontal.png" src="../../../_images/plot_subplot-horizontal.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_subplot-horizontal.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_subplot-horizontal.html#example-plot-subplot-horizontal-py"><em>Horizontal arrangement of subplots</em></a></p>
 </div>
-<div class="figure">
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="The example shows aliased versus anti-aliased text. "><div class="figure">
+<a class="reference external image-reference" href="./plot_antialiased.html"><img alt="../../../_images/plot_antialiased.png" src="../../../_images/plot_antialiased.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_antialiased.html#example-plot-antialiased-py"><em>Aliased versus anti-aliased</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Displaying a grid on the axes in matploblib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_grid_ex.html"><img alt="../../../_images/plot_grid_ex.png" src="../../../_images/plot_grid_ex.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_grid_ex.html#example-plot-grid-ex-py"><em>Grid</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Plot various linewidth with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_linewidth.html"><img alt="../../../_images/plot_linewidth.png" src="../../../_images/plot_linewidth.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_linewidth.html#example-plot-linewidth-py"><em>Linewidth</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Demo the marker face color of matplotlib's markers. "><div class="figure">
+<a class="reference external image-reference" href="./plot_mfc.html"><img alt="../../../_images/plot_mfc.png" src="../../../_images/plot_mfc.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_mfc.html#example-plot-mfc-py"><em>Marker face color</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Demo the marker size control in matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_ms.html"><img alt="../../../_images/plot_ms.png" src="../../../_images/plot_ms.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_ms.html#example-plot-ms-py"><em>Marker size</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="A simple example showing how to plot in polar coordinnates with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_polar_ex.html"><img alt="../../../_images/plot_polar_ex.png" src="../../../_images/plot_polar_ex.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_polar_ex.html#example-plot-polar-ex-py"><em>Plotting in polar coordinnates</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing vertical arrangement of subplots with matplotlib. "><div class="figure">
 <a class="reference external image-reference" href="./plot_subplot-vertical.html"><img alt="../../../_images/plot_subplot-vertical.png" src="../../../_images/plot_subplot-vertical.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_subplot-vertical.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_subplot-vertical.html#example-plot-subplot-vertical-py"><em>Subplot plot arrangement vertical</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_text.html"><img alt="../../../_images/plot_text.png" src="../../../_images/plot_text.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_text.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_text_ex.html"><img alt="../../../_images/plot_text_ex.png" src="../../../_images/plot_text_ex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_text_ex.py</em></p>
+<div class="thumbnailContainer" tooltip="This example demonstrates aliased versus anti-aliased text. "><div class="figure">
+<a class="reference external image-reference" href="./plot_aliased.html"><img alt="../../../_images/plot_aliased.png" src="../../../_images/plot_aliased.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_aliased.html#example-plot-aliased-py"><em>Aliased versus anti-aliased</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_ticks.html"><img alt="../../../_images/plot_ticks.png" src="../../../_images/plot_ticks.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_ticks.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
+<div class="thumbnailContainer" tooltip="An example plotting the matplotlib colormaps. "><div class="figure">
+<a class="reference external image-reference" href="./plot_colormaps.html"><img alt="../../../_images/plot_colormaps.png" src="../../../_images/plot_colormaps.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_colormaps.html#example-plot-colormaps-py"><em>Colormaps</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Exercise 3 with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_exercice_3.html"><img alt="../../../_images/plot_exercice_3.png" src="../../../_images/plot_exercice_3.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_exercice_3.html#example-plot-exercice-3-py"><em>Exercise 3</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example demoing imshow and styling the figure. "><div class="figure">
+<a class="reference external image-reference" href="./plot_imshow_ex.html"><img alt="../../../_images/plot_imshow_ex.png" src="../../../_images/plot_imshow_ex.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_imshow_ex.html#example-plot-imshow-ex-py"><em>Imshow elaborate</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="A simple example showing how to plot a vector field (quiver) with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_quiver_ex.html"><img alt="../../../_images/plot_quiver_ex.png" src="../../../_images/plot_quiver_ex.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_quiver_ex.html#example-plot-quiver-ex-py"><em>Plotting a vector field: quiver</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An "ugly" example of plotting. "><div class="figure">
 <a class="reference external image-reference" href="./plot_ugly.html"><img alt="../../../_images/plot_ugly.png" src="../../../_images/plot_ugly.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_ugly.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_ugly.html#example-plot-ugly-py"><em>A example of plotting not quite right</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing how to display the contours of a function with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_contour_ex.html"><img alt="../../../_images/plot_contour_ex.png" src="../../../_images/plot_contour_ex.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_contour_ex.html#example-plot-contour-ex-py"><em>Displaying the contours of a function</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Exercise 5 with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_exercice_5.html"><img alt="../../../_images/plot_exercice_5.png" src="../../../_images/plot_exercice_5.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_exercice_5.html#example-plot-exercice-5-py"><em>Exercise 5</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Demo the marker edge color of matplotlib's markers. "><div class="figure">
+<a class="reference external image-reference" href="./plot_mec.html"><img alt="../../../_images/plot_mec.png" src="../../../_images/plot_mec.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_mec.html#example-plot-mec-py"><em>Marker edge color</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Show multiple subplots in matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_multiplot_ex.html"><img alt="../../../_images/plot_multiplot_ex.png" src="../../../_images/plot_multiplot_ex.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_multiplot_ex.html#example-plot-multiplot-ex-py"><em>Subplots</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Exercise 6 with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_exercice_6.html"><img alt="../../../_images/plot_exercice_6.png" src="../../../_images/plot_exercice_6.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_exercice_6.html#example-plot-exercice-6-py"><em>Exercise 6</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Simple example of plots and filling between them with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_plot_ex.html"><img alt="../../../_images/plot_plot_ex.png" src="../../../_images/plot_plot_ex.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_plot_ex.html#example-plot-plot-ex-py"><em>Plot and filled plots</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Example demoing the dash join style. "><div class="figure">
+<a class="reference external image-reference" href="./plot_dash_joinstyle.html"><img alt="../../../_images/plot_dash_joinstyle.png" src="../../../_images/plot_dash_joinstyle.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_dash_joinstyle.html#example-plot-dash-joinstyle-py"><em>Dash join style</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing the differen solid joint styles in matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_solid_joinstyle.html"><img alt="../../../_images/plot_solid_joinstyle.png" src="../../../_images/plot_solid_joinstyle.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_solid_joinstyle.html#example-plot-solid-joinstyle-py"><em>Solid joint style</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example of bar plots with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_bar_ex.html"><img alt="../../../_images/plot_bar_ex.png" src="../../../_images/plot_bar_ex.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_bar_ex.html#example-plot-bar-ex-py"><em>Bar plots</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example demoing the dash capstyle. "><div class="figure">
+<a class="reference external image-reference" href="./plot_dash_capstyle.html"><img alt="../../../_images/plot_dash_capstyle.png" src="../../../_images/plot_dash_capstyle.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_dash_capstyle.html#example-plot-dash-capstyle-py"><em>Dash capstyle</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example demoing the solide cap style in matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_solid_capstyle.html"><img alt="../../../_images/plot_solid_capstyle.png" src="../../../_images/plot_solid_capstyle.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_solid_capstyle.html#example-plot-solid-capstyle-py"><em>Solid cap style</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="A example showing off elaborate text printing with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_text_ex.html"><img alt="../../../_images/plot_text_ex.png" src="../../../_images/plot_text_ex.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_text_ex.html#example-plot-text-ex-py"><em>Demo text printing</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example shows various axes command to position matplotlib axes."><div class="figure">
+<a class="reference external image-reference" href="./plot_axes-2.html"><img alt="../../../_images/plot_axes-2.png" src="../../../_images/plot_axes-2.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_axes-2.html#example-plot-axes-2-py"><em>Axes</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Demo multiple plots and style the figure. "><div class="figure">
+<a class="reference external image-reference" href="./plot_multiplot.html"><img alt="../../../_images/plot_multiplot.png" src="../../../_images/plot_multiplot.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_multiplot.html#example-plot-multiplot-py"><em>Multiple plots vignette</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example of plots with matplotlib, and added annotations. "><div class="figure">
+<a class="reference external image-reference" href="./plot_plot.html"><img alt="../../../_images/plot_plot.png" src="../../../_images/plot_plot.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_plot.html#example-plot-plot-py"><em>Plot example vignette</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An more elaborate bar plot example "><div class="figure">
+<a class="reference external image-reference" href="./plot_bar.html"><img alt="../../../_images/plot_bar.png" src="../../../_images/plot_bar.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_bar.html#example-plot-bar-py"><em>Bar plot advanced</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Demo 3D plotting with matplotlib and style the figure. "><div class="figure">
+<a class="reference external image-reference" href="./plot_plot3d-2.html"><img alt="../../../_images/plot_plot3d-2.png" src="../../../_images/plot_plot3d-2.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_plot3d-2.html#example-plot-plot3d-2-py"><em>3D plotting</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Plot the different line styles. "><div class="figure">
+<a class="reference external image-reference" href="./plot_linestyles.html"><img alt="../../../_images/plot_linestyles.png" src="../../../_images/plot_linestyles.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_linestyles.html#example-plot-linestyles-py"><em>Linestyles</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing how to plot in polar coordinnate, and some decorations. "><div class="figure">
+<a class="reference external image-reference" href="./plot_polar.html"><img alt="../../../_images/plot_polar.png" src="../../../_images/plot_polar.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_polar.html#example-plot-polar-py"><em>Plotting in polar, decorated</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing the scatter function, with decorations. "><div class="figure">
+<a class="reference external image-reference" href="./plot_scatter.html"><img alt="../../../_images/plot_scatter.png" src="../../../_images/plot_scatter.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_scatter.html#example-plot-scatter-py"><em>Plot scatter decorated</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Exercise 7 with matplotlib "><div class="figure">
+<a class="reference external image-reference" href="./plot_exercice_7.html"><img alt="../../../_images/plot_exercice_7.png" src="../../../_images/plot_exercice_7.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_exercice_7.html#example-plot-exercice-7-py"><em>Exercise 7</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Demoing imshow "><div class="figure">
+<a class="reference external image-reference" href="./plot_imshow.html"><img alt="../../../_images/plot_imshow.png" src="../../../_images/plot_imshow.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_imshow.html#example-plot-imshow-py"><em>Imshow demo</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing the subplot grid in matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_subplot-grid.html"><img alt="../../../_images/plot_subplot-grid.png" src="../../../_images/plot_subplot-grid.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_subplot-grid.html#example-plot-subplot-grid-py"><em>Subplot grid</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example demoing how to plot the contours of a function, with additional layout tweeks."><div class="figure">
+<a class="reference external image-reference" href="./plot_contour.html"><img alt="../../../_images/plot_contour.png" src="../../../_images/plot_contour.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_contour.html#example-plot-contour-py"><em>Display the contours of a function</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Demo pie chart with matplotlib and style the figure. "><div class="figure">
+<a class="reference external image-reference" href="./plot_pie.html"><img alt="../../../_images/plot_pie.png" src="../../../_images/plot_pie.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_pie.html#example-plot-pie-py"><em>Pie chart vignette</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing quiver with decorations. "><div class="figure">
+<a class="reference external image-reference" href="./plot_quiver.html"><img alt="../../../_images/plot_quiver.png" src="../../../_images/plot_quiver.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_quiver.html#example-plot-quiver-py"><em>Plotting quiver decorated</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example of doing box plots with matplotlib"><div class="figure">
+<a class="reference external image-reference" href="./plot_boxplot.html"><img alt="../../../_images/plot_boxplot.png" src="../../../_images/plot_boxplot.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_boxplot.html#example-plot-boxplot-py"><em>Boxplot with matplotlib</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Exercise 2 with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_exercice_2.html"><img alt="../../../_images/plot_exercice_2.png" src="../../../_images/plot_exercice_2.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_exercice_2.html#example-plot-exercice-2-py"><em>Exercise 2</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Exercise 8 with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_exercice_8.html"><img alt="../../../_images/plot_exercice_8.png" src="../../../_images/plot_exercice_8.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_exercice_8.html#example-plot-exercice-8-py"><em>Exercise 8</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example displaying a grid on the axes and tweaking the layout. "><div class="figure">
+<a class="reference external image-reference" href="./plot_grid.html"><img alt="../../../_images/plot_grid.png" src="../../../_images/plot_grid.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_grid.html#example-plot-grid-py"><em>Grid elaborate</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Show the different markers of matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_markers.html"><img alt="../../../_images/plot_markers.png" src="../../../_images/plot_markers.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_markers.html#example-plot-markers-py"><em>Markers</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example demoing gridspec "><div class="figure">
+<a class="reference external image-reference" href="./plot_gridspec.html"><img alt="../../../_images/plot_gridspec.png" src="../../../_images/plot_gridspec.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_gridspec.html#example-plot-gridspec-py"><em>GridSpec</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Demo 3D plotting with matplotlib and decorate the figure. "><div class="figure">
+<a class="reference external image-reference" href="./plot_plot3d.html"><img alt="../../../_images/plot_plot3d.png" src="../../../_images/plot_plot3d.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_plot3d.html#example-plot-plot3d-py"><em>3D plotting vignette</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing text printing and decorating the resulting figure. "><div class="figure">
+<a class="reference external image-reference" href="./plot_text.html"><img alt="../../../_images/plot_text.png" src="../../../_images/plot_text.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_text.html#example-plot-text-py"><em>Text printing decorated</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example demoing different locators to position ticks on axis for matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_ticks.html"><img alt="../../../_images/plot_ticks.png" src="../../../_images/plot_ticks.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_ticks.html#example-plot-ticks-py"><em>Locators for tick on axis</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Exercise 9 with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_exercice_9.html"><img alt="../../../_images/plot_exercice_9.png" src="../../../_images/plot_exercice_9.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_exercice_9.html#example-plot-exercice-9-py"><em>Exercise 9</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Exercises with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_exercice_10.html"><img alt="../../../_images/plot_exercice_10.png" src="../../../_images/plot_exercice_10.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_exercice_10.html#example-plot-exercice-10-py"><em>Exercise</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
 </div>
 <div style="clear: both"></div><p><div style="clear: both"></div></p>
 </div>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Examples</a></li>
+<li><a class="reference internal" href="#examples-for-the-the-matplotlib-chapter">Examples for the the Matplotlib chapter</a><ul>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -421,8 +611,8 @@
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

@@ -3,7 +3,11 @@
 .. _example_plot_non_bounds_constraints.py:
 
 
-Optimization with general constraints using SLSQP and cobyla
+Optimization with constraints
+================================
+
+An example showing how to do optimization with general constraints using
+SLSQP and cobyla.
 
 
 
@@ -11,8 +15,25 @@ Optimization with general constraints using SLSQP and cobyla
     :align: center
 
 
+**Script output**:
+
+.. rst-class:: max_height
+
+ ::
+
+    Optimization terminated successfully.    (Exit mode 0)
+              Current function value: 2.47487373504
+              Iterations: 5
+              Function evaluations: 20
+              Gradient evaluations: 5
+
+
+
 **Python source code:** :download:`plot_non_bounds_constraints.py <plot_non_bounds_constraints.py>`
 
 .. literalinclude:: plot_non_bounds_constraints.py
-    :lines: 4-
+    :lines: 8-
+
+**Total running time of the example:**  0.08 seconds
+( 0 minutes  0.08 seconds)
     

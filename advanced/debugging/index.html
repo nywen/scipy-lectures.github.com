@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="2. Advanced topics" href="../index.html" />
     <link rel="next" title="2.4. Optimizing code" href="../optimizing/index.html" />
-    <link rel="prev" title="2.2. Advanced Numpy" href="../advanced_numpy/index.html" /> 
+    <link rel="prev" title="2.2. Advanced Numpy" href="../advanced_numpy/index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -127,19 +167,13 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="debugging-code">
 <h1>2.3. Debugging code<a class="headerlink" href="#debugging-code" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">author:</th><td class="field-body">Gaël Varoquaux</td>
-</tr>
-</tbody>
-</table>
-<p>This tutorial explores tool to understand better your code base:
+<p><strong>Author</strong>: <em>Gaël Varoquaux</em></p>
+<p>This section explores tools to understand better your code base:
 debugging, to find and fix bugs.</p>
 <p>It is not specific to the scientific Python community, but the strategies
 that we will employ are tailored to its needs.</p>
@@ -229,7 +263,7 @@ mathematics names)</li>
 </div></blockquote>
 <p>Another good recommendation is the <tt class="xref py py-obj docutils literal"><span class="pre">flake8</span></tt> tool which is a combination of
 pyflakes and pep8. Thus, in addition to the types of errors that pyflakes
-catches, flake8 detects violations of the recommendation in <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP8</a> style guide.</p>
+catches, flake8 detects violations of the recommendation in <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> style guide.</p>
 <p>Integrating pyflakes (or flake8) in your editor or IDE is highly
 recommended, it <strong>does yield productivity gains</strong>.</p>
 <div class="section" id="running-pyflakes-on-the-current-edited-file">
@@ -243,7 +277,8 @@ Menu: &#8216;settings -&gt; configure kate</p>
 <li><p class="first">In plugins enable &#8216;external tools&#8217;</p>
 </li>
 <li><p class="first">In external Tools&#8217;, add <tt class="xref py py-obj docutils literal"><span class="pre">pyflakes</span></tt>:</p>
-<div class="highlight-python"><pre>kdialog --title "pyflakes %filename" --msgbox "$(pyflakes %filename)"</pre>
+<div class="highlight-python"><div class="highlight"><pre>kdialog --title &quot;pyflakes %filename&quot; --msgbox &quot;$(pyflakes %filename)&quot;
+<div class="newline"></div></pre></div>
 </div>
 </li>
 </ul>
@@ -252,38 +287,41 @@ Menu: &#8216;settings -&gt; configure kate</p>
 <li><p class="first"><strong>In TextMate</strong></p>
 <p>Menu: TextMate -&gt; Preferences -&gt; Advanced -&gt; Shell variables, add a
 shell variable:</p>
-<div class="highlight-python"><pre>TM_PYCHECKER=/Library/Frameworks/Python.framework/Versions/Current/bin/pyflakes</pre>
+<div class="highlight-python"><div class="highlight"><pre>TM_PYCHECKER=/Library/Frameworks/Python.framework/Versions/Current/bin/pyflakes
+<div class="newline"></div></pre></div>
 </div>
 <p>Then <tt class="xref py py-obj docutils literal"><span class="pre">Ctrl-Shift-V</span></tt> is binded to a pyflakes report</p>
 </li>
 <li><p class="first"><strong>In vim</strong>
 In your <tt class="xref py py-obj docutils literal"><span class="pre">vimrc</span></tt> (binds F5 to <tt class="xref py py-obj docutils literal"><span class="pre">pyflakes</span></tt>):</p>
-<div class="highlight-python"><pre>autocmd FileType python let &amp;mp = 'echo "*** running % ***" ; pyflakes %'
-autocmd FileType tex,mp,rst,python imap &lt;Esc&gt;[15~ &lt;C-O&gt;:make!^M
-autocmd FileType tex,mp,rst,python map  &lt;Esc&gt;[15~ :make!^M
-autocmd FileType tex,mp,rst,python set autowrite</pre>
+<div class="highlight-python"><div class="highlight"><pre>autocmd FileType python let &amp;mp = &#39;echo &quot;*** running % ***&quot; ; pyflakes %&#39;
+<div class="newline"></div>autocmd FileType tex,mp,rst,python imap &lt;Esc&gt;[15~ &lt;C-O&gt;:make!^M
+<div class="newline"></div>autocmd FileType tex,mp,rst,python map  &lt;Esc&gt;[15~ :make!^M
+<div class="newline"></div>autocmd FileType tex,mp,rst,python set autowrite
+<div class="newline"></div></pre></div>
 </div>
 </li>
 <li><p class="first"><strong>In emacs</strong>
 In your <tt class="xref py py-obj docutils literal"><span class="pre">emacs</span></tt> (binds F5 to <tt class="xref py py-obj docutils literal"><span class="pre">pyflakes</span></tt>):</p>
-<div class="highlight-python"><pre>(defun pyflakes-thisfile () (interactive)
-       (compile (format "pyflakes %s" (buffer-file-name)))
-)
-
-(define-minor-mode pyflakes-mode
-    "Toggle pyflakes mode.
-    With no argument, this command toggles the mode.
-    Non-null prefix argument turns on the mode.
-    Null prefix argument turns off the mode."
-    ;; The initial value.
-    nil
-    ;; The indicator for the mode line.
-    " Pyflakes"
-    ;; The minor mode bindings.
-    '( ([f5] . pyflakes-thisfile) )
-)
-
-(add-hook 'python-mode-hook (lambda () (pyflakes-mode t)))</pre>
+<div class="highlight-python"><div class="highlight"><pre>(defun pyflakes-thisfile () (interactive)
+<div class="newline"></div>       (compile (format &quot;pyflakes %s&quot; (buffer-file-name)))
+<div class="newline"></div>)
+<div class="newline"></div>
+<div class="newline"></div>(define-minor-mode pyflakes-mode
+<div class="newline"></div>    &quot;Toggle pyflakes mode.
+<div class="newline"></div>    With no argument, this command toggles the mode.
+<div class="newline"></div>    Non-null prefix argument turns on the mode.
+<div class="newline"></div>    Null prefix argument turns off the mode.&quot;
+<div class="newline"></div>    ;; The initial value.
+<div class="newline"></div>    nil
+<div class="newline"></div>    ;; The indicator for the mode line.
+<div class="newline"></div>    &quot; Pyflakes&quot;
+<div class="newline"></div>    ;; The minor mode bindings.
+<div class="newline"></div>    &#39;( ([f5] . pyflakes-thisfile) )
+<div class="newline"></div>)
+<div class="newline"></div>
+<div class="newline"></div>(add-hook &#39;python-mode-hook (lambda () (pyflakes-mode t)))
+<div class="newline"></div></pre></div>
 </div>
 </li>
 </ul>
@@ -313,19 +351,20 @@ on-the-fly checking for many other languages.</p>
 Use the flymake mode with pyflakes, documented on
 <a class="reference external" href="http://www.plope.com/Members/chrism/flymake-mode">http://www.plope.com/Members/chrism/flymake-mode</a> : add the following to
 your .emacs file:</p>
-<div class="highlight-python"><pre>(when (load "flymake" t)
-        (defun flymake-pyflakes-init ()
-        (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                            'flymake-create-temp-inplace))
-            (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-            (list "pyflakes" (list local-file))))
-
-        (add-to-list 'flymake-allowed-file-name-masks
-                '("\\.py\\'" flymake-pyflakes-init)))
-
-(add-hook 'find-file-hook 'flymake-find-file-hook)</pre>
+<div class="highlight-python"><div class="highlight"><pre>(when (load &quot;flymake&quot; t)
+<div class="newline"></div>        (defun flymake-pyflakes-init ()
+<div class="newline"></div>        (let* ((temp-file (flymake-init-create-temp-buffer-copy
+<div class="newline"></div>                            &#39;flymake-create-temp-inplace))
+<div class="newline"></div>            (local-file (file-relative-name
+<div class="newline"></div>                        temp-file
+<div class="newline"></div>                        (file-name-directory buffer-file-name))))
+<div class="newline"></div>            (list &quot;pyflakes&quot; (list local-file))))
+<div class="newline"></div>
+<div class="newline"></div>        (add-to-list &#39;flymake-allowed-file-name-masks
+<div class="newline"></div>                &#39;(&quot;\\.py\\&#39;&quot; flymake-pyflakes-init)))
+<div class="newline"></div>
+<div class="newline"></div>(add-hook &#39;find-file-hook &#39;flymake-find-file-hook)
+<div class="newline"></div></pre></div>
 </div>
 </li>
 </ul>
@@ -369,7 +408,7 @@ the corresponding code to your test suite.</p>
 </div>
 <div class="section" id="using-the-python-debugger">
 <h2><a class="toc-backref" href="#id8">2.3.3. Using the Python debugger</a><a class="headerlink" href="#using-the-python-debugger" title="Permalink to this headline">¶</a></h2>
-<p>The python debugger, <tt class="docutils literal"><span class="pre">pdb</span></tt>: <a class="reference external" href="http://docs.python.org/library/pdb.html">http://docs.python.org/library/pdb.html</a>,
+<p>The python debugger, <tt class="docutils literal"><span class="pre">pdb</span></tt>: <a class="reference external" href="https://docs.python.org/library/pdb.html">https://docs.python.org/library/pdb.html</a>,
 allows you to inspect your code interactively.</p>
 <p>Specifically it allows you to:</p>
 <blockquote>
@@ -448,28 +487,29 @@ inspect runtime, it is often more efficient to use the debugger.</p>
 <p>In some situations you cannot use IPython, for instance to debug a
 script that wants to be called from the command line. In this case,
 you can call the script with <tt class="docutils literal"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pdb</span> <span class="pre">script.py</span></tt>:</p>
-<div class="highlight-python"><pre>$ python -m pdb index_error.py
-&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(1)&lt;module&gt;()
--&gt; """Small snippet to raise an IndexError."""
-(Pdb) continue
-Traceback (most recent call last):
-File "/usr/lib/python2.6/pdb.py", line 1296, in main
-    pdb._runscript(mainpyfile)
-File "/usr/lib/python2.6/pdb.py", line 1215, in _runscript
-    self.run(statement)
-File "/usr/lib/python2.6/bdb.py", line 372, in run
-    exec cmd in globals, locals
-File "&lt;string&gt;", line 1, in &lt;module&gt;
-File "index_error.py", line 8, in &lt;module&gt;
-    index_error()
-File "index_error.py", line 5, in index_error
-    print lst[len(lst)]
-IndexError: list index out of range
-Uncaught exception. Entering post mortem debugging
-Running 'cont' or 'step' will restart the program
-&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
--&gt; print lst[len(lst)]
-(Pdb)</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ python -m pdb index_error.py
+<div class="newline"></div>&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(1)&lt;module&gt;()
+<div class="newline"></div>-&gt; &quot;&quot;&quot;Small snippet to raise an IndexError.&quot;&quot;&quot;
+<div class="newline"></div>(Pdb) continue
+<div class="newline"></div>Traceback (most recent call last):
+<div class="newline"></div>File &quot;/usr/lib/python2.6/pdb.py&quot;, line 1296, in main
+<div class="newline"></div>    pdb._runscript(mainpyfile)
+<div class="newline"></div>File &quot;/usr/lib/python2.6/pdb.py&quot;, line 1215, in _runscript
+<div class="newline"></div>    self.run(statement)
+<div class="newline"></div>File &quot;/usr/lib/python2.6/bdb.py&quot;, line 372, in run
+<div class="newline"></div>    exec cmd in globals, locals
+<div class="newline"></div>File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+<div class="newline"></div>File &quot;index_error.py&quot;, line 8, in &lt;module&gt;
+<div class="newline"></div>    index_error()
+<div class="newline"></div>File &quot;index_error.py&quot;, line 5, in index_error
+<div class="newline"></div>    print lst[len(lst)]
+<div class="newline"></div>IndexError: list index out of range
+<div class="newline"></div>Uncaught exception. Entering post mortem debugging
+<div class="newline"></div>Running &#39;cont&#39; or &#39;step&#39; will restart the program
+<div class="newline"></div>&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
+<div class="newline"></div>-&gt; print lst[len(lst)]
+<div class="newline"></div>(Pdb)
+<div class="newline"></div></pre></div>
 </div>
 </div>
 </div>
@@ -675,7 +715,7 @@ worth looking at.</li>
 <p><strong>Debugger commands are not Python code</strong></p>
 <p class="last">You cannot name the variables the way you want. For instance, if in
 you cannot override the variables in the current frame with the same
-name: <strong>use different names then your local variable when typing code
+name: <strong>use different names than your local variable when typing code
 in the debugger</strong>.</p>
 </div>
 <div class="section" id="getting-help-when-in-the-debugger">
@@ -737,7 +777,7 @@ script in gdb as follows</p>
 level stack (not the Python call stack). We can debug the C call stack
 using gdb&#8217;s commands:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">(gdb) up</span>
-<div class="newline"></div><span class="gp">#</span>1  0x004af4f5 in _copy_from_same_shape <span class="o">(</span><span class="nv">dest</span><span class="o">=</span>&lt;value optimized out&gt;,
+<div class="newline"></div><span class="gp">#</span><span class="m">1</span>  0x004af4f5 in _copy_from_same_shape <span class="o">(</span><span class="nv">dest</span><span class="o">=</span>&lt;value optimized out&gt;,
 <div class="newline"></div><span class="go">    src=&lt;value optimized out&gt;, myfunc=0x496780 &lt;_strided_byte_copy&gt;,</span>
 <div class="newline"></div><span class="go">    swap=0)</span>
 <div class="newline"></div><span class="go">at numpy/core/src/multiarray/ctors.c:748</span>
@@ -748,14 +788,14 @@ using gdb&#8217;s commands:</p>
 to know what is the Python code that triggers this segfault, so we go up
 the stack until we hit the Python execution loop:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">(gdb) up</span>
-<div class="newline"></div><span class="gp">#</span>8  0x080ddd23 in call_function <span class="o">(</span><span class="nv">f</span><span class="o">=</span>
+<div class="newline"></div><span class="gp">#</span><span class="m">8</span>  0x080ddd23 in call_function <span class="o">(</span><span class="nv">f</span><span class="o">=</span>
 <div class="newline"></div><span class="go">    Frame 0x85371ec, for file /home/varoquau/usr/lib/python2.6/site-packages/numpy/core/arrayprint.py, line 156, in _leading_trailing (a=&lt;numpy.ndarray at remote 0x85371b0&gt;, _nc=&lt;module at remote 0xb7f93a64&gt;), throwflag=0)</span>
 <div class="newline"></div><span class="go">    at ../Python/ceval.c:3750</span>
 <div class="newline"></div><span class="go">3750    ../Python/ceval.c: No such file or directory.</span>
 <div class="newline"></div><span class="go">        in ../Python/ceval.c</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="go">(gdb) up</span>
-<div class="newline"></div><span class="gp">#</span>9  PyEval_EvalFrameEx <span class="o">(</span><span class="nv">f</span><span class="o">=</span>
+<div class="newline"></div><span class="gp">#</span><span class="m">9</span>  PyEval_EvalFrameEx <span class="o">(</span><span class="nv">f</span><span class="o">=</span>
 <div class="newline"></div><span class="go">    Frame 0x85371ec, for file /home/varoquau/usr/lib/python2.6/site-packages/numpy/core/arrayprint.py, line 156, in _leading_trailing (a=&lt;numpy.ndarray at remote 0x85371b0&gt;, _nc=&lt;module at remote 0xb7f93a64&gt;), throwflag=0)</span>
 <div class="newline"></div><span class="go">    at ../Python/ceval.c:2412</span>
 <div class="newline"></div><span class="go">2412    in ../Python/ceval.c</span>
@@ -774,7 +814,7 @@ written:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">(gdb) up</span>
 <div class="newline"></div><span class="go">...</span>
 <div class="newline"></div><span class="go">(gdb) up</span>
-<div class="newline"></div><span class="gp">#</span>34 0x080dc97a in PyEval_EvalFrameEx <span class="o">(</span><span class="nv">f</span><span class="o">=</span>
+<div class="newline"></div><span class="gp">#</span><span class="m">34</span> 0x080dc97a in PyEval_EvalFrameEx <span class="o">(</span><span class="nv">f</span><span class="o">=</span>
 <div class="newline"></div><span class="go">    Frame 0x82f064c, for file segfault.py, line 11, in print_big_array (small_array=&lt;numpy.ndarray at remote 0x853ecf0&gt;, big_array=&lt;numpy.ndarray at remote 0x853ed20&gt;), throwflag=0) at ../Python/ceval.c:1630</span>
 <div class="newline"></div><span class="go">1630    ../Python/ceval.c: No such file or directory.</span>
 <div class="newline"></div><span class="go">        in ../Python/ceval.c</span>
@@ -879,6 +919,62 @@ but it does not work... Can you debug it?</p>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.3. Debugging code</a><ul>
+<li><a class="reference internal" href="#avoiding-bugs">2.3.1. Avoiding bugs</a><ul>
+<li><a class="reference internal" href="#coding-best-practices-to-avoid-getting-in-trouble">2.3.1.1. Coding best practices to avoid getting in trouble</a></li>
+<li><a class="reference internal" href="#pyflakes-fast-static-analysis">2.3.1.2. pyflakes: fast static analysis</a><ul>
+<li><a class="reference internal" href="#running-pyflakes-on-the-current-edited-file">2.3.1.2.1. Running pyflakes on the current edited file</a></li>
+<li><a class="reference internal" href="#a-type-as-go-spell-checker-like-integration">2.3.1.2.2. A type-as-go spell-checker like integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debugging-workflow">2.3.2. Debugging workflow</a></li>
+<li><a class="reference internal" href="#using-the-python-debugger">2.3.3. Using the Python debugger</a><ul>
+<li><a class="reference internal" href="#invoking-the-debugger">2.3.3.1. Invoking the debugger</a><ul>
+<li><a class="reference internal" href="#postmortem">2.3.3.1.1. Postmortem</a></li>
+<li><a class="reference internal" href="#step-by-step-execution">2.3.3.1.2. Step-by-step execution</a></li>
+<li><a class="reference internal" href="#other-ways-of-starting-a-debugger">2.3.3.1.3. Other ways of starting a debugger</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debugger-commands-and-interaction">2.3.3.2. Debugger commands and interaction</a><ul>
+<li><a class="reference internal" href="#getting-help-when-in-the-debugger">2.3.3.2.1. Getting help when in the debugger</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debugging-segmentation-faults-using-gdb">2.3.4. Debugging segmentation faults using gdb</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -916,8 +1012,8 @@ but it does not work... Can you debug it?</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

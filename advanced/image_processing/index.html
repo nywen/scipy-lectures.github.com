@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="2. Advanced topics" href="../index.html" />
     <link rel="next" title="2.7. Mathematical optimization: finding minima of functions" href="../mathematical_optimization/index.html" />
-    <link rel="prev" title="2.5.4. Other Interesting Packages" href="../scipy_sparse/other_packages.html" /> 
+    <link rel="prev" title="2.5.4. Other Interesting Packages" href="../scipy_sparse/other_packages.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -127,28 +167,22 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="image-manipulation-and-processing-using-numpy-and-scipy">
 <span id="basic-image"></span><h1>2.6. Image manipulation and processing using Numpy and Scipy<a class="headerlink" href="#image-manipulation-and-processing-using-numpy-and-scipy" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">authors:</th><td class="field-body">Emmanuelle Gouillart, Gaël Varoquaux</td>
-</tr>
-</tbody>
-</table>
-<p>This chapter addresses basic image manipulation and processing using the
+<p><strong>Authors</strong>: <em>Emmanuelle Gouillart, Gaël Varoquaux</em></p>
+<p>This section addresses basic image manipulation and processing using the
 core scientific modules NumPy and SciPy. Some of the operations covered
 by this tutorial may be useful for other kinds of multidimensional array
 processing than image processing. In particular, the submodule
-<a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/ndimage.html#scipy.ndimage" title="(in SciPy v0.13.0)"><tt class="xref py py-mod docutils literal"><span class="pre">scipy.ndimage</span></tt></a> provides functions operating on n-dimensional NumPy
+<a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/ndimage.html#module-scipy.ndimage" title="(in SciPy v0.16.0)"><tt class="xref py py-mod docutils literal"><span class="pre">scipy.ndimage</span></tt></a> provides functions operating on n-dimensional NumPy
 arrays.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last">For more advanced image processing and image-specific routines, see the
-tutorial <a class="reference internal" href="../../packages/scikit-image/index.html#scikit-image"><em>Scikit-image: image processing</em></a>, dedicated to the <a class="reference external" href="http://scikit-image.org/docs/0.8.0/api/skimage.html#skimage" title="(in skimage v0.8.0)"><tt class="xref py py-mod docutils literal"><span class="pre">skimage</span></tt></a> module.</p>
+tutorial <a class="reference internal" href="../../packages/scikit-image/index.html#scikit-image"><em>Scikit-image: image processing</em></a>, dedicated to the <a class="reference external" href="http://scikit-image.org/docs/stable/api/skimage.html#module-skimage" title="(in skimage v0.11.3)"><tt class="xref py py-mod docutils literal"><span class="pre">skimage</span></tt></a> module.</p>
 </div>
 <div class="topic">
 <p class="topic-title first">Image = 2-D numerical array</p>
@@ -176,14 +210,6 @@ tutorial <a class="reference internal" href="../../packages/scikit-image/index.h
 <li>Feature extraction</li>
 <li>Registration</li>
 <li>...</li>
-</ul>
-<p>More powerful and complete modules:</p>
-<ul class="simple">
-<li><a class="reference external" href="http://opencv.willowgarage.com/documentation/python/cookbook.html">OpenCV</a>
-(Python bindings)</li>
-<li><a class="reference external" href="http://www.cellprofiler.org">CellProfiler</a></li>
-<li><a class="reference external" href="http://www.itk.org/">ITK</a> with Python bindings</li>
-<li>many more...</li>
 </ul>
 <div class="contents local topic" id="chapters-contents">
 <p class="topic-title first">Chapters contents</p>
@@ -213,40 +239,47 @@ tutorial <a class="reference internal" href="../../packages/scikit-image/index.h
 <div class="section" id="opening-and-writing-to-image-files">
 <h2><a class="toc-backref" href="#id1">2.6.1. Opening and writing to image files</a><a class="headerlink" href="#opening-and-writing-to-image-files" title="Permalink to this headline">¶</a></h2>
 <p>Writing an array to a file:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">misc</span>
-<div class="newline"></div><span class="n">l</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
-<div class="newline"></div><span class="n">misc</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span><span class="s">&#39;lena.png&#39;</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span> <span class="c"># uses the Image module (PIL)</span>
+<div class="highlight-python"><div class="highlight"><pre>Displaying Lena
+<div class="newline"></div>================
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-<div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="newline"></div>Small example to plot lena.
+<div class="newline"></div>&quot;&quot;&quot;
+<div class="newline"></div>
+<div class="newline"></div>from scipy import misc
+<div class="newline"></div>l = misc.lena()
+<div class="newline"></div>misc.imsave(&#39;lena.png&#39;, l) # uses the Image module (PIL)
+<div class="newline"></div>
+<div class="newline"></div>import matplotlib.pyplot as plt
+<div class="newline"></div>plt.imshow(l)
+<div class="newline"></div>plt.show()
 <div class="newline"></div></pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/lena.png"><img alt="../../_images/lena.png" class="align-center" src="../../_images/lena.png" style="width: 256.0px; height: 256.0px;" /></a>
 <p>Creating a numpy array from an image file:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">misc</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">misc</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span><span class="s">&#39;lena.png&#39;</span><span class="p">,</span> <span class="n">lena</span><span class="p">)</span> <span class="c"># First we need to create the PNG file</span>
+<div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s">&#39;lena.png&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">lena</span><span class="p">)</span>
-<div class="newline"></div><span class="go">&lt;type &#39;numpy.ndarray&#39;&gt;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">lena</span><span class="p">)</span>      
+<div class="newline"></div><span class="go">&lt;... &#39;numpy.ndarray&#39;&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">lena</span><span class="o">.</span><span class="n">dtype</span>
 <div class="newline"></div><span class="go">((512, 512), dtype(&#39;uint8&#39;))</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>dtype is uint8 for 8-bit images (0-255)</p>
 <p>Opening raw files (camera, 3-D images)</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="s">&#39;lena.raw&#39;</span><span class="p">)</span> <span class="c"># Create raw file</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_from_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="s">&#39;lena.raw&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="s">&#39;lena.raw&#39;</span><span class="p">)</span> <span class="c"># Create raw file</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_from_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="s">&#39;lena.raw&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_from_raw</span><span class="o">.</span><span class="n">shape</span>
 <div class="newline"></div><span class="go">(262144,)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_from_raw</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s">&#39;lena.raw&#39;</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Need to know the shape and dtype of the image (how to separate data
 bytes).</p>
 <p>For large data, use <tt class="docutils literal"><span class="pre">np.memmap</span></tt> for memory mapping:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_memmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">memmap</span><span class="p">(</span><span class="s">&#39;lena.raw&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">))</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_memmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">memmap</span><span class="p">(</span><span class="s">&#39;lena.raw&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">))</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>(data are read from the file, and not loaded into memory)</p>
@@ -266,31 +299,33 @@ bytes).</p>
 <tt class="docutils literal"><span class="pre">matplotlib</span> <span class="pre">figure</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
-<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x3c7f710&gt;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>        
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Increase contrast by setting min and max values:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x33ef750&gt;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>        
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="c"># Remove axes and ticks</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="go">(-0.5, 511.5, 511.5, -0.5)</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Draw contour lines:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">211</span><span class="p">])</span>
-<div class="newline"></div><span class="go">&lt;matplotlib.contour.ContourSet instance at 0x33f8c20&gt;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">211</span><span class="p">])</span>        
+<div class="newline"></div><span class="go">&lt;matplotlib.contour.QuadContourSet ...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_display_lena.html"><img alt="../../_images/plot_display_lena_1.png" src="../../_images/plot_display_lena_1.png" style="width: 1000.0px; height: 360.0px;" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_display_lena.html"><img alt="../../_images/plot_display_lena_1.png" src="../../_images/plot_display_lena_1.png" style="width: 800.0px; height: 288.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_display_lena.html#example-plot-display-lena-py"><em>Python source code</em></a>]</p>
 <p>For fine inspection of intensity variations, use
 <tt class="docutils literal"><span class="pre">interpolation='nearest'</span></tt>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">220</span><span class="p">,</span> <span class="mi">200</span><span class="p">:</span><span class="mi">220</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">220</span><span class="p">,</span> <span class="mi">200</span><span class="p">:</span><span class="mi">220</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">220</span><span class="p">,</span> <span class="mi">200</span><span class="p">:</span><span class="mi">220</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>        
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">220</span><span class="p">,</span> <span class="mi">200</span><span class="p">:</span><span class="mi">220</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>        
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
@@ -313,14 +348,14 @@ bytes).</p>
 <h2><a class="toc-backref" href="#id3">2.6.3. Basic manipulations</a><a class="headerlink" href="#basic-manipulations" title="Permalink to this headline">¶</a></h2>
 <p>Images are arrays: use the whole <tt class="docutils literal"><span class="pre">numpy</span></tt> machinery.</p>
 <a class="reference internal image-reference" href="../../_images/axis_convention.png"><img alt="../../_images/axis_convention.png" class="align-center" src="../../_images/axis_convention.png" style="width: 432.25px; height: 221.65px;" /></a>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
 <div class="newline"></div><span class="go">166</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="c"># Slicing</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">:</span><span class="mi">23</span><span class="p">]</span>
 <div class="newline"></div><span class="go">array([[158, 156, 157],</span>
-<div class="newline"></div><span class="go">[157, 155, 155],</span>
-<div class="newline"></div><span class="go">[157, 157, 158]])</span>
+<div class="newline"></div><span class="go">       [157, 155, 155],</span>
+<div class="newline"></div><span class="go">       [157, 157, 158]])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">120</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
 <div class="newline"></div><span class="go">&gt;&gt;&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lx</span><span class="p">,</span> <span class="n">ly</span> <span class="o">=</span> <span class="n">lena</span><span class="o">.</span><span class="n">shape</span>
@@ -350,11 +385,11 @@ bytes).</p>
 <p class="topic-title first"><strong>Exercise</strong></p>
 <ul class="simple">
 <li>Open as an array the <tt class="docutils literal"><span class="pre">scikit-image</span></tt> logo
-(<a class="reference external" href="http://scikit-image.org/_static/scikits_image_logo.png">http://scikit-image.org/_static/scikits_image_logo.png</a>), or an
+(<a class="reference external" href="http://scikit-image.org/_static/img/logo.png">http://scikit-image.org/_static/img/logo.png</a>), or an
 image that you have on your computer.</li>
 <li>Crop a meaningful part of the image, for example the python circle
 in the logo.</li>
-<li>Display the image array using <tt class="docutils literal"><span class="pre">matlplotlib</span></tt>. Change the
+<li>Display the image array using <tt class="docutils literal"><span class="pre">matplotlib</span></tt>. Change the
 interpolation method and zoom to see the difference.</li>
 <li>Transform your image to greyscale</li>
 <li>Increase the contrast of the image by changing its minimum and
@@ -363,7 +398,7 @@ maximum values. <strong>Optional</strong>: use <tt class="docutils literal"><spa
 of the lightest pixels.</li>
 <li>Save the array to two different file formats (png, jpg, tiff)</li>
 </ul>
-<img alt="../../_images/scikits_image_logo.png" class="align-center" src="../../_images/scikits_image_logo.png" />
+<img alt="../../_images/scikit_image_logo.png" class="align-center" src="../../_images/scikit_image_logo.png" />
 </div>
 </div>
 <div class="section" id="geometrical-transformations">
@@ -380,7 +415,7 @@ of the lightest pixels.</li>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_geom_lena.html"><img alt="../../_images/plot_geom_lena_1.png" src="../../_images/plot_geom_lena_1.png" style="width: 1000.0px; height: 200.0px;" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_geom_lena.html"><img alt="../../_images/plot_geom_lena_1.png" src="../../_images/plot_geom_lena_1.png" style="width: 812.5px; height: 162.5px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_geom_lena.html#example-plot-geom-lena-py"><em>Python source code</em></a>]</p>
 </div>
@@ -408,7 +443,7 @@ element</em>.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_blur.html"><img alt="../../_images/plot_blur_1.png" src="../../_images/plot_blur_1.png" style="width: 720.0px; height: 240.0px;" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_blur.html"><img alt="../../_images/plot_blur_1.png" src="../../_images/plot_blur_1.png" style="width: 810.0px; height: 270.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_blur.html#example-plot-blur-py"><em>Python source code</em></a>]</p>
 </div>
@@ -428,7 +463,7 @@ Laplacian:</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_sharpen.html"><img alt="../../_images/plot_sharpen_1.png" src="../../_images/plot_sharpen_1.png" style="width: 1200.0px; height: 400.0px;" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_sharpen.html"><img alt="../../_images/plot_sharpen_1.png" src="../../_images/plot_sharpen_1.png" style="width: 780.0px; height: 260.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_sharpen.html#example-plot-sharpen-py"><em>Python source code</em></a>]</p>
 </div>
@@ -463,7 +498,7 @@ Laplacian:</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_denoising.html"><img alt="../../_images/plot_denoising_1.png" src="../../_images/plot_denoising_1.png" style="width: 960.0px; height: 300.0px;" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_denoising.html"><img alt="../../_images/plot_denoising_1.png" src="../../_images/plot_denoising_1.png" style="width: 800.0px; height: 250.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_denoising.html#example-plot-denoising-py"><em>Python source code</em></a>]</p>
 <p>Other rank filter: <tt class="docutils literal"><span class="pre">ndimage.maximum_filter</span></tt>,
@@ -483,10 +518,15 @@ Which one is the closest to the histogram of the original (noise-free)
 image?</li>
 </ul>
 </div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">More denoising filters are available in <tt class="xref py py-mod docutils literal"><span class="pre">skimage.denoising</span></tt>,
+see the <a class="reference internal" href="../../packages/scikit-image/index.html#scikit-image"><em>Scikit-image: image processing</em></a> tutorial.</p>
+</div>
 </div>
 <div class="section" id="mathematical-morphology">
 <h3><a class="toc-backref" href="#id10">2.6.4.4. Mathematical morphology</a><a class="headerlink" href="#mathematical-morphology" title="Permalink to this headline">¶</a></h3>
-<p>See <a class="reference external" href="http://en.wikipedia.org/wiki/Mathematical_morphology">http://en.wikipedia.org/wiki/Mathematical_morphology</a></p>
+<p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Mathematical_morphology">https://en.wikipedia.org/wiki/Mathematical_morphology</a></p>
 <p>Probe an image with a simple shape (a <strong>structuring element</strong>), and
 modify this image according to how the shape locally fits or misses the
 image.</p>
@@ -555,6 +595,7 @@ image.</p>
 </div>
 <p>Also works for grey-valued images:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">63</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">im</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 <div class="newline"></div>
@@ -688,10 +729,10 @@ better result than opening/closing:</p>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">reconstruct_img</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">eroded_tmp</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_erosion</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">reconstruct_final</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">ndimage</span><span class="o">.</span><span class="n">binary_propagation</span><span class="p">(</span><span class="n">eroded_tmp</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">tmp</span><span class="p">))</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mask</span> <span class="o">-</span> <span class="n">close_img</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<div class="newline"></div><span class="go">0.014678955078125</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mask</span> <span class="o">-</span> <span class="n">reconstruct_final</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<div class="newline"></div><span class="go">0.0042572021484375</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mask</span> <span class="o">-</span> <span class="n">close_img</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> 
+<div class="newline"></div><span class="go">0.00727836...</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mask</span> <span class="o">-</span> <span class="n">reconstruct_final</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> 
+<div class="newline"></div><span class="go">0.00059502...</span>
 <div class="newline"></div></pre></div>
 </div>
 </div>
@@ -742,7 +783,7 @@ function of the <tt class="docutils literal"><span class="pre">scikit-learn</spa
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="c"># dependant from the gradient the segmentation is close to a voronoi</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">graph</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">graph</span><span class="o">.</span><span class="n">data</span><span class="o">/</span><span class="n">graph</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">spectral_clustering</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;arpack&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">spectral_clustering</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">eigen_solver</span><span class="o">=</span><span class="s">&#39;arpack&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">label_im</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">label_im</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
 <div class="newline"></div></pre></div>
@@ -769,9 +810,9 @@ function of the <tt class="docutils literal"><span class="pre">scikit-learn</spa
 <p>Label connected components: <tt class="docutils literal"><span class="pre">ndimage.label</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">label_im</span><span class="p">,</span> <span class="n">nb_labels</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">nb_labels</span> <span class="c"># how many regions?</span>
-<div class="newline"></div><span class="go">23</span>
+<div class="newline"></div><span class="go">16</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">label_im</span><span class="p">)</span>        
-<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at ...&gt;</span>
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
@@ -790,7 +831,7 @@ function of the <tt class="docutils literal"><span class="pre">scikit-learn</spa
 <div class="newline"></div><span class="go">(256, 256)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">label_im</span><span class="p">[</span><span class="n">remove_pixel</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">label_im</span><span class="p">)</span>        
-<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at ...&gt;</span>
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Now reassign labels with <tt class="docutils literal"><span class="pre">np.searchsorted</span></tt>:</p>
@@ -806,7 +847,7 @@ function of the <tt class="docutils literal"><span class="pre">scikit-learn</spa
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">slice_x</span><span class="p">,</span> <span class="n">slice_y</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">find_objects</span><span class="p">(</span><span class="n">label_im</span><span class="o">==</span><span class="mi">4</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">roi</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="n">slice_x</span><span class="p">,</span> <span class="n">slice_y</span><span class="p">]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">roi</span><span class="p">)</span>     
-<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at ...&gt;</span>
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
@@ -821,10 +862,10 @@ function of the <tt class="docutils literal"><span class="pre">scikit-learn</spa
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">sx</span><span class="p">,</span> <span class="n">sy</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">shape</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ogrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">sx</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">sy</span><span class="p">]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">regions</span> <span class="o">=</span> <span class="n">sy</span><span class="o">/</span><span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="n">X</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">Y</span><span class="o">/</span><span class="mi">6</span>  <span class="c"># note that we use broadcasting</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">regions</span> <span class="o">=</span> <span class="p">(</span><span class="n">sy</span><span class="o">//</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">X</span><span class="o">//</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">Y</span><span class="o">//</span><span class="mi">6</span><span class="p">)</span>  <span class="c"># note that we use broadcasting</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">block_mean</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">regions</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">regions</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">block_mean</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">sx</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">sy</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">block_mean</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">sx</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="n">sy</span> <span class="o">//</span> <span class="mi">6</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
@@ -850,7 +891,7 @@ tricks (<a class="reference internal" href="../advanced_numpy/index.html#stride-
 </ul>
 <p>Correlation function, Fourier/wavelet spectrum, etc.</p>
 <p>One example with mathematical morphology: <strong>granulometry</strong>
-(<a class="reference external" href="http://en.wikipedia.org/wiki/Granulometry_%28morphology%29">http://en.wikipedia.org/wiki/Granulometry_%28morphology%29</a>)</p>
+(<a class="reference external" href="https://en.wikipedia.org/wiki/Granulometry_%28morphology%29">https://en.wikipedia.org/wiki/Granulometry_%28morphology%29</a>)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">disk_structure</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">struct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">indices</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
@@ -885,12 +926,77 @@ tricks (<a class="reference internal" href="../advanced_numpy/index.html#stride-
 <a class="reference external image-reference" href="auto_examples/plot_granulo.html"><img alt="../../_images/plot_granulo_1.png" src="../../_images/plot_granulo_1.png" style="width: 600.0px; height: 220.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_granulo.html#example-plot-granulo-py"><em>Python source code</em></a>]</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p>More on image-processing:</p>
+<ul class="last simple">
+<li>The chapter on <a class="reference internal" href="../../packages/scikit-image/index.html#scikit-image"><em>Scikit-image</em></a></li>
+<li>Other, more powerful and complete modules: <a class="reference external" href="https://opencv-python-tutroals.readthedocs.org/en/latest">OpenCV</a>
+(Python bindings), <a class="reference external" href="http://www.cellprofiler.org">CellProfiler</a>,
+<a class="reference external" href="http://www.itk.org/">ITK</a> with Python bindings</li>
+</ul>
+</div>
 <p><div style="clear: both"></div></p>
 </div>
 </div>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.6. Image manipulation and processing using Numpy and Scipy</a><ul>
+<li><a class="reference internal" href="#opening-and-writing-to-image-files">2.6.1. Opening and writing to image files</a></li>
+<li><a class="reference internal" href="#displaying-images">2.6.2. Displaying images</a></li>
+<li><a class="reference internal" href="#basic-manipulations">2.6.3. Basic manipulations</a><ul>
+<li><a class="reference internal" href="#statistical-information">2.6.3.1. Statistical information</a></li>
+<li><a class="reference internal" href="#geometrical-transformations">2.6.3.2. Geometrical transformations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#image-filtering">2.6.4. Image filtering</a><ul>
+<li><a class="reference internal" href="#blurring-smoothing">2.6.4.1. Blurring/smoothing</a></li>
+<li><a class="reference internal" href="#sharpening">2.6.4.2. Sharpening</a></li>
+<li><a class="reference internal" href="#denoising">2.6.4.3. Denoising</a></li>
+<li><a class="reference internal" href="#mathematical-morphology">2.6.4.4. Mathematical morphology</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#feature-extraction">2.6.5. Feature extraction</a><ul>
+<li><a class="reference internal" href="#edge-detection">2.6.5.1. Edge detection</a></li>
+<li><a class="reference internal" href="#segmentation">2.6.5.2. Segmentation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#measuring-objects-properties-ndimage-measurements">2.6.6. Measuring objects properties: <tt class="docutils literal"><span class="pre">ndimage.measurements</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -928,8 +1034,8 @@ tricks (<a class="reference internal" href="../advanced_numpy/index.html#stride-
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

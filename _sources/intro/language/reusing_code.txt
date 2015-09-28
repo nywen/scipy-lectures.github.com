@@ -288,6 +288,13 @@ Importing objects from modules into the main namespace
 '__main__' and module loading
 ------------------------------
 
+.. tip::
+
+    Sometimes we want code to be executed when a module is
+    run directly, but not when it is imported by another module.
+    ``if __name__ == '__main__'`` allows us to check whether the
+    module is being run directly.
+
 File ``demo2.py``:
 
   .. literalinclude:: demo2.py
@@ -387,8 +394,10 @@ Modules must be located in the search path, therefore you can:
     directory to your sys.path each time you want to import from a module
     in this directory.
 
-See http://docs.python.org/tutorial/modules.html for more information
-about modules.
+.. seealso::
+
+    See https://docs.python.org/tutorial/modules.html for more information
+    about modules.
 
 Packages
 --------
@@ -522,7 +531,7 @@ Good practices
   A certain number of rules
   for writing "beautiful" code (and more importantly using the same
   conventions as anybody else!) are given in the `Style Guide for Python
-  Code <http://www.python.org/dev/peps/pep-0008>`_.
+  Code <https://www.python.org/dev/peps/pep-0008>`_.
 
 
 ____

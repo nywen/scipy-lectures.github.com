@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,13 +25,53 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../index.html" />
-    <link rel="up" title="Scipy-Lecture-Notes" href="../README.html" />
-    <link rel="next" title="License" href="../LICENSE.html" />
-    <link rel="prev" title="Scipy-Lecture-Notes" href="../README.html" /> 
+    <link rel="up" title="About the scipy lecture notes" href="../preface.html" />
+    <link rel="next" title="1. Getting started with Python for science" href="../intro/index.html" />
+    <link rel="prev" title="About the scipy lecture notes" href="../preface.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -95,13 +135,13 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../LICENSE.html" title="License"
+          <a href="../intro/index.html" title="1. Getting started with Python for science"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="../README.html" title="Scipy-Lecture-Notes"
+          <a href="../preface.html" title="About the scipy lecture notes"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../README.html" accesskey="U">Scipy-Lecture-Notes</a> &raquo;</li>
+          <li><a href="../preface.html" accesskey="U">About the scipy lecture notes</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -127,18 +167,12 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="how-to-contribute">
 <h1>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">authors:</th><td class="field-body">Nicolas Rougier</td>
-</tr>
-</tbody>
-</table>
+<p><strong>Author</strong>: <em>Nicolas Rougier</em></p>
 <div class="topic">
 <p class="topic-title first">Foreword</p>
 <p>Use the <tt class="docutils literal"><span class="pre">topic</span></tt> keyword for any forewords</p>
@@ -186,12 +220,13 @@ paragraphs and sentences. However, in the long run, it is useful to have
 more elaborate discussions that people can read and refer to. For this,
 the <tt class="docutils literal"><span class="pre">tip</span></tt> sphinx directive will create collapsible paragraphs, that can
 be hidden during an oral presentation:</p>
-<div class="highlight-python"><pre>.. tip::
-
-    Here insert a full-blown discussion, that will be collapsable in
-    the HTML version.
-
-    It can span on multiple paragraphs</pre>
+<div class="highlight-python"><div class="highlight"><pre>.. tip::
+<div class="newline"></div>
+<div class="newline"></div>    Here insert a full-blown discussion, that will be collapsable in
+<div class="newline"></div>    the HTML version.
+<div class="newline"></div>
+<div class="newline"></div>    It can span on multiple paragraphs
+<div class="newline"></div></pre></div>
 </div>
 <p>This renders as following:</p>
 <blockquote>
@@ -234,8 +269,9 @@ term, <strong>bold</strong> should be used for emphasis and <tt class="docutils 
 <tt class="docutils literal"><span class="pre">class</span></tt> keyword to define your <em>classes</em>.</p>
 </div>
 <p>In restructured-text markup this is:</p>
-<div class="highlight-python"><pre>when using *object-oriented programming* in Python you **must** use the
-``class`` keyword to define your *classes*.</pre>
+<div class="highlight-python"><div class="highlight"><pre>when using *object-oriented programming* in Python you **must** use the
+<div class="newline"></div>``class`` keyword to define your *classes*.
+<div class="newline"></div></pre></div>
 </div>
 </div>
 <div class="section" id="linking-to-package-documentations">
@@ -247,7 +283,7 @@ possible to the original documentation.</p>
 extension</a>. This provides
 the directives <tt class="xref py py-obj docutils literal"><span class="pre">:mod:</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">:class:</span></tt> and <tt class="xref py py-obj docutils literal"><span class="pre">:func:</span></tt> to cross-link to modules,
 classes and functions respectively. For example the <tt class="docutils literal"><span class="pre">:func:`numpy.var`</span></tt> will
-create a link like <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.var.html#numpy.var" title="(in NumPy v1.8)"><tt class="xref py py-func docutils literal"><span class="pre">numpy.var()</span></tt></a>.</p>
+create a link like <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.var.html#numpy.var" title="(in NumPy v1.9)"><tt class="xref py py-func docutils literal"><span class="pre">numpy.var()</span></tt></a>.</p>
 </div>
 <div class="section" id="chapter-section-subsection-paragraph">
 <h2><a class="toc-backref" href="#id11">Chapter, section, subsection, paragraph</a><a class="headerlink" href="#chapter-section-subsection-paragraph" title="Permalink to this headline">¶</a></h2>
@@ -298,7 +334,8 @@ necessary.</p>
 <div class="section" id="clearing-floats">
 <h2><a class="toc-backref" href="#id14">Clearing floats</a><a class="headerlink" href="#clearing-floats" title="Permalink to this headline">¶</a></h2>
 <p>Figures positionned with <tt class="xref py py-obj docutils literal"><span class="pre">:align:</span> <span class="pre">right</span></tt> are float. To flush them, use:</p>
-<div class="highlight-python"><pre>|clear-floats|</pre>
+<div class="highlight-python"><div class="highlight"><pre>|clear-floats|
+<div class="newline"></div></pre></div>
 </div>
 </div>
 <div class="section" id="references">
@@ -321,6 +358,48 @@ necessary.</p>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to contribute</a><ul>
+<li><a class="reference internal" href="#id1">How to contribute ?</a></li>
+<li><a class="reference internal" href="#keeping-it-concise-collapsing-paragraphs">Keeping it concise: collapsing paragraphs</a></li>
+<li><a class="reference internal" href="#figures-and-code-examples">Figures and code examples</a></li>
+<li><a class="reference internal" href="#using-markup">Using Markup</a></li>
+<li><a class="reference internal" href="#linking-to-package-documentations">Linking to package documentations</a></li>
+<li><a class="reference internal" href="#chapter-section-subsection-paragraph">Chapter, section, subsection, paragraph</a></li>
+<li><a class="reference internal" href="#using-github">Using Github</a></li>
+<li><a class="reference internal" href="#admonitions">Admonitions</a></li>
+<li><a class="reference internal" href="#clearing-floats">Clearing floats</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -328,13 +407,13 @@ necessary.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../LICENSE.html" title="License"
+          <a href="../intro/index.html" title="1. Getting started with Python for science"
              >next</a></li>
         <li class="right" >
-          <a href="../README.html" title="Scipy-Lecture-Notes"
+          <a href="../preface.html" title="About the scipy lecture notes"
              >previous</a> |</li>
         <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../README.html" >Scipy-Lecture-Notes</a> &raquo;</li>
+          <li><a href="../preface.html" >About the scipy lecture notes</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -358,8 +437,8 @@ necessary.</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

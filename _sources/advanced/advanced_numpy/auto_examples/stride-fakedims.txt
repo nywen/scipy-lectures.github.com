@@ -3,9 +3,15 @@
 .. _example_stride-fakedims.py:
 
 
+Exercise: using strides to create fake dimensions
+==================================================
+
+Use strides to create fake dimensions.
+
+
 
 **Python source code:** :download:`stride-fakedims.py <stride-fakedims.py>`
 
 .. literalinclude:: stride-fakedims.py
-    :lines: 2-
+    :lines: 8-
     

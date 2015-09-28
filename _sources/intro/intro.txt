@@ -1,7 +1,8 @@
 Scientific computing with tools and workflow
 =============================================
 
-:authors: Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux, Valentin Haenel
+**Authors**: *Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux,
+Valentin Haenel*
 
 ..
     .. image:: phd053104s.png
@@ -13,11 +14,11 @@ Why Python?
 The scientist's needs
 .......................
 
-* Get data (simulation, experiment control)
+* Get data (simulation, experiment control),
 
-* Manipulate and process data.
+* Manipulate and process data,
 
-* Visualize results... to understand what we are doing!
+* Visualize results (to understand what we are doing!),
 
 * Communicate results: produce figures for reports or publications,
   write presentations.
@@ -152,7 +153,7 @@ that can be combined to obtain a scientific computing environment:
         :align: right
         :scale: 40
 
-* **IPython**, an advanced **Python shell** http://ipython.scipy.org/moin/
+* **IPython**, an advanced **Python shell** http://ipython.org/
 
 * **Numpy** : provides powerful **numerical arrays** objects, and routines to
   manipulate them. http://www.numpy.org/
@@ -169,7 +170,7 @@ that can be combined to obtain a scientific computing environment:
         :align: right
 
 * **Matplotlib** : 2-D visualization, "publication-ready" plots
-  http://matplotlib.sourceforge.net/
+  http://matplotlib.org/
 
   |clear-floats|
 
@@ -273,7 +274,7 @@ IPython Tips and Tricks
 .......................
 
 The IPython user manual contains a wealth of information about using IPython,
-but to get you started we want to give you a quick introduction to three useful
+but to get you started we want to give you a quick introduction to four useful
 features: *history*, *magic functions*, *aliases* and *tab completion*.
 
 Like a UNIX shell, IPython supports command history. Type *up* and *down* to
@@ -311,7 +312,7 @@ Other useful magic functions are:
       10000000 loops, best of 3: 39 ns per loop
 
 * ``%cpaste`` allows you to paste code, especially code from websites which has
-  been prefixed with the standard python prompt (e.g. ``>>>``) or with an ipython
+  been prefixed with the standard Python prompt (e.g. ``>>>``) or with an ipython
   prompt, (e.g. ``in [3]``):
 
   .. sourcecode:: ipython
@@ -342,7 +343,7 @@ Other useful magic functions are:
 
 
     In [8]: debug
-    > /home/esc/anaconda/lib/python2.7/site-packages/IPython/core/compilerop.py(87)ast_parse()
+    > /.../IPython/core/compilerop.py (87)ast_parse()
          86         and are passed to the built-in compile function."""
     ---> 87         return compile(source, filename, symbol, self.flags | PyCF_ONLY_AST, 1)
          88

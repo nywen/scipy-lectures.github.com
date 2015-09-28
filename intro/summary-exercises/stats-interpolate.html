@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1.5. Scipy : high-level scientific computing" href="../scipy.html" />
     <link rel="next" title="1.5.11.14. Non linear least squares curve fitting: application to point extraction in topographical lidar data" href="optimize-fit.html" />
-    <link rel="prev" title="1.5.11.16. Example of solution for the image processing exercise: unmolten grains in glass" href="answers_image_processing.html" /> 
+    <link rel="prev" title="1.5.11.16. Example of solution for the image processing exercise: unmolten grains in glass" href="answers_image_processing.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -128,6 +168,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="maximum-wind-speed-prediction-at-the-sprogo-station">
@@ -205,7 +246,6 @@ used because a spline of degree 3 seems to correctly fit the data:</p>
 of probabilities:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">nprob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1e2</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">fitted_max_speeds</span> <span class="o">=</span> <span class="n">quantile_func</span><span class="p">(</span><span class="n">nprob</span><span class="p">)</span>
-<div class="newline"></div><span class="go">2%</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>In the current model, the maximum wind speed occurring every 50 years is
@@ -217,7 +257,7 @@ value will be:</p>
 <p>So the storm wind speed occurring every 50 years can be guessed by:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fifty_wind</span> <span class="o">=</span> <span class="n">quantile_func</span><span class="p">(</span><span class="n">fifty_prob</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">fifty_wind</span>      
-<div class="newline"></div><span class="go">32.97989825...</span>
+<div class="newline"></div><span class="go">array(32.97989825...)</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>The results are now gathered on a Matplotlib figure:</p>
@@ -264,6 +304,42 @@ occurring every 50 years.</li>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.5.11.13. Maximum wind speed prediction at the Sprogø station</a><ul>
+<li><a class="reference internal" href="#statistical-approach">1.5.11.13.1. Statistical approach</a></li>
+<li><a class="reference internal" href="#computing-the-cumulative-probabilities">1.5.11.13.2. Computing the cumulative probabilities</a></li>
+<li><a class="reference internal" href="#prediction-with-univariatespline">1.5.11.13.3. Prediction with UnivariateSpline</a></li>
+<li><a class="reference internal" href="#exercise-with-the-gumbell-distribution">1.5.11.13.4. Exercise with the Gumbell distribution</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -302,8 +378,8 @@ occurring every 50 years.</li>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

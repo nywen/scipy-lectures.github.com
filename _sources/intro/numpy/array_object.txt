@@ -1,6 +1,9 @@
 ..
     >>> import numpy as np
     >>> np.random.seed(0)
+    >>> import matplotlib.pyplot as plt
+    >>> plt.switch_backend("Agg")
+
 
 .. currentmodule:: numpy
 
@@ -33,6 +36,8 @@ Numpy arrays
     - designed for scientific computation (convenience)
 
     - Also known as *array oriented computing*
+
+|
 
 .. sourcecode:: pycon
 
@@ -343,15 +348,15 @@ There are also other types:
   .. sourcecode:: pycon
 
         >>> f = np.array(['Bonjour', 'Hello', 'Hallo',])
-        >>> f.dtype     # <--- strings containing max. 7 letters
+        >>> f.dtype     # <--- strings containing max. 7 letters  # doctest: +SKIP
         dtype('S7')
 
 :Much more:
 
     * ``int32``
     * ``int64``
-    * ``unit32``
-    * ``unit64``
+    * ``uint32``
+    * ``uint64``
 
 .. XXX: mention: astype
 
@@ -361,29 +366,29 @@ Basic visualization
 
 Now that we have our first data arrays, we are going to visualize them.
 
-Start by launching IPython in *pylab* mode.
+Start by launching IPython:
 
 .. sourcecode:: bash
 
-    $ ipython --pylab
+    $ ipython
 
 Or the notebook:
 
 .. sourcecode:: bash
 
-   $ ipython notebook --pylab=inline
+   $ ipython notebook
 
-Alternatively, if IPython has already been started:
-
-.. sourcecode:: pycon
-
-    >>> %pylab  # doctest: +SKIP
-
-Or, from the notebook:
+Once IPython has started, enable interactive plots:
 
 .. sourcecode:: pycon
 
-    >>> %pylab inline
+    >>> %matplotlib  # doctest: +SKIP
+
+Or, from the notebook, enable plots in the notebook:
+
+.. sourcecode:: pycon
+
+    >>> %matplotlib inline # doctest: +SKIP
 
 The ``inline`` is important for the notebook, so that plots are displayed in
 the notebook and not in a new window.
@@ -394,21 +399,18 @@ the notebook and not in a new window.
 
     >>> import matplotlib.pyplot as plt  # the tidy way
 
-And then use (note that you have to use ``show`` explicitly):
+And then use (note that you have to use ``show`` explicitly if you have not enabled interactive plots with ``%matplotlib``):
 
 .. sourcecode:: pycon
 
     >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
-    >>> plt.show()           # <-- shows the plot (not needed with pylab) # doctest: +SKIP
+    >>> plt.show()           # <-- shows the plot (not needed with interactive plots) # doctest: +SKIP
 
-Or, if you are using *pylab*:
+Or, if you have enabled interactive plots with ``%matplotlib``:
 
 .. sourcecode:: pycon
 
     >>> plot(x, y)       # line plot    # doctest: +SKIP
-
-Using ``import matplotlib.pyplot as plt`` is recommended for use in scripts.
-Whereas ``pylab`` is recommended for interactive exploratory work.
 
 * **1D plotting**:
 
@@ -468,7 +470,7 @@ Whereas ``pylab`` is recommended for interactive exploratory work.
 ..    etc.
 ..
 ..    For more information on Mayavi :
-..    http://github.enthought.com/mayavi/mayavi
+..    https://github.enthought.com/mayavi/mayavi
 ..
 ..   .. seealso:: More in the :ref:`Mayavi chapter <mayavi-label>`
 
@@ -725,7 +727,7 @@ memory and time.
      - Run it to check it works
 
      - Use the optimization suggested in `the sieve of Eratosthenes
-       <http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>`_:
+       <https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>`_:
 
       1. Skip ``j`` which are already known to not be primes
 

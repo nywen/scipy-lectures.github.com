@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1.3. NumPy: creating and manipulating numerical data" href="index.html" />
     <link rel="next" title="1.3.2. Numerical operations on arrays" href="operations.html" />
-    <link rel="prev" title="1.3. NumPy: creating and manipulating numerical data" href="index.html" /> 
+    <link rel="prev" title="1.3. NumPy: creating and manipulating numerical data" href="index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -128,6 +168,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="the-numpy-array-object">
@@ -169,6 +210,9 @@
 </tr>
 </tbody>
 </table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
@@ -290,7 +334,7 @@ operations.</p>
 <li>Create a simple two dimensional array. First, redo the examples
 from above. And then create your own: how about odd numbers
 counting backwards on the first row, and even numbers on the second?</li>
-<li>Use the functions <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#len" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">len()</span></tt></a>, <tt class="xref py py-func docutils literal"><span class="pre">numpy.shape()</span></tt> on these arrays.
+<li>Use the functions <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#len" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">len()</span></tt></a>, <tt class="xref py py-func docutils literal"><span class="pre">numpy.shape()</span></tt> on these arrays.
 How do they relate to each other? And to the <tt class="docutils literal"><span class="pre">ndim</span></tt> attribute of
 the arrays?</li>
 </ul>
@@ -428,7 +472,7 @@ from the input.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Strings:</th><td class="field-body"><div class="first highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s">&#39;Bonjour&#39;</span><span class="p">,</span> <span class="s">&#39;Hello&#39;</span><span class="p">,</span> <span class="s">&#39;Hallo&#39;</span><span class="p">,])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">dtype</span>     <span class="c"># &lt;--- strings containing max. 7 letters</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">dtype</span>     <span class="c"># &lt;--- strings containing max. 7 letters  </span>
 <div class="newline"></div><span class="go">dtype(&#39;S7&#39;)</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -437,8 +481,8 @@ from the input.</p>
 <tr class="field-even field"><th class="field-name">Much more:</th><td class="field-body"><ul class="first last simple">
 <li><tt class="docutils literal"><span class="pre">int32</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">int64</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">unit32</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">unit64</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">uint32</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">uint64</span></tt></li>
 </ul>
 </td>
 </tr>
@@ -448,20 +492,20 @@ from the input.</p>
 <div class="section" id="basic-visualization">
 <h2><a class="toc-backref" href="#id4">1.3.1.4. Basic visualization</a><a class="headerlink" href="#basic-visualization" title="Permalink to this headline">¶</a></h2>
 <p>Now that we have our first data arrays, we are going to visualize them.</p>
-<p>Start by launching IPython in <em>pylab</em> mode.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ipython --pylab
+<p>Start by launching IPython:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ipython
 <div class="newline"></div></pre></div>
 </div>
 <p>Or the notebook:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ipython notebook --pylab<span class="o">=</span>inline
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ipython notebook
 <div class="newline"></div></pre></div>
 </div>
-<p>Alternatively, if IPython has already been started:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">pylab</span>  
+<p>Once IPython has started, enable interactive plots:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">matplotlib</span>  
 <div class="newline"></div></pre></div>
 </div>
-<p>Or, from the notebook:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<p>Or, from the notebook, enable plots in the notebook:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
 <div class="newline"></div></pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">inline</span></tt> is important for the notebook, so that plots are displayed in
@@ -470,17 +514,15 @@ the notebook and not in a new window.</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>  <span class="c"># the tidy way</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>And then use (note that you have to use <tt class="docutils literal"><span class="pre">show</span></tt> explicitly):</p>
+<p>And then use (note that you have to use <tt class="docutils literal"><span class="pre">show</span></tt> explicitly if you have not enabled interactive plots with <tt class="docutils literal"><span class="pre">%matplotlib</span></tt>):</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>       <span class="c"># line plot    </span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>           <span class="c"># &lt;-- shows the plot (not needed with pylab) </span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>           <span class="c"># &lt;-- shows the plot (not needed with interactive plots) </span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Or, if you are using <em>pylab</em>:</p>
+<p>Or, if you have enabled interactive plots with <tt class="docutils literal"><span class="pre">%matplotlib</span></tt>:</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>       <span class="c"># line plot    </span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Using <tt class="docutils literal"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></tt> is recommended for use in scripts.
-Whereas <tt class="docutils literal"><span class="pre">pylab</span></tt> is recommended for interactive exploratory work.</p>
 <ul>
 <li><p class="first"><strong>1D plotting</strong>:</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
@@ -721,12 +763,12 @@ filled with True in the beginning:</li>
 <ul class="simple">
 <li>Move the above code into a script file named <tt class="docutils literal"><span class="pre">prime_sieve.py</span></tt></li>
 <li>Run it to check it works</li>
-<li>Use the optimization suggested in <a class="reference external" href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">the sieve of Eratosthenes</a>:</li>
+<li>Use the optimization suggested in <a class="reference external" href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">the sieve of Eratosthenes</a>:</li>
 </ul>
 <blockquote>
 <div><ol class="arabic simple">
 <li>Skip <tt class="docutils literal"><span class="pre">j</span></tt> which are already known to not be primes</li>
-<li>The first number to cross out is <img class="math" src="../../_images/math/d9714cf77a92cb89757ce29264f51a9edac2a072.png" alt="j^2" style="vertical-align: -6px"/></li>
+<li>The first number to cross out is <img class="math" src="../../_images/math/a3707ea7711da4b1cac811dd7be61339329ddcc8.png" alt="j^2" style="vertical-align: -6px"/></li>
 </ol>
 </div></blockquote>
 </li>
@@ -815,6 +857,58 @@ the diagram above to zero.</li>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.3.1. The Numpy array object</a><ul>
+<li><a class="reference internal" href="#what-are-numpy-and-numpy-arrays">1.3.1.1. What are Numpy and Numpy arrays?</a><ul>
+<li><a class="reference internal" href="#numpy-arrays">1.3.1.1.1. Numpy arrays</a></li>
+<li><a class="reference internal" href="#numpy-reference-documentation">1.3.1.1.2. Numpy Reference documentation</a></li>
+<li><a class="reference internal" href="#import-conventions">1.3.1.1.3. Import conventions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-arrays">1.3.1.2. Creating arrays</a><ul>
+<li><a class="reference internal" href="#manual-construction-of-arrays">1.3.1.2.1. Manual construction of arrays</a></li>
+<li><a class="reference internal" href="#functions-for-creating-arrays">1.3.1.2.2. Functions for creating arrays</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-data-types">1.3.1.3. Basic data types</a></li>
+<li><a class="reference internal" href="#basic-visualization">1.3.1.4. Basic visualization</a></li>
+<li><a class="reference internal" href="#indexing-and-slicing">1.3.1.5. Indexing and slicing</a></li>
+<li><a class="reference internal" href="#copies-and-views">1.3.1.6. Copies and views</a></li>
+<li><a class="reference internal" href="#fancy-indexing">1.3.1.7. Fancy indexing</a><ul>
+<li><a class="reference internal" href="#using-boolean-masks">1.3.1.7.1. Using boolean masks</a></li>
+<li><a class="reference internal" href="#indexing-with-an-array-of-integers">1.3.1.7.2. Indexing with an array of integers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -853,8 +947,8 @@ the diagram above to zero.</li>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

@@ -1,3 +1,7 @@
+.. for doctests
+   >>> import matplotlib.pyplot as plt
+   >>> plt.switch_backend("Agg")
+
 .. _numpy_exercises:
 
 Some exercises
@@ -20,6 +24,7 @@ Array manipulations
 
    .. sourcecode:: pycon
 
+        >>> import numpy as np
         >>> a = np.arange(25).reshape(5, 5)
 
    elementwise with the array ``b = np.array([1., 5, 10, 15, 20])``.
@@ -59,48 +64,50 @@ use different colormaps, crop the image, change some parts of the image.
 
 * Let's use the imshow function of pylab to display the image.
 
-    .. sourcecode:: ipython
+    .. sourcecode:: pycon
 
-        In [3]: import pylab as plt
-        In [4]: lena = misc.lena()
-        In [5]: plt.imshow(lena)
+        >>> import pylab as plt
+        >>> lena = misc.lena()
+        >>> plt.imshow(lena)    # doctest: +ELLIPSIS
+        <matplotlib.image.AxesImage object at 0x...>
 
 * Lena is then displayed in false colors. A colormap must be
     specified for her to be displayed in grey.
 
-    .. sourcecode:: ipython
+    .. sourcecode:: pycon
 
-        In [6]: plt.imshow(lena, cmap=plt.cm.gray)
+        >>> plt.imshow(lena, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
+        <matplotlib.image.AxesImage object at 0x...>
 
 * Create an array of the image with a narrower centering : for example,
     remove 30 pixels from all the borders of the image. To check the result,
     display this new array with ``imshow``.
 
-    .. sourcecode:: ipython
+    .. sourcecode:: pycon
 
-        In [9]: crop_lena = lena[30:-30,30:-30]
+        >>> crop_lena = lena[30:-30,30:-30]
 
 * We will now frame Lena's face with a black locket. For this, we
     need to create a mask corresponding to the pixels we want to be
     black. The mask is defined by this condition ``(y-256)**2 +
     (x-256)**2``
 
-    .. sourcecode:: ipython
+    .. sourcecode:: pycon
 
-        In [15]: y, x = np.ogrid[0:512,0:512] # x and y indices of pixels
-        In [16]: y.shape, x.shape
-        Out[16]: ((512, 1), (1, 512))
-        In [17]: centerx, centery = (256, 256) # center of the image
-        In [18]: mask = ((y - centery)**2 + (x - centerx)**2) > 230**2 # circle
+        >>> y, x = np.ogrid[0:512,0:512] # x and y indices of pixels
+        >>> y.shape, x.shape
+        ((512, 1), (1, 512))
+        >>> centerx, centery = (256, 256) # center of the image
+        >>> mask = ((y - centery)**2 + (x - centerx)**2) > 230**2 # circle
 
     then we assign the value 0 to the pixels of the image corresponding
     to the mask. The syntax is extremely simple and intuitive:
 
-    .. sourcecode:: ipython
+    .. sourcecode:: pycon
 
-        In [19]: lena[mask] = 0
-        In [20]: plt.imshow(lena)
-        Out[20]: <matplotlib.image.AxesImage object at 0xa36534c>
+        >>> lena[mask] = 0
+        >>> plt.imshow(lena)    # doctest: +ELLIPSIS
+        <matplotlib.image.AxesImage object at 0x...>
 
 * Follow-up: copy all instructions of this exercise in a script called
     ``lena_locket.py`` then execute this script in IPython with ``%run
@@ -120,8 +127,9 @@ northern Canada during 20 years:
  >>> data = np.loadtxt('data/populations.txt')
  >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
+ >>> import matplotlib.pyplot as plt
  >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +ELLIPSIS
- <matplotlib.axes.Axes object at ...>
+ <matplotlib.axes...Axes object at ...>
  >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
  [<matplotlib.lines.Line2D object at ...>, ...]
  >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS

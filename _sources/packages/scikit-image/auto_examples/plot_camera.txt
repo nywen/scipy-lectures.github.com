@@ -3,6 +3,9 @@
 .. _example_plot_camera.py:
 
 
+Displaying a simple image
+=========================
+
 Load and display an image
 
 
@@ -11,8 +14,13 @@ Load and display an image
     :align: center
 
 
+
+
 **Python source code:** :download:`plot_camera.py <plot_camera.py>`
 
 .. literalinclude:: plot_camera.py
-    :lines: 4-
+    :lines: 7-
+
+**Total running time of the example:**  0.16 seconds
+( 0 minutes  0.16 seconds)
     

@@ -1,4 +1,7 @@
 """
+Visualizing unstructured data
+==============================
+
 Use Mayavi to visualize unstructured data
 """
 

@@ -3,8 +3,11 @@
 .. _example_plot_labels.py:
 
 
+Labelling connected components of an image
+===========================================
+
 This example shows how to label connected components of a binary image, using
-the dedicated skimage.morphology.label function.
+the dedicated skimage.measure.label function.
 
 
 
@@ -12,8 +15,13 @@ the dedicated skimage.morphology.label function.
     :align: center
 
 
+
+
 **Python source code:** :download:`plot_labels.py <plot_labels.py>`
 
 .. literalinclude:: plot_labels.py
-    :lines: 5-
+    :lines: 8-
+
+**Total running time of the example:**  0.22 seconds
+( 0 minutes  0.22 seconds)
     

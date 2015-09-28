@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,11 +24,51 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
-    <link rel="top" title="Scipy lecture notes" href="index.html" /> 
+    <link rel="top" title="Scipy lecture notes" href="index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -117,6 +157,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
    <SCRIPT>
@@ -173,11 +214,11 @@
       padding-left: 0px ;
   }
 
-  li, ul {
+  div.tune li, div.tune ul {
       transition-duration: 0.2s;
   }
 
-  li.toctree-l1 {
+  div.tune li.toctree-l1 {
       padding: 5px 0 0;
       list-style-type: none;
       font-size: 150% ;
@@ -190,12 +231,12 @@
       font-weight: bold;
       }
 
-  li.toctree-l1 a {
+  div.tune li.toctree-l1 a {
       padding: 0 0 0 10px ;
       color: #314F64 ;
   }
 
-  li.toctree-l2 {
+  div.tune li.toctree-l2 {
       padding: 0.25em 0 0.25em 0 ;
       list-style-type: none;
       background-color: #FFFFFF;
@@ -203,12 +244,12 @@
       font-weight: normal;
   }
 
-  li.toctree-l2 ul {
+  div.tune li.toctree-l2 ul {
       padding-left: 40px ;
   }
 
 
-  li.toctree-l2:before {
+  div.tune li.toctree-l2:before {
       content: attr(data-content) ;
       font-size: 85% ;
       color: #777 ;
@@ -216,36 +257,32 @@
       width: 10px;
   }
 
-  li.toctree-l3 {
+  div.tune li.toctree-l3 {
       font-size: 75% ;
       list-style-type: square;
       font-weight: normal;
   }
 
-  li.toctree-l4 {
+  div.tune li.toctree-l4 {
       font-size: 85% ;
       list-style-type: circle;
       font-weight: normal;
   }
 
-  div.topic li.toctree-l1 {
-      font-size: 100% ;
+  div.preface li.toctree-l1 {
       font-weight: bold;
       background-color: transparent;
       margin-bottom: 0;
-      margin-left: 1.5em;
-      display:inline;
+      margin-left: 0;
+      margin-top: 10px;
+      display: inline;
   }
 
-  div.topic p {
-      font-size: 90% ;
-      margin: 0.4ex;
-  }
-
-  div.topic p.topic-title {
-      display:inline;
-      font-size: 100% ;
+  div.preface li.toctree-l2 {
+      background-color: transparent;
       margin-bottom: 0;
+      margin-left: 1.5em;
+      display: inline;
   }
 
   div.sidebar {
@@ -256,6 +293,31 @@
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc"></div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -286,8 +348,8 @@
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

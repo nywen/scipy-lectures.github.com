@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,11 +24,51 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/copybutton.js"></script>
-    <link rel="top" title="Scipy lecture notes" href="../../../index.html" /> 
+    <link rel="top" title="Scipy lecture notes" href="../../../index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -117,44 +157,47 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <style type="text/css">
-.figure {
-    float: left;
-    margin: 10px;
-    width: auto;
-    height: 200px;
-    width: 180px;
+
+div#sidebarbutton {
+    display: none;
 }
 
-.figure img {
-    display: inline;
-    }
-
-.figure .caption {
-    width: 170px;
-    text-align: center !important;
-}
 </style><div class="section" id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<div class="figure" id="examples-index">
-<a class="reference external image-reference" href="./plot_cumulative_wind_speed_prediction.html"><img alt="../../../_images/plot_cumulative_wind_speed_prediction.png" src="../../../_images/plot_cumulative_wind_speed_prediction.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_cumulative_wind_speed_prediction.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_gumbell_wind_speed_prediction.html"><img alt="../../../_images/plot_gumbell_wind_speed_prediction.png" src="../../../_images/plot_gumbell_wind_speed_prediction.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_gumbell_wind_speed_prediction.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_sprog_annual_maxima.html"><img alt="../../../_images/plot_sprog_annual_maxima.png" src="../../../_images/plot_sprog_annual_maxima.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_sprog_annual_maxima.py</em></p>
-</div>
-<div style="clear: both"></div><p><div style="clear: both"></div></p>
+<span class="target" id="examples-index"></span><p><div style="clear: both"></div></p>
 </div>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc"></div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -185,8 +228,8 @@
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

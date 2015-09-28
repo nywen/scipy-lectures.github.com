@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1. Getting started with Python for science" href="../index.html" />
     <link rel="next" title="1.2.1. First steps" href="first_steps.html" />
-    <link rel="prev" title="1.1. Scientific computing with tools and workflow" href="../intro.html" /> 
+    <link rel="prev" title="1.1. Scientific computing with tools and workflow" href="../intro.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -127,25 +167,20 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="the-python-language">
 <h1>1.2. The Python language<a class="headerlink" href="#the-python-language" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">authors:</th><td class="field-body">Chris Burns, Christophe Combelles, Emmanuelle Gouillart, Gaël Varoquaux</td>
-</tr>
-</tbody>
-</table>
+<p><strong>Authors</strong>: <em>Chris Burns, Christophe Combelles, Emmanuelle Gouillart,
+Gaël Varoquaux</em></p>
 <div class="topic">
 <p class="topic-title first">Python for scientific computing</p>
 <p>We introduce here the Python language. Only the bare minimum
 necessary for getting started with Numpy and Scipy is addressed here.
 To learn more about the language, consider going through the
-excellent tutorial <a class="reference external" href="http://docs.python.org/tutorial">http://docs.python.org/tutorial</a>. Dedicated books
-are also available, such as <a class="reference external" href="http://diveintopython.org/">http://diveintopython.org/</a>.</p>
+excellent tutorial <a class="reference external" href="https://docs.python.org/tutorial">https://docs.python.org/tutorial</a>. Dedicated books
+are also available, such as <a class="reference external" href="http://www.diveintopython.net/">http://www.diveintopython.net/</a>.</p>
 </div>
 <img alt="../../_images/python-logo.png" class="align-right" src="../../_images/python-logo.png" />
 <div class="admonition tip">
@@ -175,7 +210,7 @@ example, Python is an object-oriented language, with dynamic typing
 (the same variable can contain objects of different types during the
 course of a program).</li>
 </ul>
-<p class="last">See <a class="reference external" href="http://www.python.org/about/">http://www.python.org/about/</a> for more information about
+<p class="last">See <a class="reference external" href="https://www.python.org/about/">https://www.python.org/about/</a> for more information about
 distinguishing features of Python.</p>
 </div>
 <hr class="docutils" />
@@ -246,6 +281,31 @@ distinguishing features of Python.</p>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc"></div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -283,8 +343,8 @@ distinguishing features of Python.</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

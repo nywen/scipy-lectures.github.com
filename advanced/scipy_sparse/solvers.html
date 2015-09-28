@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="2.5. Sparse Matrices in SciPy" href="index.html" />
     <link rel="next" title="2.5.4. Other Interesting Packages" href="other_packages.html" />
-    <link rel="prev" title="2.5.2.2.7. Block Compressed Row Format (BSR)" href="bsr_matrix.html" /> 
+    <link rel="prev" title="2.5.2.2.7. Block Compressed Row Format (BSR)" href="bsr_matrix.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -128,12 +168,13 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="linear-system-solvers">
 <h1>2.5.3. Linear System Solvers<a class="headerlink" href="#linear-system-solvers" title="Permalink to this headline">¶</a></h1>
 <ul>
-<li><p class="first">sparse matrix/eigenvalue problem solvers live in <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/sparse.linalg.html#scipy.sparse.linalg" title="(in SciPy v0.13.0)"><tt class="xref py py-mod docutils literal"><span class="pre">scipy.sparse.linalg</span></tt></a></p>
+<li><p class="first">sparse matrix/eigenvalue problem solvers live in <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/sparse.linalg.html#module-scipy.sparse.linalg" title="(in SciPy v0.16.0)"><tt class="xref py py-mod docutils literal"><span class="pre">scipy.sparse.linalg</span></tt></a></p>
 </li>
 <li><dl class="first docutils">
 <dt>the submodules:</dt>
@@ -207,16 +248,16 @@ follows:</p>
 <div class="newline"></div><span class="go">        [ 0,  0,  3,  9,  0],</span>
 <div class="newline"></div><span class="go">        [ 0,  0,  0,  4, 10],</span>
 <div class="newline"></div><span class="go">        [ 0,  0,  0,  0,  5]])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">rhs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">rhs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
 </li>
 <li><p class="first">solve as single precision real:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx1</span> <span class="o">=</span> <span class="n">mtx</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">dsolve</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">mtx1</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">use_umfpack</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">x</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
 <div class="newline"></div><span class="go">[ 106.   -21.     5.5   -1.5    1. ]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;Error: &quot;</span><span class="p">,</span> <span class="n">mtx1</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;Error: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mtx1</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="p">))</span>  
 <div class="newline"></div><span class="go">Error:  [ 0.  0.  0.  0.  0.]</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -224,9 +265,9 @@ follows:</p>
 <li><p class="first">solve as double precision real:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx2</span> <span class="o">=</span> <span class="n">mtx</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">dsolve</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">mtx2</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">use_umfpack</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">x</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
 <div class="newline"></div><span class="go">[ 106.   -21.     5.5   -1.5    1. ]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;Error: &quot;</span><span class="p">,</span> <span class="n">mtx2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;Error: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mtx2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="p">))</span>  
 <div class="newline"></div><span class="go">Error:  [ 0.  0.  0.  0.  0.]</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -234,9 +275,9 @@ follows:</p>
 <li><p class="first">solve as single precision complex:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx1</span> <span class="o">=</span> <span class="n">mtx</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex64</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">dsolve</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">mtx1</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">use_umfpack</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">x</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
 <div class="newline"></div><span class="go">[ 106.0+0.j  -21.0+0.j    5.5+0.j   -1.5+0.j    1.0+0.j]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;Error: &quot;</span><span class="p">,</span> <span class="n">mtx1</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;Error: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mtx1</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="p">))</span>  
 <div class="newline"></div><span class="go">Error:  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -244,9 +285,9 @@ follows:</p>
 <li><p class="first">solve as double precision complex:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx2</span> <span class="o">=</span> <span class="n">mtx</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">dsolve</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">mtx2</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">use_umfpack</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">x</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <div class="newline"></div><span class="go">[ 106.0+0.j  -21.0+0.j    5.5+0.j   -1.5+0.j    1.0+0.j]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;Error: &quot;</span><span class="p">,</span> <span class="n">mtx2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;Error: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mtx2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="p">))</span>   
 <div class="newline"></div><span class="go">Error:  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -256,6 +297,9 @@ follows:</p>
 </li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<div class="newline"></div><span class="sd">Solve a linear system</span>
+<div class="newline"></div><span class="sd">=======================</span>
+<div class="newline"></div>
 <div class="newline"></div><span class="sd">Construct a 1000x1000 lil_matrix and add some values to it, convert it</span>
 <div class="newline"></div><span class="sd">to CSR format and solve A x = b for x:and solve a linear system with a</span>
 <div class="newline"></div><span class="sd">direct solver.</span>
@@ -281,7 +325,7 @@ follows:</p>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">x</span> <span class="o">=</span> <span class="n">linsolve</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">mtx</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">print</span> <span class="s">&#39;rezidual:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">mtx</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="p">)</span>
+<div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="s">&#39;rezidual: </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">mtx</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="p">))</span>
 <div class="newline"></div></pre></div>
 </div>
 <ul class="simple">
@@ -406,6 +450,7 @@ Gradient Method)
 * example by Nathan Bell:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
 <div class="newline"></div><span class="sd">Compute eigenvectors and eigenvalues using a preconditioned eigensolver</span>
+<div class="newline"></div><span class="sd">========================================================================</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="sd">In this example Smoothed Aggregation (SA) is used to precondition</span>
 <div class="newline"></div><span class="sd">the LOBPCG eigensolver on a two-dimensional Poisson problem with</span>
@@ -459,16 +504,17 @@ Gradient Method)
 </ul>
 </li>
 <li><p class="first">output:</p>
-<div class="highlight-python"><pre>$ python examples/lobpcg_sakurai.py
-Results by LOBPCG for n=2500
-
-[ 0.06250083  0.06250028  0.06250007]
-
-Exact eigenvalues
-
-[ 0.06250005  0.0625002   0.06250044]
-
-Elapsed time 7.01</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ python examples/lobpcg_sakurai.py
+<div class="newline"></div>Results by LOBPCG for n=2500
+<div class="newline"></div>
+<div class="newline"></div>[ 0.06250083  0.06250028  0.06250007]
+<div class="newline"></div>
+<div class="newline"></div>Exact eigenvalues
+<div class="newline"></div>
+<div class="newline"></div>[ 0.06250005  0.0625002   0.06250044]
+<div class="newline"></div>
+<div class="newline"></div>Elapsed time 7.01
+<div class="newline"></div></pre></div>
 </div>
 </li>
 </ul>
@@ -480,6 +526,52 @@ Elapsed time 7.01</pre>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.5.3. Linear System Solvers</a><ul>
+<li><a class="reference internal" href="#sparse-direct-solvers">2.5.3.1. Sparse Direct Solvers</a><ul>
+<li><a class="reference internal" href="#examples">2.5.3.1.1. Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iterative-solvers">2.5.3.2. Iterative Solvers</a><ul>
+<li><a class="reference internal" href="#common-parameters">2.5.3.2.1. Common Parameters</a></li>
+<li><a class="reference internal" href="#linearoperator-class">2.5.3.2.2. LinearOperator Class</a></li>
+<li><a class="reference internal" href="#a-few-notes-on-preconditioning">2.5.3.2.3. A Few Notes on Preconditioning</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eigenvalue-problem-solvers">2.5.3.3. Eigenvalue Problem Solvers</a><ul>
+<li><a class="reference internal" href="#the-eigen-module">2.5.3.3.1. The <tt class="docutils literal"><span class="pre">eigen</span></tt> module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -518,8 +610,8 @@ Elapsed time 7.01</pre>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

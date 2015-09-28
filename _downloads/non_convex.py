@@ -1,4 +1,7 @@
 """
+Non convex
+===========
+
 Demo non-convex problems
 """
 import numpy as np

@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,11 +24,51 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/copybutton.js"></script>
-    <link rel="top" title="Scipy lecture notes" href="../../../index.html" /> 
+    <link rel="top" title="Scipy lecture notes" href="../../../index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -117,76 +157,124 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <style type="text/css">
-.figure {
-    float: left;
-    margin: 10px;
-    width: auto;
-    height: 200px;
-    width: 180px;
+
+div#sidebarbutton {
+    display: none;
 }
 
-.figure img {
-    display: inline;
-    }
-
-.figure .caption {
-    width: 170px;
-    text-align: center !important;
-}
 </style><div class="section" id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<div class="figure" id="examples-index">
-<a class="reference external image-reference" href="./plot_boundaries.html"><img alt="../../../_images/plot_boundaries.png" src="../../../_images/plot_boundaries.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_boundaries.py</em></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_camera.html"><img alt="../../../_images/plot_camera.png" src="../../../_images/plot_camera.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_camera.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_camera_uint.html"><img alt="../../../_images/plot_camera_uint.png" src="../../../_images/plot_camera_uint.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_camera_uint.py</em></p>
-</div>
-<div class="figure">
+<div class="section" id="examples-for-the-scikit-image-chapter">
+<span id="examples-index"></span><h1>Examples for the scikit-image chapter<a class="headerlink" href="#examples-for-the-scikit-image-chapter" title="Permalink to this headline">¶</a></h1>
+<div class="thumbnailContainer" tooltip="How to create an image with basic NumPy commands : ``np.zeros``, slicing..."><div class="figure">
 <a class="reference external image-reference" href="./plot_check.html"><img alt="../../../_images/plot_check.png" src="../../../_images/plot_check.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_check.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_check.html#example-plot-check-py"><em>Creating an image</em></a></p>
 </div>
-<div class="figure">
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Load and display an image "><div class="figure">
+<a class="reference external image-reference" href="./plot_camera.html"><img alt="../../../_images/plot_camera.png" src="../../../_images/plot_camera.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_camera.html#example-plot-camera-py"><em>Displaying a simple image</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An illustration of overflow problem arising when working with integers "><div class="figure">
+<a class="reference external image-reference" href="./plot_camera_uint.html"><img alt="../../../_images/plot_camera_uint.png" src="../../../_images/plot_camera_uint.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_camera_uint.html#example-plot-camera-uint-py"><em>Integers can overflow</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Histogram equalizing makes images have a uniform histogram. "><div class="figure">
 <a class="reference external image-reference" href="./plot_equalize_hist.html"><img alt="../../../_images/plot_equalize_hist.png" src="../../../_images/plot_equalize_hist.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_equalize_hist.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_equalize_hist.html#example-plot-equalize-hist-py"><em>Equalizing the histogram of an image</em></a></p>
 </div>
-<div class="figure">
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Warping and affine transforms of images. "><div class="figure">
 <a class="reference external image-reference" href="./plot_features.html"><img alt="../../../_images/plot_features.png" src="../../../_images/plot_features.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_features.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_features.html#example-plot-features-py"><em>Affine transform</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_filter_coins.html"><img alt="../../../_images/plot_filter_coins.png" src="../../../_images/plot_filter_coins.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_filter_coins.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_labels.html"><img alt="../../../_images/plot_labels.png" src="../../../_images/plot_labels.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_labels.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_segmentations.html"><img alt="../../../_images/plot_segmentations.png" src="../../../_images/plot_segmentations.png" /></a>
-<p class="caption"><a class="reference external" href="http://scikit-image.org/docs/0.8.0/auto_examples/plot_segmentations.html#example-plot-segmentations-py" title="(in skimage v0.8.0)"><em>Comparison of segmentation and superpixel algorithms</em></a></p>
-</div>
-<div class="figure">
+<div class="thumbnailContainer" tooltip="This example illustrates the use of the horizontal Sobel filter, to compute horizontal gradient..."><div class="figure">
 <a class="reference external image-reference" href="./plot_sobel.html"><img alt="../../../_images/plot_sobel.png" src="../../../_images/plot_sobel.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_sobel.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_sobel.html#example-plot-sobel-py"><em>Computing horizontal gradients with the Sobel filter</em></a></p>
 </div>
-<div class="figure">
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Visualize segmentation contours on original grayscale image. "><div class="figure">
+<a class="reference external image-reference" href="./plot_boundaries.html"><img alt="../../../_images/plot_boundaries.png" src="../../../_images/plot_boundaries.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_boundaries.html#example-plot-boundaries-py"><em>Segementation contours</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example illustrates automatic Otsu thresholding. "><div class="figure">
 <a class="reference external image-reference" href="./plot_threshold.html"><img alt="../../../_images/plot_threshold.png" src="../../../_images/plot_threshold.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_threshold.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_threshold.html#example-plot-threshold-py"><em>Otsu thresholding</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example shows how to label connected components of a binary image, using the dedicated ski..."><div class="figure">
+<a class="reference external image-reference" href="./plot_labels.html"><img alt="../../../_images/plot_labels.png" src="../../../_images/plot_labels.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_labels.html#example-plot-labels-py"><em>Labelling connected components of an image</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example compares several denoising filters available in scikit-image: a Gaussian filter, a..."><div class="figure">
+<a class="reference external image-reference" href="./plot_filter_coins.html"><img alt="../../../_images/plot_filter_coins.png" src="../../../_images/plot_filter_coins.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_filter_coins.html#example-plot-filter-coins-py"><em>Various denoising filters</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example compares two segmentation methods in order to separate two connected disks: the wa..."><div class="figure">
+<a class="reference external image-reference" href="./plot_segmentations.html"><img alt="../../../_images/plot_segmentations.png" src="../../../_images/plot_segmentations.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_segmentations.html#example-plot-segmentations-py"><em>Watershed and random walker for segmentation</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
 </div>
 <div style="clear: both"></div><p><div style="clear: both"></div></p>
 </div>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Examples</a></li>
+<li><a class="reference internal" href="#examples-for-the-scikit-image-chapter">Examples for the scikit-image chapter</a><ul>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -217,8 +305,8 @@
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

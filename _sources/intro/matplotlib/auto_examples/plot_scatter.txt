@@ -3,14 +3,24 @@
 .. _example_plot_scatter.py:
 
 
+Plot scatter decorated
+=======================
+
+An example showing the scatter function, with decorations.
+
 
 
 .. image:: images/plot_scatter_1.png
     :align: center
 
 
+
+
 **Python source code:** :download:`plot_scatter.py <plot_scatter.py>`
 
 .. literalinclude:: plot_scatter.py
-    :lines: 2-
+    :lines: 7-
+
+**Total running time of the example:**  0.03 seconds
+( 0 minutes  0.03 seconds)
     

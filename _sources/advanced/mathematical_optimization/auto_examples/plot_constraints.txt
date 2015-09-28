@@ -3,7 +3,10 @@
 .. _example_plot_constraints.py:
 
 
-Optimization with constraints
+Constraint optimization: visualizing the geometry
+==================================================
+
+A small figure explaining optimization with constraints
 
 
 
@@ -13,16 +16,19 @@ Optimization with constraints
     *
 
       .. image:: images/plot_constraints_1.png
-            :scale: 50
 
     *
 
       .. image:: images/plot_constraints_2.png
-            :scale: 50
+
+
 
 
 **Python source code:** :download:`plot_constraints.py <plot_constraints.py>`
 
 .. literalinclude:: plot_constraints.py
-    :lines: 4-
+    :lines: 7-
+
+**Total running time of the example:**  0.19 seconds
+( 0 minutes  0.19 seconds)
     

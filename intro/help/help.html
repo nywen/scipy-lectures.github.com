@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1. Getting started with Python for science" href="../index.html" />
     <link rel="next" title="2. Advanced topics" href="../../advanced/index.html" />
-    <link rel="prev" title="1.5.11.16. Example of solution for the image processing exercise: unmolten grains in glass" href="../summary-exercises/answers_image_processing.html" /> 
+    <link rel="prev" title="1.5.11.16. Example of solution for the image processing exercise: unmolten grains in glass" href="../summary-exercises/answers_image_processing.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -127,10 +167,12 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="getting-help-and-finding-documentation">
 <span id="help"></span><h1>1.6. Getting help and finding documentation<a class="headerlink" href="#getting-help-and-finding-documentation" title="Permalink to this headline">¶</a></h1>
+<p><strong>Author</strong>: <em>Emmanuelle Gouillart</em></p>
 <p>Rather than knowing all functions in Numpy and Scipy, it is important to
 find rapidly information throughout the documentation and the available
 help. Here are some ways to get information:</p>
@@ -150,6 +192,7 @@ display the matching functions.</p>
 <p>In Ipython it is not possible to open a separated window for help and
 documentation; however one can always open a second <tt class="docutils literal"><span class="pre">Ipython</span></tt> shell
 just to display help and docstrings...</p>
+<a class="reference external image-reference" href="http://docs.scipy.org/doc/scipy/reference/"><img alt="../../_images/scipy_doc.png" class="align-right" src="../../_images/scipy_doc.png" style="width: 45%;" /></a>
 <ul>
 <li><p class="first">Numpy&#8217;s and Scipy&#8217;s documentations can be browsed online on
 <a class="reference external" href="http://docs.scipy.org/doc">http://docs.scipy.org/doc</a>. The <tt class="docutils literal"><span class="pre">search</span></tt> button is quite useful inside
@@ -158,34 +201,29 @@ the reference documentation of the two packages
 <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/">http://docs.scipy.org/doc/scipy/reference/</a>).</p>
 <p>Tutorials on various topics as well as the complete API with all
 docstrings are found on this website.</p>
-<a class="reference internal image-reference" href="../../_images/scipy_doc.png"><img alt="../../_images/scipy_doc.png" class="align-center" src="../../_images/scipy_doc.png" style="width: 1024.0px; height: 640.0px;" /></a>
+<p><div style="clear: both"></div></p>
+<a class="reference external image-reference" href="http://docs.scipy.org/doc/numpy/"><img alt="../../_images/docwiki.png" class="align-right" src="../../_images/docwiki.png" style="width: 45%;" /></a>
 </li>
 <li><p class="first">Numpy&#8217;s and Scipy&#8217;s documentation is enriched and updated on a regular
-basis by users on a wiki <a class="reference external" href="http://docs.scipy.org/numpy/">http://docs.scipy.org/numpy/</a>. As a result,
+basis by users on a wiki <a class="reference external" href="http://docs.scipy.org/doc/numpy/">http://docs.scipy.org/doc/numpy/</a>. As a result,
 some docstrings are clearer or more detailed on the wiki, and you may
 want to read directly the documentation on the wiki instead of the
 official documentation website. Note that anyone can create an account on
 the wiki and write better documentation; this is an easy way to
 contribute to an open-source project and improve the tools you are
 using!</p>
-<a class="reference internal image-reference" href="../../_images/docwiki.png"><img alt="../../_images/docwiki.png" class="align-center" src="../../_images/docwiki.png" style="width: 1024.0px; height: 640.0px;" /></a>
+<p><div style="clear: both"></div></p>
 </li>
-<li><p class="first">Scipy&#8217;s cookbook <a class="reference external" href="http://www.scipy.org/Cookbook">http://www.scipy.org/Cookbook</a> gives recipes on many
+<li><p class="first">Scipy central <a class="reference external" href="http://central.scipy.org/">http://central.scipy.org/</a> gives recipes on many
 common problems frequently encountered, such as fitting data points,
 solving ODE, etc.</p>
+<a class="reference external image-reference" href="http://matplotlib.org/"><img alt="../../_images/matplotlib.png" class="align-right" src="../../_images/matplotlib.png" style="width: 45%;" /></a>
 </li>
-<li><p class="first">Matplotlib&#8217;s website <a class="reference external" href="http://matplotlib.sourceforge.net/">http://matplotlib.sourceforge.net/</a> features a very
+<li><p class="first">Matplotlib&#8217;s website <a class="reference external" href="http://matplotlib.org/">http://matplotlib.org/</a> features a very
 nice <strong>gallery</strong> with a large number of plots, each of them shows both
 the source code and the resulting plot. This is very useful for
 learning by example. More standard documentation is also available.</p>
-<a class="reference internal image-reference" href="../../_images/matplotlib.png"><img alt="../../_images/matplotlib.png" class="align-center" src="../../_images/matplotlib.png" style="width: 1024.0px; height: 640.0px;" /></a>
-</li>
-<li><p class="first">Mayavi&#8217;s website
-<a class="reference external" href="http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/">http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/</a>
-also has a very nice gallery of examples
-<a class="reference external" href="http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/auto/examples.html">http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/auto/examples.html</a>
-in which one can browse for different visualization solutions.</p>
-<a class="reference internal image-reference" href="../../_images/mayavi_website.png"><img alt="../../_images/mayavi_website.png" class="align-center" src="../../_images/mayavi_website.png" style="width: 1024.0px; height: 640.0px;" /></a>
+<p><div style="clear: both"></div></p>
 </li>
 </ul>
 <p>Finally, two more &#8220;technical&#8221; possibilities are useful as well:</p>
@@ -251,6 +289,31 @@ matplotlib.</li>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc"></div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -288,8 +351,8 @@ matplotlib.</li>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

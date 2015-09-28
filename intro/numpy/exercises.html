@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1.3. NumPy: creating and manipulating numerical data" href="index.html" />
     <link rel="next" title="1.4. Matplotlib: plotting" href="../matplotlib/matplotlib.html" />
-    <link rel="prev" title="1.3.4. Advanced operations" href="advanced_operations.html" /> 
+    <link rel="prev" title="1.3.4. Advanced operations" href="advanced_operations.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -128,6 +168,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="some-exercises">
@@ -146,7 +187,8 @@
 <p>and generate a new array containing its 2nd and 4th rows.</p>
 </li>
 <li><p class="first">Divide each column of the array:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>elementwise with the array <tt class="docutils literal"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">np.array([1.,</span> <span class="pre">5,</span> <span class="pre">10,</span> <span class="pre">15,</span> <span class="pre">20])</span></tt>.
@@ -182,9 +224,10 @@ use different colormaps, crop the image, change some parts of the image.</p>
 <ul>
 <li><p class="first">Let&#8217;s use the imshow function of pylab to display the image.</p>
 <blockquote>
-<div><div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [3]: </span><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">plt</span>
-<div class="newline"></div><span class="gp">In [4]: </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
-<div class="newline"></div><span class="gp">In [5]: </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">lena</span><span class="p">)</span>
+<div><div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">lena</span><span class="p">)</span>    
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 </div></blockquote>
@@ -192,7 +235,8 @@ use different colormaps, crop the image, change some parts of the image.</p>
 <li><dl class="first docutils">
 <dt>Lena is then displayed in false colors. A colormap must be</dt>
 <dd><p class="first">specified for her to be displayed in grey.</p>
-<div class="last highlight-ipython"><div class="highlight"><pre><span class="gp">In [6]: </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">lena</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<div class="last highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">lena</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>    
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 </dd>
@@ -202,7 +246,7 @@ use different colormaps, crop the image, change some parts of the image.</p>
 <dt>Create an array of the image with a narrower centering <span class="classifier-delimiter">:</span> <span class="classifier">for example,</span></dt>
 <dd><p class="first">remove 30 pixels from all the borders of the image. To check the result,
 display this new array with <tt class="docutils literal"><span class="pre">imshow</span></tt>.</p>
-<div class="last highlight-ipython"><div class="highlight"><pre><span class="gp">In [9]: </span><span class="n">crop_lena</span> <span class="o">=</span> <span class="n">lena</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">:</span><span class="o">-</span><span class="mi">30</span><span class="p">]</span>
+<div class="last highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">crop_lena</span> <span class="o">=</span> <span class="n">lena</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">:</span><span class="o">-</span><span class="mi">30</span><span class="p">]</span>
 <div class="newline"></div></pre></div>
 </div>
 </dd>
@@ -213,18 +257,18 @@ display this new array with <tt class="docutils literal"><span class="pre">imsho
 <dd><p class="first">need to create a mask corresponding to the pixels we want to be
 black. The mask is defined by this condition <tt class="docutils literal"><span class="pre">(y-256)**2</span> <span class="pre">+</span>
 <span class="pre">(x-256)**2</span></tt></p>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [15]: </span><span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ogrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">512</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">512</span><span class="p">]</span> <span class="c"># x and y indices of pixels</span>
-<div class="newline"></div><span class="gp">In [16]: </span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
-<div class="newline"></div><span class="gr">Out[16]: </span><span class="p">((</span><span class="mi">512</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">512</span><span class="p">))</span>
-<div class="newline"></div><span class="gp">In [17]: </span><span class="n">centerx</span><span class="p">,</span> <span class="n">centery</span> <span class="o">=</span> <span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span> <span class="c"># center of the image</span>
-<div class="newline"></div><span class="gp">In [18]: </span><span class="n">mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">centery</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">centerx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">230</span><span class="o">**</span><span class="mi">2</span> <span class="c"># circle</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ogrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">512</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">512</span><span class="p">]</span> <span class="c"># x and y indices of pixels</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+<div class="newline"></div><span class="go">((512, 1), (1, 512))</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">centerx</span><span class="p">,</span> <span class="n">centery</span> <span class="o">=</span> <span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span> <span class="c"># center of the image</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">centery</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">centerx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">230</span><span class="o">**</span><span class="mi">2</span> <span class="c"># circle</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>then we assign the value 0 to the pixels of the image corresponding
 to the mask. The syntax is extremely simple and intuitive:</p>
-<div class="last highlight-ipython"><div class="highlight"><pre><span class="gp">In [19]: </span><span class="n">lena</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<div class="newline"></div><span class="gp">In [20]: </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">lena</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[20]: </span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">AxesImage</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0xa36534c</span><span class="o">&gt;</span>
+<div class="last highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">lena</span><span class="p">)</span>    
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 </dd>
@@ -248,8 +292,9 @@ northern Canada during 20 years:</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">&#39;data/populations.txt&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">year</span><span class="p">,</span> <span class="n">hares</span><span class="p">,</span> <span class="n">lynxes</span><span class="p">,</span> <span class="n">carrots</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span>  <span class="c"># trick: columns to variables</span>
 <div class="newline"></div>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span> 
-<div class="newline"></div><span class="go">&lt;matplotlib.axes.Axes object at ...&gt;</span>
+<div class="newline"></div><span class="go">&lt;matplotlib.axes...Axes object at ...&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">hares</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">lynxes</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">carrots</span><span class="p">)</span> 
 <div class="newline"></div><span class="go">[&lt;matplotlib.lines.Line2D object at ...&gt;, ...]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s">&#39;Hare&#39;</span><span class="p">,</span> <span class="s">&#39;Lynx&#39;</span><span class="p">,</span> <span class="s">&#39;Carrot&#39;</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span> 
@@ -279,13 +324,13 @@ populations. (Hint: <tt class="docutils literal"><span class="pre">argsort</span
 </div>
 <div class="section" id="crude-integral-approximations">
 <h2>1.3.5.4. Crude integral approximations<a class="headerlink" href="#crude-integral-approximations" title="Permalink to this headline">¶</a></h2>
-<p>Write a function <tt class="docutils literal"><span class="pre">f(a,</span> <span class="pre">b,</span> <span class="pre">c)</span></tt> that returns <img class="math" src="../../_images/math/3d7c9694dffca6866113f84e9c6a0980cf8ce047.png" alt="a^b - c" style="vertical-align: 0px"/>.  Form
+<p>Write a function <tt class="docutils literal"><span class="pre">f(a,</span> <span class="pre">b,</span> <span class="pre">c)</span></tt> that returns <img class="math" src="../../_images/math/674374f4154cdb0a1a5b9f2bca892a6fcd253885.png" alt="a^b - c" style="vertical-align: 0px"/>.  Form
 a 24x12x6 array containing its values in parameter ranges <tt class="docutils literal"><span class="pre">[0,1]</span> <span class="pre">x</span>
 <span class="pre">[0,1]</span> <span class="pre">x</span> <span class="pre">[0,1]</span></tt>.</p>
 <p>Approximate the 3-d integral</p>
 <div class="math">
-<p><img src="../../_images/math/7057c0b4df82c2659d776bcdc0eb1c9e16f61f9f.png" alt="\int_0^1\int_0^1\int_0^1(a^b-c)da\,db\,dc"/></p>
-</div><p>over this volume with the mean.  The exact result is: <img class="math" src="../../_images/math/13ff2c8691c09121c0bba41558b2ad22e55e077c.png" alt="\ln 2 -
+<p><img src="../../_images/math/7da0420b2a848cbbffccd02ff141f3748b7f743f.png" alt="\int_0^1\int_0^1\int_0^1(a^b-c)da\,db\,dc"/></p>
+</div><p>over this volume with the mean.  The exact result is: <img class="math" src="../../_images/math/1ade2e8c5ff207361811547e636eb31deca0b4c6.png" alt="\ln 2 -
 \frac{1}{2}\approx0.1931\ldots" style="vertical-align: -10px"/> &#8212; what is your relative error?</p>
 <p>(Hints: use elementwise operations and broadcasting.
 You can make <tt class="docutils literal"><span class="pre">np.ogrid</span></tt> give a number of points in given range
@@ -312,7 +357,7 @@ iteration:</p>
 <div class="newline"></div>    <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">c</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Point (x, y) belongs to the Mandelbrot set if <img class="math" src="../../_images/math/ee71b080efbd8d38394b4e41eeb0b02b750ecfed.png" alt="|c|" style="vertical-align: -7px"/> &lt;
+<p>Point (x, y) belongs to the Mandelbrot set if <img class="math" src="../../_images/math/8ff7b7ab7bcc7e4c8dfd1d44669ec476a3510529.png" alt="|c|" style="vertical-align: -7px"/> &lt;
 <tt class="docutils literal"><span class="pre">some_threshold</span></tt>.</p>
 <p>Do this computation by:</p>
 <ol class="arabic simple">
@@ -339,7 +384,7 @@ iteration:</p>
 the states <tt class="docutils literal"><span class="pre">p</span></tt>:</p>
 <ol class="arabic simple">
 <li><tt class="docutils literal"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">P[i,j]</span> <span class="pre">&lt;=</span> <span class="pre">1</span></tt>: probability to go from state <tt class="docutils literal"><span class="pre">i</span></tt> to state <tt class="docutils literal"><span class="pre">j</span></tt></li>
-<li>Transition rule: <img class="math" src="../../_images/math/df72f26c7e5032305f8cdafc8cf3385cdc367f19.png" alt="p_{new} = P^T p_{old}" style="vertical-align: -6px"/></li>
+<li>Transition rule: <img class="math" src="../../_images/math/f27f32ee44af93330adb140fd94e98a69f314db0.png" alt="p_{new} = P^T p_{old}" style="vertical-align: -6px"/></li>
 <li><tt class="docutils literal"><span class="pre">all(sum(P,</span> <span class="pre">axis=1)</span> <span class="pre">==</span> <span class="pre">1)</span></tt>, <tt class="docutils literal"><span class="pre">p.sum()</span> <span class="pre">==</span> <span class="pre">1</span></tt>: normalization</li>
 </ol>
 <p>Write a script that works with 5 states, and:</p>
@@ -365,6 +410,44 @@ reductions, <tt class="docutils literal"><span class="pre">abs()</span></tt>, <t
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.3.5. Some exercises</a><ul>
+<li><a class="reference internal" href="#array-manipulations">1.3.5.1. Array manipulations</a></li>
+<li><a class="reference internal" href="#picture-manipulation-framing-lena">1.3.5.2. Picture manipulation: Framing Lena</a></li>
+<li><a class="reference internal" href="#data-statistics">1.3.5.3. Data statistics</a></li>
+<li><a class="reference internal" href="#crude-integral-approximations">1.3.5.4. Crude integral approximations</a></li>
+<li><a class="reference internal" href="#mandelbrot-set">1.3.5.5. Mandelbrot set</a></li>
+<li><a class="reference internal" href="#markov-chain">1.3.5.6. Markov chain</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -403,8 +486,8 @@ reductions, <tt class="docutils literal"><span class="pre">abs()</span></tt>, <t
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

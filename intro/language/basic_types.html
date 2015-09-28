@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1.2. The Python language" href="python_language.html" />
     <link rel="next" title="1.2.3. Control Flow" href="control_flow.html" />
-    <link rel="prev" title="1.2.1. First steps" href="first_steps.html" /> 
+    <link rel="prev" title="1.2.1. First steps" href="first_steps.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -128,6 +168,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="basic-types">
@@ -145,14 +186,14 @@
 <tr class="field-odd field"><th class="field-name">Integer:</th><td class="field-body"><div class="first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
 <div class="newline"></div><span class="go">2</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">4</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   
 <div class="newline"></div><span class="go">&lt;type &#39;int&#39;&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Floats:</th><td class="field-body"><div class="first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="mf">2.1</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>   
 <div class="newline"></div><span class="go">&lt;type &#39;float&#39;&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -163,7 +204,7 @@
 <div class="newline"></div><span class="go">1.5</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">imag</span>
 <div class="newline"></div><span class="go">0.5</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="mi">0j</span> <span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="mi">0j</span><span class="p">)</span>   
 <div class="newline"></div><span class="go">&lt;type &#39;complex&#39;&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -174,7 +215,7 @@
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">test</span>
 <div class="newline"></div><span class="go">False</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>      
 <div class="newline"></div><span class="go">&lt;type &#39;bool&#39;&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -204,19 +245,31 @@ natively implemented</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p>Integer division</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span>
+<p>In Python 2:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span>   
 <div class="newline"></div><span class="go">1</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Trick</strong>: use floats:</p>
+<p>In Python 3:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span>   
+<div class="newline"></div><span class="go">1.5</span>
+<div class="newline"></div></pre></div>
+</div>
+<p><strong>To be safe</strong>: use floats:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">/</span> <span class="mf">2.</span>
 <div class="newline"></div><span class="go">1.5</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span> <span class="c"># In Python 2  </span>
 <div class="newline"></div><span class="go">1</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<div class="newline"></div><span class="go">1.5</span>
+<div class="newline"></div></pre></div>
+</div>
+<p><strong>Future behavior</strong>: to always get the behavior of Python3</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>  
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span>  
 <div class="newline"></div><span class="go">1.5</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -229,9 +282,7 @@ natively implemented</p>
 </div>
 <div class="last admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The behaviour of the division operator has changed in Python 3. Please
-look at the <a class="reference external" href="http://python3porting.com/preparing.html#use-instead-of-when-dividing-integers">python3porting</a>
-website for details.</p>
+<p class="last">The behaviour of the division operator has changed in <a class="reference external" href="http://python3porting.com/preparing.html#use-instead-of-when-dividing-integers">Python 3</a>.</p>
 </div>
 </div>
 </div>
@@ -250,20 +301,20 @@ collections of objects can be stored.</p>
 <p class="last">A list is an ordered collection of objects, that may have different
 types. For example:</p>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;green&#39;</span><span class="p">,</span> <span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="s">&#39;white&#39;</span><span class="p">]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;green&#39;</span><span class="p">,</span> <span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="s">&#39;white&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>     
 <div class="newline"></div><span class="go">&lt;type &#39;list&#39;&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Indexing: accessing individual objects contained in the list:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 <div class="newline"></div><span class="go">&#39;green&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Counting from the end with negative indices:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <div class="newline"></div><span class="go">&#39;white&#39;</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 <div class="newline"></div><span class="go">&#39;black&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -272,49 +323,49 @@ types. For example:</p>
 <p class="last"><strong>Indexing starts at 0</strong> (as in C), not at 1 (as in Fortran or Matlab)!</p>
 </div>
 <p>Slicing: obtaining sublists of regularly-spaced elements:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
 <div class="newline"></div><span class="go">[&#39;red&#39;, &#39;blue&#39;, &#39;green&#39;, &#39;black&#39;, &#39;white&#39;]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 <div class="newline"></div><span class="go">[&#39;green&#39;, &#39;black&#39;]</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Note that <tt class="docutils literal"><span class="pre">L[start:stop]</span></tt> contains the elements with indices <tt class="docutils literal"><span class="pre">i</span></tt>
+<p class="last">Note that <tt class="docutils literal"><span class="pre">l[start:stop]</span></tt> contains the elements with indices <tt class="docutils literal"><span class="pre">i</span></tt>
 such as  <tt class="docutils literal"><span class="pre">start&lt;=</span> <span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">stop</span></tt> (<tt class="docutils literal"><span class="pre">i</span></tt> ranging from <tt class="docutils literal"><span class="pre">start</span></tt> to
-<tt class="docutils literal"><span class="pre">stop-1</span></tt>). Therefore, <tt class="docutils literal"><span class="pre">L[start:stop]</span></tt> has <tt class="docutils literal"><span class="pre">(stop-start)</span></tt> elements.</p>
+<tt class="docutils literal"><span class="pre">stop-1</span></tt>). Therefore, <tt class="docutils literal"><span class="pre">l[start:stop]</span></tt> has <tt class="docutils literal"><span class="pre">(stop</span> <span class="pre">-</span> <span class="pre">start)</span></tt> elements.</p>
 </div>
-<p><strong>Slicing syntax</strong>: <tt class="docutils literal"><span class="pre">L[start:stop:stride]</span></tt></p>
+<p><strong>Slicing syntax</strong>: <tt class="docutils literal"><span class="pre">l[start:stop:stride]</span></tt></p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p>All slicing parameters are optional:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
 <div class="newline"></div><span class="go">[&#39;red&#39;, &#39;blue&#39;, &#39;green&#39;, &#39;black&#39;, &#39;white&#39;]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
 <div class="newline"></div><span class="go">[&#39;black&#39;, &#39;white&#39;]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
 <div class="newline"></div><span class="go">[&#39;red&#39;, &#39;blue&#39;, &#39;green&#39;]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
 <div class="newline"></div><span class="go">[&#39;red&#39;, &#39;green&#39;, &#39;white&#39;]</span>
 <div class="newline"></div></pre></div>
 </div>
 </div>
 <p>Lists are <em>mutable</em> objects and can be modified:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;yellow&#39;</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;yellow&#39;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
 <div class="newline"></div><span class="go">[&#39;yellow&#39;, &#39;blue&#39;, &#39;green&#39;, &#39;black&#39;, &#39;white&#39;]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="s">&#39;purple&#39;</span><span class="p">]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="s">&#39;purple&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
 <div class="newline"></div><span class="go">[&#39;yellow&#39;, &#39;blue&#39;, &#39;gray&#39;, &#39;purple&#39;, &#39;white&#39;]</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>The elements of a list may have different types:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="s">&#39;hello&#39;</span><span class="p">]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="s">&#39;hello&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
 <div class="newline"></div><span class="go">[3, -200, &#39;hello&#39;]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 <div class="newline"></div><span class="go">(-200, &#39;hello&#39;)</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -333,7 +384,7 @@ functions instead of Python loops.</p>
 <p class="first admonition-title">Tip</p>
 <p class="last">Python offers a large panel of functions to modify lists, or query
 them. Here are a few examples; for more details, see
-<a class="reference external" href="http://docs.python.org/tutorial/datastructures.html#more-on-lists">http://docs.python.org/tutorial/datastructures.html#more-on-lists</a></p>
+<a class="reference external" href="https://docs.python.org/tutorial/datastructures.html#more-on-lists">https://docs.python.org/tutorial/datastructures.html#more-on-lists</a></p>
 </div>
 <p>Add and remove elements:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;green&#39;</span><span class="p">,</span> <span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="s">&#39;white&#39;</span><span class="p">]</span>
@@ -470,7 +521,7 @@ end.)</p>
 <p class="first admonition-title">Tip</p>
 <p class="last">Accents and special characters can also be handled in Unicode strings
 (see
-<a class="reference external" href="http://docs.python.org/tutorial/introduction.html#unicode-strings">http://docs.python.org/tutorial/introduction.html#unicode-strings</a>).</p>
+<a class="reference external" href="https://docs.python.org/tutorial/introduction.html#unicode-strings">https://docs.python.org/tutorial/introduction.html#unicode-strings</a>).</p>
 </div>
 <p>A string is an <strong>immutable object</strong> and it is not possible to modify its
 contents. One may however create new strings from the original one.</p>
@@ -497,8 +548,8 @@ completion or <tt class="docutils literal"><span class="pre">help(str)</span></t
 <p class="first admonition-title">See also</p>
 <p class="last">Python offers advanced possibilities for manipulating strings,
 looking for patterns or formatting. The interested reader is referred to
-<a class="reference external" href="http://docs.python.org/library/stdtypes.html#string-methods">http://docs.python.org/library/stdtypes.html#string-methods</a> and
-<a class="reference external" href="http://docs.python.org/library/string.html#new-string-formatting">http://docs.python.org/library/string.html#new-string-formatting</a></p>
+<a class="reference external" href="https://docs.python.org/library/stdtypes.html#string-methods">https://docs.python.org/library/stdtypes.html#string-methods</a> and
+<a class="reference external" href="https://docs.python.org/library/string.html#new-string-formatting">https://docs.python.org/library/string.html#new-string-formatting</a></p>
 </div>
 <p>String formatting:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;An integer: </span><span class="si">%i</span><span class="s">; a float: </span><span class="si">%f</span><span class="s">; another string: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s">&#39;string&#39;</span><span class="p">)</span>
@@ -520,13 +571,13 @@ values</strong>. It is an <strong>unordered</strong> container</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tel</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;emmanuelle&#39;</span><span class="p">:</span> <span class="mi">5752</span><span class="p">,</span> <span class="s">&#39;sebastian&#39;</span><span class="p">:</span> <span class="mi">5578</span><span class="p">}</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tel</span><span class="p">[</span><span class="s">&#39;francis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5915</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tel</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tel</span>     
 <div class="newline"></div><span class="go">{&#39;sebastian&#39;: 5578, &#39;francis&#39;: 5915, &#39;emmanuelle&#39;: 5752}</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tel</span><span class="p">[</span><span class="s">&#39;sebastian&#39;</span><span class="p">]</span>
 <div class="newline"></div><span class="go">5578</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tel</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tel</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>   
 <div class="newline"></div><span class="go">[&#39;sebastian&#39;, &#39;francis&#39;, &#39;emmanuelle&#39;]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tel</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tel</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>   
 <div class="newline"></div><span class="go">[5578, 5915, 5752]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;francis&#39;</span> <span class="ow">in</span> <span class="n">tel</span>
 <div class="newline"></div><span class="go">True</span>
@@ -536,11 +587,11 @@ values</strong>. It is an <strong>unordered</strong> container</p>
 <p class="first admonition-title">Tip</p>
 <p>It can be used to conveniently store and retrieve values
 associated with a name (a string for a date, a name, etc.). See
-<a class="reference external" href="http://docs.python.org/tutorial/datastructures.html#dictionaries">http://docs.python.org/tutorial/datastructures.html#dictionaries</a>
+<a class="reference external" href="https://docs.python.org/tutorial/datastructures.html#dictionaries">https://docs.python.org/tutorial/datastructures.html#dictionaries</a>
 for more information.</p>
 <p>A dictionary can have keys (resp. values) with different types:</p>
 <div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="s">&#39;hello&#39;</span><span class="p">}</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>       
 <div class="newline"></div><span class="go">{&#39;a&#39;: 1, 3: &#39;hello&#39;, &#39;b&#39;: 2}</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -561,9 +612,9 @@ between parentheses, or just separated by commas:</p>
 </div>
 <p><strong>Sets:</strong> unordered, unique items:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">))</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>    
 <div class="newline"></div><span class="go">set([&#39;a&#39;, &#39;c&#39;, &#39;b&#39;])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">difference</span><span class="p">((</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">))</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">difference</span><span class="p">((</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">))</span>    
 <div class="newline"></div><span class="go">set([&#39;c&#39;])</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -573,7 +624,7 @@ between parentheses, or just separated by commas:</p>
 <h2>1.2.2.3. Assignment operator<a class="headerlink" href="#assignment-operator" title="Permalink to this headline">¶</a></h2>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p><a class="reference external" href="http://docs.python.org/reference/simple_stmts.html#assignment-statements">Python library reference</a>
+<p><a class="reference external" href="https://docs.python.org/reference/simple_stmts.html#assignment-statements">Python library reference</a>
 says:</p>
 <blockquote>
 <div>Assignment statements are used to (re)bind names to values and to
@@ -644,6 +695,47 @@ be found in David M. Beazley&#8217;s article <a class="reference external" href=
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.2.2. Basic types</a><ul>
+<li><a class="reference internal" href="#numerical-types">1.2.2.1. Numerical types</a></li>
+<li><a class="reference internal" href="#containers">1.2.2.2. Containers</a><ul>
+<li><a class="reference internal" href="#lists">1.2.2.2.1. Lists</a></li>
+<li><a class="reference internal" href="#strings">1.2.2.2.2. Strings</a></li>
+<li><a class="reference internal" href="#dictionaries">1.2.2.2.3. Dictionaries</a></li>
+<li><a class="reference internal" href="#more-container-types">1.2.2.2.4. More container types</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#assignment-operator">1.2.2.3. Assignment operator</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -682,8 +774,8 @@ be found in David M. Beazley&#8217;s article <a class="reference external" href=
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

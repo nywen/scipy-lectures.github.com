@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="2.5.2. Storage Schemes" href="storage_schemes.html" />
     <link rel="next" title="2.5.2.2.3. Dictionary of Keys Format (DOK)" href="dok_matrix.html" />
-    <link rel="prev" title="2.5.2.2.1. Diagonal Format (DIA)" href="dia_matrix.html" /> 
+    <link rel="prev" title="2.5.2.2.1. Diagonal Format (DIA)" href="dia_matrix.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -129,6 +169,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="list-of-lists-format-lil">
@@ -190,9 +231,9 @@
 <li><p class="first">assign the data using fancy indexing:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="n">data</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span>  
-<div class="newline"></div><span class="go">&lt;4x5 sparse matrix of type &#39;&lt;type &#39;numpy.float64&#39;&gt;&#39;</span>
+<div class="newline"></div><span class="go">&lt;4x5 sparse matrix of type &#39;&lt;... &#39;numpy.float64&#39;&gt;&#39;</span>
 <div class="newline"></div><span class="go">        with 5 stored elements in LInked List format&gt;</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">mtx</span>   
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mtx</span><span class="p">)</span>   
 <div class="newline"></div><span class="go">  (0, 1)  1.0</span>
 <div class="newline"></div><span class="go">  (0, 2)  1.0</span>
 <div class="newline"></div><span class="go">  (0, 3)  1.0</span>
@@ -213,29 +254,29 @@
 </li>
 <li><p class="first">more slicing and indexing:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">lil_matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>    
 <div class="newline"></div><span class="go">matrix([[0, 1, 2, 0],</span>
 <div class="newline"></div><span class="go">        [3, 0, 1, 0],</span>
-<div class="newline"></div><span class="go">        [1, 0, 0, 1]])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">mtx</span> 
+<div class="newline"></div><span class="go">        [1, 0, 0, 1]]...)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mtx</span><span class="p">)</span> 
 <div class="newline"></div><span class="go">  (0, 1)    1</span>
 <div class="newline"></div><span class="go">  (0, 2)    2</span>
 <div class="newline"></div><span class="go">  (1, 0)    3</span>
 <div class="newline"></div><span class="go">  (1, 2)    1</span>
 <div class="newline"></div><span class="go">  (2, 0)    1</span>
 <div class="newline"></div><span class="go">  (2, 3)    1</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> 
-<div class="newline"></div><span class="go">&lt;2x4 sparse matrix of type &#39;&lt;type &#39;numpy.int64&#39;&gt;&#39;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span>  
+<div class="newline"></div><span class="go">&lt;2x4 sparse matrix of type &#39;&lt;... &#39;numpy.int64&#39;&gt;&#39;</span>
 <div class="newline"></div><span class="go">  with 4 stored elements in LInked List format&gt;</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>    
 <div class="newline"></div><span class="go">matrix([[0, 1, 2, 0],</span>
-<div class="newline"></div><span class="go">        [3, 0, 1, 0]])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
-<div class="newline"></div><span class="go">matrix([[3, 1]])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<div class="newline"></div><span class="go">        [3, 0, 1, 0]]...)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>    
+<div class="newline"></div><span class="go">matrix([[3, 1]]...)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>    
 <div class="newline"></div><span class="go">matrix([[0, 1, 2, 0],</span>
 <div class="newline"></div><span class="go">        [3, 0, 1, 0],</span>
-<div class="newline"></div><span class="go">        [1, 0, 0, 1]])</span>
+<div class="newline"></div><span class="go">        [1, 0, 0, 1]]...)</span>
 <div class="newline"></div></pre></div>
 </div>
 </li>
@@ -246,6 +287,39 @@
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.5.2.2.2. List of Lists Format (LIL)</a><ul>
+<li><a class="reference internal" href="#examples">2.5.2.2.2.1. Examples</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -285,8 +359,8 @@
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

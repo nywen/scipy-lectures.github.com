@@ -2,6 +2,8 @@
 .. TODO: bench and fit in 1:30
 
 .. TODO: plotting <- broken in OSX
+   >>> import sympy
+   >>> sympy.init_printing(use_unicode=False, wrap_line=True, no_global=False)
 
 .. _sympy:
 
@@ -9,7 +11,7 @@
 Sympy : Symbolic Mathematics in Python
 ======================================
 
-:author: Fabian Pedregosa
+**Author**: *Fabian Pedregosa*
 
 .. topic:: Objectives
 
@@ -23,14 +25,13 @@ Sympy : Symbolic Mathematics in Python
 .. role:: input(strong)
 
 **What is SymPy?** SymPy is a Python library for symbolic mathematics. It
-aims become a full featured computer algebra system that can compete
-directly with commercial alternatives (Mathematica, Maple) while keeping
-the code as simple as possible in order to be comprehensible and easily
+aims to be an alternative to systems such as Mathematica or Maple while keeping
+the code as simple as possible and easily
 extensible.  SymPy is written entirely in Python and does not require any
 external libraries.
 
 Sympy documentation and packages for installation can be found on
-http://sympy.org/
+http://www.sympy.org/
 
 .. contents:: Chapters contents
    :local:
@@ -65,12 +66,13 @@ way, some special constants, like e, pi, oo (Infinity), are treated as
 symbols and can be evaluated with arbitrary precision::
 
     >>> pi**2
-    pi**2
+      2
+    pi 
 
     >>> pi.evalf()
     3.14159265358979
 
-    >>> (pi+exp(1)).evalf()
+    >>> (pi + exp(1)).evalf()
     5.85987448204884
 
 as you see, evalf evaluates the expression to a floating-point number.
@@ -103,14 +105,22 @@ symbolic variables explicitly::
 
 Then you can manipulate them::
 
-    >>> x+y+x-y
+    >>> x + y + x - y
     2*x
 
-    >>> (x+y)**2
-    (x + y)**2
+    >>> (x + y)**2
+           2
+    (x + y) 
 
 Symbols can now be manipulated using some of python operators: +, -, \*, \*\* 
 (arithmetic), &, |, ~ , >>, << (boolean).
+
+
+.. topic:: **Printing**
+
+   Here we use the following setting for printing
+
+    >>> sympy.init_printing(use_unicode=False, wrap_line=True)
 
 
 
@@ -126,17 +136,25 @@ Expand
 Use this to expand an algebraic expression. It will try to denest
 powers and multiplications::
 
-    In [23]: expand((x+y)**3)
-    Out[23]: 3*x*y**2 + 3*y*x**2 + x**3 + y**3
+    >>> expand((x + y)**3)
+     3      2          2    3
+    x  + 3*x *y + 3*x*y  + y 
+    >>> 3*x*y**2 + 3*y*x**2 + x**3 + y**3
+     3      2          2    3
+    x  + 3*x *y + 3*x*y  + y 
+
 
 Further options can be given in form on keywords::
 
-    In [28]: expand(x+y, complex=True)
-    Out[28]: I*im(x) + I*im(y) + re(x) + re(y)
+    >>> expand(x + y, complex=True)
+    re(x) + re(y) + I*im(x) + I*im(y)
+    >>> I*im(x) + I*im(y) + re(x) + re(y)
+    re(x) + re(y) + I*im(x) + I*im(y)
 
-    In [30]: expand(cos(x+y), trig=True)
-    Out[30]: cos(x)*cos(y) - sin(x)*sin(y)
-
+    >>> expand(cos(x + y), trig=True)
+    -sin(x)*sin(y) + cos(x)*cos(y)
+    >>> cos(x)*cos(y) - sin(x)*sin(y)
+    -sin(x)*sin(y) + cos(x)*cos(y)
 
 Simplify
 --------
@@ -144,8 +162,8 @@ Simplify
 Use simplify if you would like to transform an expression into a
 simpler form::
 
-    In [19]: simplify((x+x*y)/x)
-    Out[19]: 1 + y
+    >>> simplify((x + x*y) / x)
+    y + 1
 
 
 Simplification is a somewhat vague term, and more precises
@@ -153,11 +171,11 @@ alternatives to simplify exists: powsimp (simplification of
 exponents), trigsimp (for trigonometric expressions) , logcombine,
 radsimp, together.
 
-Exercises
----------
+.. topic:: **Exercises**
+   :class: green
 
-1. Calculate the expanded form of :math:`(x+y)^6`.
-2. Simplify the trigonometric expression sin(x) / cos(x)
+   1. Calculate the expanded form of :math:`(x+y)^6`.
+   2. Simplify the trigonometric expression :math:`\sin(x) / \cos(x)`
 
   
 Calculus
@@ -167,7 +185,7 @@ Limits
 ------
 
 Limits are easy to use in SymPy, they follow the syntax limit(function,
-variable, point), so to compute the limit of f(x) as x -> 0, you would issue
+variable, point), so to compute the limit of :math:`f(x)` as :math:`x \rightarrow 0`, you would issue
 limit(f, x, 0)::
 
    >>> limit(sin(x)/x, x, 0)
@@ -199,12 +217,14 @@ var)``. Examples::
     2*cos(2*x)
 
     >>> diff(tan(x), x)
-    1 + tan(x)**2
+       2       
+    tan (x) + 1
 
 You can check, that it is correct by::
 
-    >>> limit((tan(x+y)-tan(x))/y, y, 0)
-    1 + tan(x)**2
+    >>> limit((tan(x+y) - tan(x))/y, y, 0)
+       2       
+    tan (x) + 1
 
 Higher derivatives can be calculated using the ``diff(func, var, n)`` method::
 
@@ -225,16 +245,22 @@ SymPy also knows how to compute the Taylor series of an expression at
 a point. Use ``series(expr, var)``::
 
     >>> series(cos(x), x)
-    1 - x**2/2 + x**4/24 + O(x**6)
+         2    4        
+        x    x     / 6\
+    1 - -- + -- + O\x /
+        2    24        
     >>> series(1/cos(x), x)
-    1 + x**2/2 + 5*x**4/24 + O(x**6)
+         2      4        
+        x    5*x     / 6\
+    1 + -- + ---- + O\x /
+        2     24         
 
 
-Exercises
----------
+.. topic:: **Exercises**
+   :class: green
 
-1. Calculate :math:`\lim{x->0, sin(x)/x}`
-2. Calulate the derivative of log(x) for x.
+   1. Calculate :math:`\lim_{x\rightarrow 0} \sin(x)/x`
+   2. Calculate the derivative of :math:`log(x)` for :math:`x`.
 
 .. index:: integration
 
@@ -247,18 +273,23 @@ powerful extended Risch-Norman algorithm and some heuristics and pattern
 matching. You can integrate elementary functions::
 
     >>> integrate(6*x**5, x)
-    x**6
+     6
+    x 
     >>> integrate(sin(x), x)
     -cos(x)
     >>> integrate(log(x), x)
-    -x + x*log(x)
+    x*log(x) - x
     >>> integrate(2*x + sinh(x), x)
-    cosh(x) + x**2
+     2          
+    x  + cosh(x)
 
 Also special functions are handled easily::
 
     >>> integrate(exp(-x**2)*erf(x), x)
-    pi**(1/2)*erf(x)**2/4
+      ____    2   
+    \/ pi *erf (x)
+    --------------
+          4       
 
 It is possible to compute definite integral::
 
@@ -274,7 +305,8 @@ Also improper integrals are supported as well::
     >>> integrate(exp(-x), (x, 0, oo))
     1
     >>> integrate(exp(-x**2), (x, -oo, oo))
-    pi**(1/2)
+      ____
+    \/ pi 
 
 
 .. index:: equations; algebraic, solve
@@ -363,8 +395,9 @@ Matrices are created as instances from the Matrix class::
 
     >>> from sympy import Matrix
     >>> Matrix([[1,0], [0,1]])
-    [1, 0]
-    [0, 1]
+    [1  0]
+    [    ]
+    [0  1]
 
 unlike a NumPy array, you can also put Symbols in it::
 
@@ -372,12 +405,14 @@ unlike a NumPy array, you can also put Symbols in it::
     >>> y = Symbol('y')
     >>> A = Matrix([[1,x], [y,1]])
     >>> A
-    [1, x]
-    [y, 1]
+    [1  x]
+    [    ]
+    [y  1]
 
     >>> A**2
-    [1 + x*y,     2*x]
-    [    2*y, 1 + x*y]
+    [x*y + 1    2*x  ]
+    [                ]
+    [  2*y    x*y + 1]
 
 
 .. index:: equations; differential, diff, dsolve
@@ -385,35 +420,54 @@ unlike a NumPy array, you can also put Symbols in it::
 Differential Equations
 ----------------------
 
-SymPy is capable of solving (some) Ordinary Differential
-Equations. sympy.ode.dsolve works like this::
+SymPy is capable of solving (some) Ordinary Differential. 
+To solve differential equations, use dsolve. First, create
+an undefined function by passing cls=Function to the symbols function::
 
-    In [4]: f(x).diff(x, x) + f(x)
-    Out[4]:
-       2
-      d
-    ─────(f(x)) + f(x)
-    dx dx
+    >>> f, g = symbols('f g', cls=Function)
+    
+f and g are now undefined functions. We can call f(x), and it will represent
+an unknown function::
 
-    In [5]: dsolve(f(x).diff(x, x) + f(x), f(x))
-    Out[5]: C₁*sin(x) + C₂*cos(x)
+    >>> f(x)
+    f(x)
+    
+    >>> f(x).diff(x, x) + f(x)
+             2      
+            d       
+    f(x) + ---(f(x))
+             2      
+           dx       
+
+    >>> dsolve(f(x).diff(x, x) + f(x), f(x))
+    f(x) = C1*sin(x) + C2*cos(x)
+
 
 Keyword arguments can be given to this function in order to help if
 find the best possible resolution system. For example, if you know
 that it is a separable equations, you can use keyword hint='separable'
-to force dsolve to resolve it as a separable equation.
+to force dsolve to resolve it as a separable equation::
 
-   In [6]: dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable')
-   Out[6]: -log(1 - sin(f(x))**2)/2 == C1 + log(1 - sin(x)**2)/2
+   >>> dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable') # doctest: +NORMALIZE_WHITESPACE
+                 /     _____________\                  /     _____________\
+                 |    /    C1       |                  |    /    C1       |
+   [f(x) = - asin|   /  ------- + 1 | + pi, f(x) = asin|   /  ------- + 1 | + pi,
+                 |  /      2        |                  |  /      2        |
+                 \\/    cos (x)     /                  \\/    cos (x)     /
+   <BLANKLINE>
+                /     _____________\             /     _____________\
+                |    /    C1       |             |    /    C1       |
+    f(x) = -asin|   /  ------- + 1 |, f(x) = asin|   /  ------- + 1 |]
+                |  /      2        |             |  /      2        |
+                \\/    cos (x)     /             \\/    cos (x)     /
 
+   
+.. topic:: **Exercises**
+   :class: green
 
-Exercises
----------
+   1. Solve the Bernoulli differential equation
 
-1. Solve the Bernoulli differential equation x*f(x).diff(x) + f(x) - f(x)**2
+    .. math::
+        x \frac{d f(x)}{x} + f(x) - f(x)^2=0
 
-.. warning::
-
-   TODO: correct this equation and convert to math directive!
-
-2. Solve the same equation using hint='Bernoulli'. What do you observe ?
+   2. Solve the same equation using hint='Bernoulli'. What do you observe ?

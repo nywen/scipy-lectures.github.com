@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,11 +26,51 @@
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../index.html" />
     <link rel="next" title="1.1. Scientific computing with tools and workflow" href="intro.html" />
-    <link rel="prev" title="License" href="../LICENSE.html" /> 
+    <link rel="prev" title="How to contribute" href="../guide/index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -97,7 +137,7 @@
           <a href="intro.html" title="1.1. Scientific computing with tools and workflow"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="../LICENSE.html" title="License"
+          <a href="../guide/index.html" title="How to contribute"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li>
      
@@ -125,6 +165,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="getting-started-with-python-for-science">
@@ -132,9 +173,9 @@
 <p>This part of the <em>Scipy lecture notes</em> is a self-contained introduction to
 everything that is needed to use Python for science, from the language
 itself, to numerical computing or plotting.</p>
-<p><div style="clear: both"></div></p>
-<hr class="docutils" />
-<p><div style="clear: both"></div></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <style type="text/css">
   div.bodywrapper blockquote {
       margin: 0 ;
@@ -223,11 +264,11 @@ itself, to numerical computing or plotting.</p>
       padding-left: 0px ;
   }
 
-  li, ul {
+  div.tune li, div.tune ul {
       transition-duration: 0.2s;
   }
 
-  li.toctree-l1 {
+  div.tune li.toctree-l1 {
       padding: 5px 0 0;
       list-style-type: none;
       font-size: 150% ;
@@ -240,12 +281,12 @@ itself, to numerical computing or plotting.</p>
       font-weight: bold;
       }
 
-  li.toctree-l1 a {
+  div.tune li.toctree-l1 a {
       padding: 0 0 0 10px ;
       color: #314F64 ;
   }
 
-  li.toctree-l2 {
+  div.tune li.toctree-l2 {
       padding: 0.25em 0 0.25em 0 ;
       list-style-type: none;
       background-color: #FFFFFF;
@@ -253,12 +294,12 @@ itself, to numerical computing or plotting.</p>
       font-weight: normal;
   }
 
-  li.toctree-l2 ul {
+  div.tune li.toctree-l2 ul {
       padding-left: 40px ;
   }
 
 
-  li.toctree-l2:before {
+  div.tune li.toctree-l2:before {
       content: attr(data-content) ;
       font-size: 85% ;
       color: #777 ;
@@ -266,43 +307,39 @@ itself, to numerical computing or plotting.</p>
       width: 10px;
   }
 
-  li.toctree-l3 {
+  div.tune li.toctree-l3 {
       font-size: 75% ;
       list-style-type: square;
       font-weight: normal;
   }
 
-  li.toctree-l4 {
+  div.tune li.toctree-l4 {
       font-size: 85% ;
       list-style-type: circle;
       font-weight: normal;
   }
 
-  div.topic li.toctree-l1 {
-      font-size: 100% ;
+  div.preface li.toctree-l1 {
       font-weight: bold;
       background-color: transparent;
       margin-bottom: 0;
-      margin-left: 1.5em;
-      display:inline;
+      margin-left: 0;
+      margin-top: 10px;
+      display: inline;
   }
 
-  div.topic p {
-      font-size: 90% ;
-      margin: 0.4ex;
-  }
-
-  div.topic p.topic-title {
-      display:inline;
-      font-size: 100% ;
+  div.preface li.toctree-l2 {
+      background-color: transparent;
       margin-bottom: 0;
+      margin-left: 1.5em;
+      display: inline;
   }
 
   div.sidebar {
       width: 25ex ;
   }
 
-</style><div class="toctree-wrapper compound">
+</style><div class="toctree-wrapper tune compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">1.1. Scientific computing with tools and workflow</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#why-python">1.1.1. Why Python?</a><ul>
@@ -496,7 +533,7 @@ itself, to numerical computing or plotting.</p>
 <li class="toctree-l1"><a class="reference internal" href="matplotlib/matplotlib.html">1.4. Matplotlib: plotting</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib/matplotlib.html#introduction">1.4.1. Introduction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="matplotlib/matplotlib.html#ipython-and-the-pylab-mode">1.4.1.1. IPython and the pylab mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="matplotlib/matplotlib.html#pylab">1.4.1.2. pylab</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matplotlib/matplotlib.html#pyplot">1.4.1.2. pyplot</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib/matplotlib.html#simple-plot">1.4.2. Simple plot</a><ul>
@@ -664,6 +701,31 @@ itself, to numerical computing or plotting.</p>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc"></div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -674,7 +736,7 @@ itself, to numerical computing or plotting.</p>
           <a href="intro.html" title="1.1. Scientific computing with tools and workflow"
              >next</a></li>
         <li class="right" >
-          <a href="../LICENSE.html" title="License"
+          <a href="../guide/index.html" title="How to contribute"
              >previous</a> |</li>
         <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li>
      
@@ -700,8 +762,8 @@ itself, to numerical computing or plotting.</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

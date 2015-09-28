@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,11 +24,51 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/copybutton.js"></script>
-    <link rel="top" title="Scipy lecture notes" href="../../../index.html" /> 
+    <link rel="top" title="Scipy lecture notes" href="../../../index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -117,140 +157,202 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <style type="text/css">
-.figure {
-    float: left;
-    margin: 10px;
-    width: auto;
-    height: 200px;
-    width: 180px;
+
+div#sidebarbutton {
+    display: none;
 }
 
-.figure img {
-    display: inline;
-    }
-
-.figure .caption {
-    width: 170px;
-    text-align: center !important;
-}
 </style><div class="section" id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<div class="figure" id="examples-index">
-<a class="reference external image-reference" href="./image_source_canny.html"><img alt="../../../_images/image_source_canny.png" src="../../../_images/image_source_canny.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_image_source_canny.py</em></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_GMM.html"><img alt="../../../_images/plot_GMM.png" src="../../../_images/plot_GMM.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_GMM.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_block_mean.html"><img alt="../../../_images/plot_block_mean.png" src="../../../_images/plot_block_mean.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_block_mean.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_blur.html"><img alt="../../../_images/plot_blur.png" src="../../../_images/plot_blur.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_blur.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_canny.html"><img alt="../../../_images/plot_canny.png" src="../../../_images/plot_canny.png" /></a>
-<p class="caption"><a class="reference external" href="http://scikit-image.org/docs/0.8.0/auto_examples/plot_canny.html#example-plot-canny-py" title="(in skimage v0.8.0)"><em>Canny edge detector</em></a></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_clean_morpho.html"><img alt="../../../_images/plot_clean_morpho.png" src="../../../_images/plot_clean_morpho.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_clean_morpho.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_denoising.html"><img alt="../../../_images/plot_denoising.png" src="../../../_images/plot_denoising.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_denoising.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_display_lena.html"><img alt="../../../_images/plot_display_lena.png" src="../../../_images/plot_display_lena.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_display_lena.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_find_edges.html"><img alt="../../../_images/plot_find_edges.png" src="../../../_images/plot_find_edges.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_find_edges.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_find_object.html"><img alt="../../../_images/plot_find_object.png" src="../../../_images/plot_find_object.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_find_object.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_geom_lena.html"><img alt="../../../_images/plot_geom_lena.png" src="../../../_images/plot_geom_lena.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_geom_lena.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_granulo.html"><img alt="../../../_images/plot_granulo.png" src="../../../_images/plot_granulo.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_granulo.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_greyscale_dilation.html"><img alt="../../../_images/plot_greyscale_dilation.png" src="../../../_images/plot_greyscale_dilation.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_greyscale_dilation.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_histo_segmentation.html"><img alt="../../../_images/plot_histo_segmentation.png" src="../../../_images/plot_histo_segmentation.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_histo_segmentation.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_interpolation_lena.html"><img alt="../../../_images/plot_interpolation_lena.png" src="../../../_images/plot_interpolation_lena.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_interpolation_lena.py</em></p>
-</div>
-<div class="figure">
+<div class="section" id="examples-for-the-image-processing-chapter">
+<span id="examples-index"></span><h1>Examples for the image processing chapter<a class="headerlink" href="#examples-for-the-image-processing-chapter" title="Permalink to this headline">¶</a></h1>
+<div class="thumbnailContainer" tooltip="Small example to plot lena. "><div class="figure">
 <a class="reference external image-reference" href="./plot_lena.html"><img alt="../../../_images/plot_lena.png" src="../../../_images/plot_lena.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_lena.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_lena.html#example-plot-lena-py"><em>Displaying Lena</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_lena_denoise.html"><img alt="../../../_images/plot_lena_denoise.png" src="../../../_images/plot_lena_denoise.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_lena_denoise.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_lena_tv_denoise.html"><img alt="../../../_images/plot_lena_tv_denoise.png" src="../../../_images/plot_lena_tv_denoise.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_lena_tv_denoise.py</em></p>
+<div class="thumbnailContainer" tooltip="The example demonstrates image interpolation on Lena. "><div class="figure">
+<a class="reference external image-reference" href="./plot_interpolation_lena.html"><img alt="../../../_images/plot_interpolation_lena.png" src="../../../_images/plot_interpolation_lena.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_interpolation_lena.html#example-plot-interpolation-lena-py"><em>Image interpolation</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_measure_data.html"><img alt="../../../_images/plot_measure_data.png" src="../../../_images/plot_measure_data.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_measure_data.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
+<div class="thumbnailContainer" tooltip="An example showing how to use broad-casting to plot the mean of blocks of an image. "><div class="figure">
+<a class="reference external image-reference" href="./plot_block_mean.html"><img alt="../../../_images/plot_block_mean.png" src="../../../_images/plot_block_mean.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_block_mean.html#example-plot-block-mean-py"><em>Plot the block mean of an image</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example shows how to do image manipulation using common numpy arrays tricks."><div class="figure">
 <a class="reference external image-reference" href="./plot_numpy_array.html"><img alt="../../../_images/plot_numpy_array.png" src="../../../_images/plot_numpy_array.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_numpy_array.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_numpy_array.html#example-plot-numpy-array-py"><em>Image manipulation and numpy arrays</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_propagation.html"><img alt="../../../_images/plot_propagation.png" src="../../../_images/plot_propagation.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_propagation.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
+<div class="thumbnailContainer" tooltip="An example that displays lena with matplotlib. "><div class="figure">
+<a class="reference external image-reference" href="./plot_display_lena.html"><img alt="../../../_images/plot_display_lena.png" src="../../../_images/plot_display_lena.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_display_lena.html#example-plot-display-lena-py"><em>Display lena</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example shows how to do a radial mean with scikit-image. "><div class="figure">
 <a class="reference external image-reference" href="./plot_radial_mean.html"><img alt="../../../_images/plot_radial_mean.png" src="../../../_images/plot_radial_mean.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_radial_mean.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_radial_mean.html#example-plot-radial-mean-py"><em>Radial mean</em></a></p>
 </div>
-<div class="figure">
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing various processes that blur an image. "><div class="figure">
+<a class="reference external image-reference" href="./plot_blur.html"><img alt="../../../_images/plot_blur.png" src="../../../_images/plot_blur.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_blur.html#example-plot-blur-py"><em>Blurring of images</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example shows how to sharpen an image in noiseless situation by applying the filter invers..."><div class="figure">
 <a class="reference external image-reference" href="./plot_sharpen.html"><img alt="../../../_images/plot_sharpen.png" src="../../../_images/plot_sharpen.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_sharpen.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_sharpen.html#example-plot-sharpen-py"><em>Image sharpening</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_spectral_clustering.html"><img alt="../../../_images/plot_spectral_clustering.png" src="../../../_images/plot_spectral_clustering.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_spectral_clustering.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
+<div class="thumbnailContainer" tooltip="This example shows simple operations of mathematical morphology. "><div class="figure">
+<a class="reference external image-reference" href="./plot_propagation.html"><img alt="../../../_images/plot_propagation.png" src="../../../_images/plot_propagation.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_propagation.html#example-plot-propagation-py"><em>Opening, erosion, and propagation</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="The example generates and displays simple synthetic data. "><div class="figure">
 <a class="reference external image-reference" href="./plot_synthetic_data.html"><img alt="../../../_images/plot_synthetic_data.png" src="../../../_images/plot_synthetic_data.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_synthetic_data.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_synthetic_data.html#example-plot-synthetic-data-py"><em>Synthetic data</em></a></p>
 </div>
-<div class="figure">
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example demoes image denoising on Lena. "><div class="figure">
+<a class="reference external image-reference" href="./plot_lena_denoise.html"><img alt="../../../_images/plot_lena_denoise.png" src="../../../_images/plot_lena_denoise.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_lena_denoise.html#example-plot-lena-denoise-py"><em>Image denoising</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example illustrates greyscale mathematical morphology. "><div class="figure">
+<a class="reference external image-reference" href="./plot_greyscale_dilation.html"><img alt="../../../_images/plot_greyscale_dilation.png" src="../../../_images/plot_greyscale_dilation.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_greyscale_dilation.html#example-plot-greyscale-dilation-py"><em>Greyscale dilation</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example demoes Total-Variation (TV) denoising on Lena. "><div class="figure">
+<a class="reference external image-reference" href="./plot_lena_tv_denoise.html"><img alt="../../../_images/plot_lena_tv_denoise.png" src="../../../_images/plot_lena_tv_denoise.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_lena_tv_denoise.html#example-plot-lena-tv-denoise-py"><em>Total Variation denoising</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example shows how to extract the bounding box of the largest object"><div class="figure">
+<a class="reference external image-reference" href="./plot_find_object.html"><img alt="../../../_images/plot_find_object.png" src="../../../_images/plot_find_object.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_find_object.html#example-plot-find-object-py"><em>Find the bounding box of an object</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example shows the original image, the noisy image, the denoised one (with the median filte..."><div class="figure">
+<a class="reference external image-reference" href="./plot_denoising.html"><img alt="../../../_images/plot_denoising.png" src="../../../_images/plot_denoising.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_denoising.html#example-plot-denoising-py"><em>Denoising an image with the median filter</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This examples shows how to measure quantities from various images."><div class="figure">
+<a class="reference external image-reference" href="./plot_measure_data.html"><img alt="../../../_images/plot_measure_data.png" src="../../../_images/plot_measure_data.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_measure_data.html#example-plot-measure-data-py"><em>Measurements from images</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example shows how to do segmentation with watershed. "><div class="figure">
 <a class="reference external image-reference" href="./plot_watershed_segmentation.html"><img alt="../../../_images/plot_watershed_segmentation.png" src="../../../_images/plot_watershed_segmentation.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_watershed_segmentation.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_watershed_segmentation.html#example-plot-watershed-segmentation-py"><em>Watershed segmentation</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./tv_denoise.html"><img alt="../../../_images/tv_denoise.png" src="../../../_images/tv_denoise.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_tv_denoise.py</em></p>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This examples demos some simple geometrical transformations on lena. "><div class="figure">
+<a class="reference external image-reference" href="./plot_geom_lena.html"><img alt="../../../_images/plot_geom_lena.png" src="../../../_images/plot_geom_lena.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_geom_lena.html#example-plot-geom-lena-py"><em>Geometrical transformations</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example does simple histogram analysis to perform segmentation. "><div class="figure">
+<a class="reference external image-reference" href="./plot_histo_segmentation.html"><img alt="../../../_images/plot_histo_segmentation.png" src="../../../_images/plot_histo_segmentation.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_histo_segmentation.html#example-plot-histo-segmentation-py"><em>Histogram segmentation</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example performs a Gaussian mixture model analysis of the image histogram to find the righ..."><div class="figure">
+<a class="reference external image-reference" href="./plot_GMM.html"><img alt="../../../_images/plot_GMM.png" src="../../../_images/plot_GMM.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_GMM.html#example-plot-gmm-py"><em>Segmentation with Gaussian mixture models</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="The Sobel filter is one of the simplest way of finding edges. "><div class="figure">
+<a class="reference external image-reference" href="./plot_find_edges.html"><img alt="../../../_images/plot_find_edges.png" src="../../../_images/plot_find_edges.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_find_edges.html#example-plot-find-edges-py"><em>Finding edges with Sobel filters</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing how to clean segmentation with mathematical morphology: removing small regio..."><div class="figure">
+<a class="reference external image-reference" href="./plot_clean_morpho.html"><img alt="../../../_images/plot_clean_morpho.png" src="../../../_images/plot_clean_morpho.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_clean_morpho.html#example-plot-clean-morpho-py"><em>Cleaning segmentation with mathematical morphology</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example performs a simple granulometry analysis. "><div class="figure">
+<a class="reference external image-reference" href="./plot_granulo.html"><img alt="../../../_images/plot_granulo.png" src="../../../_images/plot_granulo.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_granulo.html#example-plot-granulo-py"><em>Granulometry</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example uses spectral clustering to do segmentation. "><div class="figure">
+<a class="reference external image-reference" href="./plot_spectral_clustering.html"><img alt="../../../_images/plot_spectral_clustering.png" src="../../../_images/plot_spectral_clustering.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_spectral_clustering.html#example-plot-spectral-clustering-py"><em>Segmentation with spectral clustering</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
 </div>
 <div style="clear: both"></div><p><div style="clear: both"></div></p>
 </div>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Examples</a></li>
+<li><a class="reference internal" href="#examples-for-the-image-processing-chapter">Examples for the image processing chapter</a><ul>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -281,8 +383,8 @@
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,11 +24,51 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/copybutton.js"></script>
-    <link rel="top" title="Scipy lecture notes" href="../../../index.html" /> 
+    <link rel="top" title="Scipy lecture notes" href="../../../index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -117,88 +157,142 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <style type="text/css">
-.figure {
-    float: left;
-    margin: 10px;
-    width: auto;
-    height: 200px;
-    width: 180px;
+
+div#sidebarbutton {
+    display: none;
 }
 
-.figure img {
-    display: inline;
-    }
-
-.figure .caption {
-    width: 170px;
-    text-align: center !important;
-}
 </style><div class="section" id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<div class="figure" id="examples-index">
-<a class="reference external image-reference" href="./compare_optimizers.html"><img alt="../../../_images/compare_optimizers.png" src="../../../_images/compare_optimizers.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_compare_optimizers.py</em></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./cost_functions.html"><img alt="../../../_images/cost_functions.png" src="../../../_images/cost_functions.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_cost_functions.py</em></p>
-</div>
-<div class="figure">
+<div class="section" id="examples-for-the-mathematical-optimization-chapter">
+<span id="examples-index"></span><h1>Examples for the mathematical optimization chapter<a class="headerlink" href="#examples-for-the-mathematical-optimization-chapter" title="Permalink to this headline">¶</a></h1>
+<div class="thumbnailContainer" tooltip="Demo non-convex problems "><div class="figure">
 <a class="reference external image-reference" href="./non_convex.html"><img alt="../../../_images/non_convex.png" src="../../../_images/non_convex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_non_convex.py</em></p>
+<p class="caption"><a class="reference internal" href="non_convex.html#example-non-convex-py"><em>Non convex</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_1d_optim.html"><img alt="../../../_images/plot_1d_optim.png" src="../../../_images/plot_1d_optim.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_1d_optim.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_compare_optimizers.html"><img alt="../../../_images/plot_compare_optimizers.png" src="../../../_images/plot_compare_optimizers.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_compare_optimizers.py</em></p>
+<div class="thumbnailContainer" tooltip="Draws a figure explaining noisy vs non-noisy optimization "><div class="figure">
+<a class="reference external image-reference" href="./plot_noisy.html"><img alt="../../../_images/plot_noisy.png" src="../../../_images/plot_noisy.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_noisy.html#example-plot-noisy-py"><em>Noisy optimization problem</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_constraints.html"><img alt="../../../_images/plot_constraints.png" src="../../../_images/plot_constraints.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_constraints.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_convex.html"><img alt="../../../_images/plot_convex.png" src="../../../_images/plot_convex.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_convex.py</em></p>
+<div class="thumbnailContainer" tooltip="Draws a figure to explain smooth versus non smooth optimization. "><div class="figure">
+<a class="reference external image-reference" href="./plot_smooth.html"><img alt="../../../_images/plot_smooth.png" src="../../../_images/plot_smooth.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_smooth.html#example-plot-smooth-py"><em>Smooth vs non-smooth</em></a></p>
 </div>
-<div class="figure">
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="A curve fitting example "><div class="figure">
 <a class="reference external image-reference" href="./plot_curve_fit.html"><img alt="../../../_images/plot_curve_fit.png" src="../../../_images/plot_curve_fit.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_curve_fit.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_curve_fit.html#example-plot-curve-fit-py"><em>Curve fitting</em></a></p>
 </div>
-<div class="figure">
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="A figure showing the definition of a convex function "><div class="figure">
+<a class="reference external image-reference" href="./plot_convex.html"><img alt="../../../_images/plot_convex.png" src="../../../_images/plot_convex.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_convex.html#example-plot-convex-py"><em>Convex function</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An excercise of finding minimum. This excercise is hard because the function is very flat aroun..."><div class="figure">
 <a class="reference external image-reference" href="./plot_exercise_flat_minimum.html"><img alt="../../../_images/plot_exercise_flat_minimum.png" src="../../../_images/plot_exercise_flat_minimum.png" /></a>
 <p class="caption"><a class="reference internal" href="plot_exercise_flat_minimum.html#example-plot-exercise-flat-minimum-py"><em>Finding a minimum in a flat neighborhood</em></a></p>
 </div>
-<div class="figure">
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Illustration of 1D optimization: Brent's method "><div class="figure">
+<a class="reference external image-reference" href="./plot_1d_optim.html"><img alt="../../../_images/plot_1d_optim.png" src="../../../_images/plot_1d_optim.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_1d_optim.html#example-plot-1d-optim-py"><em>Brent&#8217;s method</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example showing how to do optimization with general constraints using SLSQP and cobyla. "><div class="figure">
+<a class="reference external image-reference" href="./plot_non_bounds_constraints.html"><img alt="../../../_images/plot_non_bounds_constraints.png" src="../../../_images/plot_non_bounds_constraints.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_non_bounds_constraints.html#example-plot-non-bounds-constraints-py"><em>Optimization with constraints</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="A small figure explaining optimization with constraints "><div class="figure">
+<a class="reference external image-reference" href="./plot_constraints.html"><img alt="../../../_images/plot_constraints.png" src="../../../_images/plot_constraints.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_constraints.html#example-plot-constraints-py"><em>Constraint optimization: visualizing the geometry</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Plots the results from the comparison of optimizers."><div class="figure">
+<a class="reference external image-reference" href="./compare_optimizers_plot.html"><img alt="../../../_images/compare_optimizers_plot.png" src="../../../_images/compare_optimizers_plot.png" /></a>
+<p class="caption"><a class="reference internal" href="compare_optimizers_plot.html#example-compare-optimizers-plot-py"><em>Plotting the comparison of optimizers</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="The challenge here is that Hessian of the problem is a very ill-conditioned matrix. This can ea..."><div class="figure">
 <a class="reference external image-reference" href="./plot_exercise_ill_conditioned.html"><img alt="../../../_images/plot_exercise_ill_conditioned.png" src="../../../_images/plot_exercise_ill_conditioned.png" /></a>
 <p class="caption"><a class="reference internal" href="plot_exercise_ill_conditioned.html#example-plot-exercise-ill-conditioned-py"><em>Alternating optimization</em></a></p>
 </div>
-<div class="figure">
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Example cost functions or objective functions to optimize. "><div class="figure">
+<a class="reference external image-reference" href="./cost_functions.html"><img alt="../../../_images/cost_functions.png" src="../../../_images/cost_functions.png" /></a>
+<p class="caption"><a class="reference internal" href="cost_functions.html#example-cost-functions-py"><em>Cost functions</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Comparison of optimizers on various problems. "><div class="figure">
+<a class="reference external image-reference" href="./compare_optimizers.html"><img alt="../../../_images/compare_optimizers.png" src="../../../_images/compare_optimizers.png" /></a>
+<p class="caption"><a class="reference internal" href="compare_optimizers.html#example-compare-optimizers-py"><em>Comparing optimizers</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An example demoing gradient descent by creating figures that trace the evolution of the optimiz..."><div class="figure">
 <a class="reference external image-reference" href="./plot_gradient_descent.html"><img alt="../../../_images/plot_gradient_descent.png" src="../../../_images/plot_gradient_descent.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_gradient_descent.py</em></p>
+<p class="caption"><a class="reference internal" href="plot_gradient_descent.html#example-plot-gradient-descent-py"><em>Gradient descent</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_noisy.html"><img alt="../../../_images/plot_noisy.png" src="../../../_images/plot_noisy.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_noisy.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_non_bounds_constraints.html"><img alt="../../../_images/plot_non_bounds_constraints.png" src="../../../_images/plot_non_bounds_constraints.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_non_bounds_constraints.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./plot_smooth.html"><img alt="../../../_images/plot_smooth.png" src="../../../_images/plot_smooth.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_plot_smooth.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
 <div style="clear: both"></div><p><div style="clear: both"></div></p>
 </div>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Examples</a></li>
+<li><a class="reference internal" href="#examples-for-the-mathematical-optimization-chapter">Examples for the mathematical optimization chapter</a><ul>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -229,8 +323,8 @@
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

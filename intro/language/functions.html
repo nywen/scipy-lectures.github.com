@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1.2. The Python language" href="python_language.html" />
     <link rel="next" title="1.2.5. Reusing code: scripts and modules" href="reusing_code.html" />
-    <link rel="prev" title="1.2.3. Control Flow" href="control_flow.html" /> 
+    <link rel="prev" title="1.2.3. Control Flow" href="control_flow.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -128,6 +168,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="defining-functions">
@@ -424,7 +465,7 @@ convention:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p><strong>Docstring guidelines</strong></p>
-<p>For the sake of standardization, the <a class="reference external" href="http://www.python.org/dev/peps/pep-0257">Docstring
+<p>For the sake of standardization, the <a class="reference external" href="https://www.python.org/dev/peps/pep-0257">Docstring
 Conventions</a> webpage
 documents the semantics and conventions associated with Python
 docstrings.</p>
@@ -495,6 +536,48 @@ else append x to greater</div></blockquote>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.2.4. Defining functions</a><ul>
+<li><a class="reference internal" href="#function-definition">1.2.4.1. Function definition</a></li>
+<li><a class="reference internal" href="#return-statement">1.2.4.2. Return statement</a></li>
+<li><a class="reference internal" href="#parameters">1.2.4.3. Parameters</a></li>
+<li><a class="reference internal" href="#passing-by-value">1.2.4.4. Passing by value</a></li>
+<li><a class="reference internal" href="#global-variables">1.2.4.5. Global variables</a></li>
+<li><a class="reference internal" href="#variable-number-of-parameters">1.2.4.6. Variable number of parameters</a></li>
+<li><a class="reference internal" href="#docstrings">1.2.4.7. Docstrings</a></li>
+<li><a class="reference internal" href="#functions-are-objects">1.2.4.8. Functions are objects</a></li>
+<li><a class="reference internal" href="#methods">1.2.4.9. Methods</a></li>
+<li><a class="reference internal" href="#exercises">1.2.4.10. Exercises</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -533,8 +616,8 @@ else append x to greater</div></blockquote>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

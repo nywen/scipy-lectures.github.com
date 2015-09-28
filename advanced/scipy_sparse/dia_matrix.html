@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="2.5.2. Storage Schemes" href="storage_schemes.html" />
     <link rel="next" title="2.5.2.2.2. List of Lists Format (LIL)" href="lil_matrix.html" />
-    <link rel="prev" title="2.5.2. Storage Schemes" href="storage_schemes.html" /> 
+    <link rel="prev" title="2.5.2. Storage Schemes" href="storage_schemes.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -129,6 +169,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="diagonal-format-dia">
@@ -202,7 +243,7 @@
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">dia_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="n">offsets</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span>   
-<div class="newline"></div><span class="go">&lt;4x4 sparse matrix of type &#39;&lt;type &#39;numpy.int64&#39;&gt;&#39;</span>
+<div class="newline"></div><span class="go">&lt;4x4 sparse matrix of type &#39;&lt;... &#39;numpy.int64&#39;&gt;&#39;</span>
 <div class="newline"></div><span class="go">        with 9 stored elements (3 diagonals) in DIAgonal format&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
 <div class="newline"></div><span class="go">matrix([[1, 0, 3, 0],</span>
@@ -216,13 +257,13 @@
 <div class="newline"></div><span class="go">       [ 5,  6,  7,  8],</span>
 <div class="newline"></div><span class="go">       [ 9, 10, 11, 12]])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">dia_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="n">offsets</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="o">.</span><span class="n">data</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="o">.</span><span class="n">data</span>        
 <div class="newline"></div><span class="go">array([[ 1,  2,  3,  4],</span>
 <div class="newline"></div><span class="go">       [ 5,  6,  7,  8],</span>
-<div class="newline"></div><span class="go">       [ 9, 10, 11, 12]])</span>
+<div class="newline"></div><span class="go">       [ 9, 10, 11, 12]]...)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="o">.</span><span class="n">offsets</span>
 <div class="newline"></div><span class="go">array([ 0, -1,  2], dtype=int32)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">mtx</span>   
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mtx</span><span class="p">)</span>   
 <div class="newline"></div><span class="go">  (0, 0)        1</span>
 <div class="newline"></div><span class="go">  (1, 1)        2</span>
 <div class="newline"></div><span class="go">  (2, 2)        3</span>
@@ -241,15 +282,16 @@
 </div>
 </li>
 <li><p class="first">explanation with a scheme:</p>
-<div class="highlight-python"><pre>offset: row
-
-     2:  9
-     1:  --10------
-     0:  1  . 11  .
-    -1:  5  2  . 12
-    -2:  .  6  3  .
-    -3:  .  .  7  4
-         ---------8</pre>
+<div class="highlight-python"><div class="highlight"><pre>offset: row
+<div class="newline"></div>
+<div class="newline"></div>     2:  9
+<div class="newline"></div>     1:  --10------
+<div class="newline"></div>     0:  1  . 11  .
+<div class="newline"></div>    -1:  5  2  . 12
+<div class="newline"></div>    -2:  .  6  3  .
+<div class="newline"></div>    -3:  .  .  7  4
+<div class="newline"></div>         ---------8
+<div class="newline"></div></pre></div>
 </div>
 </li>
 <li><p class="first">matrix-vector multiplication</p>
@@ -273,6 +315,39 @@
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.5.2.2.1. Diagonal Format (DIA)</a><ul>
+<li><a class="reference internal" href="#examples">2.5.2.2.1.1. Examples</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -312,8 +387,8 @@
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

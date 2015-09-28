@@ -4,10 +4,12 @@
 
 
 A small demo of data animation
+===============================
+
 
 
 **Python source code:** :download:`animate_data.py <animate_data.py>`
 
 .. literalinclude:: animate_data.py
-    :lines: 4-
+    :lines: 6-
     

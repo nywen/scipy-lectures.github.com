@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,11 +24,51 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/copybutton.js"></script>
-    <link rel="top" title="Scipy lecture notes" href="../../../index.html" /> 
+    <link rel="top" title="Scipy lecture notes" href="../../../index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -117,72 +157,118 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <style type="text/css">
-.figure {
-    float: left;
-    margin: 10px;
-    width: auto;
-    height: 200px;
-    width: 180px;
+
+div#sidebarbutton {
+    display: none;
 }
 
-.figure img {
-    display: inline;
-    }
-
-.figure .caption {
-    width: 170px;
-    text-align: center !important;
-}
 </style><div class="section" id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<div class="figure" id="examples-index">
-<a class="reference external image-reference" href="./animate_data.html"><img alt="../../../_images/animate_data.png" src="../../../_images/animate_data.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_animate_data.py</em></p>
 </div>
-<div class="figure">
+<div class="section" id="examples-for-the-mayavi-chapter">
+<span id="examples-index"></span><h1>Examples for the Mayavi chapter<a class="headerlink" href="#examples-for-the-mayavi-chapter" title="Permalink to this headline">¶</a></h1>
+<div class="thumbnailContainer" tooltip="A simple surface plot with Mayavi "><div class="figure">
+<a class="reference external image-reference" href="./simple_example.html"><img alt="../../../_images/simple_example.png" src="../../../_images/simple_example.png" /></a>
+<p class="caption"><a class="reference internal" href="simple_example.html#example-simple-example-py"><em>Surface plot</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip=""><div class="figure">
+<a class="reference external image-reference" href="./animate_data.html"><img alt="../../../_images/animate_data.png" src="../../../_images/animate_data.png" /></a>
+<p class="caption"><a class="reference internal" href="animate_data.html#example-animate-data-py"><em>A small demo of data animation</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Use Mayavi to visualize unstructured data "><div class="figure">
+<a class="reference external image-reference" href="./viz_volume_unstructure.html"><img alt="../../../_images/viz_volume_unstructure.png" src="../../../_images/viz_volume_unstructure.png" /></a>
+<p class="caption"><a class="reference internal" href="viz_volume_unstructure.html#example-viz-volume-unstructure-py"><em>Visualizing unstructured data</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Use Mayavi to visualize the structure of a VolumeImg "><div class="figure">
+<a class="reference external image-reference" href="./viz_volume_structure.html"><img alt="../../../_images/viz_volume_structure.png" src="../../../_images/viz_volume_structure.png" /></a>
+<p class="caption"><a class="reference internal" href="viz_volume_structure.html#example-viz-volume-structure-py"><em>Volume visualization</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Simple example demoing a dialog with Mayavi "><div class="figure">
+<a class="reference external image-reference" href="./mlab_dialog.html"><img alt="../../../_images/mlab_dialog.png" src="../../../_images/mlab_dialog.png" /></a>
+<p class="caption"><a class="reference internal" href="mlab_dialog.html#example-mlab-dialog-py"><em>A dialog with Mayavi</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Example demoing an interactive dialog with Mayavi "><div class="figure">
+<a class="reference external image-reference" href="./mlab_interactive_dialog.html"><img alt="../../../_images/mlab_interactive_dialog.png" src="../../../_images/mlab_interactive_dialog.png" /></a>
+<p class="caption"><a class="reference internal" href="mlab_interactive_dialog.html#example-mlab-interactive-dialog-py"><em>Interactive dialog with Mayavi</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Visualize the field created by a pair of Helmoltz coils "><div class="figure">
+<a class="reference external image-reference" href="./visualize_field.html"><img alt="../../../_images/visualize_field.png" src="../../../_images/visualize_field.png" /></a>
+<p class="caption"><a class="reference internal" href="visualize_field.html#example-visualize-field-py"><em>Helmoltz coils</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Example generating the figures for the tutorial. "><div class="figure">
+<a class="reference external image-reference" href="./generate_figures.html"><img alt="../../../_images/generate_figures.png" src="../../../_images/generate_figures.png" /></a>
+<p class="caption"><a class="reference internal" href="generate_figures.html#example-generate-figures-py"><em>Different Mayavi plotting modes</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="A script that computes the magnetic field generated by a pair of Helmoltz coils. "><div class="figure">
+<a class="reference external image-reference" href="./compute_field.html"><img alt="../../../_images/compute_field.png" src="../../../_images/compute_field.png" /></a>
+<p class="caption"><a class="reference internal" href="compute_field.html#example-compute-field-py"><em>Helmoltz coils</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="An application to visualize the field create by a list of coils."><div class="figure">
 <a class="reference external image-reference" href="./coil_application.html"><img alt="../../../_images/coil_application.png" src="../../../_images/coil_application.png" /></a>
 <p class="caption"><a class="reference internal" href="coil_application.html#example-coil-application-py"><em>Coil Application</em></a></p>
 </div>
-<div class="figure">
-<a class="reference external image-reference" href="./compute_field.html"><img alt="../../../_images/compute_field.png" src="../../../_images/compute_field.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_compute_field.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./generate_figures.html"><img alt="../../../_images/generate_figures.png" src="../../../_images/generate_figures.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_generate_figures.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./mlab_dialog.html"><img alt="../../../_images/mlab_dialog.png" src="../../../_images/mlab_dialog.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_mlab_dialog.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./mlab_interactive_dialog.html"><img alt="../../../_images/mlab_interactive_dialog.png" src="../../../_images/mlab_interactive_dialog.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_mlab_interactive_dialog.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./simple_example.html"><img alt="../../../_images/simple_example.png" src="../../../_images/simple_example.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_simple_example.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./visualize_field.html"><img alt="../../../_images/visualize_field.png" src="../../../_images/visualize_field.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_visualize_field.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./viz_volume_structure.html"><img alt="../../../_images/viz_volume_structure.png" src="../../../_images/viz_volume_structure.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_viz_volume_structure.py</em></p>
-</div>
-<div class="figure">
-<a class="reference external image-reference" href="./viz_volume_unstructure.html"><img alt="../../../_images/viz_volume_unstructure.png" src="../../../_images/viz_volume_unstructure.png" /></a>
-<p class="caption"><em class="xref std std-ref">example_viz_volume_unstructure.py</em></p>
+</div><div class="toctree-wrapper compound">
 </div>
 <div style="clear: both"></div><p><div style="clear: both"></div></p>
 </div>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Examples</a></li>
+<li><a class="reference internal" href="#examples-for-the-mayavi-chapter">Examples for the Mayavi chapter</a><ul>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -213,8 +299,8 @@
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

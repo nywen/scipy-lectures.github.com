@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1.5. Scipy : high-level scientific computing" href="../scipy.html" />
     <link rel="next" title="1.5.11.15. Image processing application: counting bubbles and unmolten grains" href="image-processing.html" />
-    <link rel="prev" title="1.5.11.13. Maximum wind speed prediction at the Sprogø station" href="stats-interpolate.html" /> 
+    <link rel="prev" title="1.5.11.13. Maximum wind speed prediction at the Sprogø station" href="stats-interpolate.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -128,6 +168,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="non-linear-least-squares-curve-fitting-application-to-point-extraction-in-topographical-lidar-data">
@@ -159,8 +200,8 @@ containing information about one target.</p>
 <p>One state of the art method to extract information from these data is to
 decompose them in a sum of Gaussian functions where each function represents the
 contribution of a target hit by the laser beam.</p>
-<p>Therefore, we use the <tt class="docutils literal"><span class="pre">scipy.optimize</span></tt> module to fit a waveform to one or a sum of
-Gaussian functions.</p>
+<p>Therefore, we use the <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/optimize.html#module-scipy.optimize" title="(in SciPy v0.16.0)"><tt class="xref py py-mod docutils literal"><span class="pre">scipy.optimize</span></tt></a> module to fit a waveform to one
+or a sum of Gaussian functions.</p>
 </div>
 <div class="section" id="loading-and-visualization">
 <span id="first-step"></span><h2>1.5.11.14.2. Loading and visualization<a class="headerlink" href="#loading-and-visualization" title="Permalink to this headline">¶</a></h2>
@@ -173,7 +214,8 @@ Gaussian functions.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">waveform_1</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">waveform_1</span><span class="p">)</span> 
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+<div class="newline"></div><span class="go">[&lt;matplotlib.lines.Line2D object at ...&gt;]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
 <img alt="../../_images/waveform_1.png" class="align-center" src="../../_images/waveform_1.png" />
@@ -193,7 +235,7 @@ function, we must:</p>
 <h3>1.5.11.14.3.1. Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
 <p>A Gaussian function defined by</p>
 <div class="math">
-<p><img src="../../_images/math/e767135f848071cb6d4e204c15e1b66d03872303.png" alt="B + A \exp\left\{-\left(\frac{t-\mu}{\sigma}\right)^2\right\}"/></p>
+<p><img src="../../_images/math/1be8641aaaf396bc867ca903017fab1fdc765e34.png" alt="B + A \exp\left\{-\left(\frac{t-\mu}{\sigma}\right)^2\right\}"/></p>
 </div><p>can be defined in python by:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">coeffs</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>   <span class="k">return</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span> <span class="p">((</span><span class="n">t</span><span class="o">-</span><span class="n">coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">coeffs</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
@@ -201,10 +243,10 @@ function, we must:</p>
 </div>
 <p>where</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">coeffs[0]</span></tt> is <img class="math" src="../../_images/math/ff5fb3d775862e2123b007eb4373ff6cc1a34d4e.png" alt="B" style="vertical-align: 0px"/> (noise)</li>
-<li><tt class="docutils literal"><span class="pre">coeffs[1]</span></tt> is <img class="math" src="../../_images/math/019e9892786e493964e145e7c5cf7b700314e53b.png" alt="A" style="vertical-align: 0px"/> (amplitude)</li>
-<li><tt class="docutils literal"><span class="pre">coeffs[2]</span></tt> is <img class="math" src="../../_images/math/2d8c833ed800824727cd7bd2fb9de1a12ad7e674.png" alt="\mu" style="vertical-align: -6px"/> (center)</li>
-<li><tt class="docutils literal"><span class="pre">coeffs[3]</span></tt> is <img class="math" src="../../_images/math/fa35d9fc104207e09a712110ac81612c5b279a6c.png" alt="\sigma" style="vertical-align: 0px"/> (width)</li>
+<li><tt class="docutils literal"><span class="pre">coeffs[0]</span></tt> is <img class="math" src="../../_images/math/11e1462c077a60151f52020d2cabcc2fc19d3cb0.png" alt="B" style="vertical-align: 0px"/> (noise)</li>
+<li><tt class="docutils literal"><span class="pre">coeffs[1]</span></tt> is <img class="math" src="../../_images/math/937abf0036e3f773123ec44111199b356cf0ab10.png" alt="A" style="vertical-align: 0px"/> (amplitude)</li>
+<li><tt class="docutils literal"><span class="pre">coeffs[2]</span></tt> is <img class="math" src="../../_images/math/fb6d665bbe0c01fc1af5c5f5fa7df40dc71331d7.png" alt="\mu" style="vertical-align: -6px"/> (center)</li>
+<li><tt class="docutils literal"><span class="pre">coeffs[3]</span></tt> is <img class="math" src="../../_images/math/bb6e1902efeb0b3704c6191ddce1f02707ab7d4b.png" alt="\sigma" style="vertical-align: 0px"/> (width)</li>
 </ul>
 </div>
 <div class="section" id="initial-solution">
@@ -224,7 +266,7 @@ difference between the data and the model):</p>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">return</span> <span class="n">y</span> <span class="o">-</span> <span class="n">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">coeffs</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>So let&#8217;s get our solution by calling <tt class="docutils literal"><span class="pre">scipy.optimize.leastsq</span></tt> with the
+<p>So let&#8217;s get our solution by calling <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.leastsq.html#scipy.optimize.leastsq" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.optimize.leastsq()</span></tt></a> with the
 following arguments:</p>
 <ul class="simple">
 <li>the function to minimize</li>
@@ -233,17 +275,19 @@ following arguments:</p>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">leastsq</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">leastsq</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">waveform_1</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">x</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <div class="newline"></div><span class="go">[  2.70363341  27.82020742  15.47924562   3.05636228]</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>And visualize the solution:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">waveform_1</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span> 
+<div class="newline"></div><span class="go">[&lt;matplotlib.lines.Line2D object at ...&gt;, &lt;matplotlib.lines.Line2D object at ...&gt;]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s">&#39;waveform&#39;</span><span class="p">,</span> <span class="s">&#39;model&#39;</span><span class="p">])</span> 
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+<div class="newline"></div><span class="go">&lt;matplotlib.legend.Legend object at ...&gt;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><em>Remark:</em> from scipy v0.8 and above, you should rather use <tt class="docutils literal"><span class="pre">scipy.optimize.curve_fit</span></tt> which takes the model and the data as arguments, so you don&#8217;t need to define the residuals any more.</p>
+<p><em>Remark:</em> from scipy v0.8 and above, you should rather use <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.optimize.curve_fit()</span></tt></a> which takes the model and the data as arguments, so you don&#8217;t need to define the residuals any more.</p>
 </div>
 </div>
 <div class="section" id="going-further">
@@ -268,14 +312,14 @@ add is the sign of our variables (which are all positive).</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>compare the result of <tt class="docutils literal"><span class="pre">scipy.optimize.leastsq</span></tt> and what you can get with
-<tt class="docutils literal"><span class="pre">scipy.optimize.fmin_slsqp</span></tt> when adding boundary constraints.</p>
+<p>compare the result of <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.leastsq.html#scipy.optimize.leastsq" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.optimize.leastsq()</span></tt></a> and what you can get with
+<a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin_slsqp.html#scipy.optimize.fmin_slsqp" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.optimize.fmin_slsqp()</span></tt></a> when adding boundary constraints.</p>
 </li>
 </ul>
 <table class="docutils footnote" frame="void" id="data" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>The data used for this tutorial are part of the demonstration data available for the <a class="reference external" href="http://fullanalyze.sourceforge.net">FullAnalyze software</a> and were kindly provided by the <a class="reference external" href="http://www.ore.fr/rubrique.php3?id_rubrique=24">GIS DRAIX</a>.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>The data used for this tutorial are part of the demonstration data available for the <a class="reference external" href="http://fullanalyze.sourceforge.net">FullAnalyze software</a> and were kindly provided by the GIS DRAIX.</td></tr>
 </tbody>
 </table>
 <p><div style="clear: both"></div></p>
@@ -284,6 +328,47 @@ add is the sign of our variables (which are all positive).</p>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.5.11.14. Non linear least squares curve fitting: application to point extraction in topographical lidar data</a><ul>
+<li><a class="reference internal" href="#introduction">1.5.11.14.1. Introduction</a></li>
+<li><a class="reference internal" href="#loading-and-visualization">1.5.11.14.2. Loading and visualization</a></li>
+<li><a class="reference internal" href="#fitting-a-waveform-with-a-simple-gaussian-model">1.5.11.14.3. Fitting a waveform with a simple Gaussian model</a><ul>
+<li><a class="reference internal" href="#model">1.5.11.14.3.1. Model</a></li>
+<li><a class="reference internal" href="#initial-solution">1.5.11.14.3.2. Initial solution</a></li>
+<li><a class="reference internal" href="#fit">1.5.11.14.3.3. Fit</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#going-further">1.5.11.14.4. Going further</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -322,8 +407,8 @@ add is the sign of our variables (which are all positive).</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

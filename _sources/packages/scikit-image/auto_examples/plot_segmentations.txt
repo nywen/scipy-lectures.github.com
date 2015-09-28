@@ -3,6 +3,9 @@
 .. _example_plot_segmentations.py:
 
 
+Watershed and random walker for segmentation
+============================================
+
 This example compares two segmentation methods in order to separate two
 connected disks: the watershed algorithm, and the random walker algorithm.
 
@@ -16,8 +19,13 @@ background are used as seeds.
     :align: center
 
 
+
+
 **Python source code:** :download:`plot_segmentations.py <plot_segmentations.py>`
 
 .. literalinclude:: plot_segmentations.py
-    :lines: 9-
+    :lines: 12-
+
+**Total running time of the example:**  0.33 seconds
+( 0 minutes  0.33 seconds)
     

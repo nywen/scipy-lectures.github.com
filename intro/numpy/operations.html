@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1.3. NumPy: creating and manipulating numerical data" href="index.html" />
     <link rel="next" title="1.3.3. More elaborate arrays" href="elaborate_arrays.html" />
-    <link rel="prev" title="1.3.1. The Numpy array object" href="array_object.html" /> 
+    <link rel="prev" title="1.3.1. The Numpy array object" href="array_object.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -128,6 +168,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="numerical-operations-on-arrays">
@@ -249,17 +290,19 @@ with odd elements</li>
 <p><strong>Transcendental functions:</strong></p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<div class="newline"></div><span class="go">array([ 0.        ,  0.84147098,  0.90929743,  0.14112001, -0.7568025])</span>
+<div class="newline"></div><span class="go">array([ 0.        ,  0.84147098,  0.90929743,  0.14112001, -0.7568025 ])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <div class="newline"></div><span class="go">array([       -inf,  0.        ,  0.69314718,  1.09861229,  1.38629436])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<div class="newline"></div><span class="go">array([  1.00000000e+00,   2.71828183e+00,   7.38905610e+00,</span>
-<div class="newline"></div><span class="go">         2.00855369e+01,   5.45981500e+01])</span>
+<div class="newline"></div><span class="go">array([  1.        ,   2.71828183,   7.3890561 ,  20.08553692,  54.59815003])</span>
 <div class="newline"></div></pre></div>
 </div>
 <p><strong>Shape mismatches</strong></p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>  
+<div class="newline"></div><span class="gt">Traceback (most recent call last):</span>
+<div class="newline"></div>  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<div class="newline"></div><span class="gr">ValueError</span>: <span class="n">operands could not be broadcast together with shapes (4) (2)</span>
 <div class="newline"></div><span class="gt">Traceback (most recent call last):</span>
 <div class="newline"></div>  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
 <div class="newline"></div><span class="gr">ValueError</span>: <span class="n">operands could not be broadcast together with shapes (4) (2)</span>
@@ -293,7 +336,7 @@ matrix symmetric</strong>:</p>
 <p class="last">The sub-module <tt class="xref py py-mod docutils literal"><span class="pre">numpy.linalg</span></tt> implements basic linear algebra, such as
 solving linear systems, singular value decomposition, etc. However, it is
 not guaranteed to be compiled using efficient routines, and thus we
-recommend the use of <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/linalg.html#scipy.linalg" title="(in SciPy v0.13.0)"><tt class="xref py py-mod docutils literal"><span class="pre">scipy.linalg</span></tt></a>, as detailed in section
+recommend the use of <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/linalg.html#module-scipy.linalg" title="(in SciPy v0.16.0)"><tt class="xref py py-mod docutils literal"><span class="pre">scipy.linalg</span></tt></a>, as detailed in section
 <a class="reference internal" href="../scipy.html#scipy-linalg"><em>Linear algebra operations: scipy.linalg</em></a></p>
 </div>
 <div class="green topic">
@@ -764,6 +807,9 @@ or copy</p>
 <div class="newline"></div>  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
 <div class="newline"></div><span class="gr">ValueError</span>: <span class="n">cannot resize an array that has been referenced or is</span>
 <div class="newline"></div><span class="go">referencing another array in this way.  Use the resize function</span>
+<div class="newline"></div><span class="gt">Traceback (most recent call last):</span>
+<div class="newline"></div>  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<div class="newline"></div><span class="gr">ValueError</span>: <span class="n">cannot resize an array that has been referenced or is</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="green topic">
@@ -874,6 +920,59 @@ well as to do some more <a class="reference internal" href="exercises.html#numpy
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.3.2. Numerical operations on arrays</a><ul>
+<li><a class="reference internal" href="#elementwise-operations">1.3.2.1. Elementwise operations</a><ul>
+<li><a class="reference internal" href="#basic-operations">1.3.2.1.1. Basic operations</a></li>
+<li><a class="reference internal" href="#other-operations">1.3.2.1.2. Other operations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-reductions">1.3.2.2. Basic reductions</a><ul>
+<li><a class="reference internal" href="#computing-sums">1.3.2.2.1. Computing sums</a></li>
+<li><a class="reference internal" href="#other-reductions">1.3.2.2.2. Other reductions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#broadcasting">1.3.2.3. Broadcasting</a></li>
+<li><a class="reference internal" href="#array-shape-manipulation">1.3.2.4. Array shape manipulation</a><ul>
+<li><a class="reference internal" href="#flattening">1.3.2.4.1. Flattening</a></li>
+<li><a class="reference internal" href="#reshaping">1.3.2.4.2. Reshaping</a></li>
+<li><a class="reference internal" href="#adding-a-dimension">1.3.2.4.3. Adding a dimension</a></li>
+<li><a class="reference internal" href="#dimension-shuffling">1.3.2.4.4. Dimension shuffling</a></li>
+<li><a class="reference internal" href="#resizing">1.3.2.4.5. Resizing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sorting-data">1.3.2.5. Sorting data</a></li>
+<li><a class="reference internal" href="#summary">1.3.2.6. Summary</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -912,8 +1011,8 @@ well as to do some more <a class="reference internal" href="exercises.html#numpy
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

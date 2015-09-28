@@ -3,7 +3,10 @@
 .. _example_plot_noisy.py:
 
 
-Noisy vs non-noisy
+Noisy optimization problem
+===========================
+
+Draws a figure explaining noisy vs non-noisy optimization
 
 
 
@@ -11,8 +14,13 @@ Noisy vs non-noisy
     :align: center
 
 
+
+
 **Python source code:** :download:`plot_noisy.py <plot_noisy.py>`
 
 .. literalinclude:: plot_noisy.py
-    :lines: 4-
+    :lines: 7-
+
+**Total running time of the example:**  0.07 seconds
+( 0 minutes  0.07 seconds)
     

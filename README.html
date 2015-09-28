@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,12 +25,50 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
     <link rel="top" title="Scipy lecture notes" href="index.html" />
-    <link rel="next" title="How to contribute" href="guide/index.html" />
-    <link rel="prev" title="What’s new" href="CHANGES.html" /> 
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -93,12 +131,6 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="guide/index.html" title="How to contribute"
-             accesskey="N">next</a></li>
-        <li class="right" >
-          <a href="CHANGES.html" title="What’s new"
-             accesskey="P">previous</a> |</li>
         <li><a href="index.html">Scipy lecture notes</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
@@ -125,9 +157,11 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="scipy-lecture-notes">
+  <a class="reference external image-reference" href="https://travis-ci.org/scipy-lectures/scipy-lecture-notes"><img alt="https://travis-ci.org/scipy-lectures/scipy-lecture-notes.svg?branch=master" src="https://travis-ci.org/scipy-lectures/scipy-lecture-notes.svg?branch=master" /></a>
+<div class="section" id="scipy-lecture-notes">
 <h1>Scipy-Lecture-Notes<a class="headerlink" href="#scipy-lecture-notes" title="Permalink to this headline">¶</a></h1>
 <p>This repository gathers some lecture notes on the scientific Python
 ecosystem that can be used for a full course of scientific computing with
@@ -143,76 +177,56 @@ attached. Feel free to reuse and modify for your own teaching purposes.</p>
 thus we encourage people to contribute back changes. These will be
 reviewed and edited by the original authors and the editors.</p>
 </div>
-<div class="section" id="building-instructions">
-<h2>Building instructions<a class="headerlink" href="#building-instructions" title="Permalink to this headline">¶</a></h2>
-<p>To generate the html output for on-screen display, Type:</p>
-<div class="highlight-python"><pre>make html</pre>
-</div>
-<p>the generated html files can be found in <tt class="docutils literal"><span class="pre">build/html</span></tt></p>
-<p>The first build takes a long time, but information is cached and
-subsequent builds will be faster.</p>
-<p>To generate the pdf file for printing:</p>
-<div class="highlight-python"><pre>make pdf</pre>
-</div>
-<p>The pdf builder is a bit pointy and you might have some TeX errors. Tweaking
-the layout in the <tt class="docutils literal"><span class="pre">*.rst</span></tt> files is usually enough to work around these
-problems.</p>
-<div class="section" id="requirements">
-<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
-<p><em>probably incomplete</em></p>
-<ul class="simple">
-<li>make</li>
-<li>sphinx (&gt;= 1.0)</li>
-<li>pdflatex</li>
-<li>pdfjam</li>
-<li>matplotlib</li>
-<li>scikit-learn (&gt;= 0.8)</li>
-<li>scikit-image</li>
-</ul>
-</div>
-</div>
-<div class="section" id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
-<div class="topic">
-<p class="topic-title first">Contributing guide and chapter example</p>
-<p>The directory <tt class="docutils literal"><span class="pre">guide</span></tt> contains an example chapter with specific
-instructions on how to contribute.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="guide/index.html">How to contribute</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#id1">How to contribute ?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#keeping-it-concise-collapsing-paragraphs">Keeping it concise: collapsing paragraphs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#figures-and-code-examples">Figures and code examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#using-markup">Using Markup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#linking-to-package-documentations">Linking to package documentations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#chapter-section-subsection-paragraph">Chapter, section, subsection, paragraph</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#using-github">Using Github</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#admonitions">Admonitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#clearing-floats">Clearing floats</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#references">References</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
+<div class="section" id="building-and-contributing">
+<h2>Building and contributing<a class="headerlink" href="#building-and-contributing" title="Permalink to this headline">¶</a></h2>
+<p>The file <cite>CONTRIBUTING.rst</cite> contains instructions to build from source
+and to contribute.</p>
 <p><div style="clear: both"></div></p>
 </div>
 </div>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Scipy-Lecture-Notes</a><ul>
+<li><a class="reference internal" href="#reusing-and-distributing">Reusing and distributing</a></li>
+<li><a class="reference internal" href="#building-and-contributing">Building and contributing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="guide/index.html" title="How to contribute"
-             >next</a></li>
-        <li class="right" >
-          <a href="CHANGES.html" title="What’s new"
-             >previous</a> |</li>
         <li><a href="index.html">Scipy lecture notes</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
@@ -237,8 +251,8 @@ instructions on how to contribute.</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

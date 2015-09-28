@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="2. Advanced topics" href="../index.html" />
     <link rel="next" title="2.5. Sparse Matrices in SciPy" href="../scipy_sparse/index.html" />
-    <link rel="prev" title="2.3. Debugging code" href="../debugging/index.html" /> 
+    <link rel="prev" title="2.3. Debugging code" href="../debugging/index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -127,6 +167,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="optimizing-code">
@@ -135,50 +176,39 @@
 <p class="first sidebar-title">Donald Knuth</p>
 <p class="last"><em>“Premature optimization is the root of all evil”</em></p>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">author:</th><td class="field-body">Gaël Varoquaux</td>
-</tr>
-</tbody>
-</table>
+<p><strong>Author</strong>: <em>Gaël Varoquaux</em></p>
 <p>This chapter deals with strategies to make Python code go faster.</p>
 <div class="topic">
 <p class="topic-title first">Prerequisites</p>
 <ul class="simple">
 <li><a class="reference external" href="http://packages.python.org/line_profiler/">line_profiler</a></li>
-<li><a class="reference external" href="http://code.google.com/p/jrfonseca/wiki/Gprof2Dot">gprof2dot</a></li>
-<li><a class="reference external" href="http://www.graphviz.org/">dot utility from Graphviz</a></li>
 </ul>
 </div>
 <div class="contents local topic" id="chapters-contents">
 <p class="topic-title first">Chapters contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#optimization-workflow" id="id4">Optimization workflow</a></li>
-<li><a class="reference internal" href="#profiling-python-code" id="id5">Profiling Python code</a><ul>
-<li><a class="reference internal" href="#timeit" id="id6">Timeit</a></li>
-<li><a class="reference internal" href="#profiler" id="id7">Profiler</a></li>
-<li><a class="reference internal" href="#id1" id="id8">Line-profiler</a></li>
-<li><a class="reference internal" href="#running-cprofile" id="id9">Running <tt class="docutils literal"><span class="pre">cProfile</span></tt></a></li>
-<li><a class="reference internal" href="#using-gprof2dot" id="id10">Using <tt class="docutils literal"><span class="pre">gprof2dot</span></tt></a></li>
+<li><a class="reference internal" href="#optimization-workflow" id="id3">Optimization workflow</a></li>
+<li><a class="reference internal" href="#profiling-python-code" id="id4">Profiling Python code</a><ul>
+<li><a class="reference internal" href="#timeit" id="id5">Timeit</a></li>
+<li><a class="reference internal" href="#profiler" id="id6">Profiler</a></li>
+<li><a class="reference internal" href="#id1" id="id7">Line-profiler</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#making-code-go-faster" id="id11">Making code go faster</a><ul>
-<li><a class="reference internal" href="#algorithmic-optimization" id="id12">Algorithmic optimization</a><ul>
-<li><a class="reference internal" href="#example-of-the-svd" id="id13">Example of the SVD</a></li>
+<li><a class="reference internal" href="#making-code-go-faster" id="id8">Making code go faster</a><ul>
+<li><a class="reference internal" href="#algorithmic-optimization" id="id9">Algorithmic optimization</a><ul>
+<li><a class="reference internal" href="#example-of-the-svd" id="id10">Example of the SVD</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#writing-faster-numerical-code" id="id14">Writing faster numerical code</a><ul>
-<li><a class="reference internal" href="#additional-links" id="id15">Additional Links</a></li>
+<li><a class="reference internal" href="#writing-faster-numerical-code" id="id11">Writing faster numerical code</a><ul>
+<li><a class="reference internal" href="#additional-links" id="id12">Additional Links</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="optimization-workflow">
-<h2><a class="toc-backref" href="#id4">2.4.1. Optimization workflow</a><a class="headerlink" href="#optimization-workflow" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">2.4.1. Optimization workflow</a><a class="headerlink" href="#optimization-workflow" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Make it work: write the code in a simple <strong>legible</strong> ways.</li>
 <li>Make it work reliably: write automated test cases, make really sure
@@ -193,7 +223,7 @@ with profiling runs lasting around 10s.</li>
 </ol>
 </div>
 <div class="section" id="profiling-python-code">
-<h2><a class="toc-backref" href="#id5">2.4.2. Profiling Python code</a><a class="headerlink" href="#profiling-python-code" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">2.4.2. Profiling Python code</a><a class="headerlink" href="#profiling-python-code" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
 <p class="topic-title first"><strong>No optimization without measuring!</strong></p>
 <ul class="simple">
@@ -203,8 +233,8 @@ think</li>
 </ul>
 </div>
 <div class="section" id="timeit">
-<h3><a class="toc-backref" href="#id6">2.4.2.1. Timeit</a><a class="headerlink" href="#timeit" title="Permalink to this headline">¶</a></h3>
-<p>In IPython, use <tt class="docutils literal"><span class="pre">timeit</span></tt> (<a class="reference external" href="http://docs.python.org/library/timeit.html">http://docs.python.org/library/timeit.html</a>) to time elementary operations:</p>
+<h3><a class="toc-backref" href="#id5">2.4.2.1. Timeit</a><a class="headerlink" href="#timeit" title="Permalink to this headline">¶</a></h3>
+<p>In IPython, use <tt class="docutils literal"><span class="pre">timeit</span></tt> (<a class="reference external" href="https://docs.python.org/library/timeit.html">https://docs.python.org/library/timeit.html</a>) to time elementary operations:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [2]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
@@ -227,7 +257,7 @@ less precise but faster</p>
 </div>
 </div>
 <div class="section" id="profiler">
-<h3><a class="toc-backref" href="#id7">2.4.2.2. Profiler</a><a class="headerlink" href="#profiler" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">2.4.2.2. Profiler</a><a class="headerlink" href="#profiler" title="Permalink to this headline">¶</a></h3>
 <p>Useful when you have a large program to profile, for example the
 <a class="reference download internal" href="../../_downloads/demo.py"><tt class="xref download docutils literal"><span class="pre">following</span> <span class="pre">file</span></tt></a>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># For this example to run, you also need the &#39;ica.py&#39; file</span>
@@ -251,9 +281,9 @@ less precise but faster</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is a combination of two unsupervised learning techniques, principal
-component analysis (<a class="reference external" href="http://en.wikipedia.org/wiki/Principal_component_analysis">PCA</a>) and
+component analysis (<a class="reference external" href="httsp://en.wikipedia.org/wiki/Principal_component_analysis">PCA</a>) and
 independent component analysis
-(<a href="#id16"><span class="problematic" id="id17">`ICA&lt;http://en.wikipedia.org/wiki/Independent_component_ana lysis&gt;`_</span></a>). PCA
+(<a class="reference external" href="https://en.wikipedia.org/wiki/Independent_component_analysis">ICA</a>). PCA
 is a technique for dimensionality reduction, i.e. an algorithm to explain
 the observed variance in your data using less dimensions. ICA is a source
 seperation technique, for example to unmix multiple signals that have been
@@ -277,30 +307,30 @@ In IPython we can time the script:</p>
 <div class="newline"></div>
 <div class="newline"></div><span class="go">Ordered by: internal time</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="go">ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span>
-<div class="newline"></div><span class="go">     1   14.457   14.457   14.479   14.479 decomp.py:849(svd)</span>
+<div class="newline"></div><span class="go">ncalls  tottime  percall  cumtime  percall filename:lineno (function)</span>
+<div class="newline"></div><span class="go">     1   14.457   14.457   14.479   14.479 decomp.py:849 (svd)</span>
 <div class="newline"></div><span class="go">     1    0.054    0.054    0.054    0.054 {method &#39;random_sample&#39; of &#39;mtrand.RandomState&#39; objects}</span>
-<div class="newline"></div><span class="go">     1    0.017    0.017    0.021    0.021 function_base.py:645(asarray_chkfinite)</span>
+<div class="newline"></div><span class="go">     1    0.017    0.017    0.021    0.021 function_base.py:645 (asarray_chkfinite)</span>
 <div class="newline"></div><span class="go">    54    0.011    0.000    0.011    0.000 {numpy.core._dotblas.dot}</span>
 <div class="newline"></div><span class="go">     2    0.005    0.002    0.005    0.002 {method &#39;any&#39; of &#39;numpy.ndarray&#39; objects}</span>
-<div class="newline"></div><span class="go">     6    0.001    0.000    0.001    0.000 ica.py:195(gprime)</span>
-<div class="newline"></div><span class="go">     6    0.001    0.000    0.001    0.000 ica.py:192(g)</span>
+<div class="newline"></div><span class="go">     6    0.001    0.000    0.001    0.000 ica.py:195 (gprime)</span>
+<div class="newline"></div><span class="go">     6    0.001    0.000    0.001    0.000 ica.py:192 (g)</span>
 <div class="newline"></div><span class="go">    14    0.001    0.000    0.001    0.000 {numpy.linalg.lapack_lite.dsyevd}</span>
-<div class="newline"></div><span class="go">    19    0.001    0.000    0.001    0.000 twodim_base.py:204(diag)</span>
-<div class="newline"></div><span class="go">     1    0.001    0.001    0.008    0.008 ica.py:69(_ica_par)</span>
+<div class="newline"></div><span class="go">    19    0.001    0.000    0.001    0.000 twodim_base.py:204 (diag)</span>
+<div class="newline"></div><span class="go">     1    0.001    0.001    0.008    0.008 ica.py:69 (_ica_par)</span>
 <div class="newline"></div><span class="go">     1    0.001    0.001   14.551   14.551 {execfile}</span>
-<div class="newline"></div><span class="go">   107    0.000    0.000    0.001    0.000 defmatrix.py:239(__array_finalize__)</span>
-<div class="newline"></div><span class="go">     7    0.000    0.000    0.004    0.001 ica.py:58(_sym_decorrelation)</span>
-<div class="newline"></div><span class="go">     7    0.000    0.000    0.002    0.000 linalg.py:841(eigh)</span>
+<div class="newline"></div><span class="go">   107    0.000    0.000    0.001    0.000 defmatrix.py:239 (__array_finalize__)</span>
+<div class="newline"></div><span class="go">     7    0.000    0.000    0.004    0.001 ica.py:58 (_sym_decorrelation)</span>
+<div class="newline"></div><span class="go">     7    0.000    0.000    0.002    0.000 linalg.py:841 (eigh)</span>
 <div class="newline"></div><span class="go">   172    0.000    0.000    0.000    0.000 {isinstance}</span>
-<div class="newline"></div><span class="go">     1    0.000    0.000   14.551   14.551 demo.py:1(&lt;module&gt;)</span>
-<div class="newline"></div><span class="go">    29    0.000    0.000    0.000    0.000 numeric.py:180(asarray)</span>
-<div class="newline"></div><span class="go">    35    0.000    0.000    0.000    0.000 defmatrix.py:193(__new__)</span>
-<div class="newline"></div><span class="go">    35    0.000    0.000    0.001    0.000 defmatrix.py:43(asmatrix)</span>
-<div class="newline"></div><span class="go">    21    0.000    0.000    0.001    0.000 defmatrix.py:287(__mul__)</span>
+<div class="newline"></div><span class="go">     1    0.000    0.000   14.551   14.551 demo.py:1 (&lt;module&gt;)</span>
+<div class="newline"></div><span class="go">    29    0.000    0.000    0.000    0.000 numeric.py:180 (asarray)</span>
+<div class="newline"></div><span class="go">    35    0.000    0.000    0.000    0.000 defmatrix.py:193 (__new__)</span>
+<div class="newline"></div><span class="go">    35    0.000    0.000    0.001    0.000 defmatrix.py:43 (asmatrix)</span>
+<div class="newline"></div><span class="go">    21    0.000    0.000    0.001    0.000 defmatrix.py:287 (__mul__)</span>
 <div class="newline"></div><span class="go">    41    0.000    0.000    0.000    0.000 {numpy.core.multiarray.zeros}</span>
 <div class="newline"></div><span class="go">    28    0.000    0.000    0.000    0.000 {method &#39;transpose&#39; of &#39;numpy.ndarray&#39; objects}</span>
-<div class="newline"></div><span class="go">     1    0.000    0.000    0.008    0.008 ica.py:97(fastica)</span>
+<div class="newline"></div><span class="go">     1    0.000    0.000    0.008    0.008 ica.py:97 (fastica)</span>
 <div class="newline"></div><span class="go">     ...</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -308,11 +338,23 @@ In IPython we can time the script:</p>
 bottleneck. We have to find a way to make this step go faster, or to avoid this
 step (algorithmic optimization). Spending time on the rest of the code is
 useless.</p>
+<div class="topic">
+<p class="topic-title first"><strong>Profiling outside of IPython, running ``cProfile``</strong></p>
+<p>Similar profiling can be done outside of IPython, simply calling the
+built-in <a class="reference external" href="https://docs.python.org/2/library/profile.html">Python profilers</a> <tt class="docutils literal"><span class="pre">cProfile</span></tt> and
+<tt class="docutils literal"><span class="pre">profile</span></tt>.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span>  python -m cProfile -o demo.prof demo.py
+<div class="newline"></div></pre></div>
+</div>
+<p>Using the <tt class="docutils literal"><span class="pre">-o</span></tt> switch will output the profiler results to the file
+<tt class="docutils literal"><span class="pre">demo.prof</span></tt> to view with an external tool. This can be useful if
+you wish to process the profiler output with a visualization tool.</p>
+</div>
 </div>
 <div class="section" id="id1">
-<h3><a class="toc-backref" href="#id8">2.4.2.3. Line-profiler</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>The profiler is great: it tells us which function takes most of the time,
-but not where it is called.</p>
+<h3><a class="toc-backref" href="#id7">2.4.2.3. Line-profiler</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The profiler tells us which function takes most of the time, but not
+where it is called.</p>
 <p>For this, we use the
 <a class="reference external" href="http://packages.python.org/line_profiler/">line_profiler</a>: in the
 source file, we decorate a few functions that we want to inspect with
@@ -321,11 +363,11 @@ source file, we decorate a few functions that we want to inspect with
 <div class="newline"></div><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
 <div class="newline"></div>    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 <div class="newline"></div>    <span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">pca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">[:</span> <span class="p">,</span> <span class="p">:</span><span class="mi">10</span><span class="p">],</span> <span class="n">data</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">pca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">10</span><span class="p">],</span> <span class="n">data</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">results</span> <span class="o">=</span> <span class="n">fastica</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">whiten</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Then we run the script using the <a class="reference external" href="http://packages.python.org/line_profiler/kernprof.py">kernprof.py</a> program, with switches <tt class="docutils literal"><span class="pre">-l,</span> <span class="pre">--line-by-line</span></tt> and <tt class="docutils literal"><span class="pre">-v,</span> <span class="pre">--view</span></tt> to use the line-by-line profiler and view the results in addition to saving them:</p>
+<p>Then we run the script using the <a class="reference external" href="http://packages.python.org/line_profiler">kernprof.py</a> program, with switches <tt class="docutils literal"><span class="pre">-l,</span> <span class="pre">--line-by-line</span></tt> and <tt class="docutils literal"><span class="pre">-v,</span> <span class="pre">--view</span></tt> to use the line-by-line profiler and view the results in addition to saving them:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> kernprof.py -l -v demo.py
 <div class="newline"></div>
 <div class="newline"></div><span class="go">Wrote profile results to demo.py.lprof</span>
@@ -336,7 +378,7 @@ source file, we decorate a few functions that we want to inspect with
 <div class="newline"></div><span class="go">Total time: 14.2793 s</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="go">Line #      Hits         Time  Per Hit   % Time  Line Contents</span>
-<div class="newline"></div><span class="go">==============================================================</span>
+<div class="newline"></div><span class="go">=========== ============ ===== ========= ======= ==== ========</span>
 <div class="newline"></div><span class="go">    5                                           @profile</span>
 <div class="newline"></div><span class="go">    6                                           def test():</span>
 <div class="newline"></div><span class="go">    7         1        19015  19015.0      0.1      data = np.random.random((5000, 100))</span>
@@ -347,36 +389,13 @@ source file, we decorate a few functions that we want to inspect with
 </div>
 <p><strong>The SVD is taking all the time.</strong> We need to optimise this line.</p>
 </div>
-<div class="section" id="running-cprofile">
-<h3><a class="toc-backref" href="#id9">2.4.2.4. Running <tt class="docutils literal"><span class="pre">cProfile</span></tt></a><a class="headerlink" href="#running-cprofile" title="Permalink to this headline">¶</a></h3>
-<p>In the IPython example above, IPython simply calls the built-in <a class="reference external" href="http://docs.python.org/2/library/profile.html">Python
-profilers</a> <tt class="docutils literal"><span class="pre">cProfile</span></tt> and
-<tt class="docutils literal"><span class="pre">profile</span></tt>. This can be useful if you wish to process the profiler output with a
-visualization tool.</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span>  python -m cProfile -o demo.prof demo.py
-<div class="newline"></div></pre></div>
-</div>
-<p>Using the <tt class="docutils literal"><span class="pre">-o</span></tt> switch will output the profiler results to the file
-<tt class="docutils literal"><span class="pre">demo.prof</span></tt>.</p>
-</div>
-<div class="section" id="using-gprof2dot">
-<h3><a class="toc-backref" href="#id10">2.4.2.5. Using <tt class="docutils literal"><span class="pre">gprof2dot</span></tt></a><a class="headerlink" href="#using-gprof2dot" title="Permalink to this headline">¶</a></h3>
-<p>In case you want a more visual representation of the profiler output, you can
-use the <a class="reference external" href="http://code.google.com/p/jrfonseca/wiki/Gprof2Dot">gprof2dot</a> tool:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> gprof2dot -f pstats demo.prof | dot -Tpng -o demo-prof.png
-<div class="newline"></div></pre></div>
-</div>
-<p>Which will produce the following picture:</p>
-<img alt="../../_images/demo-prof.png" src="../../_images/demo-prof.png" />
-<p>Which again paints a similar picture as the previous approaches.</p>
-</div>
 </div>
 <div class="section" id="making-code-go-faster">
-<h2><a class="toc-backref" href="#id11">2.4.3. Making code go faster</a><a class="headerlink" href="#making-code-go-faster" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">2.4.3. Making code go faster</a><a class="headerlink" href="#making-code-go-faster" title="Permalink to this headline">¶</a></h2>
 <p>Once we have identified the bottlenecks, we need to make the
 corresponding code go faster.</p>
 <div class="section" id="algorithmic-optimization">
-<h3><a class="toc-backref" href="#id12">2.4.3.1. Algorithmic optimization</a><a class="headerlink" href="#algorithmic-optimization" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">2.4.3.1. Algorithmic optimization</a><a class="headerlink" href="#algorithmic-optimization" title="Permalink to this headline">¶</a></h3>
 <p>The first thing to look for is algorithmic optimization: are there ways
 to compute less, or better?</p>
 <p>For a high-level view of the problem, a good understanding of the maths
@@ -384,12 +403,12 @@ behind the algorithm helps. However, it is not uncommon to find simple
 changes, like <strong>moving computation or memory allocation outside a for
 loop</strong>, that bring in big gains.</p>
 <div class="section" id="example-of-the-svd">
-<h4><a class="toc-backref" href="#id13">2.4.3.1.1. Example of the SVD</a><a class="headerlink" href="#example-of-the-svd" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id10">2.4.3.1.1. Example of the SVD</a><a class="headerlink" href="#example-of-the-svd" title="Permalink to this headline">¶</a></h4>
 <p>In both examples above, the SVD -
-<a class="reference external" href="http://en.wikipedia.org/wiki/Singular_value_decomposition">Singular Value Decomposition</a>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Singular Value Decomposition</a>
 - is what
 takes most of the time. Indeed, the computational cost of this algorithm is
-roughly <img class="math" src="../../_images/math/4ba37f50c674bcbae995ed1d9dfd4beb5e53c765.png" alt="n^3" style="vertical-align: 0px"/> in the size of the input matrix.</p>
+roughly <img class="math" src="../../_images/math/4dd83ed8556b634d1ad2870f42a9939f0c692564.png" alt="n^3" style="vertical-align: 0px"/> in the size of the input matrix.</p>
 <p>However, in both of these example, we are not using all the output of
 the SVD, but only the first few rows of its first return argument. If
 we use the <tt class="docutils literal"><span class="pre">svd</span></tt> implementation of scipy, we can ask for an incomplete
@@ -411,6 +430,13 @@ scipy are richer then those in numpy and should be preferred.</p>
 <div class="newline"></div></pre></div>
 </div>
 <p>We can then use this insight to <a class="reference download internal" href="../../_downloads/demo_opt.py"><tt class="xref download docutils literal"><span class="pre">optimize</span> <span class="pre">the</span> <span class="pre">previous</span> <span class="pre">code</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+<div class="newline"></div>    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<div class="newline"></div>    <span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">pca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">results</span> <span class="o">=</span> <span class="n">fastica</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">whiten</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="newline"></div></pre></div>
+</div>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">demo</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [2]: </span><span class="o">%</span><span class="n">timeit</span> <span class="n">demo</span><span class="o">.</span>
@@ -446,10 +472,11 @@ on your data.</p>
 </div>
 </div>
 <div class="section" id="writing-faster-numerical-code">
-<h2><a class="toc-backref" href="#id14">2.4.4. Writing faster numerical code</a><a class="headerlink" href="#writing-faster-numerical-code" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">2.4.4. Writing faster numerical code</a><a class="headerlink" href="#writing-faster-numerical-code" title="Permalink to this headline">¶</a></h2>
 <p>A complete discussion on advanced use of numpy is found in chapter
-<a class="reference internal" href="../advanced_numpy/index.html#advanced-numpy"><em>Advanced Numpy</em></a>, or in the article <a class="reference external" href="http://hal.inria.fr/inria-00564007/en">The NumPy array: a structure
-for efficient numerical computation</a> by van der Walt et al. Here we
+<a class="reference internal" href="../advanced_numpy/index.html#advanced-numpy"><em>Advanced Numpy</em></a>, or in the article <a class="reference external" href="https://hal.inria.fr/inria-00564007/en">The NumPy array: a structure
+for efficient numerical computation</a>
+by van der Walt et al. Here we
 discuss only some commonly encountered tricks to make code faster.</p>
 <ul>
 <li><p class="first"><strong>Vectorizing for loops</strong></p>
@@ -545,12 +572,13 @@ yields efficient code on numpy arrays, for instance by unrolling loops.</p>
 optimization on theoretical considerations.</p>
 </div>
 <div class="section" id="additional-links">
-<h3><a class="toc-backref" href="#id15">2.4.4.1. Additional Links</a><a class="headerlink" href="#additional-links" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">2.4.4.1. Additional Links</a><a class="headerlink" href="#additional-links" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>If you need to profile memory usage, you could try the <a class="reference external" href="http://pypi.python.org/pypi/memory_profiler">memory_profiler</a></li>
+<li>If you need to profile memory usage, you could try the <a class="reference external" href="https://pypi.python.org/pypi/memory_profiler">memory_profiler</a></li>
 <li>If you need to profile down into C extensions, you could try using
-<a class="reference external" href="http://code.google.com/p/gperftools/?redir=1">gperftools</a> from Python with
-<a class="reference external" href="http://pypi.python.org/pypi/yep">yep</a>.</li>
+<a class="reference external" href="https://github.com/gperftools/gperftools">gperftools</a>
+from Python with
+<a class="reference external" href="https://pypi.python.org/pypi/yep">yep</a>.</li>
 <li>If you would like to track performace of your code across time, i.e. as you
 make new commits to your repository, you could try:
 <a class="reference external" href="https://github.com/pydata/vbench">vbench</a></li>
@@ -563,6 +591,56 @@ make new commits to your repository, you could try:
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.4. Optimizing code</a><ul>
+<li><a class="reference internal" href="#optimization-workflow">2.4.1. Optimization workflow</a></li>
+<li><a class="reference internal" href="#profiling-python-code">2.4.2. Profiling Python code</a><ul>
+<li><a class="reference internal" href="#timeit">2.4.2.1. Timeit</a></li>
+<li><a class="reference internal" href="#profiler">2.4.2.2. Profiler</a></li>
+<li><a class="reference internal" href="#id1">2.4.2.3. Line-profiler</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#making-code-go-faster">2.4.3. Making code go faster</a><ul>
+<li><a class="reference internal" href="#algorithmic-optimization">2.4.3.1. Algorithmic optimization</a><ul>
+<li><a class="reference internal" href="#example-of-the-svd">2.4.3.1.1. Example of the SVD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#writing-faster-numerical-code">2.4.4. Writing faster numerical code</a><ul>
+<li><a class="reference internal" href="#additional-links">2.4.4.1. Additional Links</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -600,8 +678,8 @@ make new commits to your repository, you could try:
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

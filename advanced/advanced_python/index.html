@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="2. Advanced topics" href="../index.html" />
     <link rel="next" title="2.2. Advanced Numpy" href="../advanced_numpy/index.html" />
-    <link rel="prev" title="2. Advanced topics" href="../index.html" /> 
+    <link rel="prev" title="2. Advanced topics" href="../index.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -127,19 +167,13 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="advanced-python-constructs">
 <h1>2.1. Advanced Python Constructs<a class="headerlink" href="#advanced-python-constructs" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">author:</th><td class="field-body">Zbigniew Jędrzejewski-Szmek</td>
-</tr>
-</tbody>
-</table>
-<p>This chapter is about some features of the Python language which can
+<p><strong>Author</strong> <em>Zbigniew Jędrzejewski-Szmek</em></p>
+<p>This section covers some features of the Python language which can
 be considered advanced &#8212; in the sense that not every language has
 them, and also in the sense that they are more useful in more
 complicated programs or libraries, but not in the sense of being
@@ -149,18 +183,13 @@ language itself &#8212; about features supported through special syntax
 complemented by functionality of the Python stdlib, which could not be
 implemented through clever external modules.</p>
 <p>The process of developing the Python programming language, its syntax,
-is unique because it is very transparent, proposed changes are
-evaluated from various angles and discussed on public mailing lists,
-and the final decision takes into account the balance between the
-importance of envisioned use cases, the burden of carrying more
-language features, consistency with the rest of the syntax, and
-whether the proposed variant is the easiest to read, write, and
-understand. This process is formalised in Python Enhancement
-Proposals &#8212; <a class="reference external" href="http://www.python.org/dev/peps/">PEPs</a>. As a result, features described in this chapter
+is very transparent; proposed changes are
+evaluated from various angles and discussed via <em>Python Enhancement
+Proposals</em> &#8212; <a class="reference external" href="https://www.python.org/dev/peps/">PEPs</a>. As a result, features described in this chapter
 were added after it was shown that they indeed solve real problems and
 that their use is as simple as possible.</p>
-<div class="contents local topic" id="chapters-contents">
-<p class="topic-title first">Chapters contents</p>
+<div class="contents local topic" id="chapter-contents">
+<p class="topic-title first">Chapter contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#iterators-generator-expressions-and-generators" id="id1">Iterators, generator expressions and generators</a><ul>
 <li><a class="reference internal" href="#iterators" id="id2">Iterators</a></li>
@@ -178,12 +207,11 @@ that their use is as simple as possible.</p>
 <li><a class="reference internal" href="#deprecation-of-functions" id="id12">Deprecation of functions</a></li>
 <li><a class="reference internal" href="#a-while-loop-removing-decorator" id="id13">A <tt class="docutils literal"><span class="pre">while</span></tt>-loop removing decorator</a></li>
 <li><a class="reference internal" href="#a-plugin-registration-system" id="id14">A plugin registration system</a></li>
-<li><a class="reference internal" href="#more-examples-and-reading" id="id15">More examples and reading</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#context-managers" id="id16">Context managers</a><ul>
-<li><a class="reference internal" href="#catching-exceptions" id="id17">Catching exceptions</a></li>
-<li><a class="reference internal" href="#using-generators-to-define-context-managers" id="id18">Using generators to define context managers</a></li>
+<li><a class="reference internal" href="#context-managers" id="id15">Context managers</a><ul>
+<li><a class="reference internal" href="#catching-exceptions" id="id16">Catching exceptions</a></li>
+<li><a class="reference internal" href="#using-generators-to-define-context-managers" id="id17">Using generators to define context managers</a></li>
 </ul>
 </li>
 </ul>
@@ -200,34 +228,33 @@ making things more readable, and interoperable as well.</p>
 <blockquote class="last">
 <div><em>Guido van Rossum</em> &#8212; <a class="reference external" href="http://www.artima.com/weblogs/viewpost.jsp?thread=86641">Adding Optional Static Typing to Python</a></div></blockquote>
 </div>
-<p>An iterator is an object adhering to the <a class="reference external" href="http://docs.python.org/dev/library/stdtypes.html#iterator-types">iterator protocol</a>
-&#8212; basically this means that it has a <a class="reference external" href="http://docs.python.org/2.7/library/stdtypes.html#iterator.next" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">next</span></tt></a> method,
+<p>An iterator is an object adhering to the <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#iterator-types">iterator protocol</a>
+&#8212; basically this means that it has a <a class="reference external" href="https://docs.python.org/2.7/library/stdtypes.html#iterator.next" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">next</span></tt></a> method,
 which, when called, returns the next item in the sequence, and when
 there&#8217;s nothing to return, raises the
-<a class="reference external" href="http://docs.python.org/2.7/library/exceptions.html#exceptions.StopIteration" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">StopIteration</span></tt></a> exception.</p>
+<a class="reference external" href="https://docs.python.org/2.7/library/exceptions.html#exceptions.StopIteration" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">StopIteration</span></tt></a> exception.</p>
 <p>An iterator object allows to loop just once. It
 holds the state (position) of a single iteration, or from the other
 side, each loop over a sequence requires a single iterator
 object. This means that we can iterate over the same sequence more
 than once concurrently. Separating the iteration logic from the
 sequence allows us to have more than one way of iteration.</p>
-<p>Calling the <a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__iter__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__iter__</span></tt></a> method on a container to
+<p>Calling the <a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__iter__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__iter__</span></tt></a> method on a container to
 create an iterator object is the most straightforward way to get hold
-of an iterator. The <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#iter" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">iter</span></tt></a> function does that for us, saving a few
+of an iterator. The <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#iter" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">iter</span></tt></a> function does that for us, saving a few
 keystrokes.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>      <span class="c"># note that ... varies: these are different objects</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>      <span class="c"># note that ... varies: these are different objects</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">iter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>                           
-<div class="newline"></div><span class="go">&lt;listiterator object at ...&gt;</span>
+<div class="newline"></div><span class="go">&lt;...iterator object at ...&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span><span class="o">.</span><span class="n">__iter__</span><span class="p">()</span>                      
-<div class="newline"></div><span class="go">&lt;listiterator object at ...&gt;</span>
+<div class="newline"></div><span class="go">&lt;...iterator object at ...&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span><span class="o">.</span><span class="n">__reversed__</span><span class="p">()</span>                  
-<div class="newline"></div><span class="go">&lt;listreverseiterator object at ...&gt;</span>
-<div class="newline"></div></pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>            <span class="c"># next(obj) simply calls obj.next()</span>
+<div class="newline"></div><span class="go">&lt;...reverseiterator object at ...&gt;</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
 <div class="newline"></div><span class="go">1</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
 <div class="newline"></div><span class="go">2</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
 <div class="newline"></div><span class="go">3</span>
@@ -235,13 +262,16 @@ keystrokes.</p>
 <div class="newline"></div><span class="gt">Traceback (most recent call last):</span>
 <div class="newline"></div>  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
 <div class="newline"></div><span class="gr">StopIteration</span>
+<div class="newline"></div><span class="gt">Traceback (most recent call last):</span>
+<div class="newline"></div>  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<div class="newline"></div><span class="gr">StopIteration</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>When used in a loop, <a class="reference external" href="http://docs.python.org/2.7/library/exceptions.html#exceptions.StopIteration" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">StopIteration</span></tt></a> is
+<p>When used in a loop, <a class="reference external" href="https://docs.python.org/2.7/library/exceptions.html#exceptions.StopIteration" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">StopIteration</span></tt></a> is
 swallowed and causes the loop to finish. But with explicit invocation,
 we can see that once the iterator is exhausted, accessing it raises an
 exception.</p>
-<p>Using the <a class="reference external" href="http://docs.python.org/2.7/reference/compound_stmts.html#for">for..in</a> loop also uses the <tt class="docutils literal"><span class="pre">__iter__</span></tt>
+<p>Using the <a class="reference external" href="https://docs.python.org/2.7/reference/compound_stmts.html#for">for..in</a> loop also uses the <tt class="docutils literal"><span class="pre">__iter__</span></tt>
 method. This allows us to transparently start the iteration over a
 sequence. But if we already have the iterator, we want to be able to
 use it in an <tt class="docutils literal"><span class="pre">for</span></tt> loop in the same way. In order to achieve this,
@@ -276,27 +306,18 @@ the process is short-circuited and we get a <tt class="docutils literal"><span c
 <div class="newline"></div><span class="go">[1, 2, 3]</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>In Python 2.7 and 3.x the list comprehension syntax was extended to
+<p>The list comprehension syntax also extends to
 <strong>dictionary and set comprehensions</strong>.
 A <tt class="docutils literal"><span class="pre">set</span></tt> is created when the generator expression is enclosed in curly
 braces. A <tt class="docutils literal"><span class="pre">dict</span></tt> is created when the generator expression contains
 &#8220;pairs&#8221; of the form <tt class="docutils literal"><span class="pre">key:value</span></tt>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)}</span>   
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)}</span>  
 <div class="newline"></div><span class="go">set([0, 1, 2])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)}</span>   
 <div class="newline"></div><span class="go">{0: 0, 1: 1, 2: 4}</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>If you are stuck at some previous Python version, the syntax is only a
-bit worse:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">set</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="s">&#39;abc&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="go">set([&#39;a&#39;, &#39;c&#39;, &#39;b&#39;])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">dict</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="s">&#39;abc&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="go">{&#39;a&#39;: 97, &#39;c&#39;: 99, &#39;b&#39;: 98}</span>
-<div class="newline"></div></pre></div>
-</div>
-<p>Generator expression are fairly simple, not much to say here. Only one
-<em>gotcha</em> should be mentioned: in old Pythons the index variable
+<p>One <em>gotcha</em> should be mentioned: in old Pythons the index variable
 (<tt class="docutils literal"><span class="pre">i</span></tt>) would leak, and in versions &gt;= 3 this is fixed.</p>
 </div>
 <div class="section" id="generators">
@@ -309,7 +330,7 @@ sequence of results instead of a single value.</p>
 <div><em>David Beazley</em> &#8212; <a class="reference external" href="http://www.dabeaz.com/coroutines/">A Curious Course on Coroutines and Concurrency</a></div></blockquote>
 </div>
 <p>A third way to create iterator objects is to call a generator function.
-A <strong>generator</strong> is a function containing the keyword <a class="reference external" href="http://docs.python.org/2.7/reference/simple_stmts.html#yield">yield</a>. It must be
+A <strong>generator</strong> is a function containing the keyword <a class="reference external" href="https://docs.python.org/2.7/reference/simple_stmts.html#yield">yield</a>. It must be
 noted that the mere presence of this keyword completely changes the
 nature of the function: this <tt class="docutils literal"><span class="pre">yield</span></tt> statement doesn&#8217;t have to be
 invoked, or even reachable, but causes the function to be marked as a
@@ -323,20 +344,21 @@ invocations, concurrent and recursive invocations are allowed.</p>
 Each encountered <tt class="docutils literal"><span class="pre">yield</span></tt> statement gives a value becomes the return
 value of <tt class="docutils literal"><span class="pre">next</span></tt>. After executing the <tt class="docutils literal"><span class="pre">yield</span></tt> statement, the
 execution of this function is suspended.</p>
-<div class="highlight-python"><pre>&gt;&gt;&gt; def f():
-...   yield 1
-...   yield 2
-&gt;&gt;&gt; f()                                   
-&lt;generator object f at 0x...&gt;
-&gt;&gt;&gt; gen = f()
-&gt;&gt;&gt; gen.next()
-1
-&gt;&gt;&gt; gen.next()
-2
-&gt;&gt;&gt; gen.next()
-Traceback (most recent call last):
- File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-StopIteration</pre>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; def f():
+<div class="newline"></div>...   yield 1
+<div class="newline"></div>...   yield 2
+<div class="newline"></div>&gt;&gt;&gt; f()                                   
+<div class="newline"></div>&lt;generator object f at 0x...&gt;
+<div class="newline"></div>&gt;&gt;&gt; gen = f()
+<div class="newline"></div>&gt;&gt;&gt; next(gen)
+<div class="newline"></div>1
+<div class="newline"></div>&gt;&gt;&gt; next(gen)
+<div class="newline"></div>2
+<div class="newline"></div>&gt;&gt;&gt; next(gen)
+<div class="newline"></div>Traceback (most recent call last):
+<div class="newline"></div> File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+<div class="newline"></div>StopIteration
+<div class="newline"></div></pre></div>
 </div>
 <p>Let&#8217;s go over the life of the single invocation of the generator
 function.</p>
@@ -355,6 +377,9 @@ function.</p>
 <div class="newline"></div><span class="go">4</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>                            
 <div class="newline"></div><span class="go">-- finished --</span>
+<div class="newline"></div><span class="gt">Traceback (most recent call last):</span>
+<div class="newline"></div> <span class="c">...</span>
+<div class="newline"></div><span class="gr">StopIteration</span>
 <div class="newline"></div><span class="gt">Traceback (most recent call last):</span>
 <div class="newline"></div> <span class="c">...</span>
 <div class="newline"></div><span class="gr">StopIteration</span>
@@ -407,18 +432,18 @@ execution after a <tt class="docutils literal"><span class="pre">yield</span></t
 the generator object to either pass a value <strong>into</strong> the generator,
 which then is returned by the <tt class="docutils literal"><span class="pre">yield</span></tt> statement, or a
 different method to inject an exception into the generator.</p>
-<p>The first of the new methods is <a class="reference external" href="http://docs.python.org/2.7/reference/expressions.html#generator.send" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">send(value)</span></tt></a>, which
-is similar to <a class="reference external" href="http://docs.python.org/2.7/reference/expressions.html#generator.next" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">next()</span></tt></a>, but passes <tt class="docutils literal"><span class="pre">value</span></tt> into
+<p>The first of the new methods is <a class="reference external" href="https://docs.python.org/2.7/reference/expressions.html#generator.send" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">send(value)</span></tt></a>, which
+is similar to <a class="reference external" href="https://docs.python.org/2.7/reference/expressions.html#generator.next" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">next()</span></tt></a>, but passes <tt class="docutils literal"><span class="pre">value</span></tt> into
 the generator to be used for the value of the <tt class="docutils literal"><span class="pre">yield</span></tt> expression. In
 fact, <tt class="docutils literal"><span class="pre">g.next()</span></tt> and <tt class="docutils literal"><span class="pre">g.send(None)</span></tt> are equivalent.</p>
 <p>The second of the new methods is
-<a class="reference external" href="http://docs.python.org/2.7/reference/expressions.html#generator.throw" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">throw(type,</span> <span class="pre">value=None,</span> <span class="pre">traceback=None)</span></tt></a>
+<a class="reference external" href="https://docs.python.org/2.7/reference/expressions.html#generator.throw" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">throw(type,</span> <span class="pre">value=None,</span> <span class="pre">traceback=None)</span></tt></a>
 which is equivalent to:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">raise</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">traceback</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>at the point of the <tt class="docutils literal"><span class="pre">yield</span></tt> statement.</p>
-<p>Unlike <a class="reference external" href="http://docs.python.org/2.7/reference/simple_stmts.html#raise">raise</a> (which immediately raises an exception from the
+<p>Unlike <a class="reference external" href="https://docs.python.org/2.7/reference/simple_stmts.html#raise">raise</a> (which immediately raises an exception from the
 current execution point), <tt class="docutils literal"><span class="pre">throw()</span></tt> first resumes the generator, and
 only then raises the exception.  The word throw was picked because
 it is suggestive of putting the exception in another location, and is
@@ -431,26 +456,26 @@ standard manner: it can be intercepted by an <tt class="docutils literal"><span 
 clause, or otherwise it causes the execution of the generator function
 to be aborted and propagates in the caller.</p>
 <p>For completeness&#8217; sake, it&#8217;s worth mentioning that generator iterators
-also have a <a class="reference external" href="http://docs.python.org/2.7/reference/expressions.html#generator.close" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">close()</span></tt></a> method, which can be used to
+also have a <a class="reference external" href="https://docs.python.org/2.7/reference/expressions.html#generator.close" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">close()</span></tt></a> method, which can be used to
 force a generator that would otherwise be able to provide more values
-to finish immediately. It allows the generator <a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__del__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__del__</span></tt></a>
+to finish immediately. It allows the generator <a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__del__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__del__</span></tt></a>
 method to destroy objects holding the state of generator.</p>
 <p>Let&#8217;s define a generator which just prints what is passed in through
 send and throw.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">itertools</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span> <span class="s">&#39;--start--&#39;</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&#39;--start--&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">():</span>
-<div class="newline"></div><span class="gp">... </span>        <span class="k">print</span> <span class="s">&#39;--yielding </span><span class="si">%i</span><span class="s">--&#39;</span> <span class="o">%</span> <span class="n">i</span>
+<div class="newline"></div><span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s">&#39;--yielding </span><span class="si">%i</span><span class="s">--&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>        <span class="k">try</span><span class="p">:</span>
 <div class="newline"></div><span class="gp">... </span>            <span class="n">ans</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">i</span>
 <div class="newline"></div><span class="gp">... </span>        <span class="k">except</span> <span class="ne">GeneratorExit</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">... </span>            <span class="k">print</span> <span class="s">&#39;--closing--&#39;</span>
+<div class="newline"></div><span class="gp">... </span>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;--closing--&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>            <span class="k">raise</span>
 <div class="newline"></div><span class="gp">... </span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">... </span>            <span class="k">print</span> <span class="s">&#39;--yield raised </span><span class="si">%r</span><span class="s">--&#39;</span> <span class="o">%</span> <span class="n">e</span>
+<div class="newline"></div><span class="gp">... </span>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;--yield raised </span><span class="si">%r</span><span class="s">--&#39;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>        <span class="k">else</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">... </span>            <span class="k">print</span> <span class="s">&#39;--yield returned </span><span class="si">%s</span><span class="s">--&#39;</span> <span class="o">%</span> <span class="n">ans</span>
+<div class="newline"></div><span class="gp">... </span>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;--yield returned </span><span class="si">%s</span><span class="s">--&#39;</span> <span class="o">%</span> <span class="n">ans</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">it</span> <span class="o">=</span> <span class="n">g</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
@@ -472,18 +497,18 @@ send and throw.</p>
 <div class="topic">
 <p class="topic-title first"><tt class="docutils literal"><span class="pre">next</span></tt> or <tt class="docutils literal"><span class="pre">__next__</span></tt>?</p>
 <p>In Python 2.x, the iterator method to retrieve the next value is
-called <a class="reference external" href="http://docs.python.org/2.7/library/stdtypes.html#iterator.next" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">next</span></tt></a>. It is invoked implicitly through the
-global function <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#next" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">next</span></tt></a>, which means that it should be called <tt class="docutils literal"><span class="pre">__next__</span></tt>.
-Just like the global function <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#iter" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">iter</span></tt></a> calls <a class="reference external" href="http://docs.python.org/2.7/library/stdtypes.html#iterator.__iter__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__iter__</span></tt></a>.
+called <a class="reference external" href="https://docs.python.org/2.7/library/stdtypes.html#iterator.next" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">next</span></tt></a>. It is invoked implicitly through the
+global function <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#next" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">next</span></tt></a>, which means that it should be called <tt class="docutils literal"><span class="pre">__next__</span></tt>.
+Just like the global function <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#iter" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">iter</span></tt></a> calls <a class="reference external" href="https://docs.python.org/2.7/library/stdtypes.html#iterator.__iter__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__iter__</span></tt></a>.
 This inconsistency is corrected in Python 3.x, where <tt class="docutils literal"><span class="pre">it.next</span></tt>
 becomes <tt class="docutils literal"><span class="pre">it.__next__</span></tt>.  For other generator methods &#8212; <tt class="docutils literal"><span class="pre">send</span></tt>
 and <tt class="docutils literal"><span class="pre">throw</span></tt> &#8212; the situation is more complicated, because they
 are not called implicitly by the interpreter. Nevertheless, there&#8217;s
 a proposed syntax extension to allow <tt class="docutils literal"><span class="pre">continue</span></tt> to take an
-argument which will be passed to <a class="reference external" href="http://docs.python.org/2.7/reference/expressions.html#generator.send" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">send</span></tt></a> of the
+argument which will be passed to <a class="reference external" href="https://docs.python.org/2.7/reference/expressions.html#generator.send" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">send</span></tt></a> of the
 loop&#8217;s iterator. If this extension is accepted, it&#8217;s likely that
 <tt class="docutils literal"><span class="pre">gen.send</span></tt> will become <tt class="docutils literal"><span class="pre">gen.__send__</span></tt>. The last of generator
-methods, <a class="reference external" href="http://docs.python.org/2.7/reference/expressions.html#generator.close" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">close</span></tt></a>, is pretty obviously named
+methods, <a class="reference external" href="https://docs.python.org/2.7/reference/expressions.html#generator.close" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">close</span></tt></a>, is pretty obviously named
 incorrectly, because it is already invoked implicitly.</p>
 </div>
 </div>
@@ -506,7 +531,7 @@ without much difficulty using a loop such as</p>
 <p>However, if the subgenerator is to interact properly with the caller
 in the case of calls to <tt class="docutils literal"><span class="pre">send()</span></tt>, <tt class="docutils literal"><span class="pre">throw()</span></tt> and <tt class="docutils literal"><span class="pre">close()</span></tt>,
 things become considerably more difficult. The <tt class="docutils literal"><span class="pre">yield</span></tt> statement has
-to be guarded by a <a class="reference external" href="http://docs.python.org/2.7/reference/compound_stmts.html#try">try..except..finally</a> structure
+to be guarded by a <a class="reference external" href="https://docs.python.org/2.7/reference/compound_stmts.html#try">try..except..finally</a> structure
 similar to the one defined in the previous section to &#8220;debug&#8221; the
 generator function.  Such code is provided in <span class="target" id="index-3"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-0380#id13"><strong>PEP 380</strong></a>, here it
 suffices to say that new syntax to properly yield from a subgenerator
@@ -609,7 +634,7 @@ type is sufficient, it is better to use it, because it is simpler.</p>
 <h3><a class="toc-backref" href="#id9">2.1.2.2. Decorators implemented as classes and as functions</a><a class="headerlink" href="#decorators-implemented-as-classes-and-as-functions" title="Permalink to this headline">¶</a></h3>
 <p>The only <em>requirement</em> on decorators is that they can be called with a
 single argument. This means that decorators can be implemented as
-normal functions, or as classes with a <a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__call__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt></a>
+normal functions, or as classes with a <a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__call__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt></a>
 method, or in theory, even as lambda functions.</p>
 <p>Let&#8217;s compare the function and class approaches. The decorator
 expression (the part after <tt class="docutils literal"><span class="pre">&#64;</span></tt>) can be either just a name, or a
@@ -618,28 +643,27 @@ etc.), but is only possible when no arguments are needed to customise
 the decorator. Decorators written as functions can be used in those
 two cases:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">simple_decorator</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span> <span class="s">&quot;doing decoration&quot;</span>
+<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span><span class="p">(</span><span class="s">&quot;doing decoration&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">return</span> <span class="n">function</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nd">@simple_decorator</span>
 <div class="newline"></div><span class="gp">... </span><span class="k">def</span> <span class="nf">function</span><span class="p">():</span>
-<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span> <span class="s">&quot;inside function&quot;</span>
+<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span><span class="p">(</span><span class="s">&quot;inside function&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="go">doing decoration</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">function</span><span class="p">()</span>
 <div class="newline"></div><span class="go">inside function</span>
-<div class="newline"></div></pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">decorator_with_arguments</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span> <span class="s">&quot;defining the decorator&quot;</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">decorator_with_arguments</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span><span class="p">(</span><span class="s">&quot;defining the decorator&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">def</span> <span class="nf">_decorator</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="c"># in this inner function, arg is available too</span>
-<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span> <span class="s">&quot;doing decoration,&quot;</span><span class="p">,</span> <span class="n">arg</span>
+<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span><span class="p">(</span><span class="s">&quot;doing decoration, </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="k">return</span> <span class="n">function</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">return</span> <span class="n">_decorator</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nd">@decorator_with_arguments</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span><span class="k">def</span> <span class="nf">function</span><span class="p">():</span>
-<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span> <span class="s">&quot;inside function&quot;</span>
+<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span><span class="p">(</span><span class="s">&quot;inside function&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="go">defining the decorator</span>
-<div class="newline"></div><span class="go">doing decoration, abc</span>
+<div class="newline"></div><span class="go">doing decoration, &#39;abc&#39;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">function</span><span class="p">()</span>
 <div class="newline"></div><span class="go">inside function</span>
 <div class="newline"></div></pre></div>
@@ -649,21 +673,21 @@ which return the original function. If they were to return a new
 function, an extra level of nestedness would be required.
 In the worst case, three levels of nested functions.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">replacing_decorator_with_args</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span> <span class="s">&quot;defining the decorator&quot;</span>
+<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span><span class="p">(</span><span class="s">&quot;defining the decorator&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">def</span> <span class="nf">_decorator</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="c"># in this inner function, arg is available too</span>
-<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span> <span class="s">&quot;doing decoration,&quot;</span><span class="p">,</span> <span class="n">arg</span>
+<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span><span class="p">(</span><span class="s">&quot;doing decoration, </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="k">def</span> <span class="nf">_wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>          <span class="k">print</span> <span class="s">&quot;inside wrapper,&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+<div class="newline"></div><span class="gp">... </span>          <span class="k">print</span><span class="p">(</span><span class="s">&quot;inside wrapper, </span><span class="si">%r</span><span class="s"> </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">... </span>          <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="k">return</span> <span class="n">_wrapper</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">return</span> <span class="n">_decorator</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nd">@replacing_decorator_with_args</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span><span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span> <span class="s">&quot;inside function,&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;inside function, </span><span class="si">%r</span><span class="s"> </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">return</span> <span class="mi">14</span>
 <div class="newline"></div><span class="go">defining the decorator</span>
-<div class="newline"></div><span class="go">doing decoration, abc</span>
+<div class="newline"></div><span class="go">doing decoration, &#39;abc&#39;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">function</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
 <div class="newline"></div><span class="go">inside wrapper, (11, 12) {}</span>
 <div class="newline"></div><span class="go">inside function, (11, 12) {}</span>
@@ -677,7 +701,7 @@ just passes everything to the wrapped function. One unfortunate
 consequence is that the apparent argument list is misleading.</p>
 <p>Compared to decorators defined as functions, complex decorators
 defined as classes are simpler.  When an object is created, the
-<a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__init__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__init__</span></tt></a> method is only allowed to return <a class="reference external" href="http://docs.python.org/2.7/library/constants.html#None" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">None</span></tt></a>,
+<a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__init__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__init__</span></tt></a> method is only allowed to return <a class="reference external" href="https://docs.python.org/2.7/library/constants.html#None" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">None</span></tt></a>,
 and the type of the created object cannot be changed. This means that
 when a decorator is defined as a class, it doesn&#8217;t make much sense to
 use the argument-less form: the final decorated object would just be
@@ -688,17 +712,17 @@ the decorator <tt class="docutils literal"><span class="pre">__init__</span></tt
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">decorator_class</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="c"># this method is called in the decorator expression</span>
-<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span> <span class="s">&quot;in decorator init,&quot;</span><span class="p">,</span> <span class="n">arg</span>
+<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span><span class="p">(</span><span class="s">&quot;in decorator init, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="bp">self</span><span class="o">.</span><span class="n">arg</span> <span class="o">=</span> <span class="n">arg</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="c"># this method is called to do the job</span>
-<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span> <span class="s">&quot;in decorator call,&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">arg</span>
+<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span><span class="p">(</span><span class="s">&quot;in decorator call, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="k">return</span> <span class="n">function</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">deco_instance</span> <span class="o">=</span> <span class="n">decorator_class</span><span class="p">(</span><span class="s">&#39;foo&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="go">in decorator init, foo</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nd">@deco_instance</span>
 <div class="newline"></div><span class="gp">... </span><span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span> <span class="s">&quot;in function,&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span><span class="p">(</span><span class="s">&quot;in function, </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
 <div class="newline"></div><span class="go">in decorator call, foo</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">function</span><span class="p">()</span>
 <div class="newline"></div><span class="go">in function, () {}</span>
@@ -714,21 +738,21 @@ decorator returns a new object.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">replacing_decorator_class</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="c"># this method is called in the decorator expression</span>
-<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span> <span class="s">&quot;in decorator init,&quot;</span><span class="p">,</span> <span class="n">arg</span>
+<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span><span class="p">(</span><span class="s">&quot;in decorator init, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="bp">self</span><span class="o">.</span><span class="n">arg</span> <span class="o">=</span> <span class="n">arg</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="c"># this method is called to do the job</span>
-<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span> <span class="s">&quot;in decorator call,&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">arg</span>
+<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span><span class="p">(</span><span class="s">&quot;in decorator call, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrapper</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">def</span> <span class="nf">_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span> <span class="s">&quot;in the wrapper,&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span><span class="p">(</span><span class="s">&quot;in the wrapper, </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">deco_instance</span> <span class="o">=</span> <span class="n">replacing_decorator_class</span><span class="p">(</span><span class="s">&#39;foo&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="go">in decorator init, foo</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nd">@deco_instance</span>
 <div class="newline"></div><span class="gp">... </span><span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span> <span class="s">&quot;in function,&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span><span class="p">(</span><span class="s">&quot;in function, </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
 <div class="newline"></div><span class="go">in decorator call, foo</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">function</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
 <div class="newline"></div><span class="go">in the wrapper, (11, 12) {}</span>
@@ -749,33 +773,33 @@ to the new function by setting <tt class="docutils literal"><span class="pre">__
 and <tt class="docutils literal"><span class="pre">__name__</span></tt> (the full name of the function), and
 <tt class="docutils literal"><span class="pre">__annotations__</span></tt> (extra information about arguments and the return
 value of the function available in Python 3). This can be done
-automatically by using <a class="reference external" href="http://docs.python.org/2.7/library/functools.html#functools.update_wrapper" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">functools.update_wrapper</span></tt></a>.</p>
+automatically by using <a class="reference external" href="https://docs.python.org/2.7/library/functools.html#functools.update_wrapper" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">functools.update_wrapper</span></tt></a>.</p>
 <div class="sidebar">
-<p class="first sidebar-title"><a class="reference external" href="http://docs.python.org/2.7/library/functools.html#functools.update_wrapper" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">functools.update_wrapper(wrapper,</span> <span class="pre">wrapped)</span></tt></a></p>
-<p class="last">&#8220;Update a wrapper function to look like the wrapped function.&#8221;</p>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">functools</span>
+<p class="first sidebar-title"><a class="reference external" href="https://docs.python.org/2.7/library/functools.html#functools.update_wrapper" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">functools.update_wrapper(wrapper,</span> <span class="pre">wrapped)</span></tt></a></p>
+<p>&#8220;Update a wrapper function to look like the wrapped function.&#8221;</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">functools</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">better_replacing_decorator_with_args</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span> <span class="s">&quot;defining the decorator&quot;</span>
+<div class="newline"></div><span class="gp">... </span>  <span class="k">print</span><span class="p">(</span><span class="s">&quot;defining the decorator&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">def</span> <span class="nf">_decorator</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span> <span class="s">&quot;doing decoration,&quot;</span><span class="p">,</span> <span class="n">arg</span>
+<div class="newline"></div><span class="gp">... </span>      <span class="k">print</span><span class="p">(</span><span class="s">&quot;doing decoration, </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="k">def</span> <span class="nf">_wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>          <span class="k">print</span> <span class="s">&quot;inside wrapper,&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+<div class="newline"></div><span class="gp">... </span>          <span class="k">print</span><span class="p">(</span><span class="s">&quot;inside wrapper, </span><span class="si">%r</span><span class="s"> </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">... </span>          <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>      <span class="k">return</span> <span class="n">functools</span><span class="o">.</span><span class="n">update_wrapper</span><span class="p">(</span><span class="n">_wrapper</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">return</span> <span class="n">_decorator</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nd">@better_replacing_decorator_with_args</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span><span class="k">def</span> <span class="nf">function</span><span class="p">():</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="s">&quot;extensive documentation&quot;</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span> <span class="s">&quot;inside function&quot;</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;inside function&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">return</span> <span class="mi">14</span>
 <div class="newline"></div><span class="go">defining the decorator</span>
-<div class="newline"></div><span class="go">doing decoration, abc</span>
+<div class="newline"></div><span class="go">doing decoration, &#39;abc&#39;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">function</span>                           
 <div class="newline"></div><span class="go">&lt;function function at 0x...&gt;</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">function</span><span class="o">.</span><span class="n">__doc__</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">function</span><span class="o">.</span><span class="n">__doc__</span><span class="p">)</span>
 <div class="newline"></div><span class="go">extensive documentation</span>
 <div class="newline"></div></pre></div>
+</div>
 </div>
 <p>One important thing is missing from the list of attributes which can
 be copied to the replacement function: the argument list. The default
@@ -798,7 +822,7 @@ or some other means of copying function attributes.</p>
 decorators available in the standard library. There are three decorators
 which really form a part of the language:</p>
 <ul>
-<li><p class="first"><a class="reference external" href="http://docs.python.org/2.7/library/functions.html#classmethod" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">classmethod</span></tt></a> causes a method to become a &#8220;class method&#8221;,
+<li><p class="first"><a class="reference external" href="https://docs.python.org/2.7/library/functions.html#classmethod" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">classmethod</span></tt></a> causes a method to become a &#8220;class method&#8221;,
 which means that it can be invoked without creating an instance of
 the class. When a normal method is invoked, the interpreter inserts
 the instance object as the first positional parameter,
@@ -819,14 +843,14 @@ to provide alternative constructors:</p>
 </div>
 <p>This is cleaner then using a multitude of flags to <tt class="docutils literal"><span class="pre">__init__</span></tt>.</p>
 </li>
-<li><p class="first"><a class="reference external" href="http://docs.python.org/2.7/library/functions.html#staticmethod" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">staticmethod</span></tt></a> is applied to methods to make them &#8220;static&#8221;,
+<li><p class="first"><a class="reference external" href="https://docs.python.org/2.7/library/functions.html#staticmethod" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">staticmethod</span></tt></a> is applied to methods to make them &#8220;static&#8221;,
 i.e. basically a normal function, but accessible through the class
 namespace. This can be useful when the function is only needed
 inside this class (its name would then be prefixed with <tt class="docutils literal"><span class="pre">_</span></tt>), or when we
 want the user to think of the method as connected to the class,
 despite an implementation which doesn&#8217;t require this.</p>
 </li>
-<li><p class="first"><a class="reference external" href="http://docs.python.org/2.7/library/functions.html#property" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">property</span></tt></a> is the pythonic answer to the problem of getters
+<li><p class="first"><a class="reference external" href="https://docs.python.org/2.7/library/functions.html#property" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">property</span></tt></a> is the pythonic answer to the problem of getters
 and setters. A method decorated with <tt class="docutils literal"><span class="pre">property</span></tt> becomes a getter
 which is automatically called on attribute access.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -882,22 +906,22 @@ of the property object.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>   <span class="nd">@property</span>
 <div class="newline"></div><span class="gp">... </span>   <span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>     <span class="k">print</span> <span class="s">&quot;getting&quot;</span><span class="p">,</span> <span class="mi">1</span>
+<div class="newline"></div><span class="gp">... </span>     <span class="k">print</span><span class="p">(</span><span class="s">&quot;getting 1&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>     <span class="k">return</span> <span class="mi">1</span>
 <div class="newline"></div><span class="gp">... </span>   <span class="nd">@a.setter</span>
 <div class="newline"></div><span class="gp">... </span>   <span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>     <span class="k">print</span> <span class="s">&quot;setting&quot;</span><span class="p">,</span> <span class="n">value</span>
+<div class="newline"></div><span class="gp">... </span>     <span class="k">print</span><span class="p">(</span><span class="s">&quot;setting </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">value</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">... </span>   <span class="nd">@a.deleter</span>
 <div class="newline"></div><span class="gp">... </span>   <span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>     <span class="k">print</span> <span class="s">&quot;deleting&quot;</span>
+<div class="newline"></div><span class="gp">... </span>     <span class="k">print</span><span class="p">(</span><span class="s">&quot;deleting&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">a</span>                                    
 <div class="newline"></div><span class="go">&lt;property object at 0x...&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">fget</span>                               
-<div class="newline"></div><span class="go">&lt;function a at 0x...&gt;</span>
+<div class="newline"></div><span class="go">&lt;function ...&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">fset</span>                               
-<div class="newline"></div><span class="go">&lt;function a at 0x...&gt;</span>
+<div class="newline"></div><span class="go">&lt;function ...&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">fdel</span>                               
-<div class="newline"></div><span class="go">&lt;function a at 0x...&gt;</span>
+<div class="newline"></div><span class="go">&lt;function ...&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">()</span>               <span class="c"># ... varies, this is not the same `a` function</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">a</span>
 <div class="newline"></div><span class="go">getting 1</span>
@@ -922,10 +946,10 @@ deleter methods.</p>
 <ul class="simple">
 <li><tt class="xref py py-obj docutils literal"><span class="pre">functools.lru_cache</span></tt> memoizes an arbitrary function
 maintaining a limited cache of arguments:answer pairs (Python 3.2)</li>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/functools.html#functools.total_ordering" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">functools.total_ordering</span></tt></a> is a class decorator which fills in
+<li><a class="reference external" href="https://docs.python.org/2.7/library/functools.html#functools.total_ordering" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">functools.total_ordering</span></tt></a> is a class decorator which fills in
 missing ordering methods
-(<a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__lt__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__lt__</span></tt></a>, <a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__gt__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__gt__</span></tt></a>,
-<a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__le__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__le__</span></tt></a>, ...)
+(<a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__lt__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__lt__</span></tt></a>, <a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__gt__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__gt__</span></tt></a>,
+<a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__le__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__le__</span></tt></a>, ...)
 based on a single available one (Python 2.7).</li>
 </ul>
 </div>
@@ -1040,19 +1064,19 @@ we use it to declare that our class is a plugin for
 <tt class="docutils literal"><span class="pre">WordProcessor</span></tt>. Method <tt class="docutils literal"><span class="pre">plugin</span></tt> simply appends the class to the
 list of plugins.</p>
 <p>A word about the plugin itself: it replaces HTML entity for em-dash
-with a real Unicode em-dash character. It exploits the <a class="reference external" href="http://docs.python.org/2.7/reference/lexical_analysis.html#string-literals">unicode
+with a real Unicode em-dash character. It exploits the <a class="reference external" href="https://docs.python.org/2.7/reference/lexical_analysis.html#string-literals">unicode
 literal notation</a> to insert a character by using its name in the
 unicode database (&#8220;EM DASH&#8221;). If the Unicode character was inserted
 directly, it would be impossible to distinguish it from an en-dash in
 the source of a program.</p>
-</div>
-<div class="section" id="more-examples-and-reading">
-<h3><a class="toc-backref" href="#id15">2.1.2.8. More examples and reading</a><a class="headerlink" href="#more-examples-and-reading" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><strong>More examples and reading</strong></p>
+<ul class="last simple">
 <li><span class="target" id="index-6"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-0318"><strong>PEP 318</strong></a> (function and method decorator syntax)</li>
 <li><span class="target" id="index-7"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-3129"><strong>PEP 3129</strong></a> (class decorator syntax)</li>
 <li><a class="reference external" href="http://wiki.python.org/moin/PythonDecoratorLibrary">http://wiki.python.org/moin/PythonDecoratorLibrary</a></li>
-<li><a class="reference external" href="http://docs.python.org/dev/library/functools.html">http://docs.python.org/dev/library/functools.html</a></li>
+<li><a class="reference external" href="https://docs.python.org/dev/library/functools.html">https://docs.python.org/dev/library/functools.html</a></li>
 <li><a class="reference external" href="http://pypi.python.org/pypi/decorator">http://pypi.python.org/pypi/decorator</a></li>
 <li>Bruce Eckel<ul>
 <li><a class="reference external" href="http://www.artima.com/weblogs/viewpost.jsp?thread=240808">Decorators I</a>: Introduction to Python Decorators</li>
@@ -1063,10 +1087,11 @@ the source of a program.</p>
 </ul>
 </div>
 </div>
+</div>
 <div class="section" id="context-managers">
-<h2><a class="toc-backref" href="#id16">2.1.3. Context managers</a><a class="headerlink" href="#context-managers" title="Permalink to this headline">¶</a></h2>
-<p>A context manager is an object with <a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__enter__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__enter__</span></tt></a> and
-<a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__exit__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__exit__</span></tt></a> methods which can be used in the <a class="reference external" href="http://docs.python.org/2.7/reference/compound_stmts.html#with">with</a>
+<h2><a class="toc-backref" href="#id15">2.1.3. Context managers</a><a class="headerlink" href="#context-managers" title="Permalink to this headline">¶</a></h2>
+<p>A context manager is an object with <a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__enter__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__enter__</span></tt></a> and
+<a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__exit__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__exit__</span></tt></a> methods which can be used in the <a class="reference external" href="https://docs.python.org/2.7/reference/compound_stmts.html#with">with</a>
 statement:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="n">manager</span> <span class="k">as</span> <span class="n">var</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">do_something</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
@@ -1083,18 +1108,18 @@ equivalent to</p>
 </div>
 <p>In other words, the context manager protocol defined in <span class="target" id="index-8"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-0343"><strong>PEP 343</strong></a>
 permits the extraction of the boring part of a
-<a class="reference external" href="http://docs.python.org/2.7/reference/compound_stmts.html#try">try..except..finally</a> structure into a separate class
+<a class="reference external" href="https://docs.python.org/2.7/reference/compound_stmts.html#try">try..except..finally</a> structure into a separate class
 leaving only the interesting <tt class="docutils literal"><span class="pre">do_something</span></tt> block.</p>
 <ol class="arabic simple">
-<li>The <a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__enter__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__enter__</span></tt></a> method is called first.  It can
+<li>The <a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__enter__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__enter__</span></tt></a> method is called first.  It can
 return a value which will be assigned to <tt class="docutils literal"><span class="pre">var</span></tt>.
 The <tt class="docutils literal"><span class="pre">as</span></tt>-part is optional: if it isn&#8217;t present, the value
 returned by <tt class="docutils literal"><span class="pre">__enter__</span></tt> is simply ignored.</li>
 <li>The block of code underneath <tt class="docutils literal"><span class="pre">with</span></tt> is executed.  Just like with
 <tt class="docutils literal"><span class="pre">try</span></tt> clauses, it can either execute successfully to the end, or
-it can <a class="reference external" href="http://docs.python.org/2.7/reference/simple_stmts.html#break">break</a>, <a class="reference external" href="http://docs.python.org/2.7/reference/simple_stmts.html#continue`">continue`</a> or <a class="reference external" href="http://docs.python.org/2.7/reference/simple_stmts.html#return">return</a>, or
+it can <a class="reference external" href="https://docs.python.org/2.7/reference/simple_stmts.html#break">break</a>, <a class="reference external" href="https://docs.python.org/2.7/reference/simple_stmts.html#continue`">continue`</a> or <a class="reference external" href="https://docs.python.org/2.7/reference/simple_stmts.html#return">return</a>, or
 it can throw an exception. Either way, after the block is finished,
-the <a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__exit__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__exit__</span></tt></a> method is called.
+the <a class="reference external" href="https://docs.python.org/2.7/reference/datamodel.html#object.__exit__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__exit__</span></tt></a> method is called.
 If an exception was thrown, the information about the exception is
 passed to <tt class="docutils literal"><span class="pre">__exit__</span></tt>, which is described below in the next
 subsection. In the normal case, exceptions can be ignored, just
@@ -1111,7 +1136,7 @@ we are done writing to it:</p>
 <div class="newline"></div><span class="gp">... </span>  <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;/tmp/file&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">... </span>  <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;the contents</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">... </span>  <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;the contents</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>   
 <div class="newline"></div></pre></div>
 </div>
 <p>Here we have made sure that the <tt class="docutils literal"><span class="pre">f.close()</span></tt> is called when the
@@ -1120,7 +1145,7 @@ operation, the support for this is already present in the <tt class="docutils li
 class. It has an <tt class="docutils literal"><span class="pre">__exit__</span></tt> method which calls <tt class="docutils literal"><span class="pre">close</span></tt> and can be
 used as a context manager itself:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;/tmp/file&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">... </span>  <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;more contents</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">... </span>  <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;more contents</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>      
 <div class="newline"></div></pre></div>
 </div>
 <p>The common use for <tt class="docutils literal"><span class="pre">try..finally</span></tt> is releasing resources. Various
@@ -1132,23 +1157,23 @@ used and it is most convenient to have the support built in. With each
 release, Python provides support in more places:</p>
 <ul class="simple">
 <li>all file-like objects:<ul>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/functions.html#file" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">file</span></tt></a> ➔ automatically closed</li>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/fileinput.html#fileinput" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">fileinput</span></tt></a>, <a class="reference external" href="http://docs.python.org/2.7/library/tempfile.html#tempfile" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">tempfile</span></tt></a> (py &gt;= 3.2)</li>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/bz2.html#bz2.BZ2File" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">bz2.BZ2File</span></tt></a>, <a class="reference external" href="http://docs.python.org/2.7/library/gzip.html#gzip.GzipFile" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">gzip.GzipFile</span></tt></a>,
-<a class="reference external" href="http://docs.python.org/2.7/library/tarfile.html#tarfile.TarFile" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">tarfile.TarFile</span></tt></a>, <a class="reference external" href="http://docs.python.org/2.7/library/zipfile.html#zipfile.ZipFile" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">zipfile.ZipFile</span></tt></a></li>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/ftplib.html#ftplib" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">ftplib</span></tt></a>, <a class="reference external" href="http://docs.python.org/2.7/library/nntplib.html#nntplib" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">nntplib</span></tt></a> ➔ close connection (py &gt;= 3.2 or 3.3)</li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/functions.html#file" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">file</span></tt></a> ➔ automatically closed</li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/fileinput.html#module-fileinput" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">fileinput</span></tt></a>, <a class="reference external" href="https://docs.python.org/2.7/library/tempfile.html#module-tempfile" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">tempfile</span></tt></a> (py &gt;= 3.2)</li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/bz2.html#bz2.BZ2File" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">bz2.BZ2File</span></tt></a>, <a class="reference external" href="https://docs.python.org/2.7/library/gzip.html#gzip.GzipFile" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">gzip.GzipFile</span></tt></a>,
+<a class="reference external" href="https://docs.python.org/2.7/library/tarfile.html#tarfile.TarFile" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">tarfile.TarFile</span></tt></a>, <a class="reference external" href="https://docs.python.org/2.7/library/zipfile.html#zipfile.ZipFile" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">zipfile.ZipFile</span></tt></a></li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/ftplib.html#module-ftplib" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">ftplib</span></tt></a>, <a class="reference external" href="https://docs.python.org/2.7/library/nntplib.html#module-nntplib" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">nntplib</span></tt></a> ➔ close connection (py &gt;= 3.2 or 3.3)</li>
 </ul>
 </li>
 <li>locks<ul>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/multiprocessing.html#multiprocessing.RLock" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">multiprocessing.RLock</span></tt></a> ➔ lock and unlock</li>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/multiprocessing.html#multiprocessing.Semaphore" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">multiprocessing.Semaphore</span></tt></a></li>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/stdtypes.html#memoryview" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">memoryview</span></tt></a> ➔ automatically release (py &gt;= 3.2 and 2.7)</li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/multiprocessing.html#multiprocessing.RLock" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">multiprocessing.RLock</span></tt></a> ➔ lock and unlock</li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/multiprocessing.html#multiprocessing.Semaphore" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">multiprocessing.Semaphore</span></tt></a></li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/stdtypes.html#memoryview" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">memoryview</span></tt></a> ➔ automatically release (py &gt;= 3.2 and 2.7)</li>
 </ul>
 </li>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/decimal.html#decimal.localcontext" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">decimal.localcontext</span></tt></a> ➔ modify precision of computations temporarily</li>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/_winreg.html#_winreg.OpenKey" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">_winreg.PyHKEY</span></tt></a> ➔ open and close hive key</li>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/warnings.html#warnings.catch_warnings" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">warnings.catch_warnings</span></tt></a> ➔ kill warnings temporarily</li>
-<li><a class="reference external" href="http://docs.python.org/2.7/library/contextlib.html#contextlib.closing" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">contextlib.closing</span></tt></a> ➔ the same as the example above, call <tt class="docutils literal"><span class="pre">close</span></tt></li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/decimal.html#decimal.localcontext" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">decimal.localcontext</span></tt></a> ➔ modify precision of computations temporarily</li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/_winreg.html#_winreg.OpenKey" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">_winreg.PyHKEY</span></tt></a> ➔ open and close hive key</li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/warnings.html#warnings.catch_warnings" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">warnings.catch_warnings</span></tt></a> ➔ kill warnings temporarily</li>
+<li><a class="reference external" href="https://docs.python.org/2.7/library/contextlib.html#contextlib.closing" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">contextlib.closing</span></tt></a> ➔ the same as the example above, call <tt class="docutils literal"><span class="pre">close</span></tt></li>
 <li>parallel programming<ul>
 <li><tt class="xref py py-obj docutils literal"><span class="pre">concurrent.futures.ThreadPoolExecutor</span></tt> ➔ invoke in parallel then kill thread pool (py &gt;= 3.2)</li>
 <li><tt class="xref py py-obj docutils literal"><span class="pre">concurrent.futures.ProcessPoolExecutor</span></tt> ➔ invoke in parallel then kill process pool (py &gt;= 3.2)</li>
@@ -1157,10 +1182,10 @@ release, Python provides support in more places:</p>
 </li>
 </ul>
 <div class="section" id="catching-exceptions">
-<h3><a class="toc-backref" href="#id17">2.1.3.1. Catching exceptions</a><a class="headerlink" href="#catching-exceptions" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">2.1.3.1. Catching exceptions</a><a class="headerlink" href="#catching-exceptions" title="Permalink to this headline">¶</a></h3>
 <p>When an exception is thrown in the <tt class="docutils literal"><span class="pre">with</span></tt>-block, it is passed as
 arguments to <tt class="docutils literal"><span class="pre">__exit__</span></tt>. Three arguments are used, the same as
-returned by <a class="reference external" href="http://docs.python.org/2.7/library/sys.html#sys.exc_info" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">sys.exc_info()</span></tt></a>: type, value, traceback. When no
+returned by <a class="reference external" href="https://docs.python.org/2.7/library/sys.html#sys.exc_info" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">sys.exc_info()</span></tt></a>: type, value, traceback. When no
 exception is thrown, <tt class="docutils literal"><span class="pre">None</span></tt> is used for all three arguments.  The
 context manager can &#8220;swallow&#8221; the exception by returning a true value
 from <tt class="docutils literal"><span class="pre">__exit__</span></tt>. Exceptions can be easily ignored, because if
@@ -1189,7 +1214,7 @@ some code throws the right kind of exception:</p>
 </div>
 </div>
 <div class="section" id="using-generators-to-define-context-managers">
-<h3><a class="toc-backref" href="#id18">2.1.3.2. Using generators to define context managers</a><a class="headerlink" href="#using-generators-to-define-context-managers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">2.1.3.2. Using generators to define context managers</a><a class="headerlink" href="#using-generators-to-define-context-managers" title="Permalink to this headline">¶</a></h3>
 <p>When discussing <a class="reference internal" href="#generators">generators</a>, it was said that we prefer generators to
 iterators implemented as classes because they are shorter, sweeter,
 and the state is stored as local, not instance, variables. On the
@@ -1208,7 +1233,7 @@ support this use case.</p>
 <div class="newline"></div>        <span class="o">&lt;</span><span class="n">cleanup</span><span class="o">&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>The <a class="reference external" href="http://docs.python.org/2.7/library/contextlib.html#contextlib.contextmanager" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">contextlib.contextmanager</span></tt></a> helper takes a generator and turns it
+<p>The <a class="reference external" href="https://docs.python.org/2.7/library/contextlib.html#contextlib.contextmanager" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">contextlib.contextmanager</span></tt></a> helper takes a generator and turns it
 into a context manager. The generator has to obey some rules which are
 enforced by the wrapper function &#8212; most importantly it must
 <tt class="docutils literal"><span class="pre">yield</span></tt> exactly once. The part before the <tt class="docutils literal"><span class="pre">yield</span></tt> is executed from
@@ -1249,6 +1274,61 @@ shorter and simpler.</p>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.1. Advanced Python Constructs</a><ul>
+<li><a class="reference internal" href="#iterators-generator-expressions-and-generators">2.1.1. Iterators, generator expressions and generators</a><ul>
+<li><a class="reference internal" href="#iterators">2.1.1.1. Iterators</a></li>
+<li><a class="reference internal" href="#generator-expressions">2.1.1.2. Generator expressions</a></li>
+<li><a class="reference internal" href="#generators">2.1.1.3. Generators</a></li>
+<li><a class="reference internal" href="#bidirectional-communication">2.1.1.4. Bidirectional communication</a></li>
+<li><a class="reference internal" href="#chaining-generators">2.1.1.5. Chaining generators</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#decorators">2.1.2. Decorators</a><ul>
+<li><a class="reference internal" href="#replacing-or-tweaking-the-original-object">2.1.2.1. Replacing or tweaking the original object</a></li>
+<li><a class="reference internal" href="#decorators-implemented-as-classes-and-as-functions">2.1.2.2. Decorators implemented as classes and as functions</a></li>
+<li><a class="reference internal" href="#copying-the-docstring-and-other-attributes-of-the-original-function">2.1.2.3. Copying the docstring and other attributes of the original function</a></li>
+<li><a class="reference internal" href="#examples-in-the-standard-library">2.1.2.4. Examples in the standard library</a></li>
+<li><a class="reference internal" href="#deprecation-of-functions">2.1.2.5. Deprecation of functions</a></li>
+<li><a class="reference internal" href="#a-while-loop-removing-decorator">2.1.2.6. A <tt class="docutils literal"><span class="pre">while</span></tt>-loop removing decorator</a></li>
+<li><a class="reference internal" href="#a-plugin-registration-system">2.1.2.7. A plugin registration system</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#context-managers">2.1.3. Context managers</a><ul>
+<li><a class="reference internal" href="#catching-exceptions">2.1.3.1. Catching exceptions</a></li>
+<li><a class="reference internal" href="#using-generators-to-define-context-managers">2.1.3.2. Using generators to define context managers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -1286,8 +1366,8 @@ shorter and simpler.</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

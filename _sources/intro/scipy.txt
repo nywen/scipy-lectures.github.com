@@ -1,14 +1,17 @@
+.. for doctests
+    >>> import matplotlib.pyplot as plt
+    >>> plt.switch_backend("Agg")
+    >>> import numpy as np
+    >>> np.random.seed(0)
+
 .. _scipy:
 
 Scipy : high-level scientific computing
 =========================================
 
-:authors: Adrien Chauve, Andre Espaze, Emmanuelle Gouillart,
-          Gaël Varoquaux, Ralf Gommers
+**Authors**: *Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël
+Varoquaux, Ralf Gommers*
 
-..
-    >>> import numpy as np
-    >>> np.random.seed(0)
 
 .. topic:: Scipy
 
@@ -63,15 +66,19 @@ Scipy : high-level scientific computing
 :mod:`scipy.stats`           Statistics
 =========================== ===============================================
 
-They all depend on :mod:`numpy`, but are mostly independent of each other. The
-standard way of importing Numpy and these Scipy modules is::
+.. tip::
+   
+   They all depend on :mod:`numpy`, but are mostly independent of each
+   other. The standard way of importing Numpy and these Scipy modules
+   is::
 
     >>> import numpy as np
     >>> from scipy import stats  # same for other sub-modules
 
-The main ``scipy`` namespace mostly contains functions that are really
-numpy functions (try ``scipy.cos is np.cos``). Those are exposed for historical
-reasons only; there's usually no reason to use ``import scipy`` in your code.
+   The main ``scipy`` namespace mostly contains functions that are really
+   numpy functions (try ``scipy.cos is np.cos``). Those are exposed for
+   historical reasons only; there's usually no reason to use ``import
+   scipy`` in your code.
 
 
 File input/output: :mod:`scipy.io`
@@ -88,13 +95,19 @@ File input/output: :mod:`scipy.io`
            [ 1.,  1.,  1.],
            [ 1.,  1.,  1.]])
 
+.. Comments to make doctests pass which require an image
+    >>> from matplotlib import pyplot as plt
+    >>> plt.imsave('fname.png', np.array([[0]]))
+
 * Reading images::
 
     >>> from scipy import misc
-    >>> misc.imread('fname.png')
+    >>> misc.imread('fname.png')    # doctest: +ELLIPSIS
+    array(...)
     >>> # Matplotlib also has a similar function
     >>> import matplotlib.pyplot as plt
-    >>> plt.imread('fname.png')
+    >>> plt.imread('fname.png')    # doctest: +ELLIPSIS
+    array(...)
 
 See also:
 
@@ -171,10 +184,10 @@ LAPACK).
 
     >>> arr = np.array([[3, 2],
     ...                 [6, 4]])
-    >>> linalg.inv(arr)
+    >>> linalg.inv(arr)  # doctest: +SKIP
     Traceback (most recent call last):
     ...
-    LinAlgError: singular matrix
+    ...LinAlgError: singular matrix
 
 * More advanced operations are available, for example singular-value
   decomposition (SVD)::
@@ -252,11 +265,16 @@ The resulting filtered signal can be computed by the
 The result can be viewed with::
 
     >>> import pylab as plt
-    >>> plt.figure()
-    >>> plt.plot(time_vec, sig)
-    >>> plt.plot(time_vec, main_sig, linewidth=3)
-    >>> plt.xlabel('Time [s]')
-    >>> plt.ylabel('Amplitude')
+    >>> plt.figure()    # doctest: +ELLIPSIS
+    <matplotlib.figure.Figure object at 0x...>
+    >>> plt.plot(time_vec, sig)    # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at 0x...>]
+    >>> plt.plot(time_vec, main_sig, linewidth=3)    # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at 0x...>]
+    >>> plt.xlabel('Time [s]')    # doctest: +ELLIPSIS
+    <matplotlib.text.Text object at 0x...>
+    >>> plt.ylabel('Amplitude')    # doctest: +ELLIPSIS
+    <matplotlib.text.Text object at 0x...>
 
 .. plot:: pyplots/fftpack_signals.py
     :scale: 70
@@ -361,31 +379,47 @@ global minimum depending on the initial point: ::
 
 If we don't know the neighborhood of the global minimum to choose the initial
 point, we need to resort to costlier global optimization.  To find the global
-minimum, the simplest algorithm is the brute force algorithm, in which the
-function is evaluated on each point of a given grid: ::
+minimum, we use :func:`scipy.optimize.basinhopping` (which combines a local
+optimizer with stochastic sampling of starting points for the local optimizer):
 
-    >>> grid = (-10, 10, 0.1)
-    >>> xmin_global = optimize.brute(f, (grid,))
-    >>> xmin_global
-    array([-1.30641113])
 
-For larger grid sizes, :func:`scipy.optimize.brute` becomes quite slow.
-:func:`scipy.optimize.anneal`
-provides an alternative, using simulated annealing. More efficient algorithms
+.. Comment to make doctest pass
+   >>> np.random.seed(42)
+
+.. versionadded:: 0.12.0 basinhopping was added in version 0.12.0 of Scipy
+
+::
+
+   >>> optimize.basinhopping(f, 0)  # doctest: +SKIP
+                     nfev: 1725
+    minimization_failures: 0
+                      fun: -7.9458233756152845
+                        x: array([-1.30644001])
+                  message: ['requested number of basinhopping iterations completed successfully']
+                     njev: 575
+                      nit: 100
+
+Another available (but much less efficient) global optimizer is
+:func:`scipy.optimize.brute` (brute force optimization on a grid).
+More efficient algorithms
 for different classes of global optimization problems exist, but this is out of
 the scope of ``scipy``.  Some useful packages for global optimization are
-OpenOpt_, IPOPT_, PyGMO_ and PyEvolve_.
+OpenOpt, IPOPT_, PyGMO_ and PyEvolve_.
 
-.. _OpenOpt: http://openopt.org/Welcome
+.. note::
+
+   ``scipy`` used to contain the routine `anneal`, it has been deprecated since
+   SciPy 0.14.0 and removed in SciPy 0.16.0.
+
 .. _IPOPT: https://github.com/xuy/pyipopt
-.. _PyGMO: http://pagmo.sourceforge.net/pygmo/index.html
+.. _PyGMO: http://esa.github.io/pygmo/
 .. _PyEvolve: http://pyevolve.sourceforge.net/
 
 To find the local minimum, let's constraint the variable to the interval
 ``(0, 10)`` using :func:`scipy.optimize.fminbound`: ::
 
-    >>> xmin_local = optimize.fminbound(f, 0, 10)    # doctest: +ELLIPSIS
-    >>> xmin_local
+    >>> xmin_local = optimize.fminbound(f, 0, 10)
+    >>> xmin_local    # doctest: +ELLIPSIS
     3.8374671...
 
 .. note::
@@ -414,6 +448,9 @@ our initial guess: ::
 
 Suppose we have data sampled from ``f`` with some noise: ::
 
+.. Comment to make doctest pass
+    >>> np.random.seed(42)
+
     >>> xdata = np.linspace(-10, 10, num=20)
     >>> ydata = f(xdata) + np.random.randn(xdata.size)
 
@@ -430,7 +467,7 @@ Then we can use :func:`scipy.optimize.curve_fit` to find ``a`` and ``b``: ::
     >>> guess = [2, 2]
     >>> params, params_covariance = optimize.curve_fit(f2, xdata, ydata, guess)
     >>> params
-    array([ 0.99925147,  9.76065551])
+    array([  0.99667386,  10.17808313])
 
 Now we have found the minima and roots of ``f`` and used curve fitting on it,
 we put all those resuls together in a single plot:
@@ -516,11 +553,11 @@ the random process's PDF (probability density function): ::
     array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
     >>> from scipy import stats
     >>> b = stats.norm.pdf(bins)  # norm is a distribution
-
-.. sourcecode:: ipython
-
-    In [1]: pl.plot(bins, histogram)
-    In [2]: pl.plot(bins, b)
+    
+    >>> plt.plot(bins, histogram) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot(bins, b) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
 
 .. plot:: pyplots/normal_distribution.py
     :scale: 70
@@ -532,9 +569,9 @@ distribution. Here we fit a normal process to the observed data::
 
     >>> loc, std = stats.norm.fit(a)
     >>> loc     # doctest: +ELLIPSIS
-    -0.045256707490...
+    0.0314345570...
     >>> std     # doctest: +ELLIPSIS
-    0.9870331586690...
+    0.9778613090...
 
 .. topic:: Exercise: Probability distributions
    :class: green
@@ -556,18 +593,18 @@ The median is the value with half of the observations below, and half
 above::
 
     >>> np.median(a)     # doctest: +ELLIPSIS
-    -0.058028034...
+    0.04041769593...
 
 It is also called the percentile 50, because 50% of the observation are
 below it::
 
     >>> stats.scoreatpercentile(a, 50)     # doctest: +ELLIPSIS
-    -0.0580280347...
+    0.0404176959...
 
 Similarly, we can calculate the percentile 90::
 
     >>> stats.scoreatpercentile(a, 90)     # doctest: +ELLIPSIS
-    1.231593551...
+    1.3185699120...
 
 The percentile is an estimator of the CDF: cumulative distribution
 function.
@@ -578,15 +615,15 @@ Statistical tests
 A statistical test is a decision indicator. For instance, if we have two
 sets of observations, that we assume are generated from Gaussian
 processes, we can use a
-`T-test <http://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide
+`T-test <https://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide
 whether the two sets of observations are significantly different::
 
     >>> a = np.random.normal(0, 1, size=100)
     >>> b = np.random.normal(1, 1, size=10)
-    >>> stats.ttest_ind(a, b)   # doctest: +ELLIPSIS
-    (-3.75832707..., 0.00027786...)
+    >>> stats.ttest_ind(a, b)   # doctest: +SKIP
+    (array(-3.177574054...), 0.0019370639...)
 
-The resulting output is composed of:
+.. tip:: The resulting output is composed of:
 
     * The T statistic value: it is a number the sign of which is
       proportional to the difference between the two random processes and
@@ -596,6 +633,12 @@ The resulting output is composed of:
       is close to 1, the two process are almost certainly identical.
       The closer it is to zero, the more likely it is that the processes
       have different means.
+
+.. seealso::
+
+   The chapter on :ref:`statistics <statistics>` introduces much more
+   elaborate tools for statistical testing and statistical data
+   loading and visualization outside of scipy.
 
 
 Interpolation: :mod:`scipy.interpolate`
@@ -766,22 +809,26 @@ Signal processing: :mod:`scipy.signal`
 
 * :func:`scipy.signal.detrend`: remove linear trend from signal::
 
-    t = np.linspace(0, 5, 100)
-    x = t + np.random.normal(size=100)
+    >>> t = np.linspace(0, 5, 100)
+    >>> x = t + np.random.normal(size=100)
 
-    pl.plot(t, x, linewidth=3)
-    pl.plot(t, signal.detrend(x), linewidth=3)
+    >>> plt.plot(t, x, linewidth=3) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot(t, signal.detrend(x), linewidth=3) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
 
   .. plot:: pyplots/demo_detrend.py
     :scale: 70
 
 * :func:`scipy.signal.resample`: resample a signal to `n` points using FFT. ::
 
-    t = np.linspace(0, 5, 100)
-    x = np.sin(t)
+    >>> t = np.linspace(0, 5, 100)
+    >>> x = np.sin(t)
 
-    pl.plot(t, x, linewidth=3)
-    pl.plot(t[::2], signal.resample(x, 50), 'ko')
+    >>> plt.plot(t, x, linewidth=3) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot(t[::2], signal.resample(x, 50), 'ko') # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
 
   .. plot:: pyplots/demo_resample.py
     :scale: 70

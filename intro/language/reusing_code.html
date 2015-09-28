@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2013.2 beta (euroscipy 2013)',
+        VERSION:     '2015',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,11 +27,51 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1.2. The Python language" href="python_language.html" />
     <link rel="next" title="1.2.6. Input and Output" href="io.html" />
-    <link rel="prev" title="1.2.4. Defining functions" href="functions.html" /> 
+    <link rel="prev" title="1.2.4. Defining functions" href="functions.html" />
+   
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+<script type="text/javascript">
+$(function () {
+    // Highlight the table of content as we scroll
+    sections = {},
+    i        = 0,
+    url	 = document.URL.replace(/#.*$/, ""),
+    current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+
+	// Highlight the current section
+	$('a.internal').parent().removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+    });
+
+});
+</script>
+
+
   </head>
   <body>
    <!-- Use the header to add javascript -->
     
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -128,6 +168,7 @@
 
     <div class="document">
       <div class="documentwrapper">
+        <div class="bodywrapper">
           <div class="body">
             
   <div class="section" id="reusing-code-scripts-and-modules">
@@ -252,10 +293,10 @@ directory as the test.py file, we can execute this in a console:</p>
 <li>Makes the code harder to read and understand: where do symbols come
 from?</li>
 <li>Makes it impossible to guess the functionality by the context and
-the name (hint: <cite>os.name</cite> is the name of the OS), and to profit
+the name (hint: <a class="reference external" href="https://docs.python.org/2.7/library/os.html#os.name" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">os.name</span></tt></a> is the name of the OS), and to profit
 usefully from tab completion.</li>
-<li>Restricts the variable names you can use: <cite>os.name</cite> might override
-<cite>name</cite>, or vise-versa.</li>
+<li>Restricts the variable names you can use: <a class="reference external" href="https://docs.python.org/2.7/library/os.html#os.name" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">os.name</span></tt></a> might override
+<tt class="xref py py-obj docutils literal"><span class="pre">name</span></tt>, or vise-versa.</li>
 <li>Creates possible name clashes between modules.</li>
 <li>Makes the code impossible to statically check for undefined
 symbols.</li>
@@ -403,17 +444,28 @@ old session, you will get the old one.</div></blockquote>
 </div>
 <div class="section" id="main-and-module-loading">
 <h2>1.2.5.4. &#8216;__main__&#8217; and module loading<a class="headerlink" href="#main-and-module-loading" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Sometimes we want code to be executed when a module is
+run directly, but not when it is imported by another module.
+<tt class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></tt> allows us to check whether the
+module is being run directly.</p>
+</div>
 <p>File <tt class="docutils literal"><span class="pre">demo2.py</span></tt>:</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">print_b</span><span class="p">():</span>
+<div class="newline"></div>    <span class="s">&quot;Prints b.&quot;</span>
+<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;b&#39;</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">def</span> <span class="nf">print_a</span><span class="p">():</span>
 <div class="newline"></div>    <span class="s">&quot;Prints a.&quot;</span>
 <div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;a&#39;</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">print</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
+<div class="newline"></div><span class="c"># print_b() runs on import</span>
+<div class="newline"></div><span class="n">print_b</span><span class="p">()</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div>    <span class="c"># print_a() is only executed when the module is run directly.</span>
 <div class="newline"></div>    <span class="n">print_a</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -480,7 +532,8 @@ directories containing the user-defined modules.</p>
 <p class="first admonition-title">Tip</p>
 <p>On Linux/Unix, add the following line to a file read by the shell at
 startup (e.g. /etc/profile, .profile)</p>
-<div class="highlight-python"><pre>export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules</pre>
+<div class="highlight-python"><div class="highlight"><pre>export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules
+<div class="newline"></div></pre></div>
 </div>
 <p class="last">On Windows, <a class="reference external" href="http://support.microsoft.com/kb/310519">http://support.microsoft.com/kb/310519</a> explains how to
 handle environment variables.</p>
@@ -502,8 +555,11 @@ in this directory.</p>
 </div>
 </li>
 </ul>
-<p>See <a class="reference external" href="http://docs.python.org/tutorial/modules.html">http://docs.python.org/tutorial/modules.html</a> for more information
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">See <a class="reference external" href="https://docs.python.org/tutorial/modules.html">https://docs.python.org/tutorial/modules.html</a> for more information
 about modules.</p>
+</div>
 </div>
 </div>
 <div class="section" id="packages">
@@ -624,7 +680,7 @@ operators, etc.:</p>
 </div>
 <p>A certain number of rules
 for writing &#8220;beautiful&#8221; code (and more importantly using the same
-conventions as anybody else!) are given in the <a class="reference external" href="http://www.python.org/dev/peps/pep-0008">Style Guide for Python
+conventions as anybody else!) are given in the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008">Style Guide for Python
 Code</a>.</p>
 </li>
 </ul>
@@ -643,6 +699,48 @@ the intro part. But be sure to come back and finish this chapter later.</p>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+	<div class="sidebartoc">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.2.5. Reusing code: scripts and modules</a><ul>
+<li><a class="reference internal" href="#scripts">1.2.5.1. Scripts</a></li>
+<li><a class="reference internal" href="#importing-objects-from-modules">1.2.5.2. Importing objects from modules</a></li>
+<li><a class="reference internal" href="#creating-modules">1.2.5.3. Creating modules</a></li>
+<li><a class="reference internal" href="#main-and-module-loading">1.2.5.4. &#8216;__main__&#8217; and module loading</a></li>
+<li><a class="reference internal" href="#scripts-or-modules-how-to-organize-your-code">1.2.5.5. Scripts or modules? How to organize your code</a><ul>
+<li><a class="reference internal" href="#how-modules-are-found-and-imported">1.2.5.5.1. How modules are found and imported</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#packages">1.2.5.6. Packages</a></li>
+<li><a class="reference internal" href="#good-practices">1.2.5.7. Good practices</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+
+    <div class="script_container">
+    <script>
+    (function() {
+	var cx = '004523248466141510607:hgv2yimrahw';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	    '//cse.google.com/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+
+        </div>
       </div>
       <div class="clearer"></div>
     </div>
@@ -681,8 +779,8 @@ the intro part. But be sure to come back and finish this chapter later.</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012,2013.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2012,2013,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

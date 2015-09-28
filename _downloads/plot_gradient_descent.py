@@ -1,5 +1,9 @@
 """
-Demo gradient descent
+Gradient descent
+==================
+
+An example demoing gradient descent by creating figures that trace the
+evolution of the optimizer.
 """
 import numpy as np
 import pylab as pl
@@ -52,6 +56,8 @@ def gradient_descent(x0, f, f_prime, hessian=None, adaptative=False):
                                 np.r_[x_i, y_i], -np.r_[dx_i, dy_i],
                                 np.r_[dx_i, dy_i], c2=.05)
             step = step[0]
+            if step is None:
+                step = 0
         else:
             step = 1
         x_i += - step*dx_i

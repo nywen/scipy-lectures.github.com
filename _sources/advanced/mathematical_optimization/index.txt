@@ -4,10 +4,10 @@
 Mathematical optimization: finding minima of functions
 =======================================================
 
-:authors: Gaël Varoquaux
+**Authors**: *Gaël Varoquaux*
 
 `Mathematical optimization
-<http://en.wikipedia.org/wiki/Mathematical_optimization>`_ deals with the
+<https://en.wikipedia.org/wiki/Mathematical_optimization>`_ deals with the
 problem of finding numerically minimums (or maximums or zeros) of
 a function. In this context, the function is called *cost function*, or
 *objective function*, or *energy*.
@@ -43,7 +43,7 @@ used for more efficient, non black-box, optimization.
 
 .. contents:: Chapters contents
    :local:
-   :depth: 4
+   :depth: 2
 
 .. XXX: should I discuss root finding?
 
@@ -87,8 +87,8 @@ Convex versus non-convex optimization
 **Optimizing convex functions is easy. Optimizing non-convex functions can
 be very hard.**
 
-.. note:: A convex function provably has only one minimum, no local
-   minimums
+.. note:: It can be proven that for a convex function a local minimum is
+   also a global minimum. Then, in some sense, the minimum is unique.
 
 Smooth and non-smooth problems
 -------------------------------
@@ -109,7 +109,12 @@ Smooth and non-smooth problems
  
    - **A non-smooth function**
 
-**Optimizing smooth functions is easier.**
+**Optimizing smooth functions is easier**
+(true in the context of *black-box* optimization, otherwise
+`Linear Programming <http://en.wikipedia.org/wiki/Linear_programming>`_
+is an example of methods which deal very efficiently with
+piece-wise linear functions).
+
 
 
 Noisy versus exact cost functions
@@ -193,14 +198,14 @@ It combines a bracketing strategy with a parabolic approximation.
     ...     return -np.exp(-(x - .7)**2)
     >>> x_min = optimize.brent(f)  # It actually converges in 9 iterations!
     >>> x_min #doctest: +ELLIPSIS
-    0.6999999997759...
+    0.699999999...
     >>> x_min - .7 #doctest: +ELLIPSIS
     -2.1605...e-10
 
 .. note:: 
    
-   Brent's method can be used for optimization constraint to an
-   intervale using :func:`scipy.optimize.fminbound`
+   Brent's method can also be used for optimization *constrained to an
+   interval* using :func:`scipy.optimize.fminbound`
 
 .. note::
    
@@ -216,8 +221,8 @@ Some intuitions about gradient descent
 Here we focus on **intuitions**, not code. Code will follow.
 
 `Gradient descent <http://en.wikipedia.org/wiki/Gradient_descent>`_
-basically consists consists in taking small steps in the direction of the
-gradient.
+basically consists in taking small steps in the direction of the
+gradient, that is the direction of the *steepest descent*.
 
 .. |gradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_0.png
    :scale: 90%
@@ -257,11 +262,11 @@ to optimize.
 
    If you know natural scaling for your variables, prescale them so that
    they behave similarly. This is related to `preconditioning
-   <http://en.wikipedia.org/wiki/Preconditioner>`_.
+   <https://en.wikipedia.org/wiki/Preconditioner>`_.
 
 Also, it clearly can be advantageous to take bigger steps. This
 is done in gradient descent code using a
-`line search <http://en.wikipedia.org/wiki/Line_search>`_.
+`line search <https://en.wikipedia.org/wiki/Line_search>`_.
 
 .. |agradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_1.png
    :scale: 90%
@@ -363,7 +368,7 @@ simple conjugate gradient method to minimize a function is
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.fmin_cg(f, [2, 2])
+    >>> optimize.fmin_cg(f, [2, 2])    # doctest: +NORMALIZE_WHITESPACE
     Optimization terminated successfully.
             Current function value: 0.000000
             Iterations: 13
@@ -376,13 +381,13 @@ will perform better if you can pass them the gradient::
 
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_cg(f, [2, 2], fprime=fprime)
+    >>> optimize.fmin_cg(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE
     Optimization terminated successfully.
             Current function value: 0.000000
             Iterations: 13
             Function evaluations: 30
             Gradient evaluations: 30
-    array([ 0.99999199,  0.99997536])
+    array([ 0.99999199,  0.99998336])
 
 Note that the function has only been evaluated 30 times, compared to 120
 without the gradient.
@@ -456,12 +461,12 @@ problems, although it is less versatile::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime)
+    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE
     Optimization terminated successfully.
             Current function value: 0.000000
-            Iterations: 10
-            Function evaluations: 12
-            Gradient evaluations: 44
+            Iterations: 9
+            Function evaluations: 11
+            Gradient evaluations: 51
             Hessian evaluations: 0
     array([ 1.,  1.])
 
@@ -472,13 +477,13 @@ to the algorithm::
 
     >>> def hessian(x): # Computed with sympy
     ...     return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
-    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime, fhess=hessian)
+    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime, fhess=hessian)    # doctest: +NORMALIZE_WHITESPACE
     Optimization terminated successfully.
             Current function value: 0.000000
-            Iterations: 10
-            Function evaluations: 12
-            Gradient evaluations: 10
-            Hessian evaluations: 10
+            Iterations: 9
+            Function evaluations: 11
+            Gradient evaluations: 19
+            Hessian evaluations: 9
     array([ 1.,  1.])
 
 .. note:: 
@@ -568,8 +573,8 @@ scipy version, :func:`scipy.optimize.fmin_l_bfgs_b`, includes box bounds::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_l_bfgs_b(f, [2, 2], fprime=fprime)
-    (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([  1.02331202e-07,  -2.59299369e-08]), 'funcalls': 17})
+    >>> optimize.fmin_l_bfgs_b(f, [2, 2], fprime=fprime)    # doctest: +ELLIPSIS
+    (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {...})
 
 .. note:: 
    
@@ -699,34 +704,6 @@ value. The parameters are specified with ranges given to
     array([ 1.00001462,  1.00001547])
 
 
-Simulated annealing
-....................
-
-.. np.random.seed(0)
-
-`Simulated annealing <http://en.wikipedia.org/wiki/Simulated_annealing>`_
-does random jumps around the starting point to explore its vicinity,
-progressively narrowing the jumps around the minimum points it finds. Its
-output depends on the random number generator. In scipy, it is
-implemented in :func:`scipy.optimize.anneal`::
-
-    >>> def f(x):   # The rosenbrock function
-    ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.anneal(f, [2, 2])
-    Warning: Cooled to 5057.768838 at [  30.27877642  984.84212523] but this
-    is not the smallest point found.
-    (array([ -7.70412755,  56.10583526]), 5)
-     
-It is a very popular algorithm, but it is not very reliable. 
-
-.. note::
-   
-   For function of continuous parameters as studied here, a strategy
-   based on grid search for rough exploration and running optimizers like
-   the Nelder-Mead or gradient-based methods many times with different
-   starting points should often be preferred to heuristic methods such as
-   simulated annealing.
-
 Practical guide to optimization with scipy
 ===========================================
 
@@ -851,7 +828,7 @@ Minimizing the norm of a vector function
 
 Least square problems, minimizing the norm of a vector function, have a
 specific structure that can be used in the `Levenberg–Marquardt algorithm
-<http://en.wikipedia.org/wiki/Levenberg-Marquardt_algorithm>`_
+<https://en.wikipedia.org/wiki/Levenberg-Marquardt_algorithm>`_
 implemented in :func:`scipy.optimize.leastsq`.
 
 Lets try to minimize the norm of the following vectorial function::
@@ -862,8 +839,7 @@ Lets try to minimize the norm of the following vectorial function::
     >>> x0 = np.zeros(10)
     >>> optimize.leastsq(f, x0)
     (array([ 0.        ,  0.11111111,  0.22222222,  0.33333333,  0.44444444,
-            0.55555556,  0.66666667,  0.77777778,  0.88888889,  1.        ]),
-     2)
+            0.55555556,  0.66666667,  0.77777778,  0.88888889,  1.        ]), 2)
 
 This took 67 function evaluations (check it with 'full_output=1'). What
 if we compute the norm ourselves and use a good generic optimizer
@@ -871,16 +847,16 @@ if we compute the norm ourselves and use a good generic optimizer
 
     >>> def g(x):
     ...     return np.sum(f(x)**2)
-    >>> optimize.fmin_bfgs(g, x0)
+    >>> optimize.fmin_bfgs(g, x0)   #doctest: +ELLIPSIS
     Optimization terminated successfully.
              Current function value: 0.000000
              Iterations: 11
              Function evaluations: 144
              Gradient evaluations: 12
-    array([ -7.38998277e-09,   1.11112265e-01,   2.22219893e-01,
-             3.33331914e-01,   4.44449794e-01,   5.55560493e-01,
-             6.66672149e-01,   7.77779758e-01,   8.88882036e-01,
-             1.00001026e+00])
+    array([ -7.4...-09,   1.1...e-01,   2.2...e-01,
+             3.3...e-01,   4.4...e-01,   5.5...e-01,
+             6.6...e-01,   7.7...e-01,   8.8...e-01,
+             1.0...e+00])
 
 BFGS needs more function calls, and gives a less precise result.
 
@@ -910,6 +886,9 @@ While it is possible to construct our optimization problem ourselves,
 scipy provides a helper function for this purpose:
 :func:`scipy.optimize.curve_fit`::
 
+.. Comment to make doctest pass
+    >>> np.random.seed(0)
+
     >>> def f(t, omega, phi):
     ...     return np.cos(omega * t + phi)
     
@@ -917,9 +896,9 @@ scipy provides a helper function for this purpose:
     >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
     >>> optimize.curve_fit(f, x, y)
-    (array([ 1.51854577,  0.92665541]),
-     array([[ 0.00037994, -0.00056796],
+    (array([ 1.51854577,  0.92665541]), array([[ 0.00037994, -0.00056796],
            [-0.00056796,  0.00123978]]))
+
 
 .. topic:: **Exercise**
    :class: green
@@ -934,7 +913,7 @@ Box bounds
 
 Box bounds correspond to limiting each of the individual parameters of
 the optimization. Note that some problems that are not originally written
-as box bounds can be rewritten as such be a change of variables.
+as box bounds can be rewritten as such via change of variables.
 
 .. image:: auto_examples/images/plot_constraints_2.png
     :target: auto_examples/plot_constraints.html
@@ -947,11 +926,8 @@ as box bounds can be rewritten as such be a change of variables.
 
     >>> def f(x):
     ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
-    >>> optimize.fmin_l_bfgs_b(f, np.array([0, 0]), approx_grad=1,
-                           bounds=((-1.5, 1.5), (-1.5, 1.5)))
-    (array([ 1.5,  1.5]), 1.5811388300841898, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([-0.94868331, -0.31622778]), 'funcalls': 3})
-
-
+    >>> optimize.fmin_l_bfgs_b(f, np.array([0, 0]), approx_grad=1, bounds=((-1.5, 1.5), (-1.5, 1.5)))   # doctest: +ELLIPSIS
+    (array([ 1.5,  1.5]), 1.5811388300841898, {...})
 
 
 General constraints
@@ -990,10 +966,6 @@ and `g(x)< 0`.
   approximation: inequality constraints only::
 
     >>> optimize.fmin_cobyla(f, np.array([0, 0]), cons=constraint)
-       Normal return from subroutine COBYLA
-    
-       NFVALS =   36   F = 2.474874E+00    MAXCV = 0.000000E+00
-       X = 1.250096E+00   2.499038E-01
     array([ 1.25009622,  0.24990378])
 
 .. warning:: 
@@ -1009,5 +981,5 @@ and `g(x)< 0`.
    If you are ready to do a bit of math, many constrained optimization
    problems can be converted to non-constrained optimization problems
    using a mathematical trick known as `Lagrange multipliers
-   <http://en.wikipedia.org/wiki/Lagrange_multiplier>`_.
+   <https://en.wikipedia.org/wiki/Lagrange_multiplier>`_.
    

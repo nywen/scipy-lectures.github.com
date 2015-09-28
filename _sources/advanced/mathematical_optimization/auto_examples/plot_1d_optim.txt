@@ -3,6 +3,9 @@
 .. _example_plot_1d_optim.py:
 
 
+Brent's method
+================
+
 Illustration of 1D optimization: Brent's method
 
 
@@ -12,27 +15,37 @@ Illustration of 1D optimization: Brent's method
 
     *
 
-      .. image:: images/plot_1d_optim_3.png
-            :scale: 50
-
-    *
-
-      .. image:: images/plot_1d_optim_4.png
-            :scale: 50
-
-    *
-
       .. image:: images/plot_1d_optim_1.png
-            :scale: 50
 
     *
 
       .. image:: images/plot_1d_optim_2.png
-            :scale: 50
+
+    *
+
+      .. image:: images/plot_1d_optim_3.png
+
+    *
+
+      .. image:: images/plot_1d_optim_4.png
+
+
+**Script output**:
+
+.. rst-class:: max_height
+
+ ::
+
+    Converged at  6
+  Converged at  23
+
 
 
 **Python source code:** :download:`plot_1d_optim.py <plot_1d_optim.py>`
 
 .. literalinclude:: plot_1d_optim.py
-    :lines: 4-
+    :lines: 7-
+
+**Total running time of the example:**  0.68 seconds
+( 0 minutes  0.68 seconds)
     
