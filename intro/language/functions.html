@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015',
+        VERSION:     '2015.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -514,21 +514,18 @@ sequence, defined by:</p>
 </div>
 <div class="green topic">
 <p class="topic-title first">Exercise: Quicksort</p>
-<p>Implement the quicksort algorithm, as defined by wikipedia:</p>
-<dl class="docutils">
-<dt>function quicksort(array)</dt>
-<dd><p class="first">var list less, greater
-if length(array) &lt; 2</p>
-<blockquote>
-<div>return array</div></blockquote>
-<p>select and remove a pivot value pivot from array
-for each x in array</p>
-<blockquote>
-<div>if x &lt; pivot + 1 then append x to less
-else append x to greater</div></blockquote>
-<p class="last">return concatenate(quicksort(less), pivot, quicksort(greater))</p>
-</dd>
-</dl>
+<p>Implement the quicksort algorithm, as defined by wikipedia</p>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>function quicksort(array)
+<div class="newline"></div>    var list less, greater
+<div class="newline"></div>    if length(array) &lt; 2
+<div class="newline"></div>        return array
+<div class="newline"></div>    select and remove a pivot value pivot from array
+<div class="newline"></div>    for each x in array
+<div class="newline"></div>        if x &lt; pivot + 1 then append x to less
+<div class="newline"></div>        else append x to greater
+<div class="newline"></div>    return concatenate(quicksort(less), pivot, quicksort(greater))
+<div class="newline"></div></pre></div>
 </div>
 <p><div style="clear: both"></div></p>
 </div>

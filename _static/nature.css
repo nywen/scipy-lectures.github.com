@@ -489,11 +489,6 @@ div.body pre span.o:after, div.body pre span.p:after{
     display: inline-block;
 }
 
-/* On *results* of commands (tagged as "go") force word wrapping */
-div.highlight pre span.go {
-    word-break: break-word;
-}
-
 div.highlight:hover span.copybutton {
     background-color: #3F556B;
 }
@@ -502,17 +497,20 @@ div.highlight:hover span.copybutton:hover {
     background-color: #20252B;
 }
 
-div.highlight:hover span.copybutton:after{
-    background: #3F556B;
-    border-radius: 5px;
-    color: white;
-    content: attr(button_hint);
-    left: 110%;
-    padding: 5px 15px;
-    position: absolute;
-    z-index: 98;
-    width: 140px;
-    top: -10px;
+
+@media (min-width: 80ex) {
+    div.highlight:hover span.copybutton:after{
+	background: #3F556B;
+	border-radius: 5px;
+	color: white;
+	content: attr(button_hint);
+	left: 110%;
+	padding: 5px 15px;
+	position: absolute;
+	z-index: 98;
+	width: 140px;
+	top: -10px;
+    }
 }
 
 div.body p {
@@ -784,11 +782,21 @@ div.sidebar {
     z-index: 50;
 }
 
-@media (max-width: 840px) {
+/* Suppress floats on small screens */
+@media (max-width: 70ex) {
     div.sidebar {
 	float: none;
 	width: 95%;
 	padding-top: 8px;
+    }
+
+@media (max-width: 60ex) {
+    img.align-right {
+	float: none;
+    }
+
+    img.align-right {
+	float: none;
     }
 }
 

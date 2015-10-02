@@ -13,5 +13,7 @@ Highlights of the latest version includes:
  * a new layout with emphasis on readability including on small devices
  * fully doctesting for Python 2 and 3 compatibility
 
-We hope that you will find these notes useful, for you or your 
+We hope that you will find these notes useful, for you, your colleagues,
+or your students.
 
+Gaël

@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015',
+        VERSION:     '2015.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -287,7 +287,7 @@ Menu: &#8216;settings -&gt; configure kate</p>
 <li><p class="first"><strong>In TextMate</strong></p>
 <p>Menu: TextMate -&gt; Preferences -&gt; Advanced -&gt; Shell variables, add a
 shell variable:</p>
-<div class="highlight-python"><div class="highlight"><pre>TM_PYCHECKER=/Library/Frameworks/Python.framework/Versions/Current/bin/pyflakes
+<div class="highlight-python"><div class="highlight"><pre>TM_PYCHECKER = /Library/Frameworks/Python.framework/Versions/Current/bin/pyflakes
 <div class="newline"></div></pre></div>
 </div>
 <p>Then <tt class="xref py py-obj docutils literal"><span class="pre">Ctrl-Shift-V</span></tt> is binded to a pyflakes report</p>
@@ -441,13 +441,13 @@ inspect runtime, it is often more efficient to use the debugger.</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="o">%</span><span class="n">run</span> <span class="n">index_error</span><span class="o">.</span><span class="n">py</span>
 <div class="newline"></div><span class="go">---------------------------------------------------------------------------</span>
 <div class="newline"></div><span class="go">IndexError                                Traceback (most recent call last)</span>
-<div class="newline"></div><span class="go">/home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py in &lt;module&gt;()</span>
+<div class="newline"></div><span class="go">/home/varoquau/dev/scipy-lecture-notes/advanced/debugging/index_error.py in &lt;module&gt;()</span>
 <div class="newline"></div><span class="go">      6</span>
 <div class="newline"></div><span class="go">      7 if __name__ == &#39;__main__&#39;:</span>
 <div class="newline"></div><span class="go">----&gt; 8     index_error()</span>
 <div class="newline"></div><span class="go">      9</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="go">/home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py in index_error()</span>
+<div class="newline"></div><span class="go">/home/varoquau/dev/scipy-lecture-notes/advanced/debugging/index_error.py in index_error()</span>
 <div class="newline"></div><span class="go">      3 def index_error():</span>
 <div class="newline"></div><span class="go">      4     lst = list(&#39;foobar&#39;)</span>
 <div class="newline"></div><span class="go">----&gt; 5     print lst[len(lst)]</span>
@@ -457,7 +457,7 @@ inspect runtime, it is often more efficient to use the debugger.</p>
 <div class="newline"></div><span class="go">IndexError: list index out of range</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [2]: </span><span class="o">%</span><span class="n">debug</span>
-<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()</span>
+<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging/index_error.py(5)index_error()</span>
 <div class="newline"></div><span class="go">      4     lst = list(&#39;foobar&#39;)</span>
 <div class="newline"></div><span class="go">----&gt; 5     print lst[len(lst)]</span>
 <div class="newline"></div><span class="go">      6</span>
@@ -488,7 +488,7 @@ inspect runtime, it is often more efficient to use the debugger.</p>
 script that wants to be called from the command line. In this case,
 you can call the script with <tt class="docutils literal"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pdb</span> <span class="pre">script.py</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ python -m pdb index_error.py
-<div class="newline"></div>&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(1)&lt;module&gt;()
+<div class="newline"></div>&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/index_error.py(1)&lt;module&gt;()
 <div class="newline"></div>-&gt; &quot;&quot;&quot;Small snippet to raise an IndexError.&quot;&quot;&quot;
 <div class="newline"></div>(Pdb) continue
 <div class="newline"></div>Traceback (most recent call last):
@@ -506,7 +506,7 @@ you can call the script with <tt class="docutils literal"><span class="pre">pyth
 <div class="newline"></div>IndexError: list index out of range
 <div class="newline"></div>Uncaught exception. Entering post mortem debugging
 <div class="newline"></div>Running &#39;cont&#39; or &#39;step&#39; will restart the program
-<div class="newline"></div>&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
+<div class="newline"></div>&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/index_error.py(5)index_error()
 <div class="newline"></div>-&gt; print lst[len(lst)]
 <div class="newline"></div>(Pdb)
 <div class="newline"></div></pre></div>
@@ -525,7 +525,7 @@ Indeed the code runs, but the filtering does not work well.</p>
 <div class="newline"></div><span class="go">*** Blank or comment</span>
 <div class="newline"></div><span class="go">*** Blank or comment</span>
 <div class="newline"></div><span class="go">*** Blank or comment</span>
-<div class="newline"></div><span class="go">Breakpoint 1 at /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py:4</span>
+<div class="newline"></div><span class="go">Breakpoint 1 at /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py:4</span>
 <div class="newline"></div><span class="go">NOTE: Enter &#39;c&#39; at the ipdb&gt;  prompt to start your script.</span>
 <div class="newline"></div><span class="go">&gt; &lt;string&gt;(1)&lt;module&gt;()</span>
 <div class="newline"></div></pre></div>
@@ -533,19 +533,19 @@ Indeed the code runs, but the filtering does not work well.</p>
 </li>
 <li><p class="first">Set a break point at line 34 using <tt class="docutils literal"><span class="pre">b</span> <span class="pre">34</span></tt>:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="go">ipdb&gt; n</span>
-<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(4)&lt;module&gt;()</span>
+<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py(4)&lt;module&gt;()</span>
 <div class="newline"></div><span class="go">      3</span>
 <div class="newline"></div><span class="go">1---&gt; 4 import numpy as np</span>
 <div class="newline"></div><span class="go">      5 import scipy as sp</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="go">ipdb&gt; b 34</span>
-<div class="newline"></div><span class="go">Breakpoint 2 at /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py:34</span>
+<div class="newline"></div><span class="go">Breakpoint 2 at /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py:34</span>
 <div class="newline"></div></pre></div>
 </div>
 </li>
 <li><p class="first">Continue execution to next breakpoint with <tt class="docutils literal"><span class="pre">c(ont(inue))</span></tt>:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="go">ipdb&gt; c</span>
-<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(34)iterated_wiener()</span>
+<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py(34)iterated_wiener()</span>
 <div class="newline"></div><span class="go">     33     &quot;&quot;&quot;</span>
 <div class="newline"></div><span class="go">2--&gt; 34     noisy_img = noisy_img</span>
 <div class="newline"></div><span class="go">     35     denoised_img = local_mean(noisy_img, size=size)</span>
@@ -556,13 +556,13 @@ Indeed the code runs, but the filtering does not work well.</p>
 statement in the current execution context, while <tt class="docutils literal"><span class="pre">step</span></tt> will go across
 execution contexts, i.e. enable exploring inside function calls:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="go">ipdb&gt; s</span>
-<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(35)iterated_wiener()</span>
+<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py(35)iterated_wiener()</span>
 <div class="newline"></div><span class="go">2    34     noisy_img = noisy_img</span>
 <div class="newline"></div><span class="go">---&gt; 35     denoised_img = local_mean(noisy_img, size=size)</span>
 <div class="newline"></div><span class="go">     36     l_var = local_var(noisy_img, size=size)</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="go">ipdb&gt; n</span>
-<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(36)iterated_wiener()</span>
+<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py(36)iterated_wiener()</span>
 <div class="newline"></div><span class="go">     35     denoised_img = local_mean(noisy_img, size=size)</span>
 <div class="newline"></div><span class="go">---&gt; 36     l_var = local_var(noisy_img, size=size)</span>
 <div class="newline"></div><span class="go">     37     for i in range(3):</span>
@@ -571,7 +571,7 @@ execution contexts, i.e. enable exploring inside function calls:</p>
 </li>
 <li><p class="first">Step a few lines and explore the local variables:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="go">ipdb&gt; n</span>
-<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(37)iterated_wiener()</span>
+<div class="newline"></div><span class="go">&gt; /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py(37)iterated_wiener()</span>
 <div class="newline"></div><span class="go">     36     l_var = local_var(noisy_img, size=size)</span>
 <div class="newline"></div><span class="go">---&gt; 37     for i in range(3):</span>
 <div class="newline"></div><span class="go">     38         res = noisy_img - denoised_img</span>

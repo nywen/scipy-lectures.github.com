@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015',
+        VERSION:     '2015.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -769,24 +769,22 @@ without copying data?</p>
 </div>
 <p><strong>The answer</strong> (in Numpy)</p>
 <blockquote>
-<div><ul>
-<li><p class="first"><strong>strides</strong>: the number of bytes to jump to find the next element</p>
-</li>
-<li><p class="first">1 stride per dimension:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">strides</span>
-<div class="newline"></div></pre></div>
-</div>
-<p>(3, 1)
-&gt;&gt;&gt; byte_offset = 3*1 + 1*2   # to find x[1, 2]
-&gt;&gt;&gt; x.flat[byte_offset]
-6
-&gt;&gt;&gt; x[1, 2]
-6</p>
-</li>
-<li><p class="first">simple, <strong>flexible</strong></p>
-</li>
+<div><ul class="simple">
+<li><strong>strides</strong>: the number of bytes to jump to find the next element</li>
+<li>1 stride per dimension</li>
 </ul>
 </div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre>  <span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">strides</span>
+<div class="newline"></div>  <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="newline"></div>  <span class="o">&gt;&gt;&gt;</span> <span class="n">byte_offset</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">2</span>   <span class="c"># to find x[1, 2]</span>
+<div class="newline"></div>  <span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">byte_offset</span><span class="p">]</span>
+<div class="newline"></div>  <span class="mi">6</span>
+<div class="newline"></div>  <span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<div class="newline"></div>  <span class="mi">6</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="o">-</span> <span class="n">simple</span><span class="p">,</span> <span class="o">**</span><span class="n">flexible</span><span class="o">**</span>
+<div class="newline"></div></pre></div>
+</div>
 <div class="section" id="c-and-fortran-order">
 <h5>2.2.1.4.1.1. C and Fortran order<a class="headerlink" href="#c-and-fortran-order" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
@@ -2092,7 +2090,7 @@ time, ignoring the invalid numbers.</p>
 <li>Create a new repository &#64; Github</li>
 <li>Push your work to github</li>
 </ul>
-<div class="highlight-python"><div class="highlight"><pre>git remote add github git@github:YOURUSERNAME/YOURREPOSITORYNAME.git
+<div class="highlight-python"><div class="highlight"><pre>git remote add github git@github:USERNAME/REPOSITORYNAME.git
 <div class="newline"></div>git push github name-of-my-feature-branch
 <div class="newline"></div></pre></div>
 </div>
