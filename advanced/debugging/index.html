@@ -187,33 +187,21 @@ that we will employ are tailored to its needs.</p>
 <li>gdb for the C-debugging part.</li>
 </ul>
 </div>
-<div class="contents local topic" id="chapters-contents">
-<p class="topic-title first">Chapters contents</p>
+<div class="contents local topic" id="chapter-contents">
+<p class="topic-title first">Chapter contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#avoiding-bugs" id="id2">Avoiding bugs</a><ul>
 <li><a class="reference internal" href="#coding-best-practices-to-avoid-getting-in-trouble" id="id3">Coding best practices to avoid getting in trouble</a></li>
-<li><a class="reference internal" href="#pyflakes-fast-static-analysis" id="id4">pyflakes: fast static analysis</a><ul>
-<li><a class="reference internal" href="#running-pyflakes-on-the-current-edited-file" id="id5">Running pyflakes on the current edited file</a></li>
-<li><a class="reference internal" href="#a-type-as-go-spell-checker-like-integration" id="id6">A type-as-go spell-checker like integration</a></li>
+<li><a class="reference internal" href="#pyflakes-fast-static-analysis" id="id4">pyflakes: fast static analysis</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#debugging-workflow" id="id5">Debugging workflow</a></li>
+<li><a class="reference internal" href="#using-the-python-debugger" id="id6">Using the Python debugger</a><ul>
+<li><a class="reference internal" href="#invoking-the-debugger" id="id7">Invoking the debugger</a></li>
+<li><a class="reference internal" href="#debugger-commands-and-interaction" id="id8">Debugger commands and interaction</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#debugging-workflow" id="id7">Debugging workflow</a></li>
-<li><a class="reference internal" href="#using-the-python-debugger" id="id8">Using the Python debugger</a><ul>
-<li><a class="reference internal" href="#invoking-the-debugger" id="id9">Invoking the debugger</a><ul>
-<li><a class="reference internal" href="#postmortem" id="id10">Postmortem</a></li>
-<li><a class="reference internal" href="#step-by-step-execution" id="id11">Step-by-step execution</a></li>
-<li><a class="reference internal" href="#other-ways-of-starting-a-debugger" id="id12">Other ways of starting a debugger</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#debugger-commands-and-interaction" id="id13">Debugger commands and interaction</a><ul>
-<li><a class="reference internal" href="#getting-help-when-in-the-debugger" id="id14">Getting help when in the debugger</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#debugging-segmentation-faults-using-gdb" id="id15">Debugging segmentation faults using gdb</a></li>
+<li><a class="reference internal" href="#debugging-segmentation-faults-using-gdb" id="id9">Debugging segmentation faults using gdb</a></li>
 </ul>
 </div>
 <div class="section" id="avoiding-bugs">
@@ -267,7 +255,7 @@ catches, flake8 detects violations of the recommendation in <a class="reference 
 <p>Integrating pyflakes (or flake8) in your editor or IDE is highly
 recommended, it <strong>does yield productivity gains</strong>.</p>
 <div class="section" id="running-pyflakes-on-the-current-edited-file">
-<h4><a class="toc-backref" href="#id5">2.3.1.2.1. Running pyflakes on the current edited file</a><a class="headerlink" href="#running-pyflakes-on-the-current-edited-file" title="Permalink to this headline">¶</a></h4>
+<h4>2.3.1.2.1. Running pyflakes on the current edited file<a class="headerlink" href="#running-pyflakes-on-the-current-edited-file" title="Permalink to this headline">¶</a></h4>
 <p>You can bind a key to run pyflakes in the current buffer.</p>
 <ul>
 <li><p class="first"><strong>In kate</strong>
@@ -327,7 +315,7 @@ In your <tt class="xref py py-obj docutils literal"><span class="pre">emacs</spa
 </ul>
 </div>
 <div class="section" id="a-type-as-go-spell-checker-like-integration">
-<h4><a class="toc-backref" href="#id6">2.3.1.2.2. A type-as-go spell-checker like integration</a><a class="headerlink" href="#a-type-as-go-spell-checker-like-integration" title="Permalink to this headline">¶</a></h4>
+<h4>2.3.1.2.2. A type-as-go spell-checker like integration<a class="headerlink" href="#a-type-as-go-spell-checker-like-integration" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p class="first"><strong>In vim</strong></p>
 <ul>
@@ -372,7 +360,7 @@ your .emacs file:</p>
 </div>
 </div>
 <div class="section" id="debugging-workflow">
-<h2><a class="toc-backref" href="#id7">2.3.2. Debugging workflow</a><a class="headerlink" href="#debugging-workflow" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">2.3.2. Debugging workflow</a><a class="headerlink" href="#debugging-workflow" title="Permalink to this headline">¶</a></h2>
 <p>If you do have a non trivial bug, this is when debugging strategies kick
 in. There is no silver bullet. Yet, strategies help:</p>
 <blockquote>
@@ -407,7 +395,7 @@ the corresponding code to your test suite.</p>
 </div>
 </div>
 <div class="section" id="using-the-python-debugger">
-<h2><a class="toc-backref" href="#id8">2.3.3. Using the Python debugger</a><a class="headerlink" href="#using-the-python-debugger" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">2.3.3. Using the Python debugger</a><a class="headerlink" href="#using-the-python-debugger" title="Permalink to this headline">¶</a></h2>
 <p>The python debugger, <tt class="docutils literal"><span class="pre">pdb</span></tt>: <a class="reference external" href="https://docs.python.org/library/pdb.html">https://docs.python.org/library/pdb.html</a>,
 allows you to inspect your code interactively.</p>
 <p>Specifically it allows you to:</p>
@@ -426,7 +414,7 @@ allows you to inspect your code interactively.</p>
 inspect runtime, it is often more efficient to use the debugger.</p>
 </div>
 <div class="section" id="invoking-the-debugger">
-<h3><a class="toc-backref" href="#id9">2.3.3.1. Invoking the debugger</a><a class="headerlink" href="#invoking-the-debugger" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">2.3.3.1. Invoking the debugger</a><a class="headerlink" href="#invoking-the-debugger" title="Permalink to this headline">¶</a></h3>
 <p>Ways to launch the debugger:</p>
 <ol class="arabic simple">
 <li>Postmortem, launch debugger after module errors.</li>
@@ -434,7 +422,7 @@ inspect runtime, it is often more efficient to use the debugger.</p>
 <li>Call the debugger inside the module</li>
 </ol>
 <div class="section" id="postmortem">
-<h4><a class="toc-backref" href="#id10">2.3.3.1.1. Postmortem</a><a class="headerlink" href="#postmortem" title="Permalink to this headline">¶</a></h4>
+<h4>2.3.3.1.1. Postmortem<a class="headerlink" href="#postmortem" title="Permalink to this headline">¶</a></h4>
 <p><strong>Situation</strong>: You&#8217;re working in IPython and you get a traceback.</p>
 <p>Here we debug the file <a class="reference download internal" href="../../_downloads/index_error.py"><tt class="xref download docutils literal"><span class="pre">index_error.py</span></tt></a>. When running it, an
 <tt class="xref py py-class docutils literal"><span class="pre">IndexError</span></tt> is raised. Type <tt class="docutils literal"><span class="pre">%debug</span></tt> and drop into the debugger.</p>
@@ -514,7 +502,7 @@ you can call the script with <tt class="docutils literal"><span class="pre">pyth
 </div>
 </div>
 <div class="section" id="step-by-step-execution">
-<h4><a class="toc-backref" href="#id11">2.3.3.1.2. Step-by-step execution</a><a class="headerlink" href="#step-by-step-execution" title="Permalink to this headline">¶</a></h4>
+<h4>2.3.3.1.2. Step-by-step execution<a class="headerlink" href="#step-by-step-execution" title="Permalink to this headline">¶</a></h4>
 <p><strong>Situation</strong>: You believe a bug exists in a module but are not sure where.</p>
 <p>For instance we are trying to debug <a class="reference download internal" href="../../_downloads/wiener_filtering.py"><tt class="xref download docutils literal"><span class="pre">wiener_filtering.py</span></tt></a>.
 Indeed the code runs, but the filtering does not work well.</p>
@@ -632,7 +620,7 @@ post-mortem debugging on them, and find our problem more quickly:</p>
 </div>
 </div>
 <div class="section" id="other-ways-of-starting-a-debugger">
-<h4><a class="toc-backref" href="#id12">2.3.3.1.3. Other ways of starting a debugger</a><a class="headerlink" href="#other-ways-of-starting-a-debugger" title="Permalink to this headline">¶</a></h4>
+<h4>2.3.3.1.3. Other ways of starting a debugger<a class="headerlink" href="#other-ways-of-starting-a-debugger" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p class="first"><strong>Raising an exception as a poor man break point</strong></p>
 <p>If you find it tedious to note the line number to set a break point,
@@ -677,7 +665,7 @@ worth looking at.</li>
 </div>
 </div>
 <div class="section" id="debugger-commands-and-interaction">
-<h3><a class="toc-backref" href="#id13">2.3.3.2. Debugger commands and interaction</a><a class="headerlink" href="#debugger-commands-and-interaction" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">2.3.3.2. Debugger commands and interaction</a><a class="headerlink" href="#debugger-commands-and-interaction" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -719,7 +707,7 @@ name: <strong>use different names than your local variable when typing code
 in the debugger</strong>.</p>
 </div>
 <div class="section" id="getting-help-when-in-the-debugger">
-<h4><a class="toc-backref" href="#id14">2.3.3.2.1. Getting help when in the debugger</a><a class="headerlink" href="#getting-help-when-in-the-debugger" title="Permalink to this headline">¶</a></h4>
+<h4>2.3.3.2.1. Getting help when in the debugger<a class="headerlink" href="#getting-help-when-in-the-debugger" title="Permalink to this headline">¶</a></h4>
 <p>Type <tt class="docutils literal"><span class="pre">h</span></tt> or <tt class="docutils literal"><span class="pre">help</span></tt> to access the interactive help:</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="go">ipdb&gt; help</span>
 <div class="newline"></div>
@@ -745,7 +733,7 @@ in the debugger</strong>.</p>
 </div>
 </div>
 <div class="section" id="debugging-segmentation-faults-using-gdb">
-<h2><a class="toc-backref" href="#id15">2.3.4. Debugging segmentation faults using gdb</a><a class="headerlink" href="#debugging-segmentation-faults-using-gdb" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">2.3.4. Debugging segmentation faults using gdb</a><a class="headerlink" href="#debugging-segmentation-faults-using-gdb" title="Permalink to this headline">¶</a></h2>
 <p>If you have a segmentation fault, you cannot debug it with pdb, as it
 crashes the Python interpreter before it can drop in the debugger.
 Similarly, if you have a bug in C code embedded in Python, pdb is

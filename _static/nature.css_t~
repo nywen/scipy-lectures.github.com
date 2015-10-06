@@ -386,7 +386,7 @@ div.body h4 a.toc-backref {
 }
 
 a.headerlink:after {
-    content: "\f0c1";
+    content: "\f02b";
     margin-left: -1.1ex;
 }
 
@@ -408,6 +408,8 @@ h3:hover a.headerlink:after, h4:hover a.headerlink:after {
 
 a.headerlink {
     color: #8a0d0d;
+    float: right;
+    font-weight: normal;
 }
 
 a.headerlink:hover {
@@ -451,16 +453,16 @@ div.body pre {
 	    hyphens: auto;
 }
 
+div.highlight pre a {
+    color: #111;
+    text-decoration:underline;    
+}
+
 div.highlight pre {
     /* Hack to have indented line wraps */
     white-space: pre-wrap;
     padding-left: 3.6em;
     text-indent: -3.5em;
-}
-
-div.highlight pre a {
-    color: #111;
-    text-decoration:underline;    
 }
 
 /* Hack to have indented line wraps */
@@ -469,6 +471,31 @@ div.highlight pre div.newline {
     padding-left: 1em;
     display: inline-block;
     visibility: hidden;
+}
+
+/* Disable the above hack on android phone, as font scaling breaks it */
+@media	only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (-o-min-device-pixel-ratio: 15/10),
+	only screen and (min-resolution: 140dpi)
+  {
+    div.highlight pre {
+	padding-left: 0pt;
+	text-indent: 0pt;
+    }
+
+    div.highlight pre div.newline {
+	margin-right: 0pt;
+	padding-left: 0pt;
+    }
+}
+
+/* On non text-highlighted code, break all words */
+div.body pre {
+    word-break: break-all;
+}
+
+div.body pre span {
+    word-break: normal;
 }
 
 /* Line wrap after "()[]" (that are set in a span.p by pygment) and 
@@ -489,6 +516,13 @@ div.body pre span.o:after, div.body pre span.p:after{
     display: inline-block;
 }
 
+
+/* On *results* of commands (tagged as "go") force word wrapping */
+div.highlight pre span.go {
+    word-break: break-word;
+}
+
+
 div.highlight:hover span.copybutton {
     background-color: #3F556B;
 }
@@ -498,7 +532,7 @@ div.highlight:hover span.copybutton:hover {
 }
 
 
-@media (min-width: 80ex) {
+@media (min-width: 1060px) {
     div.highlight:hover span.copybutton:after{
 	background: #3F556B;
 	border-radius: 5px;
@@ -599,6 +633,12 @@ div.contents li {
       list-style-type: none;
       font-size: 110% ;
       font-weight: bold;
+}
+
+@media (max-width: 70ex) {
+    div.contents ul {
+	padding-left: 2.5ex;
+    }
 }
 
 div.contents p {
@@ -783,18 +823,20 @@ div.sidebar {
 }
 
 /* Suppress floats on small screens */
-@media (max-width: 70ex) {
+@media 	only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5), (max-width: 70ex) {
     div.sidebar {
 	float: none;
 	width: 95%;
 	padding-top: 8px;
     }
+}
 
+@media (max-width: 60ex) {
     img.align-right {
 	float: none;
     }
 
-    img.align-right {
+    img.align-left {
 	float: none;
     }
 }
