@@ -435,8 +435,14 @@ object&#8217;s name, otherwise Python won&#8217;t recognize the instruction.</p>
 <div>Modules are cached: if you modify <tt class="docutils literal"><span class="pre">demo.py</span></tt> and re-import it in the
 old session, you will get the old one.</div></blockquote>
 <p>Solution:</p>
-<blockquote class="last">
+<blockquote>
 <div><div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [10]: </span><span class="nb">reload</span><span class="p">(</span><span class="n">demo</span><span class="p">)</span>
+<div class="newline"></div></pre></div>
+</div>
+</div></blockquote>
+<p>In Python3 instead <tt class="docutils literal"><span class="pre">reload</span></tt> is not builtin, so you have to import the <tt class="docutils literal"><span class="pre">importlib</span></tt> module first and then do:</p>
+<blockquote class="last">
+<div><div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [10]: </span><span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">demo</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
 </div></blockquote>

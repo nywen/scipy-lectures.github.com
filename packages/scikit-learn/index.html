@@ -212,10 +212,9 @@ $(function () {
 <div style='float: right; margin: 35px;'><img alt="Photo of Iris Virginia" class="align-right" src="../../_images/Virginia_Iris.png" />
 </div><p>First we will load some data to play with. The data we will use is a
 very simple flower database known as the Iris dataset.</p>
-<p>We have 150 observations of the iris flower specifying some
-measurements: sepal length, sepal width, petal length and petal width
-together with its subtype: <em>Iris setosa</em>, <em>Iris versicolor</em>, <em>Iris
-virginica</em>.</p>
+<p>We have 150 observations of the iris flower specifying some measurements:
+sepal length, sepal width, petal length and petal width together
+with its subtype: <em>Iris setosa</em>, <em>Iris versicolor</em>, <em>Iris virginica</em>.</p>
 <p>To load the dataset into a Python object:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
@@ -240,7 +239,7 @@ dataset. This is an integer 1D array of length <tt class="docutils literal"><spa
 <p class="topic-title first">An example of reshaping data: the digits dataset</p>
 <a class="reference internal image-reference" href="../../_images/digits_first_image.png"><img alt="../../_images/digits_first_image.png" class="align-right" src="../../_images/digits_first_image.png" style="width: 166.0px; height: 150.0px;" /></a>
 <p>The digits dataset consists of 1797 images, where each one is an 8x8
-pixel image representing a hand-written digit</p>
+pixel image representing a hand-written digit:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">shape</span>
 <div class="newline"></div><span class="go">(1797, 8, 8)</span>
@@ -250,7 +249,7 @@ pixel image representing a hand-written digit</p>
 <div class="newline"></div></pre></div>
 </div>
 <p>To use this dataset with the scikit, we transform each 8x8 image
-into a vector of length 64</p>
+into a vector of length 64:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -341,9 +340,9 @@ The most commonly used ones are <tt class="docutils literal"><span class="pre">s
 &#8220;SVC&#8221; stands for Support Vector Classifier (there also exist SVMs for regression,
 which are called &#8220;SVR&#8221; in <tt class="docutils literal"><span class="pre">scikit-learn</span></tt>).</p>
 <div class="green topic">
-<p class="topic-title first"><strong>Excercise</strong></p>
+<p class="topic-title first"><strong>Exercise</strong></p>
 <p>Train an <tt class="docutils literal"><span class="pre">svm.SVC</span></tt> on the digits dataset. Leave out the
-last 10% and test prediction performance on these observations.</p>
+last 10%, and test prediction performance on these observations.</p>
 </div>
 </div>
 <div class="section" id="using-kernels">
@@ -444,19 +443,19 @@ object API and several additional features, including smart initialization.)</p>
 <div class="topic">
 <p class="topic-title first"><strong>Application to Image Compression</strong></p>
 <p>Clustering can be seen as a way of choosing a small number of
-observations from the information. For instance, this can be used
-to posterize an image (conversion of a continuous gradation of
-tone to several regions of fewer tones):</p>
+information from the observations (like a projection on a smaller space).
+For instance, this can be used to posterize an image
+(conversion of a continuous gradation of tone to several regions of fewer tones):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">misc</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">lena</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="c"># We need an (n_sample, n_feature) array</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">k_means</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">face</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">face</span><span class="p">(</span><span class="n">gray</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">face</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>  <span class="c"># We need an (n_sample, n_feature) array</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">K</span> <span class="o">=</span> <span class="n">k_means</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c"># 5 clusters</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">k_means</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> 
 <div class="newline"></div><span class="go">KMeans(...)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="n">k_means</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">k_means</span><span class="o">.</span><span class="n">labels_</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">choose</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_compressed</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">lena</span><span class="o">.</span><span class="n">shape</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">face_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">choose</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">face_compressed</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">face</span><span class="o">.</span><span class="n">shape</span>
 <div class="newline"></div></pre></div>
 </div>
 <table border="1" class="centered docutils">
@@ -465,11 +464,11 @@ tone to several regions of fewer tones):</p>
 <col width="50%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="../../_images/lena1.png"><img alt="lena" src="../../_images/lena1.png" style="width: 256.0px; height: 256.0px;" /></a></td>
-<td><a class="reference internal" href="../../_images/lena_compressed.png"><img alt="lena_compressed" src="../../_images/lena_compressed.png" style="width: 256.0px; height: 256.0px;" /></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="../../_images/face1.png"><img alt="face" src="../../_images/face1.png" style="width: 512.0px; height: 384.0px;" /></a></td>
+<td><a class="reference internal" href="../../_images/face_compressed.png"><img alt="face_compressed" src="../../_images/face_compressed.png" style="width: 512.0px; height: 384.0px;" /></a></td>
 </tr>
 <tr class="row-even"><td>Raw image</td>
-<td>K-means quantization</td>
+<td>K-means quantization (K=5)</td>
 </tr>
 </tbody>
 </table>
@@ -513,8 +512,8 @@ dimensions.</p>
 <p>An example showcasing face recognition using Principal Component
 Analysis for dimension reduction and Support Vector Machines for
 classification.</p>
-<a class="reference internal image-reference" href="../../_images/faces.png"><img alt="../../_images/faces.png" class="align-center" src="../../_images/faces.png" style="width: 504.0px; height: 504.0px;" /></a>
-<p>Stripped-down version of the <a class="reference external" href="http://scikit-learn.org/dev/auto_examples/applications/face_recognition.html">face recognition example</a>:</p>
+<a class="reference internal image-reference" href="../../_images/faces1.png"><img alt="../../_images/faces1.png" class="align-center" src="../../_images/faces1.png" style="width: 504.0px; height: 504.0px;" /></a>
+<p>Stripped-down version of the <a class="reference external" href="http://scikit-learn.org/stable/auto_examples/applications/face_recognition.html">face recognition example</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
 <div class="newline"></div><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_val</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">decomposition</span><span class="p">,</span> <span class="n">svm</span>

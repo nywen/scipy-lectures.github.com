@@ -601,10 +601,10 @@ post-mortem debugging on them, and find our problem more quickly:</p>
 <div class="newline"></div><span class="go">--&gt; 178             __builtin__.execfile(filename, *where)</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="go">/home/esc/physique-cuso-python-2013/scipy-lecture-notes/advanced/debugging/wiener_filtering.py in &lt;module&gt;()</span>
-<div class="newline"></div><span class="go">     55 pl.matshow(noisy_lena[cut], cmap=pl.cm.gray)</span>
+<div class="newline"></div><span class="go">     55 pl.matshow(noisy_face[cut], cmap=pl.cm.gray)</span>
 <div class="newline"></div><span class="go">     56</span>
-<div class="newline"></div><span class="go">---&gt; 57 denoised_lena = iterated_wiener(noisy_lena)</span>
-<div class="newline"></div><span class="go">     58 pl.matshow(denoised_lena[cut], cmap=pl.cm.gray)</span>
+<div class="newline"></div><span class="go">---&gt; 57 denoised_face = iterated_wiener(noisy_face)</span>
+<div class="newline"></div><span class="go">     58 pl.matshow(denoised_face[cut], cmap=pl.cm.gray)</span>
 <div class="newline"></div><span class="go">     59</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="go">/home/esc/physique-cuso-python-2013/scipy-lecture-notes/advanced/debugging/wiener_filtering.py in iterated_wiener(noisy_img, size)</span>

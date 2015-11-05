@@ -31,36 +31,12 @@ Examples for the image processing chapter
 .. raw:: html
 
 
-    <div class="thumbnailContainer" tooltip="Small example to plot lena. ">
+    <div class="thumbnailContainer" tooltip="Small example to plot a racoon face. ">
 
-.. figure:: ./images/thumb/plot_lena.png
-   :target: ./plot_lena.html
+.. figure:: ./images/thumb/plot_face.png
+   :target: ./plot_face.html
 
-   :ref:`example_plot_lena.py`
-
-
-.. raw:: html
-
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_lena
-
-
-
-.. raw:: html
-
-
-    <div class="thumbnailContainer" tooltip="The example demonstrates image interpolation on Lena. ">
-
-.. figure:: ./images/thumb/plot_interpolation_lena.png
-   :target: ./plot_interpolation_lena.html
-
-   :ref:`example_plot_interpolation_lena.py`
+   :ref:`example_plot_face.py`
 
 
 .. raw:: html
@@ -72,7 +48,31 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_interpolation_lena
+   ./plot_face
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="The example demonstrates image interpolation on a Racoon face. ">
+
+.. figure:: ./images/thumb/plot_interpolation_face.png
+   :target: ./plot_interpolation_face.html
+
+   :ref:`example_plot_interpolation_face.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_interpolation_face
 
 
 
@@ -103,6 +103,30 @@ Examples for the image processing chapter
 .. raw:: html
 
 
+    <div class="thumbnailContainer" tooltip="An example that displays a racoon face with matplotlib. ">
+
+.. figure:: ./images/thumb/plot_display_face.png
+   :target: ./plot_display_face.html
+
+   :ref:`example_plot_display_face.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_display_face
+
+
+
+.. raw:: html
+
+
     <div class="thumbnailContainer" tooltip="This example shows how to do image manipulation using common numpy arrays tricks.">
 
 .. figure:: ./images/thumb/plot_numpy_array.png
@@ -121,30 +145,6 @@ Examples for the image processing chapter
    :hidden:
 
    ./plot_numpy_array
-
-
-
-.. raw:: html
-
-
-    <div class="thumbnailContainer" tooltip="An example that displays lena with matplotlib. ">
-
-.. figure:: ./images/thumb/plot_display_lena.png
-   :target: ./plot_display_lena.html
-
-   :ref:`example_plot_display_lena.py`
-
-
-.. raw:: html
-
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_display_lena
 
 
 
@@ -271,12 +271,12 @@ Examples for the image processing chapter
 .. raw:: html
 
 
-    <div class="thumbnailContainer" tooltip="This example demoes image denoising on Lena. ">
+    <div class="thumbnailContainer" tooltip="This example demoes image denoising on a Racoon face. ">
 
-.. figure:: ./images/thumb/plot_lena_denoise.png
-   :target: ./plot_lena_denoise.html
+.. figure:: ./images/thumb/plot_face_denoise.png
+   :target: ./plot_face_denoise.html
 
-   :ref:`example_plot_lena_denoise.py`
+   :ref:`example_plot_face_denoise.py`
 
 
 .. raw:: html
@@ -288,7 +288,7 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_lena_denoise
+   ./plot_face_denoise
 
 
 
@@ -319,12 +319,12 @@ Examples for the image processing chapter
 .. raw:: html
 
 
-    <div class="thumbnailContainer" tooltip="This example demoes Total-Variation (TV) denoising on Lena. ">
+    <div class="thumbnailContainer" tooltip="This example demoes Total-Variation (TV) denoising on a Racoon face. ">
 
-.. figure:: ./images/thumb/plot_lena_tv_denoise.png
-   :target: ./plot_lena_tv_denoise.html
+.. figure:: ./images/thumb/plot_face_tv_denoise.png
+   :target: ./plot_face_tv_denoise.html
 
-   :ref:`example_plot_lena_tv_denoise.py`
+   :ref:`example_plot_face_tv_denoise.py`
 
 
 .. raw:: html
@@ -336,7 +336,7 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_lena_tv_denoise
+   ./plot_face_tv_denoise
 
 
 
@@ -439,12 +439,12 @@ Examples for the image processing chapter
 .. raw:: html
 
 
-    <div class="thumbnailContainer" tooltip="This examples demos some simple geometrical transformations on lena. ">
+    <div class="thumbnailContainer" tooltip="This examples demos some simple geometrical transformations on a Racoon face. ">
 
-.. figure:: ./images/thumb/plot_geom_lena.png
-   :target: ./plot_geom_lena.html
+.. figure:: ./images/thumb/plot_geom_face.png
+   :target: ./plot_geom_face.html
 
-   :ref:`example_plot_geom_lena.py`
+   :ref:`example_plot_geom_face.py`
 
 
 .. raw:: html
@@ -456,7 +456,7 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_geom_lena
+   ./plot_geom_face
 
 
 
