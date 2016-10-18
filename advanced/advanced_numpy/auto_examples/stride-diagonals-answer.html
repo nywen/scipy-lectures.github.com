@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Solution to the stride diagonal exercise &mdash; Scipy lecture notes</title>
+    <title>Solution to the stride diagonal exercise &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -65,7 +66,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -128,10 +129,10 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="../../../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -158,18 +159,19 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="solution-to-the-stride-diagonal-exercise">
 <span id="example-stride-diagonals-answer-py"></span><h1>Solution to the stride diagonal exercise<a class="headerlink" href="#solution-to-the-stride-diagonal-exercise" title="Permalink to this headline">¶</a></h1>
 <p>Solution showing how to use as_strided to stride in diagonal.</p>
-<p><strong>Python source code:</strong> <a class="reference download internal" href="../../../_downloads/stride-diagonals-answer.py"><tt class="xref download docutils literal"><span class="pre">stride-diagonals-answer.py</span></tt></a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">numpy.lib.stride_tricks</span> <span class="kn">import</span> <span class="n">as_strided</span>
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../../../_downloads/stride-diagonals-answer.py" download=""><code class="xref download docutils literal"><span class="pre">stride-diagonals-answer.py</span></code></a></p>
+<div class="highlight-default"><div class="highlight"><pre>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">numpy.lib.stride_tricks</span> <span class="k">import</span> <span class="n">as_strided</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c"># Part 1</span>
-<div class="newline"></div><span class="c">#</span>
+<div class="newline"></div><span class="c1">#</span>
+<div class="newline"></div><span class="c1"># Part 1</span>
+<div class="newline"></div><span class="c1">#</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
 <div class="newline"></div>              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
@@ -179,40 +181,40 @@ $(function () {
 <div class="newline"></div><span class="n">x_supdiag</span> <span class="o">=</span> <span class="n">as_strided</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">strides</span><span class="o">=</span><span class="p">((</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">itemsize</span><span class="p">,))</span>
 <div class="newline"></div><span class="n">x_subdiag</span> <span class="o">=</span> <span class="n">as_strided</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">strides</span><span class="o">=</span><span class="p">((</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">itemsize</span><span class="p">,))</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">print</span> <span class="n">x_diag</span>
-<div class="newline"></div><span class="k">print</span> <span class="n">x_supdiag</span>
-<div class="newline"></div><span class="k">print</span> <span class="n">x_subdiag</span>
+<div class="newline"></div><span class="nb">print</span> <span class="n">x_diag</span>
+<div class="newline"></div><span class="nb">print</span> <span class="n">x_supdiag</span>
+<div class="newline"></div><span class="nb">print</span> <span class="n">x_subdiag</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c"># Mini-exercise: (assume C memory order)</span>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c"># 0. How to pick diagonal entries of the matrix</span>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c"># 1. How to pick the super-diagonal entries [2, 6]</span>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c"># 2. The sub-diagonal entries [4, 8]</span>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c"># 99. Can you generalize this for any stride and shape combinations</span>
-<div class="newline"></div><span class="c">#     in the initial array?</span>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c">#     If you can, tell me, and maybe numpy.trace can be made faster :)</span>
-<div class="newline"></div><span class="c">#</span>
+<div class="newline"></div><span class="c1">#</span>
+<div class="newline"></div><span class="c1"># Mini-exercise: (assume C memory order)</span>
+<div class="newline"></div><span class="c1">#</span>
+<div class="newline"></div><span class="c1"># 0. How to pick diagonal entries of the matrix</span>
+<div class="newline"></div><span class="c1">#</span>
+<div class="newline"></div><span class="c1"># 1. How to pick the super-diagonal entries [2, 6]</span>
+<div class="newline"></div><span class="c1">#</span>
+<div class="newline"></div><span class="c1"># 2. The sub-diagonal entries [4, 8]</span>
+<div class="newline"></div><span class="c1">#</span>
+<div class="newline"></div><span class="c1"># 99. Can you generalize this for any stride and shape combinations</span>
+<div class="newline"></div><span class="c1">#     in the initial array?</span>
+<div class="newline"></div><span class="c1">#</span>
+<div class="newline"></div><span class="c1">#     If you can, tell me, and maybe numpy.trace can be made faster :)</span>
+<div class="newline"></div><span class="c1">#</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c"># Part 2</span>
-<div class="newline"></div><span class="c">#</span>
+<div class="newline"></div><span class="c1">#</span>
+<div class="newline"></div><span class="c1"># Part 2</span>
+<div class="newline"></div><span class="c1">#</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="c"># Compute the tensor trace</span>
+<div class="newline"></div><span class="c1"># Compute the tensor trace</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
-<div class="newline"></div><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-<div class="newline"></div>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<div class="newline"></div><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<div class="newline"></div>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
 <div class="newline"></div>        <span class="n">s</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="c"># by striding and using .sum()</span>
+<div class="newline"></div><span class="c1"># by striding and using .sum()</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">y</span> <span class="o">=</span> <span class="n">as_strided</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="p">((</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">itemsize</span><span class="p">,</span>
 <div class="newline"></div>                                         <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">itemsize</span><span class="p">))</span>
@@ -228,7 +230,7 @@ $(function () {
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc"></div>
 
@@ -254,10 +256,10 @@ $(function () {
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="../../../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -280,9 +282,9 @@ $(function () {
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

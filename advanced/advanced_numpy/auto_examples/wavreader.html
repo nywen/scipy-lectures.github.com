@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Exercise: reading a wav header &mdash; Scipy lecture notes</title>
+    <title>Exercise: reading a wav header &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -65,7 +66,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -128,10 +129,10 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="../../../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -158,53 +159,54 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="exercise-reading-a-wav-header">
 <span id="example-wavreader-py"></span><h1>Exercise: reading a wav header<a class="headerlink" href="#exercise-reading-a-wav-header" title="Permalink to this headline">¶</a></h1>
 <p>An exercise to learn complex dtypes.</p>
-<p><strong>Python source code:</strong> <a class="reference download internal" href="../../../_downloads/wavreader.py"><tt class="xref download docutils literal"><span class="pre">wavreader.py</span></tt></a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<div class="newline"></div><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../../../_downloads/wavreader.py" download=""><code class="xref download docutils literal"><span class="pre">wavreader.py</span></code></a></p>
+<div class="highlight-default"><div class="highlight"><pre>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">sys</span>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">wav_header_dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;chunk_id&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>   <span class="c"># flexible-sized scalar type, item size 4</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;chunk_size&quot;</span><span class="p">,</span> <span class="s">&quot;&lt;u4&quot;</span><span class="p">),</span>    <span class="c"># little-endian unsigned 32-bit integer</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;format&quot;</span><span class="p">,</span> <span class="s">&quot;S4&quot;</span><span class="p">),</span>         <span class="c"># 4-byte string</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;fmt_id&quot;</span><span class="p">,</span> <span class="s">&quot;S4&quot;</span><span class="p">),</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;fmt_size&quot;</span><span class="p">,</span> <span class="s">&quot;&lt;u4&quot;</span><span class="p">),</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;audio_fmt&quot;</span><span class="p">,</span> <span class="s">&quot;&lt;u2&quot;</span><span class="p">),</span>     <span class="c">#</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;num_channels&quot;</span><span class="p">,</span> <span class="s">&quot;&lt;u2&quot;</span><span class="p">),</span>  <span class="c"># .. more of the same ...</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;sample_rate&quot;</span><span class="p">,</span> <span class="s">&quot;&lt;u4&quot;</span><span class="p">),</span>   <span class="c">#</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;byte_rate&quot;</span><span class="p">,</span> <span class="s">&quot;&lt;u4&quot;</span><span class="p">),</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;block_align&quot;</span><span class="p">,</span> <span class="s">&quot;&lt;u2&quot;</span><span class="p">),</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;bits_per_sample&quot;</span><span class="p">,</span> <span class="s">&quot;&lt;u2&quot;</span><span class="p">),</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;data_id&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;S1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))),</span> <span class="c"># sub-array! **MUST** be fixed-size</span>
-<div class="newline"></div>     <span class="p">(</span><span class="s">&quot;data_size&quot;</span><span class="p">,</span> <span class="s">&quot;u4&quot;</span><span class="p">),</span>
-<div class="newline"></div>     <span class="c">#</span>
-<div class="newline"></div>     <span class="c"># the sound data itself cannot be represented here:</span>
-<div class="newline"></div>     <span class="c"># it does not have a fixed size</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;chunk_id&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>   <span class="c1"># flexible-sized scalar type, item size 4</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;chunk_size&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;u4&quot;</span><span class="p">),</span>    <span class="c1"># little-endian unsigned 32-bit integer</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;format&quot;</span><span class="p">,</span> <span class="s2">&quot;S4&quot;</span><span class="p">),</span>         <span class="c1"># 4-byte string</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;fmt_id&quot;</span><span class="p">,</span> <span class="s2">&quot;S4&quot;</span><span class="p">),</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;fmt_size&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;u4&quot;</span><span class="p">),</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;audio_fmt&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;u2&quot;</span><span class="p">),</span>     <span class="c1">#</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;num_channels&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;u2&quot;</span><span class="p">),</span>  <span class="c1"># .. more of the same ...</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;sample_rate&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;u4&quot;</span><span class="p">),</span>   <span class="c1">#</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;byte_rate&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;u4&quot;</span><span class="p">),</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;block_align&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;u2&quot;</span><span class="p">),</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;bits_per_sample&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;u2&quot;</span><span class="p">),</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;data_id&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;S1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))),</span> <span class="c1"># sub-array! **MUST** be fixed-size</span>
+<div class="newline"></div>     <span class="p">(</span><span class="s2">&quot;data_size&quot;</span><span class="p">,</span> <span class="s2">&quot;u4&quot;</span><span class="p">),</span>
+<div class="newline"></div>     <span class="c1">#</span>
+<div class="newline"></div>     <span class="c1"># the sound data itself cannot be represented here:</span>
+<div class="newline"></div>     <span class="c1"># it does not have a fixed size</span>
 <div class="newline"></div><span class="p">])</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">print</span> <span class="n">wav_header_dtype</span><span class="o">.</span><span class="n">fields</span>
+<div class="newline"></div><span class="nb">print</span> <span class="n">wav_header_dtype</span><span class="o">.</span><span class="n">fields</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="c"># Mini-exercise: Rewrite the above by supplying only the ``sample_rate`` and</span>
-<div class="newline"></div><span class="c">#                ``num_channels`` fields.</span>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c">#  wav_header_dtype = np.dtype(dict(</span>
-<div class="newline"></div><span class="c">#      names=[&#39;format&#39;, &#39;sample_rate&#39;, &#39;data_id&#39;],</span>
-<div class="newline"></div><span class="c">#      offsets= list of offsets in bytes, from start of structure</span>
-<div class="newline"></div><span class="c">#      formats= list of dtypes for each field,</span>
-<div class="newline"></div><span class="c">#  ))</span>
+<div class="newline"></div><span class="c1"># Mini-exercise: Rewrite the above by supplying only the ``sample_rate`` and</span>
+<div class="newline"></div><span class="c1">#                ``num_channels`` fields.</span>
+<div class="newline"></div><span class="c1">#</span>
+<div class="newline"></div><span class="c1">#  wav_header_dtype = np.dtype(dict(</span>
+<div class="newline"></div><span class="c1">#      names=[&#39;format&#39;, &#39;sample_rate&#39;, &#39;data_id&#39;],</span>
+<div class="newline"></div><span class="c1">#      offsets= list of offsets in bytes, from start of structure</span>
+<div class="newline"></div><span class="c1">#      formats= list of dtypes for each field,</span>
+<div class="newline"></div><span class="c1">#  ))</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="n">wav_header</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">wav_header_dtype</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <div class="newline"></div><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">print</span> <span class="s">&quot;Sample rate: </span><span class="si">%d</span><span class="s">, channels: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span>
-<div class="newline"></div>    <span class="n">wav_header</span><span class="p">[</span><span class="s">&#39;sample_rate&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
-<div class="newline"></div>    <span class="n">wav_header</span><span class="p">[</span><span class="s">&#39;num_channels&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<div class="newline"></div><span class="nb">print</span> <span class="s2">&quot;Sample rate: </span><span class="si">%d</span><span class="s2">, channels: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+<div class="newline"></div>    <span class="n">wav_header</span><span class="p">[</span><span class="s1">&#39;sample_rate&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+<div class="newline"></div>    <span class="n">wav_header</span><span class="p">[</span><span class="s1">&#39;num_channels&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -215,7 +217,7 @@ $(function () {
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc"></div>
 
@@ -241,10 +243,10 @@ $(function () {
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="../../../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -267,9 +269,9 @@ $(function () {
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

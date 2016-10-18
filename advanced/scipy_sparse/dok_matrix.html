@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2.5.2.2.3. Dictionary of Keys Format (DOK) &mdash; Scipy lecture notes</title>
+    <title>2.5.2.2.3. Dictionary of Keys Format (DOK) &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -68,7 +69,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -131,7 +132,7 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,10 +141,10 @@ $(function () {
         <li class="right" >
           <a href="lil_matrix.html" title="2.5.2.2.2. List of Lists Format (LIL)"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
-          <li><a href="index.html" >2.5. Sparse Matrices in SciPy</a> &raquo;</li>
-          <li><a href="storage_schemes.html" accesskey="U">2.5.2. Storage Schemes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >2. Advanced topics</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >2.5. Sparse Matrices in SciPy</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="storage_schemes.html" accesskey="U">2.5.2. Storage Schemes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -170,7 +171,7 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="dictionary-of-keys-format-dok">
 <h1>2.5.2.2.3. Dictionary of Keys Format (DOK)<a class="headerlink" href="#dictionary-of-keys-format-dok" title="Permalink to this headline">¶</a></h1>
@@ -178,7 +179,7 @@ $(function () {
 <li><dl class="first docutils">
 <dt>subclass of Python dict</dt>
 <dd><ul class="first last simple">
-<li>keys are <tt class="xref py py-obj docutils literal"><span class="pre">(row,</span> <span class="pre">column)</span></tt> index tuples (no duplicate entries allowed)</li>
+<li>keys are <cite>(row, column)</cite> index tuples (no duplicate entries allowed)</li>
 <li>values are corresponding non-zero values</li>
 </ul>
 </dd>
@@ -202,7 +203,7 @@ $(function () {
 </li>
 <li><p class="first">can be efficiently converted to a coo_matrix once constructed</p>
 </li>
-<li><p class="first">slow arithmetics (<tt class="xref py py-obj docutils literal"><span class="pre">for</span></tt> loops with <tt class="xref py py-obj docutils literal"><span class="pre">dict.iteritems()</span></tt>)</p>
+<li><p class="first">slow arithmetics (<cite>for</cite> loops with <cite>dict.iteritems()</cite>)</p>
 </li>
 <li><dl class="first docutils">
 <dt>use:</dt>
@@ -217,7 +218,7 @@ $(function () {
 <h2>2.5.2.2.3.1. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">create a DOK matrix element by element:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">dok_matrix</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">dok_matrix</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span>     
 <div class="newline"></div><span class="go">&lt;5x5 sparse matrix of type &#39;&lt;... &#39;numpy.float64&#39;&gt;&#39;</span>
 <div class="newline"></div><span class="go">        with 0 stored elements in Dictionary Of Keys format&gt;</span>
@@ -237,7 +238,7 @@ $(function () {
 </div>
 </li>
 <li><p class="first">slicing and indexing:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <div class="newline"></div><span class="go">0.0</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>     
 <div class="newline"></div><span class="go">&lt;1x2 sparse matrix of type &#39;&lt;... &#39;numpy.float64&#39;&gt;&#39;</span>
@@ -259,7 +260,7 @@ $(function () {
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc">
   <h3><a href="../../index.html">Table Of Contents</a></h3>
@@ -293,7 +294,7 @@ $(function () {
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -302,10 +303,10 @@ $(function () {
         <li class="right" >
           <a href="lil_matrix.html" title="2.5.2.2.2. List of Lists Format (LIL)"
              >previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
-          <li><a href="index.html" >2.5. Sparse Matrices in SciPy</a> &raquo;</li>
-          <li><a href="storage_schemes.html" >2.5.2. Storage Schemes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >2. Advanced topics</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >2.5. Sparse Matrices in SciPy</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="storage_schemes.html" >2.5.2. Storage Schemes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -328,9 +329,9 @@ $(function () {
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2.5.2.2.4. Coordinate Format (COO) &mdash; Scipy lecture notes</title>
+    <title>2.5.2.2.4. Coordinate Format (COO) &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -68,7 +69,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -131,7 +132,7 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,10 +141,10 @@ $(function () {
         <li class="right" >
           <a href="dok_matrix.html" title="2.5.2.2.3. Dictionary of Keys Format (DOK)"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
-          <li><a href="index.html" >2.5. Sparse Matrices in SciPy</a> &raquo;</li>
-          <li><a href="storage_schemes.html" accesskey="U">2.5.2. Storage Schemes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >2. Advanced topics</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >2.5. Sparse Matrices in SciPy</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="storage_schemes.html" accesskey="U">2.5.2. Storage Schemes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -170,7 +171,7 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="coordinate-format-coo">
 <h1>2.5.2.2.4. Coordinate Format (COO)<a class="headerlink" href="#coordinate-format-coo" title="Permalink to this headline">¶</a></h1>
@@ -178,11 +179,11 @@ $(function () {
 <li><dl class="first docutils">
 <dt>also known as the &#8216;ijv&#8217; or &#8216;triplet&#8217; format</dt>
 <dd><ul class="first last simple">
-<li>three NumPy arrays: <tt class="xref py py-obj docutils literal"><span class="pre">row</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">col</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">data</span></tt></li>
-<li><tt class="xref py py-obj docutils literal"><span class="pre">data[i]</span></tt> is value at <tt class="xref py py-obj docutils literal"><span class="pre">(row[i],</span> <span class="pre">col[i])</span></tt> position</li>
+<li>three NumPy arrays: <cite>row</cite>, <cite>col</cite>, <cite>data</cite></li>
+<li><cite>data[i]</cite> is value at <cite>(row[i], col[i])</cite> position</li>
 <li>permits duplicate entries</li>
-<li>subclass of <tt class="xref py py-class docutils literal"><span class="pre">_data_matrix</span></tt> (sparse matrix classes with
-<tt class="xref py py-obj docutils literal"><span class="pre">data</span></tt> attribute)</li>
+<li>subclass of <code class="xref py py-class docutils literal"><span class="pre">_data_matrix</span></code> (sparse matrix classes with
+<cite>.data</cite> attribute)</li>
 </ul>
 </dd>
 </dl>
@@ -195,7 +196,7 @@ $(function () {
 <li>dense matrix (array)</li>
 <li>sparse matrix</li>
 <li>shape tuple (create empty matrix)</li>
-<li><tt class="xref py py-obj docutils literal"><span class="pre">(data,</span> <span class="pre">ij)</span></tt> tuple</li>
+<li><cite>(data, ij)</cite> tuple</li>
 </ul>
 </dd>
 </dl>
@@ -237,7 +238,7 @@ matrices</li>
 <h2>2.5.2.2.4.1. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">create empty COO matrix:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
 <div class="newline"></div><span class="go">matrix([[0, 0, 0, 0],</span>
 <div class="newline"></div><span class="go">        [0, 0, 0, 0],</span>
@@ -245,8 +246,8 @@ matrices</li>
 <div class="newline"></div></pre></div>
 </div>
 </li>
-<li><p class="first">create using <tt class="xref py py-obj docutils literal"><span class="pre">(data,</span> <span class="pre">ij)</span></tt> tuple:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<li><p class="first">create using <cite>(data, ij)</cite> tuple:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -262,7 +263,7 @@ matrices</li>
 </div>
 </li>
 <li><p class="first">duplicates entries are summed together:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -275,10 +276,7 @@ matrices</li>
 </div>
 </li>
 <li><p class="first">no slicing...:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>   
-<div class="newline"></div><span class="gt">Traceback (most recent call last):</span>
-<div class="newline"></div><span class="c">...</span>
-<div class="newline"></div><span class="gr">TypeError</span>: <span class="n">&#39;coo_matrix&#39; object ...</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mtx</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>   
 <div class="newline"></div><span class="gt">Traceback (most recent call last):</span>
 <div class="newline"></div><span class="c">...</span>
 <div class="newline"></div><span class="gr">TypeError</span>: <span class="n">&#39;coo_matrix&#39; object ...</span>
@@ -294,7 +292,7 @@ matrices</li>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc">
   <h3><a href="../../index.html">Table Of Contents</a></h3>
@@ -328,7 +326,7 @@ matrices</li>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -337,10 +335,10 @@ matrices</li>
         <li class="right" >
           <a href="dok_matrix.html" title="2.5.2.2.3. Dictionary of Keys Format (DOK)"
              >previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
-          <li><a href="index.html" >2.5. Sparse Matrices in SciPy</a> &raquo;</li>
-          <li><a href="storage_schemes.html" >2.5.2. Storage Schemes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >2. Advanced topics</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >2.5. Sparse Matrices in SciPy</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="storage_schemes.html" >2.5.2. Storage Schemes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -363,9 +361,9 @@ matrices</li>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

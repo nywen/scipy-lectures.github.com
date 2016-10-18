@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>LOBPCG: block-preconditionned solver &mdash; Scipy lecture notes</title>
+    <title>LOBPCG: block-preconditionned solver &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -65,7 +66,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -128,10 +129,10 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="../../../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -158,17 +159,18 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="lobpcg-block-preconditionned-solver">
 <span id="example-lobpcg-sakurai-py"></span><h1>LOBPCG: block-preconditionned solver<a class="headerlink" href="#lobpcg-block-preconditionned-solver" title="Permalink to this headline">¶</a></h1>
 <p>This example demos the LOBPCG block-preconditionned solver.</p>
-<p><strong>Python source code:</strong> <a class="reference download internal" href="../../../_downloads/lobpcg_sakurai.py"><tt class="xref download docutils literal"><span class="pre">lobpcg_sakurai.py</span></tt></a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">ones</span><span class="p">,</span> <span class="n">sort</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> \
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../../../_downloads/lobpcg_sakurai.py" download=""><code class="xref download docutils literal"><span class="pre">lobpcg_sakurai.py</span></code></a></p>
+<div class="highlight-default"><div class="highlight"><pre>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">ones</span><span class="p">,</span> <span class="n">sort</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> \
 <div class="newline"></div>     <span class="n">set_printoptions</span><span class="p">,</span> <span class="n">r_</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">lobpcg</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="n">loglog</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="n">title</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">import</span> <span class="n">lobpcg</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">sparse</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">pylab</span> <span class="k">import</span> <span class="n">loglog</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="n">title</span>
 <div class="newline"></div><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">time</span>
 <div class="newline"></div>
@@ -185,35 +187,35 @@ $(function () {
 <div class="newline"></div>    <span class="n">B</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">spdiags</span><span class="p">([</span><span class="n">d2</span><span class="p">,</span><span class="n">d1</span><span class="p">,</span><span class="n">d0</span><span class="p">,</span><span class="n">d1</span><span class="p">,</span><span class="n">d2</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">k</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">w_ex</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">16.</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)),</span><span class="mi">4</span><span class="p">)))</span> <span class="c"># exact eigenvalues</span>
+<div class="newline"></div>    <span class="n">w_ex</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">16.</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)),</span><span class="mi">4</span><span class="p">)))</span> <span class="c1"># exact eigenvalues</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">return</span> <span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span> <span class="n">w_ex</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">m</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c"># Blocksize</span>
+<div class="newline"></div><span class="n">m</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Blocksize</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c"># Large scale</span>
-<div class="newline"></div><span class="c">#</span>
+<div class="newline"></div><span class="c1">#</span>
+<div class="newline"></div><span class="c1"># Large scale</span>
+<div class="newline"></div><span class="c1">#</span>
 <div class="newline"></div><span class="n">n</span> <span class="o">=</span> <span class="mi">2500</span>
-<div class="newline"></div><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span> <span class="n">w_ex</span> <span class="o">=</span> <span class="n">sakurai</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c"># Mikota pair</span>
+<div class="newline"></div><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span> <span class="n">w_ex</span> <span class="o">=</span> <span class="n">sakurai</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># Mikota pair</span>
 <div class="newline"></div><span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
 <div class="newline"></div><span class="n">data</span><span class="o">=</span><span class="p">[]</span>
 <div class="newline"></div><span class="n">tt</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">clock</span><span class="p">()</span>
-<div class="newline"></div><span class="n">eigs</span><span class="p">,</span><span class="n">vecs</span><span class="p">,</span> <span class="n">resnh</span> <span class="o">=</span> <span class="n">lobpcg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">B</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">retResidualNormsHistory</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="newline"></div><span class="n">eigs</span><span class="p">,</span><span class="n">vecs</span><span class="p">,</span> <span class="n">resnh</span> <span class="o">=</span> <span class="n">lobpcg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">B</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">retResidualNormsHistory</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <div class="newline"></div><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">clock</span><span class="p">()</span><span class="o">-</span><span class="n">tt</span><span class="p">)</span>
-<div class="newline"></div><span class="k">print</span> <span class="s">&#39;Results by LOBPCG for n=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<div class="newline"></div><span class="k">print</span>
-<div class="newline"></div><span class="k">print</span> <span class="n">eigs</span>
-<div class="newline"></div><span class="k">print</span>
-<div class="newline"></div><span class="k">print</span> <span class="s">&#39;Exact eigenvalues&#39;</span>
-<div class="newline"></div><span class="k">print</span>
-<div class="newline"></div><span class="k">print</span> <span class="n">w_ex</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span>
-<div class="newline"></div><span class="k">print</span>
-<div class="newline"></div><span class="k">print</span> <span class="s">&#39;Elapsed time&#39;</span><span class="p">,</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<div class="newline"></div><span class="n">loglog</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">w_ex</span><span class="p">,</span><span class="s">&#39;b.&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;Number $i$&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\lambda_i$&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="n">title</span><span class="p">(</span><span class="s">&#39;Eigenvalue distribution&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="nb">print</span> <span class="s1">&#39;Results by LOBPCG for n=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class="newline"></div><span class="nb">print</span>
+<div class="newline"></div><span class="nb">print</span> <span class="n">eigs</span>
+<div class="newline"></div><span class="nb">print</span>
+<div class="newline"></div><span class="nb">print</span> <span class="s1">&#39;Exact eigenvalues&#39;</span>
+<div class="newline"></div><span class="nb">print</span>
+<div class="newline"></div><span class="nb">print</span> <span class="n">w_ex</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span>
+<div class="newline"></div><span class="nb">print</span>
+<div class="newline"></div><span class="nb">print</span> <span class="s1">&#39;Elapsed time&#39;</span><span class="p">,</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="newline"></div><span class="n">loglog</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">w_ex</span><span class="p">,</span><span class="s1">&#39;b.&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="n">xlabel</span><span class="p">(</span><span class="s1">r&#39;Number $i$&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="n">ylabel</span><span class="p">(</span><span class="s1">r&#39;$\lambda_i$&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Eigenvalue distribution&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="n">show</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -224,7 +226,7 @@ $(function () {
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc"></div>
 
@@ -250,10 +252,10 @@ $(function () {
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="../../../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -276,9 +278,9 @@ $(function () {
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

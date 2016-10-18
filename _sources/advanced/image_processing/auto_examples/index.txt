@@ -1,46 +1,18 @@
-
-
-
-.. raw:: html
-
-
-    <style type="text/css">
-
-    div#sidebarbutton {
-        display: none;
-    }
-
-    </style>
-
-
-Examples
-========
-
-.. _examples-index:
-
-
-
 Examples for the image processing chapter
 =========================================
 
 
-
-
-
-
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Small example to plot a racoon face. ">
 
-    <div class="thumbnailContainer" tooltip="Small example to plot a racoon face. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_face.png
-   :target: ./plot_face.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_face_thumb.png
 
-   :ref:`example_plot_face.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_face.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -48,23 +20,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_face
-
-
+   /advanced/image_processing/auto_examples/plot_face
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="The example demonstrates image interpolation on a Racoon face. ">
 
-    <div class="thumbnailContainer" tooltip="The example demonstrates image interpolation on a Racoon face. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_interpolation_face.png
-   :target: ./plot_interpolation_face.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_interpolation_face_thumb.png
 
-   :ref:`example_plot_interpolation_face.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_interpolation_face.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -72,23 +40,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_interpolation_face
-
-
+   /advanced/image_processing/auto_examples/plot_interpolation_face
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to do image manipulation using common numpy arrays tricks.">
 
-    <div class="thumbnailContainer" tooltip="An example showing how to use broad-casting to plot the mean of blocks of an image. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_block_mean.png
-   :target: ./plot_block_mean.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_numpy_array_thumb.png
 
-   :ref:`example_plot_block_mean.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_numpy_array.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -96,23 +60,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_block_mean
-
-
+   /advanced/image_processing/auto_examples/plot_numpy_array
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to do a radial mean with scikit-image. ">
 
-    <div class="thumbnailContainer" tooltip="An example that displays a racoon face with matplotlib. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_display_face.png
-   :target: ./plot_display_face.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_radial_mean_thumb.png
 
-   :ref:`example_plot_display_face.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_radial_mean.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -120,23 +80,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_display_face
-
-
+   /advanced/image_processing/auto_examples/plot_radial_mean
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="An example showing how to use broad-casting to plot the mean of blocks of an image. ">
 
-    <div class="thumbnailContainer" tooltip="This example shows how to do image manipulation using common numpy arrays tricks.">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_numpy_array.png
-   :target: ./plot_numpy_array.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_block_mean_thumb.png
 
-   :ref:`example_plot_numpy_array.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_block_mean.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -144,23 +100,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_numpy_array
-
-
+   /advanced/image_processing/auto_examples/plot_block_mean
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="An example that displays a racoon face with matplotlib. ">
 
-    <div class="thumbnailContainer" tooltip="This example shows how to do a radial mean with scikit-image. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_radial_mean.png
-   :target: ./plot_radial_mean.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_display_face_thumb.png
 
-   :ref:`example_plot_radial_mean.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_display_face.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -168,23 +120,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_radial_mean
-
-
+   /advanced/image_processing/auto_examples/plot_display_face
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to sharpen an image in noiseless situation by applying the filter invers...">
 
-    <div class="thumbnailContainer" tooltip="An example showing various processes that blur an image. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_blur.png
-   :target: ./plot_blur.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_sharpen_thumb.png
 
-   :ref:`example_plot_blur.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_sharpen.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -192,23 +140,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_blur
-
-
+   /advanced/image_processing/auto_examples/plot_sharpen
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="An example showing various processes that blur an image. ">
 
-    <div class="thumbnailContainer" tooltip="This example shows how to sharpen an image in noiseless situation by applying the filter invers...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_sharpen.png
-   :target: ./plot_sharpen.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_blur_thumb.png
 
-   :ref:`example_plot_sharpen.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_blur.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -216,23 +160,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_sharpen
-
-
+   /advanced/image_processing/auto_examples/plot_blur
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="The example generates and displays simple synthetic data. ">
 
-    <div class="thumbnailContainer" tooltip="This example shows simple operations of mathematical morphology. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_propagation.png
-   :target: ./plot_propagation.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_synthetic_data_thumb.png
 
-   :ref:`example_plot_propagation.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_synthetic_data.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -240,23 +180,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_propagation
-
-
+   /advanced/image_processing/auto_examples/plot_synthetic_data
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows simple operations of mathematical morphology. ">
 
-    <div class="thumbnailContainer" tooltip="The example generates and displays simple synthetic data. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_synthetic_data.png
-   :target: ./plot_synthetic_data.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_propagation_thumb.png
 
-   :ref:`example_plot_synthetic_data.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_propagation.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -264,23 +200,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_synthetic_data
-
-
+   /advanced/image_processing/auto_examples/plot_propagation
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demoes image denoising on a Racoon face. ">
 
-    <div class="thumbnailContainer" tooltip="This example demoes image denoising on a Racoon face. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_face_denoise.png
-   :target: ./plot_face_denoise.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_face_denoise_thumb.png
 
-   :ref:`example_plot_face_denoise.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_face_denoise.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -288,23 +220,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_face_denoise
-
-
+   /advanced/image_processing/auto_examples/plot_face_denoise
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to extract the bounding box of the largest object">
 
-    <div class="thumbnailContainer" tooltip="This example illustrates greyscale mathematical morphology. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_greyscale_dilation.png
-   :target: ./plot_greyscale_dilation.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_find_object_thumb.png
 
-   :ref:`example_plot_greyscale_dilation.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_find_object.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -312,23 +240,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_greyscale_dilation
-
-
+   /advanced/image_processing/auto_examples/plot_find_object
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This examples shows how to measure quantities from various images.">
 
-    <div class="thumbnailContainer" tooltip="This example demoes Total-Variation (TV) denoising on a Racoon face. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_face_tv_denoise.png
-   :target: ./plot_face_tv_denoise.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_measure_data_thumb.png
 
-   :ref:`example_plot_face_tv_denoise.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_measure_data.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -336,23 +260,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_face_tv_denoise
-
-
+   /advanced/image_processing/auto_examples/plot_measure_data
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demoes Total-Variation (TV) denoising on a Racoon face. ">
 
-    <div class="thumbnailContainer" tooltip="This example shows how to extract the bounding box of the largest object">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_find_object.png
-   :target: ./plot_find_object.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_face_tv_denoise_thumb.png
 
-   :ref:`example_plot_find_object.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_face_tv_denoise.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -360,23 +280,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_find_object
-
-
+   /advanced/image_processing/auto_examples/plot_face_tv_denoise
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This examples demos some simple geometrical transformations on a Racoon face. ">
 
-    <div class="thumbnailContainer" tooltip="This example shows the original image, the noisy image, the denoised one (with the median filte...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_denoising.png
-   :target: ./plot_denoising.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_geom_face_thumb.png
 
-   :ref:`example_plot_denoising.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_geom_face.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -384,23 +300,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_denoising
-
-
+   /advanced/image_processing/auto_examples/plot_geom_face
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows the original image, the noisy image, the denoised one (with the median filte...">
 
-    <div class="thumbnailContainer" tooltip="This examples shows how to measure quantities from various images.">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_measure_data.png
-   :target: ./plot_measure_data.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_denoising_thumb.png
 
-   :ref:`example_plot_measure_data.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_denoising.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -408,23 +320,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_measure_data
-
-
+   /advanced/image_processing/auto_examples/plot_denoising
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example does simple histogram analysis to perform segmentation. ">
 
-    <div class="thumbnailContainer" tooltip="This example shows how to do segmentation with watershed. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_watershed_segmentation.png
-   :target: ./plot_watershed_segmentation.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_histo_segmentation_thumb.png
 
-   :ref:`example_plot_watershed_segmentation.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_histo_segmentation.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -432,23 +340,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_watershed_segmentation
-
-
+   /advanced/image_processing/auto_examples/plot_histo_segmentation
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="The Sobel filter is one of the simplest way of finding edges. ">
 
-    <div class="thumbnailContainer" tooltip="This examples demos some simple geometrical transformations on a Racoon face. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_geom_face.png
-   :target: ./plot_geom_face.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_find_edges_thumb.png
 
-   :ref:`example_plot_geom_face.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_find_edges.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -456,23 +360,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_geom_face
-
-
+   /advanced/image_processing/auto_examples/plot_find_edges
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates greyscale mathematical morphology. ">
 
-    <div class="thumbnailContainer" tooltip="This example does simple histogram analysis to perform segmentation. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_histo_segmentation.png
-   :target: ./plot_histo_segmentation.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_greyscale_dilation_thumb.png
 
-   :ref:`example_plot_histo_segmentation.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_greyscale_dilation.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -480,23 +380,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_histo_segmentation
-
-
+   /advanced/image_processing/auto_examples/plot_greyscale_dilation
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="An example showing how to clean segmentation with mathematical morphology: removing small regio...">
 
-    <div class="thumbnailContainer" tooltip="This example performs a Gaussian mixture model analysis of the image histogram to find the righ...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_GMM.png
-   :target: ./plot_GMM.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_clean_morpho_thumb.png
 
-   :ref:`example_plot_GMM.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_clean_morpho.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -504,23 +400,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_GMM
-
-
+   /advanced/image_processing/auto_examples/plot_clean_morpho
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example performs a Gaussian mixture model analysis of the image histogram to find the righ...">
 
-    <div class="thumbnailContainer" tooltip="The Sobel filter is one of the simplest way of finding edges. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_find_edges.png
-   :target: ./plot_find_edges.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_GMM_thumb.png
 
-   :ref:`example_plot_find_edges.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_GMM.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -528,23 +420,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_find_edges
-
-
+   /advanced/image_processing/auto_examples/plot_GMM
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to do segmentation with watershed. ">
 
-    <div class="thumbnailContainer" tooltip="An example showing how to clean segmentation with mathematical morphology: removing small regio...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_clean_morpho.png
-   :target: ./plot_clean_morpho.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_watershed_segmentation_thumb.png
 
-   :ref:`example_plot_clean_morpho.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_watershed_segmentation.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -552,23 +440,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_clean_morpho
-
-
+   /advanced/image_processing/auto_examples/plot_watershed_segmentation
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example performs a simple granulometry analysis. ">
 
-    <div class="thumbnailContainer" tooltip="This example performs a simple granulometry analysis. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_granulo.png
-   :target: ./plot_granulo.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_granulo_thumb.png
 
-   :ref:`example_plot_granulo.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_granulo.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -576,23 +460,19 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_granulo
-
-
+   /advanced/image_processing/auto_examples/plot_granulo
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example uses spectral clustering to do segmentation. ">
 
-    <div class="thumbnailContainer" tooltip="This example uses spectral clustering to do segmentation. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_spectral_clustering.png
-   :target: ./plot_spectral_clustering.html
+    .. figure:: /advanced/image_processing/auto_examples/images/thumb/sphx_glr_plot_spectral_clustering_thumb.png
 
-   :ref:`example_plot_spectral_clustering.py`
-
+        :ref:`sphx_glr_advanced_image_processing_auto_examples_plot_spectral_clustering.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -600,10 +480,26 @@ Examples for the image processing chapter
 .. toctree::
    :hidden:
 
-   ./plot_spectral_clustering
-
-
+   /advanced/image_processing/auto_examples/plot_spectral_clustering
 .. raw:: html
 
-    <div style="clear: both"></div>
-    
+    <div style='clear:both'></div>
+
+
+
+.. container:: sphx-glr-footer
+
+
+  .. container:: sphx-glr-download
+
+    :download:`Download all examples in Python source code: advanced_image_processing_auto_examples_python.zip </advanced/image_processing/auto_examples/advanced_image_processing_auto_examples_python.zip>`
+
+
+
+  .. container:: sphx-glr-download
+
+    :download:`Download all examples in Jupyter notebooks: advanced_image_processing_auto_examples_jupyter.zip </advanced/image_processing/auto_examples/advanced_image_processing_auto_examples_jupyter.zip>`
+
+.. rst-class:: sphx-glr-signature
+
+    `Generated by Sphinx-Gallery <http://sphinx-gallery.readthedocs.io>`_

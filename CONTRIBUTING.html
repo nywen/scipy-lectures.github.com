@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Contributing &mdash; Scipy lecture notes</title>
+    <title>Contributing &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -65,7 +66,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -128,10 +129,10 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -158,26 +159,53 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="contributing">
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<p>The SciPy lecture notes are a community-based effort and require constant
+maintenance and improvements. New contributions such as wording
+improvements or inclusion of new topics are welcome.</p>
+<div class="section" id="contributing-guide">
+<h2>Contributing guide<a class="headerlink" href="#contributing-guide" title="Permalink to this headline">¶</a></h2>
+<p>The directory <code class="docutils literal"><span class="pre">guide</span></code> contains instructions on how to contribute:</p>
+<div class="topic">
+<p class="topic-title first"><strong>Example chapter</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide/index.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#id1">How to contribute ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#using-github">Using GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#keeping-it-concise-collapsing-paragraphs">Keeping it concise: collapsing paragraphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#figures-and-code-examples">Figures and code examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#using-markup">Using Markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#linking-to-package-documentations">Linking to package documentations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#chapter-section-subsection-paragraph">Chapter, section, subsection, paragraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#admonitions">Admonitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#clearing-floats">Clearing floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="section" id="building-instructions">
 <h2>Building instructions<a class="headerlink" href="#building-instructions" title="Permalink to this headline">¶</a></h2>
 <p>To generate the html output for on-screen display, Type:</p>
-<div class="highlight-python"><div class="highlight"><pre>make html
+<div class="highlight-default"><div class="highlight"><pre><span class="n">make</span> <span class="n">html</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>the generated html files can be found in <tt class="docutils literal"><span class="pre">build/html</span></tt></p>
+<p>the generated html files can be found in <code class="docutils literal"><span class="pre">build/html</span></code></p>
 <p>The first build takes a long time, but information is cached and
 subsequent builds will be faster.</p>
 <p>To generate the pdf file for printing:</p>
-<div class="highlight-python"><div class="highlight"><pre>make pdf
+<div class="highlight-default"><div class="highlight"><pre><span class="n">make</span> <span class="n">pdf</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>The pdf builder is a bit pointy and you might have some TeX errors. Tweaking
-the layout in the <tt class="docutils literal"><span class="pre">*.rst</span></tt> files is usually enough to work around these
-problems.</p>
+<p>The pdf builder is a bit difficult and you might have some TeX errors.
+Tweaking the layout in the <code class="docutils literal"><span class="pre">*.rst</span></code> files is usually enough to work
+around these problems.</p>
 <div class="section" id="requirements">
 <h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
 <p><em>probably incomplete</em></p>
@@ -192,45 +220,24 @@ problems.</p>
 <li>pandas</li>
 <li>seaborn</li>
 </ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="building-on-fedora">
-<h2>Building on Fedora<a class="headerlink" href="#building-on-fedora" title="Permalink to this headline">¶</a></h2>
+<div class="topic">
+<p class="topic-title first">Building on Fedora</p>
 <p>As root:</p>
-<div class="highlight-python"><div class="highlight"><pre>yum install python make python-matplotlib texlive-pdfjam texlive scipy \
-<div class="newline"></div>texlive-framed texlive-threeparttable texlive-wrapfig texlive-multirow
-<div class="newline"></div>pip install Sphinx
-<div class="newline"></div>pip install Cython
-<div class="newline"></div>pip install scikit-learn
-<div class="newline"></div>pip install scikit-image
+<div class="highlight-default"><div class="highlight"><pre><span class="n">yum</span> <span class="n">install</span> <span class="n">python</span> <span class="n">make</span> <span class="n">python</span><span class="o">-</span><span class="n">matplotlib</span> <span class="n">texlive</span><span class="o">-</span><span class="n">pdfjam</span> <span class="n">texlive</span> <span class="n">scipy</span> \
+<div class="newline"></div><span class="n">texlive</span><span class="o">-</span><span class="n">framed</span> <span class="n">texlive</span><span class="o">-</span><span class="n">threeparttable</span> <span class="n">texlive</span><span class="o">-</span><span class="n">wrapfig</span> <span class="n">texlive</span><span class="o">-</span><span class="n">multirow</span>
+<div class="newline"></div><span class="n">pip</span> <span class="n">install</span> <span class="n">Sphinx</span>
+<div class="newline"></div><span class="n">pip</span> <span class="n">install</span> <span class="n">Cython</span>
+<div class="newline"></div><span class="n">pip</span> <span class="n">install</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span>
+<div class="newline"></div><span class="n">pip</span> <span class="n">install</span> <span class="n">scikit</span><span class="o">-</span><span class="n">image</span>
 <div class="newline"></div></pre></div>
 </div>
 </div>
-<div class="section" id="contributing-guide-and-example-chapter">
-<h2>Contributing guide and example chapter<a class="headerlink" href="#contributing-guide-and-example-chapter" title="Permalink to this headline">¶</a></h2>
-<p>The directory <tt class="docutils literal"><span class="pre">guide</span></tt> contains an example chapter with specific
-instructions on how to contribute:</p>
-<div class="topic">
-<p class="topic-title first"><strong>Example chapter</strong></p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="guide/index.html">How to contribute</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#id1">How to contribute ?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#keeping-it-concise-collapsing-paragraphs">Keeping it concise: collapsing paragraphs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#figures-and-code-examples">Figures and code examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#using-markup">Using Markup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#linking-to-package-documentations">Linking to package documentations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#chapter-section-subsection-paragraph">Chapter, section, subsection, paragraph</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#using-github">Using Github</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#admonitions">Admonitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#clearing-floats">Clearing floats</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#references">References</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
 <p><div style="clear: both"></div></p>
+</div>
 </div>
 </div>
 
@@ -238,18 +245,17 @@ instructions on how to contribute:</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Contributing</a><ul>
+<li><a class="reference internal" href="#contributing-guide">Contributing guide</a></li>
 <li><a class="reference internal" href="#building-instructions">Building instructions</a><ul>
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#building-on-fedora">Building on Fedora</a></li>
-<li><a class="reference internal" href="#contributing-guide-and-example-chapter">Contributing guide and example chapter</a></li>
 </ul>
 </li>
 </ul>
@@ -277,10 +283,10 @@ instructions on how to contribute:</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -303,9 +309,9 @@ instructions on how to contribute:</p>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

@@ -1,12 +1,23 @@
 What's new
 ==========
 
+* Rework of intro chapter (Gaël Varoquaux)
+
+* Integrate sphinx-gallery: examples are now Jupyter notebooks (Gaël
+  Varoquaux, Gerg-Ludwig Ingold, Óscar Nájera)
+
+* Better Python 3 tests and support (Gert-Ludwig Ingold)
+
+* Adapt examples to Matplotlib 1.5 (Gaël Varoquaux)
+
+* Modernize numpy chapter (Bartosz Telenczuk)
+
 Release 2015.3 (November 2015)
 -------------------------------------
 
 * Collapsed sidebar can now pop up for mid-sized display (Gaël Varoquaux)
 
-* Relaced pictures of Lena by racoon face (Thouis Jones)
+* Replaced pictures of Lena by racoon face (Thouis Jones)
 
 Release 2015.2 (October 2015)
 -------------------------------------

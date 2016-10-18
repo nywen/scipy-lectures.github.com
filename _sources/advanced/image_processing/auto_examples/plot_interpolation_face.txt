@@ -21,6 +21,6 @@ The example demonstrates image interpolation on a Racoon face.
 .. literalinclude:: plot_interpolation_face.py
     :lines: 7-
 
-**Total running time of the example:**  0.22 seconds
-( 0 minutes  0.22 seconds)
+**Total running time of the example:**  0.29 seconds
+( 0 minutes  0.29 seconds)
     

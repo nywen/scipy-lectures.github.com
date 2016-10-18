@@ -21,6 +21,6 @@ Example demoing the dash join style.
 .. literalinclude:: plot_dash_joinstyle.py
     :lines: 7-
 
-**Total running time of the example:**  0.03 seconds
-( 0 minutes  0.03 seconds)
+**Total running time of the example:**  0.04 seconds
+( 0 minutes  0.04 seconds)
     

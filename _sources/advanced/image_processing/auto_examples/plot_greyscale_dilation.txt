@@ -21,6 +21,6 @@ This example illustrates greyscale mathematical morphology.
 .. literalinclude:: plot_greyscale_dilation.py
     :lines: 7-
 
-**Total running time of the example:**  0.17 seconds
-( 0 minutes  0.17 seconds)
+**Total running time of the example:**  0.13 seconds
+( 0 minutes  0.13 seconds)
     

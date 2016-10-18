@@ -1,46 +1,18 @@
-
-
-
-.. raw:: html
-
-
-    <style type="text/css">
-
-    div#sidebarbutton {
-        display: none;
-    }
-
-    </style>
-
-
-Examples
-========
-
-.. _examples-index:
-
-
-
 Examples for the mathematical optimization chapter
 ==================================================
 
 
-
-
-
-
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Demo non-convex problems ">
 
-    <div class="thumbnailContainer" tooltip="Demo non-convex problems ">
+.. only:: html
 
-.. figure:: ./images/thumb/non_convex.png
-   :target: ./non_convex.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_non_convex_thumb.png
 
-   :ref:`example_non_convex.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_non_convex.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -48,23 +20,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./non_convex
-
-
+   /advanced/mathematical_optimization/auto_examples/non_convex
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Draws a figure explaining noisy vs non-noisy optimization ">
 
-    <div class="thumbnailContainer" tooltip="Draws a figure explaining noisy vs non-noisy optimization ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_noisy.png
-   :target: ./plot_noisy.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_noisy_thumb.png
 
-   :ref:`example_plot_noisy.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_noisy.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -72,23 +40,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./plot_noisy
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_noisy
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Draws a figure to explain smooth versus non smooth optimization. ">
 
-    <div class="thumbnailContainer" tooltip="Draws a figure to explain smooth versus non smooth optimization. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_smooth.png
-   :target: ./plot_smooth.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_smooth_thumb.png
 
-   :ref:`example_plot_smooth.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_smooth.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -96,23 +60,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./plot_smooth
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_smooth
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="A curve fitting example ">
 
-    <div class="thumbnailContainer" tooltip="A curve fitting example ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_curve_fit.png
-   :target: ./plot_curve_fit.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_curve_fit_thumb.png
 
-   :ref:`example_plot_curve_fit.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_curve_fit.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -120,23 +80,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./plot_curve_fit
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_curve_fit
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="A figure showing the definition of a convex function ">
 
-    <div class="thumbnailContainer" tooltip="A figure showing the definition of a convex function ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_convex.png
-   :target: ./plot_convex.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_convex_thumb.png
 
-   :ref:`example_plot_convex.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_convex.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -144,23 +100,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./plot_convex
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_convex
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="An excercise of finding minimum. This excercise is hard because the function is very flat aroun...">
 
-    <div class="thumbnailContainer" tooltip="An excercise of finding minimum. This excercise is hard because the function is very flat aroun...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_exercise_flat_minimum.png
-   :target: ./plot_exercise_flat_minimum.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_exercise_flat_minimum_thumb.png
 
-   :ref:`example_plot_exercise_flat_minimum.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_exercise_flat_minimum.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -168,23 +120,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./plot_exercise_flat_minimum
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_exercise_flat_minimum
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="An example showing how to do optimization with general constraints using SLSQP and cobyla. ">
 
-    <div class="thumbnailContainer" tooltip="Illustration of 1D optimization: Brent's method ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_1d_optim.png
-   :target: ./plot_1d_optim.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_non_bounds_constraints_thumb.png
 
-   :ref:`example_plot_1d_optim.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_non_bounds_constraints.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -192,23 +140,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./plot_1d_optim
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_non_bounds_constraints
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Illustration of 1D optimization: Brent's method ">
 
-    <div class="thumbnailContainer" tooltip="An example showing how to do optimization with general constraints using SLSQP and cobyla. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_non_bounds_constraints.png
-   :target: ./plot_non_bounds_constraints.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_1d_optim_thumb.png
 
-   :ref:`example_plot_non_bounds_constraints.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_1d_optim.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -216,23 +160,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./plot_non_bounds_constraints
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_1d_optim
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="A small figure explaining optimization with constraints ">
 
-    <div class="thumbnailContainer" tooltip="A small figure explaining optimization with constraints ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_constraints.png
-   :target: ./plot_constraints.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_constraints_thumb.png
 
-   :ref:`example_plot_constraints.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_constraints.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -240,23 +180,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./plot_constraints
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_constraints
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Plots the results from the comparison of optimizers.">
 
-    <div class="thumbnailContainer" tooltip="Plots the results from the comparison of optimizers.">
+.. only:: html
 
-.. figure:: ./images/thumb/compare_optimizers_plot.png
-   :target: ./compare_optimizers_plot.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_compare_optimizers_thumb.png
 
-   :ref:`example_compare_optimizers_plot.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_compare_optimizers.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -264,23 +200,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./compare_optimizers_plot
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_compare_optimizers
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="The challenge here is that Hessian of the problem is a very ill-conditioned matrix. This can ea...">
 
-    <div class="thumbnailContainer" tooltip="The challenge here is that Hessian of the problem is a very ill-conditioned matrix. This can ea...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_exercise_ill_conditioned.png
-   :target: ./plot_exercise_ill_conditioned.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_exercise_ill_conditioned_thumb.png
 
-   :ref:`example_plot_exercise_ill_conditioned.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_exercise_ill_conditioned.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -288,23 +220,19 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./plot_exercise_ill_conditioned
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_exercise_ill_conditioned
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="An example demoing gradient descent by creating figures that trace the evolution of the optimiz...">
 
-    <div class="thumbnailContainer" tooltip="Example cost functions or objective functions to optimize. ">
+.. only:: html
 
-.. figure:: ./images/thumb/cost_functions.png
-   :target: ./cost_functions.html
+    .. figure:: /advanced/mathematical_optimization/auto_examples/images/thumb/sphx_glr_plot_gradient_descent_thumb.png
 
-   :ref:`example_cost_functions.py`
-
+        :ref:`sphx_glr_advanced_mathematical_optimization_auto_examples_plot_gradient_descent.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -312,58 +240,26 @@ Examples for the mathematical optimization chapter
 .. toctree::
    :hidden:
 
-   ./cost_functions
-
-
-
+   /advanced/mathematical_optimization/auto_examples/plot_gradient_descent
 .. raw:: html
 
-
-    <div class="thumbnailContainer" tooltip="Comparison of optimizers on various problems. ">
-
-.. figure:: ./images/thumb/compare_optimizers.png
-   :target: ./compare_optimizers.html
-
-   :ref:`example_compare_optimizers.py`
-
-
-.. raw:: html
-
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./compare_optimizers
+    <div style='clear:both'></div>
 
 
 
-.. raw:: html
+.. container:: sphx-glr-footer
 
 
-    <div class="thumbnailContainer" tooltip="An example demoing gradient descent by creating figures that trace the evolution of the optimiz...">
+  .. container:: sphx-glr-download
 
-.. figure:: ./images/thumb/plot_gradient_descent.png
-   :target: ./plot_gradient_descent.html
-
-   :ref:`example_plot_gradient_descent.py`
+    :download:`Download all examples in Python source code: advanced_mathematical_optimization_auto_examples_python.zip </advanced/mathematical_optimization/auto_examples/advanced_mathematical_optimization_auto_examples_python.zip>`
 
 
-.. raw:: html
 
+  .. container:: sphx-glr-download
 
-    </div>
+    :download:`Download all examples in Jupyter notebooks: advanced_mathematical_optimization_auto_examples_jupyter.zip </advanced/mathematical_optimization/auto_examples/advanced_mathematical_optimization_auto_examples_jupyter.zip>`
 
+.. rst-class:: sphx-glr-signature
 
-.. toctree::
-   :hidden:
-
-   ./plot_gradient_descent
-
-
-.. raw:: html
-
-    <div style="clear: both"></div>
-    
+    `Generated by Sphinx-Gallery <http://sphinx-gallery.readthedocs.io>`_

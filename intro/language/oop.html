@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.2.9. Object-oriented programming (OOP) &mdash; Scipy lecture notes</title>
+    <title>1.2.9. Object-oriented programming (OOP) &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -68,7 +69,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -131,7 +132,7 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,9 +141,9 @@ $(function () {
         <li class="right" >
           <a href="exceptions.html" title="1.2.8. Exception handling in Python"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Getting started with Python for science</a> &raquo;</li>
-          <li><a href="python_language.html" accesskey="U">1.2. The Python language</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >1. Getting started with Python for science</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="python_language.html" accesskey="U">1.2. The Python language</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -169,7 +170,7 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="object-oriented-programming-oop">
 <h1>1.2.9. Object-oriented programming (OOP)<a class="headerlink" href="#object-oriented-programming-oop" title="Permalink to this headline">¶</a></h1>
@@ -183,7 +184,7 @@ $(function () {
 <p>Here is a small example: we create a Student <em>class</em>, which is an object
 gathering several custom functions (<em>methods</em>) and variables (<em>attributes</em>),
 we will be able to use:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">def</span> <span class="nf">set_age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
@@ -191,25 +192,25 @@ we will be able to use:</p>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">def</span> <span class="nf">set_major</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">major</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">major</span> <span class="o">=</span> <span class="n">major</span>
 <div class="newline"></div><span class="gp">...</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&#39;anna&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s1">&#39;anna&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span><span class="o">.</span><span class="n">set_age</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span><span class="o">.</span><span class="n">set_major</span><span class="p">(</span><span class="s">&#39;physics&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span><span class="o">.</span><span class="n">set_major</span><span class="p">(</span><span class="s1">&#39;physics&#39;</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>In the previous example, the Student class has <tt class="docutils literal"><span class="pre">__init__</span></tt>, <tt class="docutils literal"><span class="pre">set_age</span></tt> and
-<tt class="docutils literal"><span class="pre">set_major</span></tt> methods. Its attributes are <tt class="docutils literal"><span class="pre">name</span></tt>, <tt class="docutils literal"><span class="pre">age</span></tt> and <tt class="docutils literal"><span class="pre">major</span></tt>. We
+<p>In the previous example, the Student class has <code class="docutils literal"><span class="pre">__init__</span></code>, <code class="docutils literal"><span class="pre">set_age</span></code> and
+<code class="docutils literal"><span class="pre">set_major</span></code> methods. Its attributes are <code class="docutils literal"><span class="pre">name</span></code>, <code class="docutils literal"><span class="pre">age</span></code> and <code class="docutils literal"><span class="pre">major</span></code>. We
 can call these methods and attributes with the following notation:
-<tt class="docutils literal"><span class="pre">classinstance.method</span></tt> or  <tt class="docutils literal"><span class="pre">classinstance.attribute</span></tt>.  The <tt class="docutils literal"><span class="pre">__init__</span></tt>
-constructor is a special method we call with: <tt class="docutils literal"><span class="pre">MyClass(init</span> <span class="pre">parameters</span> <span class="pre">if</span>
-<span class="pre">any)</span></tt>.</p>
+<code class="docutils literal"><span class="pre">classinstance.method</span></code> or  <code class="docutils literal"><span class="pre">classinstance.attribute</span></code>.  The <code class="docutils literal"><span class="pre">__init__</span></code>
+constructor is a special method we call with: <code class="docutils literal"><span class="pre">MyClass(init</span> <span class="pre">parameters</span> <span class="pre">if</span>
+<span class="pre">any)</span></code>.</p>
 <p>Now, suppose we want to create a new class MasterStudent with the same
 methods and attributes as the previous one, but with an additional
-<tt class="docutils literal"><span class="pre">internship</span></tt> attribute. We won&#8217;t copy the previous class, but
+<code class="docutils literal"><span class="pre">internship</span></code> attribute. We won&#8217;t copy the previous class, but
 <strong>inherit</strong> from it:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MasterStudent</span><span class="p">(</span><span class="n">Student</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="n">internship</span> <span class="o">=</span> <span class="s">&#39;mandatory, from March to June&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MasterStudent</span><span class="p">(</span><span class="n">Student</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="n">internship</span> <span class="o">=</span> <span class="s1">&#39;mandatory, from March to June&#39;</span>
 <div class="newline"></div><span class="gp">...</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span> <span class="o">=</span> <span class="n">MasterStudent</span><span class="p">(</span><span class="s">&#39;james&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span> <span class="o">=</span> <span class="n">MasterStudent</span><span class="p">(</span><span class="s1">&#39;james&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span><span class="o">.</span><span class="n">internship</span>
 <div class="newline"></div><span class="go">&#39;mandatory, from March to June&#39;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span><span class="o">.</span><span class="n">set_age</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
@@ -232,7 +233,7 @@ PotentialFlow, etc.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc"></div>
 
@@ -258,7 +259,7 @@ PotentialFlow, etc.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -267,9 +268,9 @@ PotentialFlow, etc.</p>
         <li class="right" >
           <a href="exceptions.html" title="1.2.8. Exception handling in Python"
              >previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Getting started with Python for science</a> &raquo;</li>
-          <li><a href="python_language.html" >1.2. The Python language</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >1. Getting started with Python for science</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="python_language.html" >1.2. The Python language</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -292,9 +293,9 @@ PotentialFlow, etc.</p>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

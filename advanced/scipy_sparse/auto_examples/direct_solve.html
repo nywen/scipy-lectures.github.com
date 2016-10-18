@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Solve a linear system &mdash; Scipy lecture notes</title>
+    <title>Solve a linear system &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -65,7 +66,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -128,10 +129,10 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="../../../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -158,18 +159,18 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="solve-a-linear-system">
 <span id="example-direct-solve-py"></span><h1>Solve a linear system<a class="headerlink" href="#solve-a-linear-system" title="Permalink to this headline">¶</a></h1>
 <p>Construct a 1000x1000 lil_matrix and add some values to it, convert it
 to CSR format and solve A x = b for x:and solve a linear system with a
 direct solver.</p>
-<p><strong>Python source code:</strong> <a class="reference download internal" href="../../../_downloads/direct_solve.py"><tt class="xref download docutils literal"><span class="pre">direct_solve.py</span></tt></a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<div class="newline"></div><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="kn">as</span> <span class="nn">sps</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">scipy.sparse.linalg.dsolve</span> <span class="kn">import</span> <span class="n">linsolve</span>
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../../../_downloads/direct_solve.py" download=""><code class="xref download docutils literal"><span class="pre">direct_solve.py</span></code></a></p>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sps</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">scipy.sparse.linalg.dsolve</span> <span class="k">import</span> <span class="n">linsolve</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span>
 <div class="newline"></div>
@@ -179,7 +180,7 @@ direct solver.</p>
 <div class="newline"></div><span class="n">mtx</span><span class="o">.</span><span class="n">setdiag</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
-<div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">mtx</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">mtx</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">mtx</span> <span class="o">=</span> <span class="n">mtx</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
@@ -187,7 +188,7 @@ direct solver.</p>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">x</span> <span class="o">=</span> <span class="n">linsolve</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">mtx</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="s">&#39;rezidual: </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">mtx</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="p">))</span>
+<div class="newline"></div><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rezidual: </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">mtx</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="p">))</span>
 <div class="newline"></div></pre></div>
 </div>
 <p><div style="clear: both"></div></p>
@@ -197,7 +198,7 @@ direct solver.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc"></div>
 
@@ -223,10 +224,10 @@ direct solver.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="../../../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -249,9 +250,9 @@ direct solver.</p>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

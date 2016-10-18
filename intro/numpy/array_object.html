@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.3.1. The Numpy array object &mdash; Scipy lecture notes</title>
+    <title>1.3.1. The NumPy array object &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -68,7 +69,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -131,7 +132,7 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,9 +141,9 @@ $(function () {
         <li class="right" >
           <a href="index.html" title="1.3. NumPy: creating and manipulating numerical data"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Getting started with Python for science</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">1.3. NumPy: creating and manipulating numerical data</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >1. Getting started with Python for science</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">1.3. NumPy: creating and manipulating numerical data</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -169,14 +170,14 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="the-numpy-array-object">
-<h1>1.3.1. The Numpy array object<a class="headerlink" href="#the-numpy-array-object" title="Permalink to this headline">¶</a></h1>
+<h1>1.3.1. The NumPy array object<a class="headerlink" href="#the-numpy-array-object" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="section-contents">
 <p class="topic-title first">Section contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#what-are-numpy-and-numpy-arrays" id="id1">What are Numpy and Numpy arrays?</a></li>
+<li><a class="reference internal" href="#what-are-numpy-and-numpy-arrays" id="id1">What are NumPy and NumPy arrays?</a></li>
 <li><a class="reference internal" href="#creating-arrays" id="id2">Creating arrays</a></li>
 <li><a class="reference internal" href="#basic-data-types" id="id3">Basic data types</a></li>
 <li><a class="reference internal" href="#basic-visualization" id="id4">Basic visualization</a></li>
@@ -186,9 +187,9 @@ $(function () {
 </ul>
 </div>
 <div class="section" id="what-are-numpy-and-numpy-arrays">
-<h2><a class="toc-backref" href="#id1">1.3.1.1. What are Numpy and Numpy arrays?</a><a class="headerlink" href="#what-are-numpy-and-numpy-arrays" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">1.3.1.1. What are NumPy and NumPy arrays?</a><a class="headerlink" href="#what-are-numpy-and-numpy-arrays" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="numpy-arrays">
-<h3>1.3.1.1.1. Numpy arrays<a class="headerlink" href="#numpy-arrays" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.1.1.1. NumPy arrays<a class="headerlink" href="#numpy-arrays" title="Permalink to this headline">¶</a></h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -200,7 +201,7 @@ $(function () {
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name"><strong>Numpy</strong> provides:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-even field"><th class="field-name"><strong>NumPy</strong> provides:</th><td class="field-body"><ul class="first last simple">
 <li>extension package to Python for multi-dimensional arrays</li>
 <li>closer to hardware (efficiency)</li>
 <li>designed for scientific computation (convenience)</li>
@@ -245,7 +246,7 @@ operations.</p>
 </div>
 </div>
 <div class="section" id="numpy-reference-documentation">
-<h3>1.3.1.1.2. Numpy Reference documentation<a class="headerlink" href="#numpy-reference-documentation" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.1.1.2. NumPy Reference documentation<a class="headerlink" href="#numpy-reference-documentation" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p class="first">On the web: <a class="reference external" href="http://docs.scipy.org/">http://docs.scipy.org/</a></p>
 </li>
@@ -258,7 +259,7 @@ operations.</p>
 </div>
 </li>
 <li><p class="first">Looking for something:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">lookfor</span><span class="p">(</span><span class="s">&#39;create array&#39;</span><span class="p">)</span> 
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">lookfor</span><span class="p">(</span><span class="s1">&#39;create array&#39;</span><span class="p">)</span> 
 <div class="newline"></div><span class="go">Search results for &#39;create array&#39;</span>
 <div class="newline"></div><span class="go">---------------------------------</span>
 <div class="newline"></div><span class="go">numpy.array</span>
@@ -304,7 +305,7 @@ operations.</p>
 </div>
 </li>
 <li><p class="first"><strong>2-D, 3-D, ...</strong>:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>    <span class="c"># 2 x 3 array</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>    <span class="c1"># 2 x 3 array</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
 <div class="newline"></div><span class="go">array([[0, 1, 2],</span>
 <div class="newline"></div><span class="go">       [3, 4, 5]])</span>
@@ -312,7 +313,7 @@ operations.</p>
 <div class="newline"></div><span class="go">2</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">shape</span>
 <div class="newline"></div><span class="go">(2, 3)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>     <span class="c"># returns the size of the first dimension</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>     <span class="c1"># returns the size of the first dimension</span>
 <div class="newline"></div><span class="go">2</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">]]])</span>
@@ -334,8 +335,8 @@ operations.</p>
 <li>Create a simple two dimensional array. First, redo the examples
 from above. And then create your own: how about odd numbers
 counting backwards on the first row, and even numbers on the second?</li>
-<li>Use the functions <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#len" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">len()</span></tt></a>, <tt class="xref py py-func docutils literal"><span class="pre">numpy.shape()</span></tt> on these arrays.
-How do they relate to each other? And to the <tt class="docutils literal"><span class="pre">ndim</span></tt> attribute of
+<li>Use the functions <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#len" title="(in Python v2.7)"><code class="xref py py-func docutils literal"><span class="pre">len()</span></code></a>, <code class="xref py py-func docutils literal"><span class="pre">numpy.shape()</span></code> on these arrays.
+How do they relate to each other? And to the <code class="docutils literal"><span class="pre">ndim</span></code> attribute of
 the arrays?</li>
 </ul>
 </div>
@@ -348,17 +349,17 @@ the arrays?</li>
 </div>
 <ul>
 <li><p class="first">Evenly spaced:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c"># 0 .. n-1  (!)</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 0 .. n-1  (!)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c"># start, end (exclusive), step</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># start, end (exclusive), step</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
 <div class="newline"></div><span class="go">array([1, 3, 5, 7])</span>
 <div class="newline"></div></pre></div>
 </div>
 </li>
 <li><p class="first">or by number of points:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>   <span class="c"># start, end, num-points</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>   <span class="c1"># start, end, num-points</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
 <div class="newline"></div><span class="go">array([ 0. ,  0.2,  0.4,  0.6,  0.8,  1. ])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -368,7 +369,7 @@ the arrays?</li>
 </div>
 </li>
 <li><p class="first">Common arrays:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>  <span class="c"># reminder: (3, 3) is a tuple</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>  <span class="c1"># reminder: (3, 3) is a tuple</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([[ 1.,  1.,  1.],</span>
 <div class="newline"></div><span class="go">       [ 1.,  1.,  1.],</span>
@@ -391,16 +392,16 @@ the arrays?</li>
 <div class="newline"></div></pre></div>
 </div>
 </li>
-<li><p class="first"><tt class="xref py py-mod docutils literal"><span class="pre">np.random</span></tt>: random numbers (Mersenne Twister PRNG):</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>       <span class="c"># uniform in [0, 1]</span>
+<li><p class="first"><code class="xref py py-mod docutils literal"><span class="pre">np.random</span></code>: random numbers (Mersenne Twister PRNG):</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>       <span class="c1"># uniform in [0, 1]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>  
 <div class="newline"></div><span class="go">array([ 0.95799151,  0.14222247,  0.08777354,  0.51887998])</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>      <span class="c"># Gaussian</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>      <span class="c1"># Gaussian</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>  
 <div class="newline"></div><span class="go">array([ 0.37544699, -0.11425369, -0.47616538,  1.79664113])</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>        <span class="c"># Setting the random seed</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>        <span class="c1"># Setting the random seed</span>
 <div class="newline"></div></pre></div>
 </div>
 </li>
@@ -408,11 +409,11 @@ the arrays?</li>
 <div class="green topic">
 <p class="topic-title first"><strong>Exercise: Creating arrays using functions</strong></p>
 <ul class="simple">
-<li>Experiment with <tt class="docutils literal"><span class="pre">arange</span></tt>, <tt class="docutils literal"><span class="pre">linspace</span></tt>, <tt class="docutils literal"><span class="pre">ones</span></tt>, <tt class="docutils literal"><span class="pre">zeros</span></tt>, <tt class="docutils literal"><span class="pre">eye</span></tt> and
-<tt class="docutils literal"><span class="pre">diag</span></tt>.</li>
+<li>Experiment with <code class="docutils literal"><span class="pre">arange</span></code>, <code class="docutils literal"><span class="pre">linspace</span></code>, <code class="docutils literal"><span class="pre">ones</span></code>, <code class="docutils literal"><span class="pre">zeros</span></code>, <code class="docutils literal"><span class="pre">eye</span></code> and
+<code class="docutils literal"><span class="pre">diag</span></code>.</li>
 <li>Create different kinds of arrays with random numbers.</li>
 <li>Try setting the seed before creating an array with random values.</li>
-<li>Look at the function <tt class="docutils literal"><span class="pre">np.empty</span></tt>. What does it do? When might this be
+<li>Look at the function <code class="docutils literal"><span class="pre">np.empty</span></code>. What does it do? When might this be
 useful?</li>
 </ul>
 </div>
@@ -421,7 +422,7 @@ useful?</li>
 <div class="section" id="basic-data-types">
 <h2><a class="toc-backref" href="#id3">1.3.1.3. Basic data types</a><a class="headerlink" href="#basic-data-types" title="Permalink to this headline">¶</a></h2>
 <p>You may have noticed that, in some instances, array elements are displayed with
-a trailing dot (e.g. <tt class="docutils literal"><span class="pre">2.</span></tt> vs <tt class="docutils literal"><span class="pre">2</span></tt>). This is due to a difference in the
+a trailing dot (e.g. <code class="docutils literal"><span class="pre">2.</span></code> vs <code class="docutils literal"><span class="pre">2</span></code>). This is due to a difference in the
 data-type used:</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span>
@@ -471,18 +472,18 @@ from the input.</p>
 </div>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Strings:</th><td class="field-body"><div class="first highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s">&#39;Bonjour&#39;</span><span class="p">,</span> <span class="s">&#39;Hello&#39;</span><span class="p">,</span> <span class="s">&#39;Hallo&#39;</span><span class="p">,])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">dtype</span>     <span class="c"># &lt;--- strings containing max. 7 letters  </span>
+<tr class="field-odd field"><th class="field-name">Strings:</th><td class="field-body"><div class="first highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;Bonjour&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;Hallo&#39;</span><span class="p">,])</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">dtype</span>     <span class="c1"># &lt;--- strings containing max. 7 letters  </span>
 <div class="newline"></div><span class="go">dtype(&#39;S7&#39;)</span>
 <div class="newline"></div></pre></div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Much more:</th><td class="field-body"><ul class="first last simple">
-<li><tt class="docutils literal"><span class="pre">int32</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">int64</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">uint32</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">uint64</span></tt></li>
+<li><code class="docutils literal"><span class="pre">int32</span></code></li>
+<li><code class="docutils literal"><span class="pre">int64</span></code></li>
+<li><code class="docutils literal"><span class="pre">uint32</span></code></li>
+<li><code class="docutils literal"><span class="pre">uint64</span></code></li>
 </ul>
 </td>
 </tr>
@@ -493,11 +494,11 @@ from the input.</p>
 <h2><a class="toc-backref" href="#id4">1.3.1.4. Basic visualization</a><a class="headerlink" href="#basic-visualization" title="Permalink to this headline">¶</a></h2>
 <p>Now that we have our first data arrays, we are going to visualize them.</p>
 <p>Start by launching IPython:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ipython
+<div class="highlight-bash"><div class="highlight"><pre>$ ipython
 <div class="newline"></div></pre></div>
 </div>
 <p>Or the notebook:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ipython notebook
+<div class="highlight-bash"><div class="highlight"><pre>$ ipython notebook
 <div class="newline"></div></pre></div>
 </div>
 <p>Once IPython has started, enable interactive plots:</p>
@@ -508,28 +509,28 @@ from the input.</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
 <div class="newline"></div></pre></div>
 </div>
-<p>The <tt class="docutils literal"><span class="pre">inline</span></tt> is important for the notebook, so that plots are displayed in
+<p>The <code class="docutils literal"><span class="pre">inline</span></code> is important for the notebook, so that plots are displayed in
 the notebook and not in a new window.</p>
 <p><em>Matplotlib</em> is a 2D plotting package. We can import its functions as below:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>  <span class="c"># the tidy way</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>  <span class="c1"># the tidy way</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>And then use (note that you have to use <tt class="docutils literal"><span class="pre">show</span></tt> explicitly if you have not enabled interactive plots with <tt class="docutils literal"><span class="pre">%matplotlib</span></tt>):</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>       <span class="c"># line plot    </span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>           <span class="c"># &lt;-- shows the plot (not needed with interactive plots) </span>
+<p>And then use (note that you have to use <code class="docutils literal"><span class="pre">show</span></code> explicitly if you have not enabled interactive plots with <code class="docutils literal"><span class="pre">%matplotlib</span></code>):</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>       <span class="c1"># line plot    </span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>           <span class="c1"># &lt;-- shows the plot (not needed with interactive plots) </span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Or, if you have enabled interactive plots with <tt class="docutils literal"><span class="pre">%matplotlib</span></tt>:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>       <span class="c"># line plot    </span>
+<p>Or, if you have enabled interactive plots with <code class="docutils literal"><span class="pre">%matplotlib</span></code>:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>       <span class="c1"># line plot    </span>
 <div class="newline"></div></pre></div>
 </div>
 <ul>
 <li><p class="first"><strong>1D plotting</strong>:</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>       <span class="c"># line plot    </span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>       <span class="c1"># line plot    </span>
 <div class="newline"></div><span class="go">[&lt;matplotlib.lines.Line2D object at ...&gt;]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">)</span>  <span class="c"># dot plot    </span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>  <span class="c1"># dot plot    </span>
 <div class="newline"></div><span class="go">[&lt;matplotlib.lines.Line2D object at ...&gt;]</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -549,14 +550,14 @@ the notebook and not in a new window.</p>
 </ul>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last">More in the: <a class="reference internal" href="../matplotlib/matplotlib.html#matplotlib"><em>matplotlib chapter</em></a></p>
+<p class="last">More in the: <a class="reference internal" href="../matplotlib/index.html#matplotlib"><span class="std std-ref">matplotlib chapter</span></a></p>
 </div>
 <div class="green topic">
 <p class="topic-title first"><strong>Exercise: Simple visualizations</strong></p>
 <ul class="simple">
 <li>Plot some simple arrays: a cosine as a function of time and a 2D
 matrix.</li>
-<li>Try using the <tt class="docutils literal"><span class="pre">gray</span></tt> colormap on the 2D matrix.</li>
+<li>Try using the <code class="docutils literal"><span class="pre">gray</span></code> colormap on the 2D matrix.</li>
 </ul>
 </div>
 </div>
@@ -589,7 +590,7 @@ In contrast, in Fortran or Matlab, indices begin at 1.</p>
 <div class="newline"></div><span class="go">       [0, 0, 2]])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <div class="newline"></div><span class="go">1</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="c"># third line, second column</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># third line, second column</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([[ 0,  0,  0],</span>
 <div class="newline"></div><span class="go">       [ 0,  1,  0],</span>
@@ -603,7 +604,7 @@ In contrast, in Fortran or Matlab, indices begin at 1.</p>
 <ul class="last simple">
 <li>In 2D, the first dimension corresponds to <strong>rows</strong>, the second
 to <strong>columns</strong>.</li>
-<li>for multidimensional <tt class="docutils literal"><span class="pre">a</span></tt>, <tt class="docutils literal"><span class="pre">a[0]</span></tt> is interpreted by
+<li>for multidimensional <code class="docutils literal"><span class="pre">a</span></code>, <code class="docutils literal"><span class="pre">a[0]</span></code> is interpreted by
 taking all elements in the unspecified dimensions.</li>
 </ul>
 </div>
@@ -611,7 +612,7 @@ taking all elements in the unspecified dimensions.</li>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="c"># [start:end:step]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># [start:end:step]</span>
 <div class="newline"></div><span class="go">array([2, 5, 8])</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -620,8 +621,8 @@ taking all elements in the unspecified dimensions.</li>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3])</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>All three slice components are not required: by default, <tt class="xref py py-obj docutils literal"><span class="pre">start</span></tt> is 0,
-<tt class="xref py py-obj docutils literal"><span class="pre">end</span></tt> is the last and <tt class="xref py py-obj docutils literal"><span class="pre">step</span></tt> is 1:</p>
+<p>All three slice components are not required: by default, <cite>start</cite> is 0,
+<cite>end</cite> is the last and <cite>step</cite> is 1:</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 <div class="newline"></div><span class="go">array([1, 2])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
@@ -630,7 +631,7 @@ taking all elements in the unspecified dimensions.</li>
 <div class="newline"></div><span class="go">array([3, 4, 5, 6, 7, 8, 9])</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>A small illustrated summary of Numpy indexing and slicing...</p>
+<p>A small illustrated summary of NumPy indexing and slicing...</p>
 <a class="reference internal image-reference" href="../../_images/numpy_indexing.png"><img alt="../../_images/numpy_indexing.png" class="align-center" src="../../_images/numpy_indexing.png" style="width: 70%;" /></a>
 <p>You can also combine assignment and slicing:</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -646,8 +647,8 @@ taking all elements in the unspecified dimensions.</li>
 <div class="green topic">
 <p class="topic-title first"><strong>Exercise: Indexing and slicing</strong></p>
 <ul>
-<li><p class="first">Try the different flavours of slicing, using <tt class="docutils literal"><span class="pre">start</span></tt>, <tt class="docutils literal"><span class="pre">end</span></tt> and
-<tt class="docutils literal"><span class="pre">step</span></tt>: starting from a linspace, try to obtain odd numbers
+<li><p class="first">Try the different flavours of slicing, using <code class="docutils literal"><span class="pre">start</span></code>, <code class="docutils literal"><span class="pre">end</span></code> and
+<code class="docutils literal"><span class="pre">step</span></code>: starting from a linspace, try to obtain odd numbers
 counting backwards, and even numbers counting forwards.</p>
 </li>
 <li><p class="first">Reproduce the slices in the diagram above. You may
@@ -667,7 +668,7 @@ use the following expression to create the array:</p>
 <div class="green topic">
 <p class="topic-title first"><strong>Exercise: Array creation</strong></p>
 <p>Create the following arrays (with correct data types):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
@@ -682,14 +683,14 @@ use the following expression to create the array:</p>
 </div>
 <p>Par on course: 3 statements for each</p>
 <p><em>Hint</em>: Individual array elements can be accessed similarly to a list,
-e.g. <tt class="docutils literal"><span class="pre">a[1]</span></tt> or <tt class="docutils literal"><span class="pre">a[1,</span> <span class="pre">2]</span></tt>.</p>
-<p><em>Hint</em>: Examine the docstring for <tt class="docutils literal"><span class="pre">diag</span></tt>.</p>
+e.g. <code class="docutils literal"><span class="pre">a[1]</span></code> or <code class="docutils literal"><span class="pre">a[1,</span> <span class="pre">2]</span></code>.</p>
+<p><em>Hint</em>: Examine the docstring for <code class="docutils literal"><span class="pre">diag</span></code>.</p>
 </div>
 <div class="green topic">
 <p class="topic-title first">Exercise: Tiling for array creation</p>
-<p>Skim through the documentation for <tt class="docutils literal"><span class="pre">np.tile</span></tt>, and use this function
+<p>Skim through the documentation for <code class="docutils literal"><span class="pre">np.tile</span></code>, and use this function
 to construct the array:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
@@ -701,7 +702,7 @@ to construct the array:</p>
 <h2><a class="toc-backref" href="#id6">1.3.1.6. Copies and views</a><a class="headerlink" href="#copies-and-views" title="Permalink to this headline">¶</a></h2>
 <p>A slicing operation creates a <strong>view</strong> on the original array, which is
 just a way of accessing array data. Thus the original array is not
-copied in memory. You can use <tt class="docutils literal"><span class="pre">np.may_share_memory()</span></tt> to check if two arrays
+copied in memory. You can use <code class="docutils literal"><span class="pre">np.may_share_memory()</span></code> to check if two arrays
 share the same memory block. Note however, that this uses heuristics and may
 give you false positives.</p>
 <p><strong>When modifying the view, the original array is modified as well</strong>:</p>
@@ -716,11 +717,11 @@ give you false positives.</p>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
 <div class="newline"></div><span class="go">array([12,  2,  4,  6,  8])</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>   <span class="c"># (!)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>   <span class="c1"># (!)</span>
 <div class="newline"></div><span class="go">array([12,  1,  2,  3,  4,  5,  6,  7,  8,  9])</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c"># force a copy</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># force a copy</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
@@ -736,7 +737,7 @@ memory and time.</p>
 <img alt="../../_images/prime-sieve.png" src="../../_images/prime-sieve.png" />
 <p>Compute prime numbers in 0&#8211;99, with a sieve</p>
 <ul class="simple">
-<li>Construct a shape (100,) boolean array <tt class="docutils literal"><span class="pre">is_prime</span></tt>,
+<li>Construct a shape (100,) boolean array <code class="docutils literal"><span class="pre">is_prime</span></code>,
 filled with True in the beginning:</li>
 </ul>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">is_prime</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
@@ -749,25 +750,25 @@ filled with True in the beginning:</li>
 <div class="newline"></div></pre></div>
 </div>
 <ul class="simple">
-<li>For each integer <tt class="docutils literal"><span class="pre">j</span></tt> starting from 2, cross out its higher multiples:</li>
+<li>For each integer <code class="docutils literal"><span class="pre">j</span></code> starting from 2, cross out its higher multiples:</li>
 </ul>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">N_max</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">is_prime</span><span class="p">)))</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N_max</span><span class="p">):</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">N_max</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">is_prime</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">is_prime</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">::</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
 <div class="newline"></div></pre></div>
 </div>
 <ul>
-<li><p class="first">Skim through <tt class="docutils literal"><span class="pre">help(np.nonzero)</span></tt>, and print the prime numbers</p>
+<li><p class="first">Skim through <code class="docutils literal"><span class="pre">help(np.nonzero)</span></code>, and print the prime numbers</p>
 </li>
 <li><p class="first">Follow-up:</p>
 <ul class="simple">
-<li>Move the above code into a script file named <tt class="docutils literal"><span class="pre">prime_sieve.py</span></tt></li>
+<li>Move the above code into a script file named <code class="docutils literal"><span class="pre">prime_sieve.py</span></code></li>
 <li>Run it to check it works</li>
 <li>Use the optimization suggested in <a class="reference external" href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">the sieve of Eratosthenes</a>:</li>
 </ul>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Skip <tt class="docutils literal"><span class="pre">j</span></tt> which are already known to not be primes</li>
+<li>Skip <code class="docutils literal"><span class="pre">j</span></code> which are already known to not be primes</li>
 <li>The first number to cross out is <img class="math" src="../../_images/math/a3707ea7711da4b1cac811dd7be61339329ddcc8.png" alt="j^2" style="vertical-align: -6px"/></li>
 </ol>
 </div></blockquote>
@@ -779,7 +780,7 @@ filled with True in the beginning:</li>
 <h2><a class="toc-backref" href="#id7">1.3.1.7. Fancy indexing</a><a class="headerlink" href="#fancy-indexing" title="Permalink to this headline">¶</a></h2>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">Numpy arrays can be indexed with slices, but also with boolean or
+<p class="last">NumPy arrays can be indexed with slices, but also with boolean or
 integer arrays (<strong>masks</strong>). This method is called <em>fancy indexing</em>.
 It creates <strong>copies not views</strong>.</p>
 </div>
@@ -793,8 +794,8 @@ It creates <strong>copies not views</strong>.</p>
 <div class="newline"></div><span class="go">array([False,  True, False,  True, False, False, False,  True, False,</span>
 <div class="newline"></div><span class="go">        True,  True, False,  True, False, False], dtype=bool)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">extract_from_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="c"># or,  a[a%3==0]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">extract_from_a</span>           <span class="c"># extract a sub-array with the mask</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">extract_from_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="c1"># or,  a[a%3==0]</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">extract_from_a</span>           <span class="c1"># extract a sub-array with the mask</span>
 <div class="newline"></div><span class="go">array([ 3,  0,  9,  6,  0, 12])</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -814,7 +815,7 @@ It creates <strong>copies not views</strong>.</p>
 </div>
 <p>Indexing can be done with an array of integers, where the same index is repeated
 several time:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>  <span class="c"># note: [2, 3, 2, 4, 2] is a Python list</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>  <span class="c1"># note: [2, 3, 2, 4, 2] is a Python list</span>
 <div class="newline"></div><span class="go">array([20, 30, 20, 40, 20])</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -859,15 +860,15 @@ the diagram above to zero.</li>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc">
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">1.3.1. The Numpy array object</a><ul>
-<li><a class="reference internal" href="#what-are-numpy-and-numpy-arrays">1.3.1.1. What are Numpy and Numpy arrays?</a><ul>
-<li><a class="reference internal" href="#numpy-arrays">1.3.1.1.1. Numpy arrays</a></li>
-<li><a class="reference internal" href="#numpy-reference-documentation">1.3.1.1.2. Numpy Reference documentation</a></li>
+<li><a class="reference internal" href="#">1.3.1. The NumPy array object</a><ul>
+<li><a class="reference internal" href="#what-are-numpy-and-numpy-arrays">1.3.1.1. What are NumPy and NumPy arrays?</a><ul>
+<li><a class="reference internal" href="#numpy-arrays">1.3.1.1.1. NumPy arrays</a></li>
+<li><a class="reference internal" href="#numpy-reference-documentation">1.3.1.1.2. NumPy Reference documentation</a></li>
 <li><a class="reference internal" href="#import-conventions">1.3.1.1.3. Import conventions</a></li>
 </ul>
 </li>
@@ -912,7 +913,7 @@ the diagram above to zero.</li>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -921,9 +922,9 @@ the diagram above to zero.</li>
         <li class="right" >
           <a href="index.html" title="1.3. NumPy: creating and manipulating numerical data"
              >previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Getting started with Python for science</a> &raquo;</li>
-          <li><a href="index.html" >1.3. NumPy: creating and manipulating numerical data</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >1. Getting started with Python for science</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >1.3. NumPy: creating and manipulating numerical data</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -946,9 +947,9 @@ the diagram above to zero.</li>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

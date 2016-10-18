@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.2.4. Defining functions &mdash; Scipy lecture notes</title>
+    <title>1.2.4. Defining functions &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -68,7 +69,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -131,7 +132,7 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,9 +141,9 @@ $(function () {
         <li class="right" >
           <a href="control_flow.html" title="1.2.3. Control Flow"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Getting started with Python for science</a> &raquo;</li>
-          <li><a href="python_language.html" accesskey="U">1.2. The Python language</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >1. Getting started with Python for science</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="python_language.html" accesskey="U">1.2. The Python language</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -169,14 +170,14 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="defining-functions">
 <h1>1.2.4. Defining functions<a class="headerlink" href="#defining-functions" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="function-definition">
 <h2>1.2.4.1. Function definition<a class="headerlink" href="#function-definition" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [56]: </span><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;in test function&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;in test function&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
@@ -202,18 +203,18 @@ $(function () {
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">By default, functions return <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
+<p class="last">By default, functions return <code class="docutils literal"><span class="pre">None</span></code>.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>Note the syntax to define a function:</p>
 <ul class="last simple">
-<li>the <tt class="docutils literal"><span class="pre">def</span></tt> keyword;</li>
+<li>the <code class="docutils literal"><span class="pre">def</span></code> keyword;</li>
 <li>is followed by the function&#8217;s <strong>name</strong>, then</li>
 <li>the arguments of the function are given between parentheses followed
 by a colon.</li>
 <li>the function body;</li>
-<li>and <tt class="docutils literal"><span class="pre">return</span> <span class="pre">object</span></tt> for optionally returning values.</li>
+<li>and <code class="docutils literal"><span class="pre">return</span> <span class="pre">object</span></code> for optionally returning values.</li>
 </ul>
 </div>
 </div>
@@ -260,7 +261,7 @@ modifications will be persistent across invocations of the function.</p>
 <div class="newline"></div><span class="gp">   .....:</span>     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [126]: </span><span class="n">bigx</span> <span class="o">=</span> <span class="mf">1e9</span>  <span class="c"># Now really big</span>
+<div class="newline"></div><span class="gp">In [126]: </span><span class="n">bigx</span> <span class="o">=</span> <span class="mf">1e9</span>  <span class="c1"># Now really big</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [128]: </span><span class="n">double_it</span><span class="p">()</span>
 <div class="newline"></div><span class="gr">Out[128]: </span><span class="mi">20</span>
@@ -268,7 +269,7 @@ modifications will be persistent across invocations of the function.</p>
 </div>
 <p>Using an mutable type in a keyword argument (and modifying it inside the
 function body):</p>
-<div class="last highlight-ipython"><div class="highlight"><pre><span class="gp">In [2]: </span><span class="k">def</span> <span class="nf">add_to_dict</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}):</span>
+<div class="last highlight-ipython"><div class="highlight"><pre><span class="gp">In [2]: </span><span class="k">def</span> <span class="nf">add_to_dict</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}):</span>
 <div class="newline"></div><span class="gp">   ...:</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
 <div class="newline"></div><span class="gp">   ...:</span>         <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 <div class="newline"></div><span class="gp">   ...:</span>     <span class="k">print</span> <span class="n">args</span>
@@ -296,27 +297,27 @@ function body):</p>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">:</span><span class="n">step</span><span class="p">]</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [101]: </span><span class="n">rhyme</span> <span class="o">=</span> <span class="s">&#39;one fish, two fish, red fish, blue fish&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">In [101]: </span><span class="n">rhyme</span> <span class="o">=</span> <span class="s1">&#39;one fish, two fish, red fish, blue fish&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [102]: </span><span class="n">rhyme</span>
-<div class="newline"></div><span class="gr">Out[102]: </span><span class="p">[</span><span class="s">&#39;one&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;fish&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gr">Out[102]: </span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;fish&#39;</span><span class="p">]</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [103]: </span><span class="n">slicer</span><span class="p">(</span><span class="n">rhyme</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[103]: </span><span class="p">[</span><span class="s">&#39;one&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;fish&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gr">Out[103]: </span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;fish&#39;</span><span class="p">]</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [104]: </span><span class="n">slicer</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[104]: </span><span class="p">[</span><span class="s">&#39;one&#39;</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gr">Out[104]: </span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">]</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [105]: </span><span class="n">slicer</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[105]: </span><span class="p">[</span><span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;fish&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gr">Out[105]: </span><span class="p">[</span><span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;fish&#39;</span><span class="p">]</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [106]: </span><span class="n">slicer</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[106]: </span><span class="p">[</span><span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gr">Out[106]: </span><span class="p">[</span><span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;fish,&#39;</span><span class="p">]</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>The order of the keyword arguments does not matter:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [107]: </span><span class="n">slicer</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[107]: </span><span class="p">[</span><span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gr">Out[107]: </span><span class="p">[</span><span class="s1">&#39;fish,&#39;</span><span class="p">,</span> <span class="s1">&#39;fish,&#39;</span><span class="p">]</span>
 <div class="newline"></div></pre></div>
 </div>
 <p class="last">but it is good practice to use the same ordering as the function&#8217;s
@@ -343,31 +344,31 @@ Not the variable itself.</p>
 <p>If the <strong>value</strong> passed in a function is immutable, the function does not
 modify the caller&#8217;s variable.  If the <strong>value</strong> is mutable, the function
 may modify the caller&#8217;s variable in-place:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">try_to_modify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">try_to_modify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="mi">23</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">]</span> <span class="c"># new reference</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">]</span> <span class="c1"># new reference</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">...</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">77</span>    <span class="c"># immutable variable</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">]</span>  <span class="c"># mutable variable</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">77</span>    <span class="c1"># immutable variable</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">]</span>  <span class="c1"># mutable variable</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">28</span><span class="p">]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">try_to_modify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 <div class="newline"></div><span class="go">23</span>
 <div class="newline"></div><span class="go">[99, 42]</span>
 <div class="newline"></div><span class="go">[99]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <div class="newline"></div><span class="go">77</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <div class="newline"></div><span class="go">[99, 42]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <div class="newline"></div><span class="go">[28]</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Functions have a local variable table called a <em>local namespace</em>.</p>
-<p>The variable <tt class="docutils literal"><span class="pre">x</span></tt> only exists within the function <tt class="docutils literal"><span class="pre">try_to_modify</span></tt>.</p>
+<p>The variable <code class="docutils literal"><span class="pre">x</span></code> only exists within the function <code class="docutils literal"><span class="pre">try_to_modify</span></code>.</p>
 </div>
 <div class="section" id="global-variables">
 <h2>1.2.4.5. Global variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h2>
@@ -388,7 +389,7 @@ unless declared <strong>global</strong> in the function.</p>
 <p>This doesn&#8217;t work:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [117]: </span><span class="k">def</span> <span class="nf">setx</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   .....:</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
-<div class="newline"></div><span class="gp">   .....:</span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;x is </span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">   .....:</span>     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;x is </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div>
@@ -403,7 +404,7 @@ unless declared <strong>global</strong> in the function.</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [121]: </span><span class="k">def</span> <span class="nf">setx</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   .....:</span>     <span class="k">global</span> <span class="n">x</span>
 <div class="newline"></div><span class="gp">   .....:</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
-<div class="newline"></div><span class="gp">   .....:</span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;x is </span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">   .....:</span>     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;x is </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div>
@@ -420,17 +421,17 @@ unless declared <strong>global</strong> in the function.</p>
 <dl class="docutils">
 <dt>Special forms of parameters:</dt>
 <dd><ul class="first last simple">
-<li><tt class="docutils literal"><span class="pre">*args</span></tt>: any number of positional arguments packed into a tuple</li>
-<li><tt class="docutils literal"><span class="pre">**kwargs</span></tt>: any number of keyword arguments packed into a dictionary</li>
+<li><code class="docutils literal"><span class="pre">*args</span></code>: any number of positional arguments packed into a tuple</li>
+<li><code class="docutils literal"><span class="pre">**kwargs</span></code>: any number of keyword arguments packed into a dictionary</li>
 </ul>
 </dd>
 </dl>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [35]: </span><span class="k">def</span> <span class="nf">variable_args</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span> <span class="s">&#39;args is&#39;</span><span class="p">,</span> <span class="n">args</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span> <span class="s">&#39;kwargs is&#39;</span><span class="p">,</span> <span class="n">kwargs</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span> <span class="s1">&#39;args is&#39;</span><span class="p">,</span> <span class="n">args</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span> <span class="s1">&#39;kwargs is&#39;</span><span class="p">,</span> <span class="n">kwargs</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [36]: </span><span class="n">variable_args</span><span class="p">(</span><span class="s">&#39;one&#39;</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [36]: </span><span class="n">variable_args</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <div class="newline"></div><span class="go">args is (&#39;one&#39;, &#39;two&#39;)</span>
 <div class="newline"></div><span class="go">kwargs is {&#39;y&#39;: 2, &#39;x&#39;: 1, &#39;z&#39;: 3}</span>
 <div class="newline"></div></pre></div>
@@ -445,7 +446,7 @@ convention:</p>
 <div class="newline"></div><span class="gp">   ....:</span><span class="sd"></span>
 <div class="newline"></div><span class="gp">   ....:</span><span class="sd">     Extended summary which can contain multiple paragraphs.</span>
 <div class="newline"></div><span class="gp">   ....:</span><span class="sd">     &quot;&quot;&quot;</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="c"># function body</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="c1"># function body</span>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="k">pass</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
@@ -471,7 +472,7 @@ documents the semantics and conventions associated with Python
 docstrings.</p>
 <p class="last">Also, the Numpy and Scipy modules have defined a precise standard
 for documenting scientific functions, that you may want to follow for
-your own functions, with a <tt class="docutils literal"><span class="pre">Parameters</span></tt> section, an <tt class="docutils literal"><span class="pre">Examples</span></tt>
+your own functions, with a <code class="docutils literal"><span class="pre">Parameters</span></code> section, an <code class="docutils literal"><span class="pre">Examples</span></code>
 section, etc. See
 <a class="reference external" href="http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard">http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard</a>
 and <a class="reference external" href="http://projects.scipy.org/numpy/browser/trunk/doc/example.py#L37">http://projects.scipy.org/numpy/browser/trunk/doc/example.py#L37</a></p>
@@ -490,7 +491,7 @@ and <a class="reference external" href="http://projects.scipy.org/numpy/browser/
 </dl>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [38]: </span><span class="n">va</span> <span class="o">=</span> <span class="n">variable_args</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [39]: </span><span class="n">va</span><span class="p">(</span><span class="s">&#39;three&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [39]: </span><span class="n">va</span><span class="p">(</span><span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <div class="newline"></div><span class="go">args is (&#39;three&#39;,)</span>
 <div class="newline"></div><span class="go">kwargs is {&#39;y&#39;: 2, &#39;x&#39;: 1}</span>
 <div class="newline"></div></pre></div>
@@ -505,26 +506,26 @@ examples on <em>lists</em>, <em>dictionaries</em>, <em>strings</em>, etc...</p>
 <h2>1.2.4.10. Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="green topic">
 <p class="topic-title first">Exercise: Fibonacci sequence</p>
-<p>Write a function that displays the <tt class="docutils literal"><span class="pre">n</span></tt> first terms of the Fibonacci
+<p>Write a function that displays the <code class="docutils literal"><span class="pre">n</span></code> first terms of the Fibonacci
 sequence, defined by:</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">u_0</span> <span class="pre">=</span> <span class="pre">1;</span> <span class="pre">u_1</span> <span class="pre">=</span> <span class="pre">1</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">u_(n+2)</span> <span class="pre">=</span> <span class="pre">u_(n+1)</span> <span class="pre">+</span> <span class="pre">u_n</span></tt></li>
+<li><code class="docutils literal"><span class="pre">u_0</span> <span class="pre">=</span> <span class="pre">1;</span> <span class="pre">u_1</span> <span class="pre">=</span> <span class="pre">1</span></code></li>
+<li><code class="docutils literal"><span class="pre">u_(n+2)</span> <span class="pre">=</span> <span class="pre">u_(n+1)</span> <span class="pre">+</span> <span class="pre">u_n</span></code></li>
 </ul>
 </div>
 <div class="green topic">
 <p class="topic-title first">Exercise: Quicksort</p>
 <p>Implement the quicksort algorithm, as defined by wikipedia</p>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>function quicksort(array)
-<div class="newline"></div>    var list less, greater
-<div class="newline"></div>    if length(array) &lt; 2
-<div class="newline"></div>        return array
-<div class="newline"></div>    select and remove a pivot value pivot from array
-<div class="newline"></div>    for each x in array
-<div class="newline"></div>        if x &lt; pivot + 1 then append x to less
-<div class="newline"></div>        else append x to greater
-<div class="newline"></div>    return concatenate(quicksort(less), pivot, quicksort(greater))
+<div class="highlight-default"><div class="highlight"><pre><span class="n">function</span> <span class="n">quicksort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">var</span> <span class="nb">list</span> <span class="n">less</span><span class="p">,</span> <span class="n">greater</span>
+<div class="newline"></div>    <span class="k">if</span> <span class="n">length</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span>
+<div class="newline"></div>        <span class="k">return</span> <span class="n">array</span>
+<div class="newline"></div>    <span class="n">select</span> <span class="ow">and</span> <span class="n">remove</span> <span class="n">a</span> <span class="n">pivot</span> <span class="n">value</span> <span class="n">pivot</span> <span class="kn">from</span> <span class="nn">array</span>
+<div class="newline"></div>    <span class="k">for</span> <span class="n">each</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">array</span>
+<div class="newline"></div>        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">pivot</span> <span class="o">+</span> <span class="mi">1</span> <span class="n">then</span> <span class="n">append</span> <span class="n">x</span> <span class="n">to</span> <span class="n">less</span>
+<div class="newline"></div>        <span class="k">else</span> <span class="n">append</span> <span class="n">x</span> <span class="n">to</span> <span class="n">greater</span>
+<div class="newline"></div>    <span class="k">return</span> <span class="n">concatenate</span><span class="p">(</span><span class="n">quicksort</span><span class="p">(</span><span class="n">less</span><span class="p">),</span> <span class="n">pivot</span><span class="p">,</span> <span class="n">quicksort</span><span class="p">(</span><span class="n">greater</span><span class="p">))</span>
 <div class="newline"></div></pre></div>
 </div>
 <p><div style="clear: both"></div></p>
@@ -535,7 +536,7 @@ sequence, defined by:</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc">
   <h3><a href="../../index.html">Table Of Contents</a></h3>
@@ -578,7 +579,7 @@ sequence, defined by:</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -587,9 +588,9 @@ sequence, defined by:</p>
         <li class="right" >
           <a href="control_flow.html" title="1.2.3. Control Flow"
              >previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Getting started with Python for science</a> &raquo;</li>
-          <li><a href="python_language.html" >1.2. The Python language</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >1. Getting started with Python for science</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="python_language.html" >1.2. The Python language</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -612,9 +613,9 @@ sequence, defined by:</p>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

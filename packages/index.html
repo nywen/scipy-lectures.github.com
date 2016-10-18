@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. Packages and applications &mdash; Scipy lecture notes</title>
+    <title>3. Packages and applications &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -67,7 +68,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -130,7 +131,7 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -139,7 +140,7 @@ $(function () {
         <li class="right" >
           <a href="../advanced/interfacing_with_c/interfacing_with_c.html" title="2.8. Interfacing with C"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -166,10 +167,10 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="packages-and-applications">
-<h1>3. Packages and applications<a class="headerlink" href="#packages-and-applications" title="Permalink to this headline">¶</a></h1>
+<span id="applications-part"></span><h1>3. Packages and applications<a class="headerlink" href="#packages-and-applications" title="Permalink to this headline">¶</a></h1>
 <p>This part of the <em>Scipy lecture notes</em> is dedicated to various scientific
 packages useful for extended needs.</p>
 <div class="line-block">
@@ -357,7 +358,7 @@ packages useful for extended needs.</p>
 <li class="toctree-l1"><a class="reference internal" href="statistics/index.html">3.1. Statistics in Python</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="statistics/index.html#data-representation-and-interaction">3.1.1. Data representation and interaction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="statistics/index.html#data-as-a-table">3.1.1.1. Data as a table</a></li>
-<li class="toctree-l3"><a class="reference internal" href="statistics/index.html#the-panda-data-frame">3.1.1.2. The panda data-frame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statistics/index.html#the-pandas-data-frame">3.1.1.2. The pandas data-frame</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="statistics/index.html#hypothesis-testing-comparing-two-groups">3.1.2. Hypothesis testing: comparing two groups</a><ul>
@@ -377,8 +378,9 @@ packages useful for extended needs.</p>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="statistics/index.html#testing-for-interactions">3.1.5. Testing for interactions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="statistics/index.html#full-examples">3.1.6. Full examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="statistics/auto_examples/index.html">3.1.6.1. Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics/index.html#full-code-examples">3.1.6. Full code examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statistics/auto_examples/index.html">3.1.6.1. Code behind the figures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statistics/auto_examples/index.html#solutions-to-this-chapter-s-exercises">3.1.6.2. Solutions to this chapter&#8217;s exercises</a></li>
 </ul>
 </li>
 </ul>
@@ -416,7 +418,7 @@ packages useful for extended needs.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scikit-image/index.html">3.3. Scikit-image: image processing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="scikit-image/index.html#introduction-and-concepts">3.3.1. Introduction and concepts</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="scikit-image/index.html#scikit-image-and-the-scipy-ecosystem">3.3.1.1. <tt class="docutils literal"><span class="pre">scikit-image</span></tt> and the <tt class="docutils literal"><span class="pre">SciPy</span></tt> ecosystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scikit-image/index.html#scikit-image-and-the-scipy-ecosystem">3.3.1.1. <code class="docutils literal"><span class="pre">scikit-image</span></code> and the <code class="docutils literal"><span class="pre">SciPy</span></code> ecosystem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scikit-image/index.html#what-s-to-be-found-in-scikit-image">3.3.1.2. What&#8217;s to be found in scikit-image</a></li>
 </ul>
 </li>
@@ -516,7 +518,7 @@ packages useful for extended needs.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc"></div>
 
@@ -542,7 +544,7 @@ packages useful for extended needs.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -551,7 +553,7 @@ packages useful for extended needs.</p>
         <li class="right" >
           <a href="../advanced/interfacing_with_c/interfacing_with_c.html" title="2.8. Interfacing with C"
              >previous</a> |</li>
-        <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -574,9 +576,9 @@ packages useful for extended needs.</p>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

@@ -21,6 +21,6 @@ An example demoing the various colors taken by matplotlib's plot.
 .. literalinclude:: plot_color.py
     :lines: 7-
 
-**Total running time of the example:**  0.03 seconds
-( 0 minutes  0.03 seconds)
+**Total running time of the example:**  0.06 seconds
+( 0 minutes  0.06 seconds)
     

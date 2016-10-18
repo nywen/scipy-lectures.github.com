@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>How to contribute &mdash; Scipy lecture notes</title>
+    <title>How to contribute &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -68,7 +69,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -131,7 +132,7 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,8 +141,8 @@ $(function () {
         <li class="right" >
           <a href="../preface.html" title="About the scipy lecture notes"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../preface.html" accesskey="U">About the scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preface.html" accesskey="U">About the scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -168,25 +169,25 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="how-to-contribute">
-<h1>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h1>
+<span id="guide"></span><h1>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h1>
 <p><strong>Author</strong>: <em>Nicolas Rougier</em></p>
 <div class="topic">
 <p class="topic-title first">Foreword</p>
-<p>Use the <tt class="docutils literal"><span class="pre">topic</span></tt> keyword for any forewords</p>
+<p>Use the <code class="docutils literal"><span class="pre">topic</span></code> keyword for any forewords</p>
 </div>
 <div class="contents local topic" id="chapters-contents">
 <p class="topic-title first">Chapters contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#id1" id="id6">How to contribute ?</a></li>
-<li><a class="reference internal" href="#keeping-it-concise-collapsing-paragraphs" id="id7">Keeping it concise: collapsing paragraphs</a></li>
-<li><a class="reference internal" href="#figures-and-code-examples" id="id8">Figures and code examples</a></li>
-<li><a class="reference internal" href="#using-markup" id="id9">Using Markup</a></li>
-<li><a class="reference internal" href="#linking-to-package-documentations" id="id10">Linking to package documentations</a></li>
-<li><a class="reference internal" href="#chapter-section-subsection-paragraph" id="id11">Chapter, section, subsection, paragraph</a></li>
-<li><a class="reference internal" href="#using-github" id="id12">Using Github</a></li>
+<li><a class="reference internal" href="#using-github" id="id7">Using GitHub</a></li>
+<li><a class="reference internal" href="#keeping-it-concise-collapsing-paragraphs" id="id8">Keeping it concise: collapsing paragraphs</a></li>
+<li><a class="reference internal" href="#figures-and-code-examples" id="id9">Figures and code examples</a></li>
+<li><a class="reference internal" href="#using-markup" id="id10">Using Markup</a></li>
+<li><a class="reference internal" href="#linking-to-package-documentations" id="id11">Linking to package documentations</a></li>
+<li><a class="reference internal" href="#chapter-section-subsection-paragraph" id="id12">Chapter, section, subsection, paragraph</a></li>
 <li><a class="reference internal" href="#admonitions" id="id13">Admonitions</a></li>
 <li><a class="reference internal" href="#clearing-floats" id="id14">Clearing floats</a></li>
 <li><a class="reference internal" href="#references" id="id15">References</a></li>
@@ -196,39 +197,67 @@ $(function () {
 <a class="reference external" href="http://docness.readthedocs.org/en/latest/index.html">tips, tricks</a> <a class="footnote-reference" href="#id4" id="id5">[2]</a> and conventions about documentation content and workflows.</p>
 <div class="section" id="id1">
 <h2><a class="toc-backref" href="#id6">How to contribute ?</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>Choose a topic that is not yet covered and write it up !</p>
-<p>Create a new directory in either the <tt class="docutils literal"><span class="pre">intro</span></tt> or <tt class="docutils literal"><span class="pre">advanded</span></tt> part and start
-writing into <tt class="docutils literal"><span class="pre">index.rst</span></tt>. Don&#8217;t forget to also update the <tt class="docutils literal"><span class="pre">index.rst</span></tt> in
-the corresponding part such that your new tutorial appear in the table of
-contents.</p>
-<p>Also keep in mind that these tutorials are to being taught at different places
-and different parts may be combined into a course on Python for scientific
-computing. Thus you want them to be quite interactive and reasonably short
-(one to two hours) or your audience might just fall asleep long before you&#8217;ve
-finished talking...</p>
-<p>Last but not least, the goal of this material is to provide a concise text
-useful to learning the main features of the scipy ecosystem. If you want to
-contribute to reference material, we suggest that you contribute to the
-documentation of the specific packages that you are interested in.</p>
+<ul>
+<li><p class="first">If you spot typos, unclear or clumsy wording in the lecture notes, please
+help to improve them. Simple text editing can be done by <a class="reference external" href="https://help.github.com/articles/editing-files-in-your-repository/">editing files
+in your GitHub fork</a> of
+the lecture notes. On every html page of the lecture notes, an <strong>edit</strong>
+button on the top right links to the editable source of the page (you still
+need to create a fork of the project). Edit the source and choose
+&#8220;Create a new branch for this commit and start a pull request&#8221;.</p>
+</li>
+<li><p class="first">Choose a topic that is not yet covered and write it up !</p>
+<p>First create a new issue on GitHub to explain the topic which you would
+like to cover, in order to discuss with editors and contributors about
+the scope of the future tutorial.</p>
+<p>Then create a new directory inside one of the chapters directories
+(<code class="docutils literal"><span class="pre">intro</span></code>, <code class="docutils literal"><span class="pre">advanced</span></code>, or <code class="docutils literal"><span class="pre">packages</span></code>) and create a file <code class="docutils literal"><span class="pre">index.rst</span></code>
+for the new tutorial. Add the new file in the table of contents of the
+corresponding chapter (in its <code class="docutils literal"><span class="pre">index.rst</span></code>).</p>
+</li>
+</ul>
+<p>Keep in mind that tutorials are to be taught at different places and
+different parts may be combined into a course on Python for scientific
+computing. Thus you want them to be interactive and reasonably short (one
+to two hours).</p>
+<p>Last but not least, the goal of this material is to provide a concise
+text to learn the main features of the scientific Python ecosystem. If
+you want to contribute to reference material, we suggest that you
+contribute to the documentation of the specific packages that you are
+interested in.</p>
+</div>
+<div class="section" id="using-github">
+<h2><a class="toc-backref" href="#id7">Using GitHub</a><a class="headerlink" href="#using-github" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to make your own version of this teaching material
+is to fork it under GitHub, and use the git version control system to
+maintain your own fork. For this, all you have to do is create an account
+on GitHub and click on the <em>fork</em> button, on the top right of <a class="reference external" href="https://github.com/scipy-lectures/scipy-lecture-notes">this
+page</a>. You can use git to pull from your <em>fork</em>, and push back to it the
+changes. If you want to contribute the changes back, just fill a
+<em>pull request</em>, using the button on the top of your fork&#8217;s page.</p>
+<p>Several resources are available online to learn git and GitHub, such as
+<a class="reference external" href="https://try.github.io">https://try.github.io</a> for complete beginners.</p>
+<p>Please refrain from modifying the Makefile unless it is absolutely
+necessary.</p>
 </div>
 <div class="section" id="keeping-it-concise-collapsing-paragraphs">
-<h2><a class="toc-backref" href="#id7">Keeping it concise: collapsing paragraphs</a><a class="headerlink" href="#keeping-it-concise-collapsing-paragraphs" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Keeping it concise: collapsing paragraphs</a><a class="headerlink" href="#keeping-it-concise-collapsing-paragraphs" title="Permalink to this headline">¶</a></h2>
 <p>The HTML output is used for displaying on screen while teaching. The goal
 is to have the same material displayed as in the notes. Thus there needs
 to be a very concise display, with bullet-lists rather than full-blown
-paragraphs and sentences. However, in the long run, it is useful to have
-more elaborate discussions that people can read and refer to. For this,
-the <tt class="docutils literal"><span class="pre">tip</span></tt> sphinx directive will create collapsible paragraphs, that can
-be hidden during an oral presentation:</p>
-<div class="highlight-python"><div class="highlight"><pre>.. tip::
+paragraphs and sentences. For more elaborate discussions that people can
+read and refer to, please use the <code class="docutils literal"><span class="pre">tip</span></code> sphinx directive. It creates
+collapsible paragraphs, that can be hidden during an oral
+presentation:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="o">..</span> <span class="n">tip</span><span class="p">::</span>
 <div class="newline"></div>
-<div class="newline"></div>    Here insert a full-blown discussion, that will be collapsable in
-<div class="newline"></div>    the HTML version.
+<div class="newline"></div>    <span class="n">Here</span> <span class="n">insert</span> <span class="n">a</span> <span class="n">full</span><span class="o">-</span><span class="n">blown</span> <span class="n">discussion</span><span class="p">,</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">collapsable</span> <span class="ow">in</span>
+<div class="newline"></div>    <span class="n">the</span> <span class="n">HTML</span> <span class="n">version</span><span class="o">.</span>
 <div class="newline"></div>
-<div class="newline"></div>    It can span on multiple paragraphs
+<div class="newline"></div>    <span class="n">It</span> <span class="n">can</span> <span class="n">span</span> <span class="n">on</span> <span class="n">multiple</span> <span class="n">paragraphs</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>This renders as following:</p>
+<p>This renders as:</p>
 <blockquote>
 <div><div class="admonition tip">
 <p class="first admonition-title">Tip</p>
@@ -239,63 +268,70 @@ the HTML version.</p>
 </div></blockquote>
 </div>
 <div class="section" id="figures-and-code-examples">
-<h2><a class="toc-backref" href="#id8">Figures and code examples</a><a class="headerlink" href="#figures-and-code-examples" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">Figures and code examples</a><a class="headerlink" href="#figures-and-code-examples" title="Permalink to this headline">¶</a></h2>
 <p><strong>We do not check figures in the repository</strong>.
 Any figure must be generated from a python script that needs to be named
-<tt class="docutils literal"><span class="pre">plot_xxx.py</span></tt> (xxx can be anything of course) and put into the <tt class="docutils literal"><span class="pre">examples</span></tt>
+<code class="docutils literal"><span class="pre">plot_xxx.py</span></code> (xxx can be anything of course) and put into the <code class="docutils literal"><span class="pre">examples</span></code>
 directory. The generated image will be named from the script name.</p>
-<a class="reference external image-reference" href="auto_examples/plot_simple.html"><img alt="../_images/plot_simple_1.png" src="../_images/plot_simple_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_simple.html"><img alt="../_images/sphx_glr_plot_simple_001.png" src="../_images/sphx_glr_plot_simple_001.png" /></a>
 <p>This is the way to include your image and link it to the code:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">image</span><span class="p">::</span>  auto_examples/images/plot_simple_1.png
-<div class="newline"></div>   <span class="nc">:target:</span> <span class="nf">auto_examples/plot_simple.html</span>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">image</span><span class="p">::</span>  auto_examples/images/sphx_glr_plot_simple_001.png
+<div class="newline"></div>  <span class="nc">:target:</span> <span class="nf">auto_examples/plot_simple.html</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>You can display the corresponding code using the <tt class="docutils literal"><span class="pre">literal-include</span></tt>
+<p>You can display the corresponding code using the <code class="docutils literal"><span class="pre">literal-include</span></code>
 directive.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<div class="newline"></div><span class="sd">A simple example</span>
+<div class="newline"></div><span class="sd">=================</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class="newline"></div><span class="sd">&quot;&quot;&quot;</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <div class="newline"></div><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<div class="newline"></div>
 <div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The code to provide this style of plot inclusion was adopted from the
-scikits.learn project and can be found in <tt class="docutils literal"><span class="pre">sphinxext/gen_rst.py</span></tt>.</p>
+<p class="last">The transformation of Python scripts into figures and galleries of
+examples is provided by the <a class="reference external" href="http://sphinx-gallery.readthedocs.io/">sphinx-gallery</a> package.</p>
 </div>
 </div>
 <div class="section" id="using-markup">
-<h2><a class="toc-backref" href="#id9">Using Markup</a><a class="headerlink" href="#using-markup" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Using Markup</a><a class="headerlink" href="#using-markup" title="Permalink to this headline">¶</a></h2>
 <p>There are three main kinds of markup that should be used: <em>italics</em>, <strong>bold</strong>
-and <tt class="docutils literal"><span class="pre">fixed-font</span></tt>. <em>Italics</em> should be used when introducing a new technical
-term, <strong>bold</strong> should be used for emphasis and <tt class="docutils literal"><span class="pre">fixed-font</span></tt> for source code.</p>
+and <code class="docutils literal"><span class="pre">fixed-font</span></code>. <em>Italics</em> should be used when introducing a new technical
+term, <strong>bold</strong> should be used for emphasis and <code class="docutils literal"><span class="pre">fixed-font</span></code> for source code.</p>
 <div class="topic">
 <p class="topic-title first">Example:</p>
 <p>When using <em>object-oriented programming</em> in Python you <strong>must</strong> use the
-<tt class="docutils literal"><span class="pre">class</span></tt> keyword to define your <em>classes</em>.</p>
+<code class="docutils literal"><span class="pre">class</span></code> keyword to define your <em>classes</em>.</p>
 </div>
 <p>In restructured-text markup this is:</p>
-<div class="highlight-python"><div class="highlight"><pre>when using *object-oriented programming* in Python you **must** use the
+<div class="highlight-default"><div class="highlight"><pre>when using *object-oriented programming* in Python you **must** use the
 <div class="newline"></div>``class`` keyword to define your *classes*.
 <div class="newline"></div></pre></div>
 </div>
 </div>
 <div class="section" id="linking-to-package-documentations">
-<h2><a class="toc-backref" href="#id10">Linking to package documentations</a><a class="headerlink" href="#linking-to-package-documentations" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">Linking to package documentations</a><a class="headerlink" href="#linking-to-package-documentations" title="Permalink to this headline">¶</a></h2>
 <p>The goal of the scipy lecture notes is not to duplicate or replace the
 documentation of the various packages. You should link as much as
 possible to the original documentation.</p>
 <p>For cross-referencing API documentation we prefer to use the <a class="reference external" href="http://sphinx-doc.org/latest/ext/intersphinx.html">intersphinx
 extension</a>. This provides
-the directives <tt class="xref py py-obj docutils literal"><span class="pre">:mod:</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">:class:</span></tt> and <tt class="xref py py-obj docutils literal"><span class="pre">:func:</span></tt> to cross-link to modules,
-classes and functions respectively. For example the <tt class="docutils literal"><span class="pre">:func:`numpy.var`</span></tt> will
-create a link like <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.var.html#numpy.var" title="(in NumPy v1.10)"><tt class="xref py py-func docutils literal"><span class="pre">numpy.var()</span></tt></a>.</p>
+the directives <cite>:mod:</cite>, <cite>:class:</cite> and <cite>:func:</cite> to cross-link to modules,
+classes and functions respectively. For example the <code class="docutils literal"><span class="pre">:func:`numpy.var`</span></code> will
+create a link like <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.var.html#numpy.var" title="(in NumPy v1.11)"><code class="xref py py-func docutils literal"><span class="pre">numpy.var()</span></code></a>.</p>
 </div>
 <div class="section" id="chapter-section-subsection-paragraph">
-<h2><a class="toc-backref" href="#id11">Chapter, section, subsection, paragraph</a><a class="headerlink" href="#chapter-section-subsection-paragraph" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Chapter, section, subsection, paragraph</a><a class="headerlink" href="#chapter-section-subsection-paragraph" title="Permalink to this headline">¶</a></h2>
 <p>Try to avoid to go below paragraph granularity or your document might become
 difficult to read:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span class="gh">=============</span>
@@ -317,18 +353,6 @@ difficult to read:</p>
 <div class="newline"></div></pre></div>
 </div>
 </div>
-<div class="section" id="using-github">
-<h2><a class="toc-backref" href="#id12">Using Github</a><a class="headerlink" href="#using-github" title="Permalink to this headline">¶</a></h2>
-<p>The easiest way to make your own version of this teaching material
-is to fork it under Github, and use the git version control system to
-maintain your own fork. For this, all you have to do is create an account
-on github (this site) and click on the <em>fork</em> button, on the top right of this
-page. You can use git to pull from your <em>fork</em>, and push back to it the
-changes. If you want to contribute the changes back, just fill a
-<em>pull request</em>, using the button on the top of your fork&#8217;s page.</p>
-<p>Please refrain from modifying the Makefile unless it is absolutely
-necessary.</p>
-</div>
 <div class="section" id="admonitions">
 <h2><a class="toc-backref" href="#id13">Admonitions</a><a class="headerlink" href="#admonitions" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
@@ -342,8 +366,8 @@ necessary.</p>
 </div>
 <div class="section" id="clearing-floats">
 <h2><a class="toc-backref" href="#id14">Clearing floats</a><a class="headerlink" href="#clearing-floats" title="Permalink to this headline">¶</a></h2>
-<p>Figures positionned with <tt class="xref py py-obj docutils literal"><span class="pre">:align:</span> <span class="pre">right</span></tt> are float. To flush them, use:</p>
-<div class="highlight-python"><div class="highlight"><pre>|clear-floats|
+<p>Figures positioned with <cite>:align: right</cite> are float. To flush them, use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="o">|</span><span class="n">clear</span><span class="o">-</span><span class="n">floats</span><span class="o">|</span>
 <div class="newline"></div></pre></div>
 </div>
 </div>
@@ -369,19 +393,19 @@ necessary.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">How to contribute</a><ul>
 <li><a class="reference internal" href="#id1">How to contribute ?</a></li>
+<li><a class="reference internal" href="#using-github">Using GitHub</a></li>
 <li><a class="reference internal" href="#keeping-it-concise-collapsing-paragraphs">Keeping it concise: collapsing paragraphs</a></li>
 <li><a class="reference internal" href="#figures-and-code-examples">Figures and code examples</a></li>
 <li><a class="reference internal" href="#using-markup">Using Markup</a></li>
 <li><a class="reference internal" href="#linking-to-package-documentations">Linking to package documentations</a></li>
 <li><a class="reference internal" href="#chapter-section-subsection-paragraph">Chapter, section, subsection, paragraph</a></li>
-<li><a class="reference internal" href="#using-github">Using Github</a></li>
 <li><a class="reference internal" href="#admonitions">Admonitions</a></li>
 <li><a class="reference internal" href="#clearing-floats">Clearing floats</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
@@ -412,7 +436,7 @@ necessary.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -421,8 +445,8 @@ necessary.</p>
         <li class="right" >
           <a href="../preface.html" title="About the scipy lecture notes"
              >previous</a> |</li>
-        <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../preface.html" >About the scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preface.html" >About the scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -445,9 +469,9 @@ necessary.</p>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

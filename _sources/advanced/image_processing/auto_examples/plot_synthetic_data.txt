@@ -21,6 +21,6 @@ The example generates and displays simple synthetic data.
 .. literalinclude:: plot_synthetic_data.py
     :lines: 7-
 
-**Total running time of the example:**  0.14 seconds
-( 0 minutes  0.14 seconds)
+**Total running time of the example:**  0.10 seconds
+( 0 minutes  0.10 seconds)
     

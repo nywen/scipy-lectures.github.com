@@ -21,6 +21,6 @@ Exercise 9 with matplotlib.
 .. literalinclude:: plot_exercice_9.py
     :lines: 7-
 
-**Total running time of the example:**  0.13 seconds
-( 0 minutes  0.13 seconds)
+**Total running time of the example:**  0.06 seconds
+( 0 minutes  0.06 seconds)
     

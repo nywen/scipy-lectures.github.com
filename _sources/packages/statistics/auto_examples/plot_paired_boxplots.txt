@@ -34,6 +34,6 @@ subject) is much smaller than the spread of the individual measures.
 .. literalinclude:: plot_paired_boxplots.py
     :lines: 12-
 
-**Total running time of the example:**  0.29 seconds
-( 0 minutes  0.29 seconds)
+**Total running time of the example:**  0.28 seconds
+( 0 minutes  0.28 seconds)
     

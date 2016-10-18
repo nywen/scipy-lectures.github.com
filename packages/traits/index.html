@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.4. Traits: building interactive dialogs &mdash; Scipy lecture notes</title>
+    <title>3.4. Traits: building interactive dialogs &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -68,7 +69,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -131,7 +132,7 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,8 +141,8 @@ $(function () {
         <li class="right" >
           <a href="../scikit-image/index.html" title="3.3. Scikit-image: image processing"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">3. Packages and applications</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">3. Packages and applications</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -168,7 +169,7 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="traits-building-interactive-dialogs">
 <span id="traits"></span><h1>3.4. Traits: building interactive dialogs<a class="headerlink" href="#traits-building-interactive-dialogs" title="Permalink to this headline">¶</a></h1>
@@ -317,7 +318,7 @@ trait attributes within the class. Trait attributes defined by a class
 are automatically inherited by any subclass derived from the class.</p>
 <p>The common way of creating a traits class is by extending from the
 <strong>HasTraits</strong> base class and defining class traits :</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">Reservoir</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>
@@ -339,7 +340,7 @@ packages:</p>
 </div>
 <p>Using a traits class like that is as simple as any other Python class. Note
 that the trait value are passed using keyword arguments:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Lac de Vouglans&#39;</span><span class="p">,</span> <span class="n">max_storage</span><span class="o">=</span><span class="mi">605</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Lac de Vouglans&#39;</span><span class="p">,</span> <span class="n">max_storage</span><span class="o">=</span><span class="mi">605</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="section" id="initialisation">
@@ -392,14 +393,14 @@ example, the basic python types do have the following trait equivalents:</p>
 <p>A number of other predefined trait type do exist : Array, Enum, Range, Event,
 Dict, List, Color, Set, Expression, Code, Callable, Type, Tuple, etc.</p>
 <p>Custom default values can be defined in the code:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">Reservoir</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">Str</span>
 <div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Lac de Vouglans&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Lac de Vouglans&#39;</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="topic">
@@ -407,10 +408,10 @@ Dict, List, Color, Set, Expression, Code, Callable, Type, Tuple, etc.</p>
 <p>When a complex initialisation is required for a trait, a _XXX_default magic
 method can be implemented. It will be lazily called when trying to access
 the XXX trait. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_name_default</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_name_default</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>    <span class="sd">&quot;&quot;&quot; Complex initialisation of the reservoir name. &quot;&quot;&quot;</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="k">return</span> <span class="s">&#39;Undefined&#39;</span>
+<div class="newline"></div>    <span class="k">return</span> <span class="s1">&#39;Undefined&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
 </div>
@@ -418,22 +419,22 @@ the XXX trait. For example:</p>
 <div class="section" id="validation">
 <h3><a class="toc-backref" href="#id5">3.4.3.2. Validation</a><a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h3>
 <p>Every trait does validation when the user tries to set its content:</p>
-<div class="highlight-python"><div class="highlight"><pre>reservoir = Reservoir(name=&#39;Lac de Vouglans&#39;, max_storage=605)
+<div class="highlight-default"><div class="highlight"><pre><span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Lac de Vouglans&#39;</span><span class="p">,</span> <span class="n">max_storage</span><span class="o">=</span><span class="mi">605</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>reservoir.max_storage = &#39;230&#39;
-<div class="newline"></div>---------------------------------------------------------------------------
-<div class="newline"></div>TraitError                                Traceback (most recent call last)
-<div class="newline"></div>.../scipy-lecture-notes/advanced/traits/&lt;ipython-input-7-979bdff9974a&gt; in &lt;module&gt;()
-<div class="newline"></div>----&gt; 1 reservoir.max_storage = &#39;230&#39;
+<div class="newline"></div><span class="n">reservoir</span><span class="o">.</span><span class="n">max_storage</span> <span class="o">=</span> <span class="s1">&#39;230&#39;</span>
+<div class="newline"></div><span class="o">---------------------------------------------------------------------------</span>
+<div class="newline"></div><span class="n">TraitError</span>                                <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<div class="newline"></div><span class="o">.../</span><span class="n">scipy</span><span class="o">-</span><span class="n">lecture</span><span class="o">-</span><span class="n">notes</span><span class="o">/</span><span class="n">advanced</span><span class="o">/</span><span class="n">traits</span><span class="o">/&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="mi">979</span><span class="n">bdff9974a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+<div class="newline"></div><span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">reservoir</span><span class="o">.</span><span class="n">max_storage</span> <span class="o">=</span> <span class="s1">&#39;230&#39;</span>
 <div class="newline"></div>
-<div class="newline"></div>.../traits/trait_handlers.pyc in error(self, object, name, value)
-<div class="newline"></div>    166         &quot;&quot;&quot;
-<div class="newline"></div>    167         raise TraitError( object, name, self.full_info( object, name, value ),
-<div class="newline"></div>--&gt; 168                           value )
-<div class="newline"></div>    169
-<div class="newline"></div>    170     def arg_error ( self, method, arg_num, object, name, value ):
+<div class="newline"></div><span class="o">.../</span><span class="n">traits</span><span class="o">/</span><span class="n">trait_handlers</span><span class="o">.</span><span class="n">pyc</span> <span class="ow">in</span> <span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">object</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<div class="newline"></div>    <span class="mi">166</span>         <span class="s2">&quot;&quot;&quot;</span>
+<div class="newline"></div><span class="s2">    167         raise TraitError( object, name, self.full_info( object, name, value ),</span>
+<div class="newline"></div><span class="s2">--&gt; 168                           value )</span>
+<div class="newline"></div><span class="s2">    169</span>
+<div class="newline"></div><span class="s2">    170     def arg_error ( self, method, arg_num, object, name, value ):</span>
 <div class="newline"></div>
-<div class="newline"></div>TraitError: The &#39;max_storage&#39; trait of a Reservoir instance must be a float, but a value of &#39;23&#39; &lt;type &#39;str&#39;&gt; was specified.
+<div class="newline"></div><span class="s2">TraitError: The &#39;max_storage&#39; trait of a Reservoir instance must be a float, but a value of &#39;23&#39; &lt;type &#39;str&#39;&gt; was specified.</span>
 <div class="newline"></div></pre></div>
 </div>
 </div>
@@ -441,7 +442,7 @@ the XXX trait. For example:</p>
 <h3><a class="toc-backref" href="#id6">3.4.3.3. Documentation</a><a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
 <p>By essence, all the traits do provide documentation about the model itself. The
 declarative approach to the creation of classes makes it self-descriptive:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">Reservoir</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>
@@ -451,22 +452,22 @@ declarative approach to the creation of classes makes it self-descriptive:</p>
 </div>
 <p>The <strong>desc</strong> metadata of the traits can be used to provide a more descriptive
 information about the trait :</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">Reservoir</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">Str</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Let&#8217;s now define the complete reservoir class:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">Reservoir</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">Str</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal release [m3/s]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">head</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Hydraulic head [m]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">1</span><span class="n">e6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal release [m3/s]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">head</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Hydraulic head [m]&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">efficiency</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">energy_production</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">release</span><span class="p">):</span>
@@ -476,9 +477,9 @@ information about the trait :</p>
 <div class="newline"></div>        <span class="k">return</span> <span class="n">power</span> <span class="o">*</span> <span class="mi">3600</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>                        <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>                        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">max_release</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -486,7 +487,7 @@ information about the trait :</p>
 <div class="newline"></div>                    <span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="mi">80</span>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;Releasing {} m3/s produces {} kWh&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;Releasing {} m3/s produces {} kWh&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
 <div class="newline"></div>                        <span class="n">release</span><span class="p">,</span> <span class="n">reservoir</span><span class="o">.</span><span class="n">energy_production</span><span class="p">(</span><span class="n">release</span><span class="p">)</span>
 <div class="newline"></div>                    <span class="p">)</span>
 <div class="newline"></div></pre></div>
@@ -496,7 +497,7 @@ information about the trait :</p>
 <h3><a class="toc-backref" href="#id7">3.4.3.4. Visualization: opening a dialog</a><a class="headerlink" href="#visualization-opening-a-dialog" title="Permalink to this headline">¶</a></h3>
 <p>The Traits library is also aware of user interfaces and can pop up a default
 view for the Reservoir class:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">reservoir1</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">reservoir1</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">()</span>
 <div class="newline"></div><span class="n">reservoir1</span><span class="o">.</span><span class="n">edit_traits</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -506,20 +507,20 @@ HasTraits class has a default editor that will manage the way the trait is
 rendered to the screen (e.g. the Range trait is displayed as a slider, etc.).</p>
 <p>In the very same vein as the Traits declarative way of creating classes,
 TraitsUI provides a declarative interface to build user interfaces code:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">traitsui.api</span> <span class="kn">import</span> <span class="n">View</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">traitsui.api</span> <span class="k">import</span> <span class="n">View</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">Reservoir</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">Str</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal release [m3/s]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">head</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Hydraulic head [m]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">1</span><span class="n">e6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal release [m3/s]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">head</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Hydraulic head [m]&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">efficiency</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">traits_view</span> <span class="o">=</span> <span class="n">View</span><span class="p">(</span>
-<div class="newline"></div>        <span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;max_storage&#39;</span><span class="p">,</span> <span class="s">&#39;max_release&#39;</span><span class="p">,</span> <span class="s">&#39;head&#39;</span><span class="p">,</span> <span class="s">&#39;efficiency&#39;</span><span class="p">,</span>
-<div class="newline"></div>        <span class="n">title</span> <span class="o">=</span> <span class="s">&#39;Reservoir&#39;</span><span class="p">,</span>
-<div class="newline"></div>        <span class="n">resizable</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span>
+<div class="newline"></div>        <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;max_storage&#39;</span><span class="p">,</span> <span class="s1">&#39;max_release&#39;</span><span class="p">,</span> <span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">,</span>
+<div class="newline"></div>        <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Reservoir&#39;</span><span class="p">,</span>
+<div class="newline"></div>        <span class="n">resizable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">energy_production</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">release</span><span class="p">):</span>
@@ -529,9 +530,9 @@ TraitsUI provides a declarative interface to build user interfaces code:</p>
 <div class="newline"></div>        <span class="k">return</span> <span class="n">power</span> <span class="o">*</span> <span class="mi">3600</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>                        <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>                        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">max_release</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -547,38 +548,38 @@ TraitsUI provides a declarative interface to build user interfaces code:</p>
 <h3><a class="toc-backref" href="#id8">3.4.3.5. Deferral</a><a class="headerlink" href="#deferral" title="Permalink to this headline">¶</a></h3>
 <p>Being able to defer the definition of a trait and its value to another object
 is a powerful feature of Traits.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="kn">import</span> <span class="n">Reservoir</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="k">import</span> <span class="n">Reservoir</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">ReservoirState</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="sd">&quot;&quot;&quot;Keeps track of the reservoir state given the initial storage.</span>
 <div class="newline"></div><span class="sd">    &quot;&quot;&quot;</span>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Reservoir</span><span class="p">,</span> <span class="p">())</span>
 <div class="newline"></div>    <span class="n">min_storage</span> <span class="o">=</span> <span class="n">Float</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">min_release</span> <span class="o">=</span> <span class="n">Float</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># state attributes</span>
-<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s">&#39;min_storage&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&#39;max_storage&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># state attributes</span>
+<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s1">&#39;min_storage&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s1">&#39;max_storage&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># control attributes</span>
-<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&#39;max_release&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">spillage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Spillage [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># control attributes</span>
+<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s1">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s1">&#39;max_release&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">spillage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Spillage [hm3]&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">print_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;Storage</span><span class="se">\t</span><span class="s">Release</span><span class="se">\t</span><span class="s">Inflows</span><span class="se">\t</span><span class="s">Spillage&#39;</span>
-<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;Storage</span><span class="se">\t</span><span class="s1">Release</span><span class="se">\t</span><span class="s1">Inflows</span><span class="se">\t</span><span class="s1">Spillage&#39;</span>
+<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
 <div class="newline"></div>                <span class="bp">self</span><span class="o">.</span><span class="n">spillage</span><span class="p">)</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">projectA</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>            <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>            <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>            <span class="n">max_release</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
 <div class="newline"></div>            <span class="n">hydraulic_head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -590,14 +591,14 @@ is a powerful feature of Traits.</p>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">inflows</span> <span class="o">=</span> <span class="mi">0</span>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">print_state</span><span class="p">()</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;How do we update the current storage ?&#39;</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;How do we update the current storage ?&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>A special trait allows to manage events and trigger function calls using the
 magic <strong>_xxxx_fired</strong> method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">Event</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">Event</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="kn">import</span> <span class="n">Reservoir</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="k">import</span> <span class="n">Reservoir</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">ReservoirState</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="sd">&quot;&quot;&quot;Keeps track of the reservoir state given the initial storage.</span>
@@ -607,38 +608,38 @@ magic <strong>_xxxx_fired</strong> method:</p>
 <div class="newline"></div><span class="sd">    &quot;&quot;&quot;</span>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Reservoir</span><span class="p">,</span> <span class="p">())</span>
 <div class="newline"></div>    <span class="n">min_storage</span> <span class="o">=</span> <span class="n">Float</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">min_release</span> <span class="o">=</span> <span class="n">Float</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># state attributes</span>
-<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s">&#39;min_storage&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&#39;max_storage&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># state attributes</span>
+<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s1">&#39;min_storage&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s1">&#39;max_storage&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># control attributes</span>
-<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&#39;max_release&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">spillage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Spillage [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># control attributes</span>
+<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s1">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s1">&#39;max_release&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">spillage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Spillage [hm3]&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="n">update_storage</span> <span class="o">=</span> <span class="n">Event</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Updates the storage to the next time step&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">update_storage</span> <span class="o">=</span> <span class="n">Event</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Updates the storage to the next time step&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_update_storage_fired</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="newline"></div>        <span class="c"># update storage state</span>
+<div class="newline"></div>        <span class="c1"># update storage state</span>
 <div class="newline"></div>        <span class="n">new_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span>  <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span>
 <div class="newline"></div>        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_storage</span><span class="p">)</span>
 <div class="newline"></div>        <span class="n">overflow</span> <span class="o">=</span> <span class="n">new_storage</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_storage</span>
 <div class="newline"></div>        <span class="bp">self</span><span class="o">.</span><span class="n">spillage</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">overflow</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">print_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;Storage</span><span class="se">\t</span><span class="s">Release</span><span class="se">\t</span><span class="s">Inflows</span><span class="se">\t</span><span class="s">Spillage&#39;</span>
-<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;Storage</span><span class="se">\t</span><span class="s1">Release</span><span class="se">\t</span><span class="s1">Inflows</span><span class="se">\t</span><span class="s1">Spillage&#39;</span>
+<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
 <div class="newline"></div>                <span class="bp">self</span><span class="o">.</span><span class="n">spillage</span><span class="p">)</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">projectA</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>        <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>        <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>        <span class="n">max_release</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span>
 <div class="newline"></div>        <span class="n">hydraulic_head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -649,12 +650,12 @@ magic <strong>_xxxx_fired</strong> method:</p>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">release</span> <span class="o">=</span> <span class="mi">5</span>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">inflows</span> <span class="o">=</span> <span class="mi">0</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># release the maximum amount of water during 3 time steps</span>
-<div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">update_storage</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="newline"></div>    <span class="c1"># release the maximum amount of water during 3 time steps</span>
+<div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">update_storage</span> <span class="o">=</span> <span class="kc">True</span>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">print_state</span><span class="p">()</span>
-<div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">update_storage</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">update_storage</span> <span class="o">=</span> <span class="kc">True</span>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">print_state</span><span class="p">()</span>
-<div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">update_storage</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">update_storage</span> <span class="o">=</span> <span class="kc">True</span>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">print_state</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -668,10 +669,10 @@ Again, Traits uses magic method names for the property :</p>
 <li>_set_XXX for the setter of the XXX Property trait</li>
 </ul>
 </div></blockquote>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">Property</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">Property</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="kn">import</span> <span class="n">Reservoir</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="k">import</span> <span class="n">Reservoir</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">ReservoirState</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="sd">&quot;&quot;&quot;Keeps track of the reservoir state given the initial storage.</span>
@@ -680,24 +681,24 @@ Again, Traits uses magic method names for the property :</p>
 <div class="newline"></div><span class="sd">    hm3/timestep and not in m3/s.</span>
 <div class="newline"></div><span class="sd">    &quot;&quot;&quot;</span>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Reservoir</span><span class="p">,</span> <span class="p">())</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">min_release</span> <span class="o">=</span> <span class="n">Float</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># state attributes</span>
-<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s">&#39;inflows, release&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># state attributes</span>
+<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s1">&#39;inflows, release&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># control attributes</span>
-<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&#39;max_release&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># control attributes</span>
+<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s1">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s1">&#39;max_release&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">spillage</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span>
-<div class="newline"></div>            <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Spillage [hm3]&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;storage&#39;</span><span class="p">,</span> <span class="s">&#39;inflows&#39;</span><span class="p">,</span> <span class="s">&#39;release&#39;</span><span class="p">]</span>
+<div class="newline"></div>            <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Spillage [hm3]&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;storage&#39;</span><span class="p">,</span> <span class="s1">&#39;inflows&#39;</span><span class="p">,</span> <span class="s1">&#39;release&#39;</span><span class="p">]</span>
 <div class="newline"></div>        <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Private traits.</span>
+<div class="newline"></div>    <span class="c1">### Private traits.</span>
 <div class="newline"></div>    <span class="n">_storage</span> <span class="o">=</span> <span class="n">Float</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits property implementation.</span>
+<div class="newline"></div>    <span class="c1">### Traits property implementation.</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_get_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>        <span class="n">new_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span>
 <div class="newline"></div>        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_storage</span><span class="p">)</span>
@@ -711,15 +712,15 @@ Again, Traits uses magic method names for the property :</p>
 <div class="newline"></div>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">overflow</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">print_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;Storage</span><span class="se">\t</span><span class="s">Release</span><span class="se">\t</span><span class="s">Inflows</span><span class="se">\t</span><span class="s">Spillage&#39;</span>
-<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;Storage</span><span class="se">\t</span><span class="s1">Release</span><span class="se">\t</span><span class="s1">Inflows</span><span class="se">\t</span><span class="s1">Spillage&#39;</span>
+<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
 <div class="newline"></div>                <span class="bp">self</span><span class="o">.</span><span class="n">spillage</span><span class="p">)</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">projectA</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>                    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>                    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>                    <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>                    <span class="n">max_release</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
 <div class="newline"></div>                    <span class="n">hydraulic_head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -742,10 +743,10 @@ accessing a property where the inputs have not changed. The
 recompute them once invalidated.</p>
 </div>
 <p>Let&#8217;s extend the TraitsUI introduction with the ReservoirState example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">Property</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">traitsui.api</span> <span class="kn">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">Item</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="n">VGroup</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">Property</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">traitsui.api</span> <span class="k">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">Item</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="n">VGroup</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="kn">import</span> <span class="n">Reservoir</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="k">import</span> <span class="n">Reservoir</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">ReservoirState</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="sd">&quot;&quot;&quot;Keeps track of the reservoir state given the initial storage.</span>
@@ -754,35 +755,35 @@ recompute them once invalidated.</p>
 <div class="newline"></div><span class="sd">    hm3/timestep and not in m3/s.</span>
 <div class="newline"></div><span class="sd">    &quot;&quot;&quot;</span>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Reservoir</span><span class="p">,</span> <span class="p">())</span>
-<div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">min_release</span> <span class="o">=</span> <span class="n">Float</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># state attributes</span>
-<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s">&#39;inflows, release&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># state attributes</span>
+<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s1">&#39;inflows, release&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># control attributes</span>
-<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&#39;max_release&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># control attributes</span>
+<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s1">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s1">&#39;max_release&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">spillage</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span>
-<div class="newline"></div>            <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Spillage [hm3]&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;storage&#39;</span><span class="p">,</span> <span class="s">&#39;inflows&#39;</span><span class="p">,</span> <span class="s">&#39;release&#39;</span><span class="p">]</span>
+<div class="newline"></div>            <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Spillage [hm3]&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;storage&#39;</span><span class="p">,</span> <span class="s1">&#39;inflows&#39;</span><span class="p">,</span> <span class="s1">&#39;release&#39;</span><span class="p">]</span>
 <div class="newline"></div>        <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits view</span>
+<div class="newline"></div>    <span class="c1">### Traits view</span>
 <div class="newline"></div>    <span class="n">traits_view</span> <span class="o">=</span> <span class="n">View</span><span class="p">(</span>
 <div class="newline"></div>        <span class="n">Group</span><span class="p">(</span>
-<div class="newline"></div>            <span class="n">VGroup</span><span class="p">(</span><span class="n">Item</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">),</span> <span class="n">Item</span><span class="p">(</span><span class="s">&#39;storage&#39;</span><span class="p">),</span> <span class="n">Item</span><span class="p">(</span><span class="s">&#39;spillage&#39;</span><span class="p">),</span>
-<div class="newline"></div>                <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;State&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="s">&#39;readonly&#39;</span>
+<div class="newline"></div>            <span class="n">VGroup</span><span class="p">(</span><span class="n">Item</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span> <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;storage&#39;</span><span class="p">),</span> <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;spillage&#39;</span><span class="p">),</span>
+<div class="newline"></div>                <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;readonly&#39;</span>
 <div class="newline"></div>            <span class="p">),</span>
-<div class="newline"></div>            <span class="n">VGroup</span><span class="p">(</span><span class="n">Item</span><span class="p">(</span><span class="s">&#39;inflows&#39;</span><span class="p">),</span> <span class="n">Item</span><span class="p">(</span><span class="s">&#39;release&#39;</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Control&#39;</span><span class="p">),</span>
+<div class="newline"></div>            <span class="n">VGroup</span><span class="p">(</span><span class="n">Item</span><span class="p">(</span><span class="s1">&#39;inflows&#39;</span><span class="p">),</span> <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;release&#39;</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Control&#39;</span><span class="p">),</span>
 <div class="newline"></div>        <span class="p">)</span>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Private traits.</span>
+<div class="newline"></div>    <span class="c1">### Private traits.</span>
 <div class="newline"></div>    <span class="n">_storage</span> <span class="o">=</span> <span class="n">Float</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits property implementation.</span>
+<div class="newline"></div>    <span class="c1">### Traits property implementation.</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_get_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>        <span class="n">new_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span>
 <div class="newline"></div>        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_storage</span><span class="p">)</span>
@@ -796,15 +797,15 @@ recompute them once invalidated.</p>
 <div class="newline"></div>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">overflow</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">print_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;Storage</span><span class="se">\t</span><span class="s">Release</span><span class="se">\t</span><span class="s">Inflows</span><span class="se">\t</span><span class="s">Spillage&#39;</span>
-<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;Storage</span><span class="se">\t</span><span class="s1">Release</span><span class="se">\t</span><span class="s1">Inflows</span><span class="se">\t</span><span class="s1">Spillage&#39;</span>
+<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
 <div class="newline"></div>                <span class="bp">self</span><span class="o">.</span><span class="n">spillage</span><span class="p">)</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">projectA</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>        <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>        <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>        <span class="n">max_release</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
 <div class="newline"></div>        <span class="n">hydraulic_head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -823,29 +824,29 @@ recompute them once invalidated.</p>
 <p>Some use cases need the delegation mechanism to be broken by the user when
 setting the value of the trait. The <strong>PrototypeFrom</strong> trait implements this
 behaviour.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">PrototypedFrom</span><span class="p">,</span> <span class="n">Instance</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">PrototypedFrom</span><span class="p">,</span> <span class="n">Instance</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">Turbine</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="n">turbine_type</span> <span class="o">=</span> <span class="n">Str</span>
-<div class="newline"></div>    <span class="n">power</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal power delivered by the turbine [Mw]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">power</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal power delivered by the turbine [Mw]&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">Reservoir</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">Str</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal release [m3/s]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">head</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Hydraulic head [m]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">1</span><span class="n">e6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal release [m3/s]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">head</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Hydraulic head [m]&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">efficiency</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">turbine</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Turbine</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">installed_capacity</span> <span class="o">=</span> <span class="n">PrototypedFrom</span><span class="p">(</span><span class="s">&#39;turbine&#39;</span><span class="p">,</span> <span class="s">&#39;power&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">installed_capacity</span> <span class="o">=</span> <span class="n">PrototypedFrom</span><span class="p">(</span><span class="s1">&#39;turbine&#39;</span><span class="p">,</span> <span class="s1">&#39;power&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-<div class="newline"></div>    <span class="n">turbine</span> <span class="o">=</span> <span class="n">Turbine</span><span class="p">(</span><span class="n">turbine_type</span><span class="o">=</span><span class="s">&#39;type1&#39;</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div>    <span class="n">turbine</span> <span class="o">=</span> <span class="n">Turbine</span><span class="p">(</span><span class="n">turbine_type</span><span class="o">=</span><span class="s1">&#39;type1&#39;</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>            <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>            <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>            <span class="n">max_release</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
 <div class="newline"></div>            <span class="n">head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -853,20 +854,20 @@ behaviour.</p>
 <div class="newline"></div>            <span class="n">turbine</span> <span class="o">=</span> <span class="n">turbine</span><span class="p">,</span>
 <div class="newline"></div>        <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;installed capacity is initialised with turbine.power&#39;</span>
-<div class="newline"></div>    <span class="k">print</span> <span class="n">reservoir</span><span class="o">.</span><span class="n">installed_capacity</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;installed capacity is initialised with turbine.power&#39;</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="n">reservoir</span><span class="o">.</span><span class="n">installed_capacity</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">15</span>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;updating the turbine power updates the installed capacity&#39;</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">15</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;updating the turbine power updates the installed capacity&#39;</span>
 <div class="newline"></div>    <span class="n">turbine</span><span class="o">.</span><span class="n">power</span> <span class="o">=</span> <span class="mi">10</span>
-<div class="newline"></div>    <span class="k">print</span> <span class="n">reservoir</span><span class="o">.</span><span class="n">installed_capacity</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="n">reservoir</span><span class="o">.</span><span class="n">installed_capacity</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">15</span>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;setting the installed capacity breaks the link between turbine.power&#39;</span>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;and the installed_capacity trait&#39;</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">15</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;setting the installed capacity breaks the link between turbine.power&#39;</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;and the installed_capacity trait&#39;</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">reservoir</span><span class="o">.</span><span class="n">installed_capacity</span> <span class="o">=</span> <span class="mi">8</span>
-<div class="newline"></div>    <span class="k">print</span> <span class="n">turbine</span><span class="o">.</span><span class="n">power</span><span class="p">,</span> <span class="n">reservoir</span><span class="o">.</span><span class="n">installed_capacity</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="n">turbine</span><span class="o">.</span><span class="n">power</span><span class="p">,</span> <span class="n">reservoir</span><span class="o">.</span><span class="n">installed_capacity</span>
 <div class="newline"></div></pre></div>
 </div>
 </div>
@@ -876,47 +877,47 @@ behaviour.</p>
 dynamic listeners can be fed with callbacks. When the trait does change, all
 the listeners are called.</p>
 <p>Static listeners are defined using the _XXX_changed magic methods:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="kn">import</span> <span class="n">Reservoir</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="k">import</span> <span class="n">Reservoir</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">ReservoirState</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="sd">&quot;&quot;&quot;Keeps track of the reservoir state given the initial storage.</span>
 <div class="newline"></div><span class="sd">    &quot;&quot;&quot;</span>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Reservoir</span><span class="p">,</span> <span class="p">())</span>
 <div class="newline"></div>    <span class="n">min_storage</span> <span class="o">=</span> <span class="n">Float</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">min_release</span> <span class="o">=</span> <span class="n">Float</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># state attributes</span>
-<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s">&#39;min_storage&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&#39;max_storage&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># state attributes</span>
+<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s1">&#39;min_storage&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s1">&#39;max_storage&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># control attributes</span>
-<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&#39;max_release&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">spillage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Spillage [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># control attributes</span>
+<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s1">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s1">&#39;max_release&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">spillage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Spillage [hm3]&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">print_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;Storage</span><span class="se">\t</span><span class="s">Release</span><span class="se">\t</span><span class="s">Inflows</span><span class="se">\t</span><span class="s">Spillage&#39;</span>
-<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;Storage</span><span class="se">\t</span><span class="s1">Release</span><span class="se">\t</span><span class="s1">Inflows</span><span class="se">\t</span><span class="s1">Spillage&#39;</span>
+<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
 <div class="newline"></div>                <span class="bp">self</span><span class="o">.</span><span class="n">spillage</span><span class="p">)</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits listeners ###########</span>
+<div class="newline"></div>    <span class="c1">### Traits listeners ###########</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_release_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
 <div class="newline"></div>        <span class="sd">&quot;&quot;&quot;When the release is higher than zero, warn all the inhabitants of</span>
 <div class="newline"></div><span class="sd">        the valley.</span>
 <div class="newline"></div><span class="sd">        &quot;&quot;&quot;</span>
 <div class="newline"></div>
 <div class="newline"></div>        <span class="k">if</span> <span class="n">new</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<div class="newline"></div>            <span class="k">print</span> <span class="s">&#39;Warning, we are releasing {} hm3 of water&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new</span><span class="p">)</span>
+<div class="newline"></div>            <span class="nb">print</span> <span class="s1">&#39;Warning, we are releasing {} hm3 of water&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">projectA</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>            <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>            <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>            <span class="n">max_release</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
 <div class="newline"></div>            <span class="n">hydraulic_head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -966,16 +967,16 @@ the listeners are called.</p>
 <p>In many situations, you do not know in advance what type of listeners need to
 be activated. Traits offers the ability to register listeners on the fly with
 the dynamic listeners</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">reservoir</span> <span class="kn">import</span> <span class="n">Reservoir</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir_state_property</span> <span class="kn">import</span> <span class="n">ReservoirState</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">reservoir</span> <span class="k">import</span> <span class="n">Reservoir</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir_state_property</span> <span class="k">import</span> <span class="n">ReservoirState</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">def</span> <span class="nf">wake_up_watchman_if_spillage</span><span class="p">(</span><span class="n">new_value</span><span class="p">):</span>
 <div class="newline"></div>    <span class="k">if</span> <span class="n">new_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;Wake up watchman! Spilling {} hm3&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;Wake up watchman! Spilling {} hm3&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">projectA</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>                        <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>                        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">max_release</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">hydraulic_head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -984,18 +985,18 @@ the dynamic listeners</p>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">state</span> <span class="o">=</span> <span class="n">ReservoirState</span><span class="p">(</span><span class="n">reservoir</span><span class="o">=</span><span class="n">projectA</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">#register the dynamic listener</span>
-<div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">on_trait_change</span><span class="p">(</span><span class="n">wake_up_watchman_if_spillage</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;spillage&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1">#register the dynamic listener</span>
+<div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">on_trait_change</span><span class="p">(</span><span class="n">wake_up_watchman_if_spillage</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;spillage&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">release</span> <span class="o">=</span> <span class="mi">90</span>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">inflows</span> <span class="o">=</span> <span class="mi">0</span>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">print_state</span><span class="p">()</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;Forcing spillage&#39;</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;Forcing spillage&#39;</span>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">inflows</span> <span class="o">=</span> <span class="mi">100</span>
 <div class="newline"></div>    <span class="n">state</span><span class="o">.</span><span class="n">release</span> <span class="o">=</span> <span class="mi">0</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;Why do we have two executions of the callback ?&#39;</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;Why do we have two executions of the callback ?&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>The dynamic trait notification signatures are not the same as the static ones :</p>
@@ -1045,10 +1046,10 @@ remove=True,</li>
 </dd>
 </dl>
 <p>Listeners can also be added to classes using the <strong>on_trait_change</strong> decorator:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">Property</span><span class="p">,</span> <span class="n">on_trait_change</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">DelegatesTo</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">Property</span><span class="p">,</span> <span class="n">on_trait_change</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="kn">import</span> <span class="n">Reservoir</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="k">import</span> <span class="n">Reservoir</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">ReservoirState</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="sd">&quot;&quot;&quot;Keeps track of the reservoir state given the initial storage.</span>
@@ -1057,25 +1058,25 @@ remove=True,</li>
 <div class="newline"></div><span class="sd">    hm3/timestep and not in m3/s.</span>
 <div class="newline"></div><span class="sd">    &quot;&quot;&quot;</span>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Reservoir</span><span class="p">,</span> <span class="p">())</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">min_release</span> <span class="o">=</span> <span class="n">Float</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># state attributes</span>
-<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s">&#39;inflows, release&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># state attributes</span>
+<div class="newline"></div>    <span class="n">storage</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s1">&#39;inflows, release&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c"># control attributes</span>
-<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&#39;max_release&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="c1"># control attributes</span>
+<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span>  <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Inflows [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="s1">&#39;min_release&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s1">&#39;max_release&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">spillage</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span>
-<div class="newline"></div>            <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Spillage [hm3]&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;storage&#39;</span><span class="p">,</span> <span class="s">&#39;inflows&#39;</span><span class="p">,</span> <span class="s">&#39;release&#39;</span><span class="p">]</span>
+<div class="newline"></div>            <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Spillage [hm3]&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;storage&#39;</span><span class="p">,</span> <span class="s1">&#39;inflows&#39;</span><span class="p">,</span> <span class="s1">&#39;release&#39;</span><span class="p">]</span>
 <div class="newline"></div>        <span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Private traits. ##########</span>
+<div class="newline"></div>    <span class="c1">### Private traits. ##########</span>
 <div class="newline"></div>    <span class="n">_storage</span> <span class="o">=</span> <span class="n">Float</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits property implementation.</span>
+<div class="newline"></div>    <span class="c1">### Traits property implementation.</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_get_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>        <span class="n">new_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span>
 <div class="newline"></div>        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_storage</span><span class="p">)</span>
@@ -1088,17 +1089,17 @@ remove=True,</li>
 <div class="newline"></div>        <span class="n">overflow</span> <span class="o">=</span> <span class="n">new_storage</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_storage</span>
 <div class="newline"></div>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">overflow</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="nd">@on_trait_change</span><span class="p">(</span><span class="s">&#39;storage&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="nd">@on_trait_change</span><span class="p">(</span><span class="s1">&#39;storage&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">print_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;Storage</span><span class="se">\t</span><span class="s">Release</span><span class="se">\t</span><span class="s">Inflows</span><span class="se">\t</span><span class="s">Spillage&#39;</span>
-<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;Storage</span><span class="se">\t</span><span class="s1">Release</span><span class="se">\t</span><span class="s1">Inflows</span><span class="se">\t</span><span class="s1">Spillage&#39;</span>
+<div class="newline"></div>        <span class="n">str_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;{:7.2f}&#39;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="n">str_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inflows</span><span class="p">,</span>
 <div class="newline"></div>                <span class="bp">self</span><span class="o">.</span><span class="n">spillage</span><span class="p">)</span>
-<div class="newline"></div>        <span class="k">print</span> <span class="s">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
+<div class="newline"></div>        <span class="nb">print</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">projectA</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>                        <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>                        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">max_release</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">hydraulic_head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -1117,20 +1118,20 @@ for the details.</p>
 <div class="section" id="some-more-advanced-traits">
 <h3><a class="toc-backref" href="#id10">3.4.3.7. Some more advanced traits</a><a class="headerlink" href="#some-more-advanced-traits" title="Permalink to this headline">¶</a></h3>
 <p>The following example demonstrate the usage of the Enum and List traits :</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">List</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">traitsui.api</span> <span class="kn">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">Item</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">List</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">traitsui.api</span> <span class="k">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">Item</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">IrrigationArea</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">Str</span>
-<div class="newline"></div>    <span class="n">surface</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Surface [ha]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">crop</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s">&#39;Alfalfa&#39;</span><span class="p">,</span> <span class="s">&#39;Wheat&#39;</span><span class="p">,</span> <span class="s">&#39;Cotton&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">surface</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Surface [ha]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">crop</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s1">&#39;Alfalfa&#39;</span><span class="p">,</span> <span class="s1">&#39;Wheat&#39;</span><span class="p">,</span> <span class="s1">&#39;Cotton&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">Reservoir</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">Str</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal release [m3/s]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">head</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Hydraulic head [m]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">1</span><span class="n">e6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal release [m3/s]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">head</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Hydraulic head [m]&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">efficiency</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">irrigated_areas</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">IrrigationArea</span><span class="p">)</span>
 <div class="newline"></div>
@@ -1141,20 +1142,20 @@ for the details.</p>
 <div class="newline"></div>        <span class="k">return</span> <span class="n">power</span> <span class="o">*</span> <span class="mi">3600</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">traits_view</span> <span class="o">=</span> <span class="n">View</span><span class="p">(</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;max_storage&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;max_release&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;head&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;efficiency&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;irrigated_areas&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">resizable</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;max_storage&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;max_release&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;efficiency&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;irrigated_areas&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">resizable</span> <span class="o">=</span> <span class="kc">True</span>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-<div class="newline"></div>    <span class="n">upper_block</span> <span class="o">=</span> <span class="n">IrrigationArea</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Section C&#39;</span><span class="p">,</span> <span class="n">surface</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">crop</span><span class="o">=</span><span class="s">&#39;Wheat&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div>    <span class="n">upper_block</span> <span class="o">=</span> <span class="n">IrrigationArea</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Section C&#39;</span><span class="p">,</span> <span class="n">surface</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">crop</span><span class="o">=</span><span class="s1">&#39;Wheat&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>                    <span class="n">name</span><span class="o">=</span><span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>                    <span class="n">max_storage</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>                    <span class="n">max_release</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>
 <div class="newline"></div>                    <span class="n">head</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
@@ -1163,33 +1164,33 @@ for the details.</p>
 <div class="newline"></div>                <span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="mi">80</span>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;Releasing {} m3/s produces {} kWh&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;Releasing {} m3/s produces {} kWh&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
 <div class="newline"></div>        <span class="n">release</span><span class="p">,</span> <span class="n">reservoir</span><span class="o">.</span><span class="n">energy_production</span><span class="p">(</span><span class="n">release</span><span class="p">)</span>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>Trait listeners can be used to listen to changes in the content of the list to
 e.g. keep track of the total crop surface on linked to a given reservoir.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Property</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">traitsui.api</span> <span class="kn">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">Item</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Property</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">traitsui.api</span> <span class="k">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">Item</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">IrrigationArea</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">Str</span>
-<div class="newline"></div>    <span class="n">surface</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Surface [ha]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">crop</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s">&#39;Alfalfa&#39;</span><span class="p">,</span> <span class="s">&#39;Wheat&#39;</span><span class="p">,</span> <span class="s">&#39;Cotton&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">surface</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Surface [ha]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">crop</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s1">&#39;Alfalfa&#39;</span><span class="p">,</span> <span class="s1">&#39;Wheat&#39;</span><span class="p">,</span> <span class="s1">&#39;Cotton&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">Reservoir</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">Str</span>
-<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Maximal release [m3/s]&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="n">head</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;Hydraulic head [m]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_storage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">1</span><span class="n">e6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal storage [hm3]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">max_release</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Maximal release [m3/s]&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">head</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Hydraulic head [m]&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">efficiency</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">irrigated_areas</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">IrrigationArea</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="n">total_crop_surface</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s">&#39;irrigated_areas.surface&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">total_crop_surface</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s1">&#39;irrigated_areas.surface&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_get_total_crop_surface</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>        <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">iarea</span><span class="o">.</span><span class="n">surface</span> <span class="k">for</span> <span class="n">iarea</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">irrigated_areas</span><span class="p">])</span>
@@ -1201,21 +1202,21 @@ e.g. keep track of the total crop surface on linked to a given reservoir.</p>
 <div class="newline"></div>        <span class="k">return</span> <span class="n">power</span> <span class="o">*</span> <span class="mi">3600</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">traits_view</span> <span class="o">=</span> <span class="n">View</span><span class="p">(</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;max_storage&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;max_release&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;head&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;efficiency&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;irrigated_areas&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;total_crop_surface&#39;</span><span class="p">),</span>
-<div class="newline"></div>        <span class="n">resizable</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;max_storage&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;max_release&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;efficiency&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;irrigated_areas&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;total_crop_surface&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">resizable</span> <span class="o">=</span> <span class="kc">True</span>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-<div class="newline"></div>    <span class="n">upper_block</span> <span class="o">=</span> <span class="n">IrrigationArea</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Section C&#39;</span><span class="p">,</span> <span class="n">surface</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">crop</span><span class="o">=</span><span class="s">&#39;Wheat&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div>    <span class="n">upper_block</span> <span class="o">=</span> <span class="n">IrrigationArea</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Section C&#39;</span><span class="p">,</span> <span class="n">surface</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">crop</span><span class="o">=</span><span class="s1">&#39;Wheat&#39;</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>                        <span class="n">name</span><span class="o">=</span><span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>                        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">max_storage</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">max_release</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>
 <div class="newline"></div>                        <span class="n">head</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
@@ -1224,47 +1225,47 @@ e.g. keep track of the total crop surface on linked to a given reservoir.</p>
 <div class="newline"></div>                    <span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">release</span> <span class="o">=</span> <span class="mi">80</span>
-<div class="newline"></div>    <span class="k">print</span> <span class="s">&#39;Releasing {} m3/s produces {} kWh&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<div class="newline"></div>    <span class="nb">print</span> <span class="s1">&#39;Releasing {} m3/s produces {} kWh&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
 <div class="newline"></div>        <span class="n">release</span><span class="p">,</span> <span class="n">reservoir</span><span class="o">.</span><span class="n">energy_production</span><span class="p">(</span><span class="n">release</span><span class="p">)</span>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>The next example shows how the Array trait can be used to feed a specialised
 TraitsUI Item, the ChacoPlotItem:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Array</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Property</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">DelegatesTo</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">traitsui.api</span> <span class="kn">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">Item</span><span class="p">,</span> <span class="n">Group</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">chaco.chaco_plot_editor</span> <span class="kn">import</span> <span class="n">ChacoPlotItem</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">HasTraits</span><span class="p">,</span> <span class="n">Array</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Property</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">traits.api</span> <span class="k">import</span> <span class="n">DelegatesTo</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">traitsui.api</span> <span class="k">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">Item</span><span class="p">,</span> <span class="n">Group</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">chaco.chaco_plot_editor</span> <span class="k">import</span> <span class="n">ChacoPlotItem</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="kn">import</span> <span class="n">Reservoir</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">reservoir</span> <span class="k">import</span> <span class="n">Reservoir</span>
 <div class="newline"></div>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">class</span> <span class="nc">ReservoirEvolution</span><span class="p">(</span><span class="n">HasTraits</span><span class="p">):</span>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Reservoir</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s">&#39;reservoir&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">name</span> <span class="o">=</span> <span class="n">DelegatesTo</span><span class="p">(</span><span class="s1">&#39;reservoir&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">))</span>
-<div class="newline"></div>    <span class="n">releass</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">))</span>
+<div class="newline"></div>    <span class="n">inflows</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+<div class="newline"></div>    <span class="n">releass</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="n">initial_stock</span> <span class="o">=</span> <span class="n">Float</span>
-<div class="newline"></div>    <span class="n">stock</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s">&#39;inflows, releases, initial_stock&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">stock</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s1">&#39;inflows, releases, initial_stock&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="n">month</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s">&#39;stock&#39;</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">month</span> <span class="o">=</span> <span class="n">Property</span><span class="p">(</span><span class="n">depends_on</span><span class="o">=</span><span class="s1">&#39;stock&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits view ###########</span>
+<div class="newline"></div>    <span class="c1">### Traits view ###########</span>
 <div class="newline"></div>    <span class="n">traits_view</span> <span class="o">=</span> <span class="n">View</span><span class="p">(</span>
-<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">Item</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
 <div class="newline"></div>        <span class="n">Group</span><span class="p">(</span>
-<div class="newline"></div>            <span class="n">ChacoPlotItem</span><span class="p">(</span><span class="s">&#39;month&#39;</span><span class="p">,</span> <span class="s">&#39;stock&#39;</span><span class="p">,</span> <span class="n">show_label</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+<div class="newline"></div>            <span class="n">ChacoPlotItem</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;stock&#39;</span><span class="p">,</span> <span class="n">show_label</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
 <div class="newline"></div>        <span class="p">),</span>
 <div class="newline"></div>        <span class="n">width</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
-<div class="newline"></div>        <span class="n">resizable</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="newline"></div>        <span class="n">resizable</span> <span class="o">=</span> <span class="kc">True</span>
 <div class="newline"></div>    <span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="c">### Traits properties #####</span>
+<div class="newline"></div>    <span class="c1">### Traits properties #####</span>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_get_stock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>        <span class="sd">&quot;&quot;&quot;</span>
 <div class="newline"></div><span class="sd">        fixme: should handle cases where we go over the max storage</span>
@@ -1274,9 +1275,9 @@ TraitsUI Item, the ChacoPlotItem:</p>
 <div class="newline"></div>    <span class="k">def</span> <span class="nf">_get_month</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="newline"></div>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stock</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">reservoir</span> <span class="o">=</span> <span class="n">Reservoir</span><span class="p">(</span>
-<div class="newline"></div>                            <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Project A&#39;</span><span class="p">,</span>
+<div class="newline"></div>                            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Project A&#39;</span><span class="p">,</span>
 <div class="newline"></div>                            <span class="n">max_storage</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
 <div class="newline"></div>                            <span class="n">max_release</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
 <div class="newline"></div>                            <span class="n">head</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
@@ -1315,7 +1316,7 @@ TraitsUI Item, the ChacoPlotItem:</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc">
   <h3><a href="../../index.html">Table Of Contents</a></h3>
@@ -1360,7 +1361,7 @@ TraitsUI Item, the ChacoPlotItem:</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -1369,8 +1370,8 @@ TraitsUI Item, the ChacoPlotItem:</p>
         <li class="right" >
           <a href="../scikit-image/index.html" title="3.3. Scikit-image: image processing"
              >previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >3. Packages and applications</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >3. Packages and applications</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -1393,9 +1394,9 @@ TraitsUI Item, the ChacoPlotItem:</p>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

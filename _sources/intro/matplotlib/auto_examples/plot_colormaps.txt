@@ -21,6 +21,6 @@ An example plotting the matplotlib colormaps.
 .. literalinclude:: plot_colormaps.py
     :lines: 7-
 
-**Total running time of the example:**  2.15 seconds
-( 0 minutes  2.15 seconds)
+**Total running time of the example:**  2.93 seconds
+( 0 minutes  2.93 seconds)
     

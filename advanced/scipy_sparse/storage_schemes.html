@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2.5.2. Storage Schemes &mdash; Scipy lecture notes</title>
+    <title>2.5.2. Storage Schemes &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -68,7 +69,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -131,7 +132,7 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,9 +141,9 @@ $(function () {
         <li class="right" >
           <a href="introduction.html" title="2.5.1. Introduction"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">2.5. Sparse Matrices in SciPy</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >2. Advanced topics</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">2.5. Sparse Matrices in SciPy</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -169,7 +170,7 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="storage-schemes">
 <h1>2.5.2. Storage Schemes<a class="headerlink" href="#storage-schemes" title="Permalink to this headline">¶</a></h1>
@@ -193,9 +194,9 @@ $(function () {
 <li><p class="first">many employ sparsetools C++ module by Nathan Bell</p>
 </li>
 <li><p class="first">assume the following is imported:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="kn">as</span> <span class="nn">sps</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sps</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <div class="newline"></div></pre></div>
 </div>
 </li>
@@ -222,7 +223,7 @@ ndarray/matrix does not work</li>
 <h2>2.5.2.1. Common Methods<a class="headerlink" href="#common-methods" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><dl class="first docutils">
-<dt>all scipy.sparse classes are subclasses of <tt class="xref py py-class docutils literal"><span class="pre">spmatrix</span></tt></dt>
+<dt>all scipy.sparse classes are subclasses of <code class="xref py py-class docutils literal"><span class="pre">spmatrix</span></code></dt>
 <dd><ul class="first last">
 <li><dl class="first docutils">
 <dt>default implementation of arithmetic operations</dt>
@@ -237,7 +238,7 @@ ndarray/matrix does not work</li>
 </li>
 <li><p class="first">nonzero indices</p>
 </li>
-<li><p class="first">format conversion, interaction with NumPy (<tt class="xref py py-obj docutils literal"><span class="pre">toarray()</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">todense()</span></tt>)</p>
+<li><p class="first">format conversion, interaction with NumPy (<cite>toarray()</cite>, <cite>todense()</cite>)</p>
 </li>
 <li><p class="first">...</p>
 </li>
@@ -248,13 +249,13 @@ ndarray/matrix does not work</li>
 <li><dl class="first docutils">
 <dt>attributes:</dt>
 <dd><ul class="first last simple">
-<li><tt class="xref py py-obj docutils literal"><span class="pre">mtx.A</span></tt> - same as mtx.toarray()</li>
-<li><tt class="xref py py-obj docutils literal"><span class="pre">mtx.T</span></tt> - transpose (same as mtx.transpose())</li>
-<li><tt class="xref py py-obj docutils literal"><span class="pre">mtx.H</span></tt> - Hermitian (conjugate) transpose</li>
-<li><tt class="xref py py-obj docutils literal"><span class="pre">mtx.real</span></tt> - real part of complex matrix</li>
-<li><tt class="xref py py-obj docutils literal"><span class="pre">mtx.imag</span></tt> - imaginary part of complex matrix</li>
-<li><tt class="xref py py-obj docutils literal"><span class="pre">mtx.size</span></tt> - the number of nonzeros (same as self.getnnz())</li>
-<li><tt class="xref py py-obj docutils literal"><span class="pre">mtx.shape</span></tt> - the number of rows and columns (tuple)</li>
+<li><cite>mtx.A</cite> - same as mtx.toarray()</li>
+<li><cite>mtx.T</cite> - transpose (same as mtx.transpose())</li>
+<li><cite>mtx.H</cite> - Hermitian (conjugate) transpose</li>
+<li><cite>mtx.real</cite> - real part of complex matrix</li>
+<li><cite>mtx.imag</cite> - imaginary part of complex matrix</li>
+<li><cite>mtx.size</cite> - the number of nonzeros (same as self.getnnz())</li>
+<li><cite>mtx.shape</cite> - the number of rows and columns (tuple)</li>
 </ul>
 </dd>
 </dl>
@@ -300,8 +301,8 @@ ndarray/matrix does not work</li>
 </div>
 <div class="section" id="summary">
 <h2>2.5.2.3. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
-<caption>Summary of storage schemes.</caption>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-text">Summary of storage schemes.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="10%" />
 <col width="10%" />
@@ -397,7 +398,7 @@ ndarray/matrix does not work</li>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc">
   <h3><a href="../../index.html">Table Of Contents</a></h3>
@@ -433,7 +434,7 @@ ndarray/matrix does not work</li>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -442,9 +443,9 @@ ndarray/matrix does not work</li>
         <li class="right" >
           <a href="introduction.html" title="2.5.1. Introduction"
              >previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
-          <li><a href="index.html" >2.5. Sparse Matrices in SciPy</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >2. Advanced topics</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >2.5. Sparse Matrices in SciPy</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -467,9 +468,9 @@ ndarray/matrix does not work</li>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

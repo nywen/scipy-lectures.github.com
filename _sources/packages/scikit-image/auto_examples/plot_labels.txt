@@ -22,6 +22,6 @@ the dedicated skimage.measure.label function.
 .. literalinclude:: plot_labels.py
     :lines: 8-
 
-**Total running time of the example:**  0.22 seconds
-( 0 minutes  0.22 seconds)
+**Total running time of the example:**  0.31 seconds
+( 0 minutes  0.31 seconds)
     

@@ -1,46 +1,18 @@
-
-
-
-.. raw:: html
-
-
-    <style type="text/css">
-
-    div#sidebarbutton {
-        display: none;
-    }
-
-    </style>
-
-
-Examples
-========
-
-.. _examples-index:
-
-
-
 Examples for the scikit-image chapter
 ======================================
 
 
-
-
-
-
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="How to create an image with basic NumPy commands : ``np.zeros``, slicing...">
 
-    <div class="thumbnailContainer" tooltip="How to create an image with basic NumPy commands : ``np.zeros``, slicing...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_check.png
-   :target: ./plot_check.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_check_thumb.png
 
-   :ref:`example_plot_check.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_check.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -48,23 +20,19 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_check
-
-
+   /packages/scikit-image/auto_examples/plot_check
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Load and display an image ">
 
-    <div class="thumbnailContainer" tooltip="Load and display an image ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_camera.png
-   :target: ./plot_camera.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_camera_thumb.png
 
-   :ref:`example_plot_camera.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_camera.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -72,23 +40,19 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_camera
-
-
+   /packages/scikit-image/auto_examples/plot_camera
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of overflow problem arising when working with integers ">
 
-    <div class="thumbnailContainer" tooltip="An illustration of overflow problem arising when working with integers ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_camera_uint.png
-   :target: ./plot_camera_uint.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_camera_uint_thumb.png
 
-   :ref:`example_plot_camera_uint.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_camera_uint.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -96,23 +60,19 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_camera_uint
-
-
+   /packages/scikit-image/auto_examples/plot_camera_uint
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Histogram equalizing makes images have a uniform histogram. ">
 
-    <div class="thumbnailContainer" tooltip="Histogram equalizing makes images have a uniform histogram. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_equalize_hist.png
-   :target: ./plot_equalize_hist.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_equalize_hist_thumb.png
 
-   :ref:`example_plot_equalize_hist.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_equalize_hist.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -120,23 +80,19 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_equalize_hist
-
-
+   /packages/scikit-image/auto_examples/plot_equalize_hist
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates the use of the horizontal Sobel filter, to compute horizontal gradient...">
 
-    <div class="thumbnailContainer" tooltip="Warping and affine transforms of images. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_features.png
-   :target: ./plot_features.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_sobel_thumb.png
 
-   :ref:`example_plot_features.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_sobel.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -144,23 +100,19 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_features
-
-
+   /packages/scikit-image/auto_examples/plot_sobel
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Visualize segmentation contours on original grayscale image. ">
 
-    <div class="thumbnailContainer" tooltip="This example illustrates the use of the horizontal Sobel filter, to compute horizontal gradient...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_sobel.png
-   :target: ./plot_sobel.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_boundaries_thumb.png
 
-   :ref:`example_plot_sobel.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_boundaries.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -168,23 +120,19 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_sobel
-
-
+   /packages/scikit-image/auto_examples/plot_boundaries
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates automatic Otsu thresholding. ">
 
-    <div class="thumbnailContainer" tooltip="Visualize segmentation contours on original grayscale image. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_boundaries.png
-   :target: ./plot_boundaries.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_threshold_thumb.png
 
-   :ref:`example_plot_boundaries.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_threshold.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -192,23 +140,19 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_boundaries
-
-
+   /packages/scikit-image/auto_examples/plot_threshold
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Warping and affine transforms of images. ">
 
-    <div class="thumbnailContainer" tooltip="This example illustrates automatic Otsu thresholding. ">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_threshold.png
-   :target: ./plot_threshold.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_features_thumb.png
 
-   :ref:`example_plot_threshold.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_features.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -216,23 +160,19 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_threshold
-
-
+   /packages/scikit-image/auto_examples/plot_features
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to label connected components of a binary image, using the dedicated ski...">
 
-    <div class="thumbnailContainer" tooltip="This example shows how to label connected components of a binary image, using the dedicated ski...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_labels.png
-   :target: ./plot_labels.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_labels_thumb.png
 
-   :ref:`example_plot_labels.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_labels.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -240,23 +180,19 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_labels
-
-
+   /packages/scikit-image/auto_examples/plot_labels
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example compares several denoising filters available in scikit-image: a Gaussian filter, a...">
 
-    <div class="thumbnailContainer" tooltip="This example compares several denoising filters available in scikit-image: a Gaussian filter, a...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_filter_coins.png
-   :target: ./plot_filter_coins.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_filter_coins_thumb.png
 
-   :ref:`example_plot_filter_coins.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_filter_coins.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -264,23 +200,19 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_filter_coins
-
-
+   /packages/scikit-image/auto_examples/plot_filter_coins
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example compares two segmentation methods in order to separate two connected disks: the wa...">
 
-    <div class="thumbnailContainer" tooltip="This example compares two segmentation methods in order to separate two connected disks: the wa...">
+.. only:: html
 
-.. figure:: ./images/thumb/plot_segmentations.png
-   :target: ./plot_segmentations.html
+    .. figure:: /packages/scikit-image/auto_examples/images/thumb/sphx_glr_plot_segmentations_thumb.png
 
-   :ref:`example_plot_segmentations.py`
-
+        :ref:`sphx_glr_packages_scikit-image_auto_examples_plot_segmentations.py`
 
 .. raw:: html
-
 
     </div>
 
@@ -288,10 +220,26 @@ Examples for the scikit-image chapter
 .. toctree::
    :hidden:
 
-   ./plot_segmentations
-
-
+   /packages/scikit-image/auto_examples/plot_segmentations
 .. raw:: html
 
-    <div style="clear: both"></div>
-    
+    <div style='clear:both'></div>
+
+
+
+.. container:: sphx-glr-footer
+
+
+  .. container:: sphx-glr-download
+
+    :download:`Download all examples in Python source code: packages_scikit-image_auto_examples_python.zip </packages/scikit-image/auto_examples/packages_scikit-image_auto_examples_python.zip>`
+
+
+
+  .. container:: sphx-glr-download
+
+    :download:`Download all examples in Jupyter notebooks: packages_scikit-image_auto_examples_jupyter.zip </packages/scikit-image/auto_examples/packages_scikit-image_auto_examples_jupyter.zip>`
+
+.. rst-class:: sphx-glr-signature
+
+    `Generated by Sphinx-Gallery <http://sphinx-gallery.readthedocs.io>`_

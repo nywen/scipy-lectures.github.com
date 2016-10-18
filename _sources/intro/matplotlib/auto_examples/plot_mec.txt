@@ -21,6 +21,6 @@ Demo the marker edge color of matplotlib's markers.
 .. literalinclude:: plot_mec.py
     :lines: 7-
 
-**Total running time of the example:**  0.04 seconds
-( 0 minutes  0.04 seconds)
+**Total running time of the example:**  0.06 seconds
+( 0 minutes  0.06 seconds)
     

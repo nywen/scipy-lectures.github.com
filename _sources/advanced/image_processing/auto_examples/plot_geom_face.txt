@@ -21,6 +21,6 @@ This examples demos some simple geometrical transformations on a Racoon face.
 .. literalinclude:: plot_geom_face.py
     :lines: 7-
 
-**Total running time of the example:**  0.60 seconds
-( 0 minutes  0.60 seconds)
+**Total running time of the example:**  0.59 seconds
+( 0 minutes  0.59 seconds)
     

@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.2. The Python language &mdash; Scipy lecture notes</title>
+    <title>1.2. The Python language &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,7 +28,7 @@
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1. Getting started with Python for science" href="../index.html" />
     <link rel="next" title="1.2.1. First steps" href="first_steps.html" />
-    <link rel="prev" title="1.1. Scientific computing with tools and workflow" href="../intro.html" />
+    <link rel="prev" title="1.1. Python scientific computing ecosystem" href="../intro.html" />
    
     <link rel="stylesheet"
 	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
@@ -68,7 +69,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -131,17 +132,17 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="first_steps.html" title="1.2.1. First steps"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="../intro.html" title="1.1. Scientific computing with tools and workflow"
+          <a href="../intro.html" title="1.1. Python scientific computing ecosystem"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">1. Getting started with Python for science</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">1. Getting started with Python for science</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -168,10 +169,10 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="the-python-language">
-<h1>1.2. The Python language<a class="headerlink" href="#the-python-language" title="Permalink to this headline">¶</a></h1>
+<span id="python-language-chapter"></span><h1>1.2. The Python language<a class="headerlink" href="#the-python-language" title="Permalink to this headline">¶</a></h1>
 <p><strong>Authors</strong>: <em>Chris Burns, Christophe Combelles, Emmanuelle Gouillart,
 Gaël Varoquaux</em></p>
 <div class="topic">
@@ -260,11 +261,11 @@ distinguishing features of Python.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="standard_library.html">1.2.7. Standard Library</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="standard_library.html#os-module-operating-system-functionality">1.2.7.1. <tt class="docutils literal"><span class="pre">os</span></tt> module: operating system functionality</a></li>
-<li class="toctree-l2"><a class="reference internal" href="standard_library.html#shutil-high-level-file-operations">1.2.7.2. <tt class="docutils literal"><span class="pre">shutil</span></tt>: high-level file operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="standard_library.html#glob-pattern-matching-on-files">1.2.7.3. <tt class="docutils literal"><span class="pre">glob</span></tt>: Pattern matching on files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="standard_library.html#sys-module-system-specific-information">1.2.7.4. <tt class="docutils literal"><span class="pre">sys</span></tt> module: system-specific information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="standard_library.html#pickle-easy-persistence">1.2.7.5. <tt class="docutils literal"><span class="pre">pickle</span></tt>: easy persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard_library.html#os-module-operating-system-functionality">1.2.7.1. <code class="docutils literal"><span class="pre">os</span></code> module: operating system functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard_library.html#shutil-high-level-file-operations">1.2.7.2. <code class="docutils literal"><span class="pre">shutil</span></code>: high-level file operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard_library.html#glob-pattern-matching-on-files">1.2.7.3. <code class="docutils literal"><span class="pre">glob</span></code>: Pattern matching on files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard_library.html#sys-module-system-specific-information">1.2.7.4. <code class="docutils literal"><span class="pre">sys</span></code> module: system-specific information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard_library.html#pickle-easy-persistence">1.2.7.5. <code class="docutils literal"><span class="pre">pickle</span></code>: easy persistence</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">1.2.8. Exception handling in Python</a><ul>
@@ -283,7 +284,7 @@ distinguishing features of Python.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc"></div>
 
@@ -309,17 +310,17 @@ distinguishing features of Python.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="first_steps.html" title="1.2.1. First steps"
              >next</a></li>
         <li class="right" >
-          <a href="../intro.html" title="1.1. Scientific computing with tools and workflow"
+          <a href="../intro.html" title="1.1. Python scientific computing ecosystem"
              >previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Getting started with Python for science</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >1. Getting started with Python for science</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -342,9 +343,9 @@ distinguishing features of Python.</p>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

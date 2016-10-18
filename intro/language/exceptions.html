@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.2.8. Exception handling in Python &mdash; Scipy lecture notes</title>
+    <title>1.2.8. Exception handling in Python &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -68,7 +69,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -131,7 +132,7 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -140,9 +141,9 @@ $(function () {
         <li class="right" >
           <a href="standard_library.html" title="1.2.7. Standard Library"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Getting started with Python for science</a> &raquo;</li>
-          <li><a href="python_language.html" accesskey="U">1.2. The Python language</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >1. Getting started with Python for science</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="python_language.html" accesskey="U">1.2. The Python language</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -169,7 +170,7 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="exception-handling-in-python">
 <h1>1.2.8. Exception handling in Python<a class="headerlink" href="#exception-handling-in-python" title="Permalink to this headline">¶</a></h1>
@@ -188,7 +189,7 @@ for the right exception type.</p>
 <div class="newline"></div><span class="go">---------------------------------------------------------------------------</span>
 <div class="newline"></div><span class="go">ZeroDivisionError: integer division or modulo by zero</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [2]: </span><span class="mi">1</span> <span class="o">+</span> <span class="s">&#39;e&#39;</span>
+<div class="newline"></div><span class="gp">In [2]: </span><span class="mi">1</span> <span class="o">+</span> <span class="s1">&#39;e&#39;</span>
 <div class="newline"></div><span class="go">---------------------------------------------------------------------------</span>
 <div class="newline"></div><span class="go">TypeError: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;</span>
 <div class="newline"></div>
@@ -217,10 +218,10 @@ for the right exception type.</p>
 <h3>1.2.8.2.1. try/except<a class="headerlink" href="#try-except" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [10]: </span><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="k">try</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">   ....:</span>         <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Please enter a number: &#39;</span><span class="p">))</span>
+<div class="newline"></div><span class="gp">   ....:</span>         <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s1">&#39;Please enter a number: &#39;</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">   ....:</span>         <span class="k">break</span>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">   ....:</span>         <span class="k">print</span><span class="p">(</span><span class="s">&#39;That was no valid number.  Try again...&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">   ....:</span>         <span class="k">print</span><span class="p">(</span><span class="s1">&#39;That was no valid number.  Try again...&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div><span class="go">Please enter a number: a</span>
 <div class="newline"></div><span class="go">That was no valid number.  Try again...</span>
@@ -234,9 +235,9 @@ for the right exception type.</p>
 <div class="section" id="try-finally">
 <h3>1.2.8.2.2. try/finally<a class="headerlink" href="#try-finally" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [10]: </span><span class="k">try</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Please enter a number: &#39;</span><span class="p">))</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s1">&#39;Please enter a number: &#39;</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">   ....:</span> <span class="k">finally</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;Thank you for your input&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Thank you for your input&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div><span class="go">Please enter a number: a</span>
@@ -264,7 +265,7 @@ for the right exception type.</p>
 <div class="newline"></div><span class="gp">In [13]: </span><span class="n">print_sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
 <div class="newline"></div><span class="go">set([1, 2, 3])</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [14]: </span><span class="n">print_sorted</span><span class="p">(</span><span class="s">&#39;132&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [14]: </span><span class="n">print_sorted</span><span class="p">(</span><span class="s1">&#39;132&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="go">132</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -276,20 +277,20 @@ for the right exception type.</p>
 <li><p class="first">Capturing and reraising an exception:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [15]: </span><span class="k">def</span> <span class="nf">filter_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   ....:</span>    <span class="k">try</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">   ....:</span>        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;ascii&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">   ....:</span>    <span class="k">except</span> <span class="ne">UnicodeError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">   ....:</span>        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s">&#39;Gaël&#39;</span><span class="p">:</span>
-<div class="newline"></div><span class="gp">   ....:</span>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;OK, Gaël&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">   ....:</span>        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">   ....:</span>    <span class="k">except</span> <span class="ne">UnicodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<div class="newline"></div><span class="gp">   ....:</span>        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Gaël&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="gp">   ....:</span>            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;OK, Gaël&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">   ....:</span>        <span class="k">else</span><span class="p">:</span>
 <div class="newline"></div><span class="gp">   ....:</span>            <span class="k">raise</span> <span class="n">e</span>
 <div class="newline"></div><span class="gp">   ....:</span>    <span class="k">return</span> <span class="n">name</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [16]: </span><span class="n">filter_name</span><span class="p">(</span><span class="s">&#39;Gaël&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [16]: </span><span class="n">filter_name</span><span class="p">(</span><span class="s1">&#39;Gaël&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="go">OK, Gaël</span>
-<div class="newline"></div><span class="gr">Out[16]: </span><span class="s">&#39;Ga</span><span class="se">\xc3\xab</span><span class="s">l&#39;</span>
+<div class="newline"></div><span class="gr">Out[16]: </span><span class="s1">&#39;Ga</span><span class="se">\xc3\xab</span><span class="s1">l&#39;</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [17]: </span><span class="n">filter_name</span><span class="p">(</span><span class="s">&#39;Stéfan&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [17]: </span><span class="n">filter_name</span><span class="p">(</span><span class="s1">&#39;Stéfan&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="go">---------------------------------------------------------------------------</span>
 <div class="newline"></div><span class="go">UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xc3 in position 2: ordinal not in range(128)</span>
 <div class="newline"></div></pre></div>
@@ -329,7 +330,7 @@ StopIteration) or not (e.g. custom error raising)</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc">
   <h3><a href="../../index.html">Table Of Contents</a></h3>
@@ -370,7 +371,7 @@ StopIteration) or not (e.g. custom error raising)</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -379,9 +380,9 @@ StopIteration) or not (e.g. custom error raising)</p>
         <li class="right" >
           <a href="standard_library.html" title="1.2.7. Standard Library"
              >previous</a> |</li>
-        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Getting started with Python for science</a> &raquo;</li>
-          <li><a href="python_language.html" >1.2. The Python language</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >1. Getting started with Python for science</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="python_language.html" >1.2. The Python language</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -404,9 +405,9 @@ StopIteration) or not (e.g. custom error raising)</p>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

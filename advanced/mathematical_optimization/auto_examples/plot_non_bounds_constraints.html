@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Optimization with constraints &mdash; Scipy lecture notes</title>
+    <title>Optimization with constraints &#8212; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2015.2',
+        VERSION:     '2016.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -65,7 +66,7 @@ $(function () {
 
 
   </head>
-  <body>
+  <body role="document">
    <!-- Use the header to add javascript -->
     
 
@@ -128,10 +129,10 @@ $(function () {
     </script>
 
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="../../../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -158,27 +159,29 @@ $(function () {
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="optimization-with-constraints">
-<span id="example-plot-non-bounds-constraints-py"></span><h1>Optimization with constraints<a class="headerlink" href="#optimization-with-constraints" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-advanced-mathematical-optimization-auto-examples-plot-non-bounds-constraints-py"></span><h1>Optimization with constraints<a class="headerlink" href="#optimization-with-constraints" title="Permalink to this headline">¶</a></h1>
 <p>An example showing how to do optimization with general constraints using
 SLSQP and cobyla.</p>
-<img alt="../../../_images/plot_non_bounds_constraints_1.png" class="align-center" src="../../../_images/plot_non_bounds_constraints_1.png" />
-<p><strong>Script output</strong>:</p>
-<div class="max-height highlight-python"><div class="highlight"><pre>Optimization terminated successfully.    (Exit mode 0)
-<div class="newline"></div>          Current function value: 2.47487373504
-<div class="newline"></div>          Iterations: 5
-<div class="newline"></div>          Function evaluations: 20
-<div class="newline"></div>          Gradient evaluations: 5
+<img alt="../../../_images/sphx_glr_plot_non_bounds_constraints_001.png" class="align-center" src="../../../_images/sphx_glr_plot_non_bounds_constraints_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span class="n">Optimization</span> <span class="n">terminated</span> <span class="n">successfully</span><span class="o">.</span>    <span class="p">(</span><span class="n">Exit</span> <span class="n">mode</span> <span class="mi">0</span><span class="p">)</span>
+<div class="newline"></div>            <span class="n">Current</span> <span class="n">function</span> <span class="n">value</span><span class="p">:</span> <span class="mf">2.47487373504</span>
+<div class="newline"></div>            <span class="n">Iterations</span><span class="p">:</span> <span class="mi">5</span>
+<div class="newline"></div>            <span class="n">Function</span> <span class="n">evaluations</span><span class="p">:</span> <span class="mi">20</span>
+<div class="newline"></div>            <span class="n">Gradient</span> <span class="n">evaluations</span><span class="p">:</span> <span class="mi">5</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Python source code:</strong> <a class="reference download internal" href="../../../_downloads/plot_non_bounds_constraints.py"><tt class="xref download docutils literal"><span class="pre">plot_non_bounds_constraints.py</span></tt></a></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
 <div class="newline"></div><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="o">-</span><span class="mf">2.03</span><span class="p">:</span><span class="mf">4.2</span><span class="p">:</span><span class="o">.</span><span class="mo">04</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.6</span><span class="p">:</span><span class="mf">3.2</span><span class="p">:</span><span class="o">.</span><span class="mo">04</span><span class="p">]</span>
+<div class="newline"></div><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.mgrid.html#numpy.mgrid" class="sphx-glr-code-links" tooltip="Link to documentation for numpy.mgrid"><span class="n">np</span><span class="o">.</span><span class="n">mgrid</span></a><span class="p">[</span><span class="o">-</span><span class="mf">2.03</span><span class="p">:</span><span class="mf">4.2</span><span class="p">:</span><span class="o">.</span><span class="mo">04</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.6</span><span class="p">:</span><span class="mf">3.2</span><span class="p">:</span><span class="o">.</span><span class="mo">04</span><span class="p">]</span>
 <div class="newline"></div><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span>
 <div class="newline"></div><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">T</span>
 <div class="newline"></div>
@@ -186,50 +189,56 @@ SLSQP and cobyla.</p>
 <div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 <div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">contours</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
+<div class="newline"></div><span class="n">contours</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sqrt.html#numpy.sqrt" class="sphx-glr-code-links" tooltip="Link to documentation for numpy.sqrt"><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span></a><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
 <div class="newline"></div>                    <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">2.03</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">],</span>
 <div class="newline"></div>                    <span class="n">cmap</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gnuplot</span><span class="p">)</span>
 <div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">contours</span><span class="p">,</span>
 <div class="newline"></div>        <span class="n">inline</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<div class="newline"></div>        <span class="n">fmt</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%1.1f</span><span class="s">&#39;</span><span class="p">,</span>
+<div class="newline"></div>        <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f</span><span class="s1">&#39;</span><span class="p">,</span>
 <div class="newline"></div>        <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>  <span class="mf">1.5</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">],</span>
-<div class="newline"></div>        <span class="p">[</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mf">1.5</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span>    <span class="mi">0</span><span class="p">],</span> <span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="newline"></div>        <span class="p">[</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mf">1.5</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span>    <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">fill_between</span><span class="p">([</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>  <span class="mf">1.5</span><span class="p">],</span>
 <div class="newline"></div>                <span class="p">[</span>    <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span>    <span class="mi">0</span><span class="p">],</span>
 <div class="newline"></div>                <span class="p">[</span>    <span class="mi">0</span><span class="p">,</span>  <span class="mf">1.5</span><span class="p">,</span>    <span class="mi">0</span><span class="p">],</span>
-<div class="newline"></div>                <span class="n">color</span><span class="o">=</span><span class="s">&#39;.8&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+<div class="newline"></div>                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;.8&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-.</span><span class="mi">9</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="s">&#39;$x_2$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">3.6</span><span class="p">,</span> <span class="o">-.</span><span class="mi">6</span><span class="p">,</span> <span class="s">&#39;$x_1$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s">&#39;tight&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-.</span><span class="mi">9</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="s1">&#39;$x_2$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">3.6</span><span class="p">,</span> <span class="o">-.</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;$x_1$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="c"># And now plot the optimization path</span>
+<div class="newline"></div><span class="c1"># And now plot the optimization path</span>
 <div class="newline"></div><span class="n">accumulator</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<div class="newline"></div>    <span class="c"># Store the list of function calls</span>
+<div class="newline"></div>    <span class="c1"># Store the list of function calls</span>
 <div class="newline"></div>    <span class="n">accumulator</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<div class="newline"></div>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<div class="newline"></div>    <span class="k">return</span> <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sqrt.html#numpy.sqrt" class="sphx-glr-code-links" tooltip="Link to documentation for numpy.sqrt"><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span></a><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">def</span> <span class="nf">constraint</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<div class="newline"></div>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="mf">1.5</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="newline"></div>    <span class="k">return</span> <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.atleast_1d.html#numpy.atleast_1d" class="sphx-glr-code-links" tooltip="Link to documentation for numpy.atleast_1d"><span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span></a><span class="p">(</span><span class="mf">1.5</span> <span class="o">-</span> <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sum.html#numpy.sum" class="sphx-glr-code-links" tooltip="Link to documentation for numpy.sum"><span class="n">np</span><span class="o">.</span><span class="n">sum</span></a><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">optimize</span><span class="o">.</span><span class="n">fmin_slsqp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+<div class="newline"></div><span class="n">optimize</span><span class="o">.</span><span class="n">fmin_slsqp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" class="sphx-glr-code-links" tooltip="Link to documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
 <div class="newline"></div>                       <span class="n">ieqcons</span><span class="o">=</span><span class="p">[</span><span class="n">constraint</span><span class="p">,</span> <span class="p">])</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">accumulated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">accumulator</span><span class="p">)</span>
+<div class="newline"></div><span class="n">accumulated</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" class="sphx-glr-code-links" tooltip="Link to documentation for numpy.array"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">accumulator</span><span class="p">)</span>
 <div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accumulated</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">accumulated</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  0.08 seconds
-( 0 minutes  0.08 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.061 seconds)</p>
+<div class="sphx-glr-footer container">
+<div class="sphx-glr-download container">
+<a class="reference download internal" href="../../../_downloads/plot_non_bounds_constraints.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_non_bounds_constraints.py</span></code></a></div>
+<div class="sphx-glr-download container">
+<a class="reference download internal" href="../../../_downloads/plot_non_bounds_constraints.ipynb" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_non_bounds_constraints.ipynb</span></code></a></div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="http://sphinx-gallery.readthedocs.io">Generated by Sphinx-Gallery</a></p>
 <p><div style="clear: both"></div></p>
 </div>
 
@@ -237,7 +246,7 @@ SLSQP and cobyla.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 	<div class="sidebartoc"></div>
 
@@ -263,10 +272,10 @@ SLSQP and cobyla.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li><a href="../../../index.html">Scipy lecture notes</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -289,9 +298,9 @@ SLSQP and cobyla.</p>
 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2012,2013,2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012,2013,2015,2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

@@ -22,6 +22,6 @@ one (with the median filter) and the difference between the two.
 .. literalinclude:: plot_denoising.py
     :lines: 8-
 
-**Total running time of the example:**  0.17 seconds
-( 0 minutes  0.17 seconds)
+**Total running time of the example:**  0.13 seconds
+( 0 minutes  0.13 seconds)
     

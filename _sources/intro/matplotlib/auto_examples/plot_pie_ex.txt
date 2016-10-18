@@ -21,6 +21,6 @@ A simple pie chart example with matplotlib.
 .. literalinclude:: plot_pie_ex.py
     :lines: 7-
 
-**Total running time of the example:**  0.04 seconds
-( 0 minutes  0.04 seconds)
+**Total running time of the example:**  0.06 seconds
+( 0 minutes  0.06 seconds)
     

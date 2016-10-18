@@ -21,6 +21,6 @@ An example of bar plots with matplotlib.
 .. literalinclude:: plot_bar_ex.py
     :lines: 7-
 
-**Total running time of the example:**  0.05 seconds
-( 0 minutes  0.05 seconds)
+**Total running time of the example:**  0.06 seconds
+( 0 minutes  0.06 seconds)
     
