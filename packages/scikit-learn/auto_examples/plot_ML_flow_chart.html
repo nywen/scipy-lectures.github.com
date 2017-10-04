@@ -1,34 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Tutorial Diagrams &#8212; Scipy lecture notes</title>
-    
+    <title>3.6.9.17. Tutorial Diagrams &#8212; Scipy lecture notes</title>
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '2016.1',
+        VERSION:     '2017.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/copybutton.js"></script>
-    <link rel="top" title="Scipy lecture notes" href="../../../index.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="3.6.9.16. Bias and variance of polynomial fit" href="plot_bias_variance.html" />
    
     <link rel="stylesheet"
-	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+	  href="https://unpkg.com/purecss@1.0.0/build/base-min.css">
 
 <script type="text/javascript">
 $(function () {
@@ -66,7 +65,7 @@ $(function () {
 
 
   </head>
-  <body role="document">
+  <body>
    <!-- Use the header to add javascript -->
     
 
@@ -132,7 +131,12 @@ $(function () {
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="plot_bias_variance.html" title="3.6.9.16. Bias and variance of polynomial fit"
+             accesskey="P">previous</a></li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >3. Packages and applications</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">3.6. scikit-learn: machine learning in Python</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -162,7 +166,7 @@ $(function () {
           <div class="body" role="main">
             
   <div class="section" id="tutorial-diagrams">
-<span id="sphx-glr-packages-scikit-learn-auto-examples-plot-ml-flow-chart-py"></span><h1>Tutorial Diagrams<a class="headerlink" href="#tutorial-diagrams" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-packages-scikit-learn-auto-examples-plot-ml-flow-chart-py"></span><h1>3.6.9.17. Tutorial Diagrams<a class="headerlink" href="#tutorial-diagrams" title="Permalink to this headline">¶</a></h1>
 <p>This script plots the flow-charts used in the scikit-learn tutorials.</p>
 <ul class="sphx-glr-horizontal">
 <li><a class="first reference internal image-reference" href="../../../_images/sphx_glr_plot_ML_flow_chart_001.png"><img alt="../../../_images/sphx_glr_plot_ML_flow_chart_001.png" src="../../../_images/sphx_glr_plot_ML_flow_chart_001.png" style="width: 423.0px; height: 282.0px;" /></a>
@@ -172,9 +176,9 @@ $(function () {
 <li><a class="first reference internal image-reference" href="../../../_images/sphx_glr_plot_ML_flow_chart_003.png"><img alt="../../../_images/sphx_glr_plot_ML_flow_chart_003.png" src="../../../_images/sphx_glr_plot_ML_flow_chart_003.png" style="width: 423.0px; height: 282.0px;" /></a>
 </li>
 </ul>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
-<div class="newline"></div><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Circle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Circle"><span class="n">Circle</span></a><span class="p">,</span> <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">,</span> <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Polygon" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Polygon"><span class="n">Polygon</span></a><span class="p">,</span> <span class="n">Arrow</span><span class="p">,</span> <span class="n">FancyArrow</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Arrow</span><span class="p">,</span> <span class="n">FancyArrow</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">def</span> <span class="nf">create_base</span><span class="p">(</span><span class="n">box_bg</span> <span class="o">=</span> <span class="s1">&#39;#CCCCCC&#39;</span><span class="p">,</span>
 <div class="newline"></div>                <span class="n">arrow1</span> <span class="o">=</span> <span class="s1">&#39;#88CCFF&#39;</span><span class="p">,</span>
@@ -186,21 +190,21 @@ $(function () {
 <div class="newline"></div>    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div>    <span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
-<div class="newline"></div>               <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
-<div class="newline"></div>               <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>    <span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">Rectangle</span><span class="p">((</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>               <span class="n">Rectangle</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>               <span class="n">Rectangle</span><span class="p">((</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
 <div class="newline"></div>
-<div class="newline"></div>               <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">2.9</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
-<div class="newline"></div>               <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">3.1</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
-<div class="newline"></div>               <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">3.3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>               <span class="n">Rectangle</span><span class="p">((</span><span class="mf">2.9</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>               <span class="n">Rectangle</span><span class="p">((</span><span class="mf">3.1</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>               <span class="n">Rectangle</span><span class="p">((</span><span class="mf">3.3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
 <div class="newline"></div>
-<div class="newline"></div>               <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>               <span class="n">Rectangle</span><span class="p">((</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
 <div class="newline"></div>
-<div class="newline"></div>               <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">2.9</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>               <span class="n">Rectangle</span><span class="p">((</span><span class="mf">2.9</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
 <div class="newline"></div>
-<div class="newline"></div>               <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Circle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Circle"><span class="n">Circle</span></a><span class="p">((</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>               <span class="n">Circle</span><span class="p">((</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
 <div class="newline"></div>
-<div class="newline"></div>               <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Polygon" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Polygon"><span class="n">Polygon</span></a><span class="p">([[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">],</span>
+<div class="newline"></div>               <span class="n">Polygon</span><span class="p">([[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">],</span>
 <div class="newline"></div>                        <span class="p">[</span><span class="mf">6.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
 <div class="newline"></div>                        <span class="p">[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
 <div class="newline"></div>                        <span class="p">[</span><span class="mf">4.9</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">]],</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
@@ -224,14 +228,14 @@ $(function () {
 <div class="newline"></div>                          <span class="n">width</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)]</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">if</span> <span class="n">supervised</span><span class="p">:</span>
-<div class="newline"></div>        <span class="n">patches</span> <span class="o">+=</span> <span class="p">[</span><a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
-<div class="newline"></div>                    <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
-<div class="newline"></div>                    <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>        <span class="n">patches</span> <span class="o">+=</span> <span class="p">[</span><span class="n">Rectangle</span><span class="p">((</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>                    <span class="n">Rectangle</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
+<div class="newline"></div>                    <span class="n">Rectangle</span><span class="p">((</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">),</span>
 <div class="newline"></div>                    <span class="n">FancyArrow</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">arrow1</span><span class="p">,</span>
 <div class="newline"></div>                               <span class="n">width</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span>
-<div class="newline"></div>                    <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">7.3</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">)]</span>
+<div class="newline"></div>                    <span class="n">Rectangle</span><span class="p">((</span><span class="mf">7.3</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">)]</span>
 <div class="newline"></div>    <span class="k">else</span><span class="p">:</span>
-<div class="newline"></div>        <span class="n">patches</span> <span class="o">+=</span> <span class="p">[</span><a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Rectangle" class="sphx-glr-code-links" tooltip="Link to documentation for matplotlib.patches.Rectangle"><span class="n">Rectangle</span></a><span class="p">((</span><span class="mf">7.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">)]</span>
+<div class="newline"></div>        <span class="n">patches</span> <span class="o">+=</span> <span class="p">[</span><span class="n">Rectangle</span><span class="p">((</span><span class="mf">7.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">box_bg</span><span class="p">)]</span>
 <div class="newline"></div>
 <div class="newline"></div>    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patches</span><span class="p">:</span>
 <div class="newline"></div>        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
@@ -293,21 +297,21 @@ $(function () {
 <div class="newline"></div>    <span class="n">create_base</span><span class="p">(</span><span class="n">supervised</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">plot_supervised_chart</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">plot_supervised_chart</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 <div class="newline"></div>    <span class="n">plot_unsupervised_chart</span><span class="p">()</span>
 <div class="newline"></div>    <span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.193 seconds)</p>
-<div class="sphx-glr-footer container">
-<div class="sphx-glr-download container">
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.137 seconds)</p>
+<div class="sphx-glr-footer docutils container">
+<div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../../_downloads/plot_ML_flow_chart.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_ML_flow_chart.py</span></code></a></div>
-<div class="sphx-glr-download container">
+<div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../../_downloads/plot_ML_flow_chart.ipynb" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_ML_flow_chart.ipynb</span></code></a></div>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="http://sphinx-gallery.readthedocs.io">Generated by Sphinx-Gallery</a></p>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Generated by Sphinx-Gallery</a></p>
 <p><div style="clear: both"></div></p>
 </div>
 
@@ -344,7 +348,12 @@ $(function () {
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="plot_bias_variance.html" title="3.6.9.16. Bias and variance of polynomial fit"
+             >previous</a></li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">Scipy lecture notes</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >3. Packages and applications</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >3.6. scikit-learn: machine learning in Python</a> &#187;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -368,8 +377,8 @@ $(function () {
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012,2013,2015,2016.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+        &#169; Copyright 2012,2013,2015,2016,2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

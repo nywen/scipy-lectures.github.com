@@ -1,34 +1,32 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Solutions &#8212; Scipy lecture notes</title>
-    
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '2016.1',
+        VERSION:     '2017.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
-    <link rel="top" title="Scipy lecture notes" href="../index.html" />
+    <link rel="search" title="Search" href="../search.html" />
    
     <link rel="stylesheet"
-	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+	  href="https://unpkg.com/purecss@1.0.0/build/base-min.css">
 
 <script type="text/javascript">
 $(function () {
@@ -66,7 +64,7 @@ $(function () {
 
 
   </head>
-  <body role="document">
+  <body>
    <!-- Use the header to add javascript -->
     
 
@@ -166,7 +164,7 @@ $(function () {
 <div class="section" id="the-pi-wallis-solution">
 <span id="pi-wallis"></span><h2>The Pi Wallis Solution<a class="headerlink" href="#the-pi-wallis-solution" title="Permalink to this headline">¶</a></h2>
 <p>Compute the decimals of Pi using the Wallis formula:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <div class="newline"></div><span class="sd">The correction for the calculation of pi using the Wallis formula.</span>
 <div class="newline"></div><span class="sd">&quot;&quot;&quot;</span>
 <div class="newline"></div><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
@@ -180,9 +178,9 @@ $(function () {
 <div class="newline"></div>
 <div class="newline"></div><span class="n">my_pi</span> <span class="o">*=</span> <span class="mi">2</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="nb">print</span> <span class="n">pi</span>
-<div class="newline"></div><span class="nb">print</span> <span class="n">my_pi</span>
-<div class="newline"></div><span class="nb">print</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pi</span> <span class="o">-</span> <span class="n">my_pi</span><span class="p">)</span>
+<div class="newline"></div><span class="nb">print</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+<div class="newline"></div><span class="nb">print</span><span class="p">(</span><span class="n">my_pi</span><span class="p">)</span>
+<div class="newline"></div><span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">pi</span> <span class="o">-</span> <span class="n">my_pi</span><span class="p">))</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="c1">###############################################################################</span>
 <div class="newline"></div><span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
@@ -194,10 +192,10 @@ $(function () {
 <div class="newline"></div>
 <div class="newline"></div><span class="n">better_pi</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">num</span> <span class="o">/</span> <span class="n">den</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="nb">print</span> <span class="n">pi</span>
-<div class="newline"></div><span class="nb">print</span> <span class="n">better_pi</span>
-<div class="newline"></div><span class="nb">print</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pi</span> <span class="o">-</span> <span class="n">better_pi</span><span class="p">)</span>
-<div class="newline"></div><span class="nb">print</span> <span class="nb">abs</span><span class="p">(</span><span class="n">my_pi</span> <span class="o">-</span> <span class="n">better_pi</span><span class="p">)</span>
+<div class="newline"></div><span class="nb">print</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+<div class="newline"></div><span class="nb">print</span><span class="p">(</span><span class="n">better_pi</span><span class="p">)</span>
+<div class="newline"></div><span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">pi</span> <span class="o">-</span> <span class="n">better_pi</span><span class="p">))</span>
+<div class="newline"></div><span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">my_pi</span> <span class="o">-</span> <span class="n">better_pi</span><span class="p">))</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="c1">###############################################################################</span>
 <div class="newline"></div><span class="c1"># Solution in a single line using more adcanved constructs (reduce, lambda,</span>
@@ -211,7 +209,7 @@ $(function () {
 <div class="section" id="the-quicksort-solution">
 <span id="quick-sort"></span><h2>The Quicksort Solution<a class="headerlink" href="#the-quicksort-solution" title="Permalink to this headline">¶</a></h2>
 <p>Implement the quicksort algorithm, as defined by wikipedia:</p>
-<div class="highlight-default"><div class="highlight"><pre>function quicksort(array)
+<div class="highlight-default"><div class="highlight"><pre><span></span>function quicksort(array)
 <div class="newline"></div>    var list less, greater
 <div class="newline"></div>    if length(array) ≤ 1
 <div class="newline"></div>        return array
@@ -222,7 +220,7 @@ $(function () {
 <div class="newline"></div>    return concatenate(quicksort(less), pivot, quicksort(greater))
 <div class="newline"></div></pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <div class="newline"></div><span class="sd">Implement the quick sort algorithm.</span>
 <div class="newline"></div><span class="sd">&quot;&quot;&quot;</span>
 <div class="newline"></div>
@@ -265,7 +263,7 @@ sequence, defined by:</p>
 <li><code class="docutils literal"><span class="pre">u_0</span> <span class="pre">=</span> <span class="pre">1;</span> <span class="pre">u_1</span> <span class="pre">=</span> <span class="pre">1</span></code></li>
 <li><code class="docutils literal"><span class="pre">u_(n+2)</span> <span class="pre">=</span> <span class="pre">u_(n+1)</span> <span class="pre">+</span> <span class="pre">u_n</span></code></li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Display the n first terms of Fibonacci sequence&quot;&quot;&quot;</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -291,9 +289,9 @@ sequence, defined by:</p>
 <div class="section" id="the-directory-listing-solution">
 <span id="dir-sort"></span><h2>The Directory Listing Solution<a class="headerlink" href="#the-directory-listing-solution" title="Permalink to this headline">¶</a></h2>
 <p>Implement a script that takes a directory name as argument, and
-returns the list of &#8216;.py&#8217; files, sorted by name length.</p>
+returns the list of ‘.py’ files, sorted by name length.</p>
 <p><strong>Hint:</strong> try to understand the docstring of list.sort</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <div class="newline"></div><span class="sd">Script to list all the &#39;.py&#39; files in a directory, in the order of file</span>
 <div class="newline"></div><span class="sd">name length.</span>
 <div class="newline"></div><span class="sd">&quot;&quot;&quot;</span>
@@ -316,10 +314,10 @@ returns the list of &#8216;.py&#8217; files, sorted by name length.</p>
 <div class="newline"></div>    <span class="k">return</span> <span class="n">file_list</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">file_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <div class="newline"></div>    <span class="n">sorted_file_list</span> <span class="o">=</span> <span class="n">filter_and_sort</span><span class="p">(</span><span class="n">file_list</span><span class="p">)</span>
-<div class="newline"></div>    <span class="nb">print</span> <span class="n">sorted_file_list</span>
+<div class="newline"></div>    <span class="nb">print</span><span class="p">(</span><span class="n">sorted_file_list</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div></pre></div>
 </div>
@@ -329,7 +327,7 @@ returns the list of &#8216;.py&#8217; files, sorted by name length.</p>
 <p>Write a function that will load the column of numbers in <code class="docutils literal"><span class="pre">data.txt</span></code>
 and calculate the min, max and sum values.</p>
 <p>Data file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="mf">10.2</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">10.2</span>
 <div class="newline"></div><span class="mf">43.1</span>
 <div class="newline"></div><span class="mf">32.6</span>
 <div class="newline"></div><span class="mf">32.5</span>
@@ -338,7 +336,12 @@ and calculate the min, max and sum values.</p>
 <div class="newline"></div></pre></div>
 </div>
 <p>Solution:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;Script to read in a column of numbers and calculate the min, max and sum.</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="newline"></div><span class="sd">===================</span>
+<div class="newline"></div><span class="sd">I/O script example</span>
+<div class="newline"></div><span class="sd">===================</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="sd">Script to read in a column of numbers and calculate the min, max and sum.</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="sd">Data is stored in data.txt.</span>
 <div class="newline"></div><span class="sd">&quot;&quot;&quot;</span>
@@ -357,7 +360,7 @@ and calculate the min, max and sum values.</p>
 <div class="newline"></div>    <span class="c1"># data = [float(x) for x in data_string.split()]</span>
 <div class="newline"></div>    <span class="k">return</span> <span class="n">data</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;data.txt&#39;</span><span class="p">)</span>
 <div class="newline"></div>    <span class="c1"># Python provides these basic math functions</span>
 <div class="newline"></div>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;min: </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">min</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
@@ -369,7 +372,7 @@ and calculate the min, max and sum values.</p>
 <div class="section" id="the-pythonpath-search-solution">
 <span id="path-site"></span><h2>The PYTHONPATH Search Solution<a class="headerlink" href="#the-pythonpath-search-solution" title="Permalink to this headline">¶</a></h2>
 <p>Write a program to search your PYTHONPATH for the module <code class="docutils literal"><span class="pre">site.py</span></code>.</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;Script to search the PYTHONPATH for the module site.py&quot;&quot;&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Script to search the PYTHONPATH for the module site.py&quot;&quot;&quot;</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">os</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">sys</span>
@@ -389,10 +392,10 @@ and calculate the min, max and sum values.</p>
 <div class="newline"></div>    <span class="k">return</span> <span class="n">result</span>
 <div class="newline"></div>
 <div class="newline"></div>
-<div class="newline"></div><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="newline"></div><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 <div class="newline"></div>    <span class="n">result</span> <span class="o">=</span> <span class="n">find_module</span><span class="p">(</span><span class="s1">&#39;site.py&#39;</span><span class="p">)</span>
-<div class="newline"></div>    <span class="nb">print</span> <span class="n">result</span>
-<div class="newline"></div>    
+<div class="newline"></div>    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<div class="newline"></div>
 <div class="newline"></div></pre></div>
 </div>
 <p><div style="clear: both"></div></p>
@@ -469,8 +472,8 @@ and calculate the min, max and sum values.</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012,2013,2015,2016.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+        &#169; Copyright 2012,2013,2015,2016,2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

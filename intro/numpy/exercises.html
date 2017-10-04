@@ -1,37 +1,34 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>1.3.5. Some exercises &#8212; Scipy lecture notes</title>
-    
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2016.1',
+        VERSION:     '2017.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/copybutton.js"></script>
-    <link rel="top" title="Scipy lecture notes" href="../../index.html" />
-    <link rel="up" title="1.3. NumPy: creating and manipulating numerical data" href="index.html" />
-    <link rel="next" title="1.4. Matplotlib: plotting" href="../matplotlib/index.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.3.6. Full code examples" href="gallery.html" />
     <link rel="prev" title="1.3.4. Advanced operations" href="advanced_operations.html" />
    
     <link rel="stylesheet"
-	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+	  href="https://unpkg.com/purecss@1.0.0/build/base-min.css">
 
 <script type="text/javascript">
 $(function () {
@@ -69,7 +66,7 @@ $(function () {
 
 
   </head>
-  <body role="document">
+  <body>
    <!-- Use the header to add javascript -->
     
 
@@ -136,7 +133,7 @@ $(function () {
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../matplotlib/index.html" title="1.4. Matplotlib: plotting"
+          <a href="gallery.html" title="1.3.6. Full code examples"
              accesskey="N">next</a></li>
         <li class="right" >
           <a href="advanced_operations.html" title="1.3.4. Advanced operations"
@@ -178,7 +175,7 @@ $(function () {
 <h2>1.3.5.1. Array manipulations<a class="headerlink" href="#array-manipulations" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">Form the 2-D array (without typing it in explicitly):</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="p">[[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">3</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">4</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
@@ -188,7 +185,7 @@ $(function () {
 <p>and generate a new array containing its 2nd and 4th rows.</p>
 </li>
 <li><p class="first">Divide each column of the array:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -200,7 +197,7 @@ For each row, pick the number closest to 0.5.</p>
 <ul class="simple">
 <li>Use <code class="docutils literal"><span class="pre">abs</span></code> and <code class="docutils literal"><span class="pre">argsort</span></code> to find the column <code class="docutils literal"><span class="pre">j</span></code> closest for
 each row.</li>
-<li>Use fancy indexing to extract the numbers.  (Hint: <code class="docutils literal"><span class="pre">a[i,j]</span></code> &#8211;
+<li>Use fancy indexing to extract the numbers.  (Hint: <code class="docutils literal"><span class="pre">a[i,j]</span></code> –
 the array <code class="docutils literal"><span class="pre">i</span></code> must contain the row numbers corresponding to stuff in
 <code class="docutils literal"><span class="pre">j</span></code>.)</li>
 </ul>
@@ -209,10 +206,10 @@ the array <code class="docutils literal"><span class="pre">i</span></code> must 
 </div>
 <div class="section" id="picture-manipulation-framing-a-face">
 <h2>1.3.5.2. Picture manipulation: Framing a Face<a class="headerlink" href="#picture-manipulation-framing-a-face" title="Permalink to this headline">¶</a></h2>
-<p>Let&#8217;s do some manipulations on numpy arrays by starting with an image
+<p>Let’s do some manipulations on numpy arrays by starting with an image
 of a racoon.  <code class="docutils literal"><span class="pre">scipy</span></code> provides a 2D array of this image with the
 <code class="docutils literal"><span class="pre">scipy.misc.face</span></code> function:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">misc</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">misc</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">face</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">face</span><span class="p">(</span><span class="n">gray</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 2D grayscale image</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -220,9 +217,9 @@ of a racoon.  <code class="docutils literal"><span class="pre">scipy</span></cod
 use different colormaps, crop the image, change some parts of the image.</p>
 <img alt="../../_images/faces.png" class="align-center" src="../../_images/faces.png" />
 <ul>
-<li><p class="first">Let&#8217;s use the imshow function of pylab to display the image.</p>
+<li><p class="first">Let’s use the imshow function of pylab to display the image.</p>
 <blockquote>
-<div><div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div><div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">plt</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">face</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">face</span><span class="p">(</span><span class="n">gray</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>    
 <div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
@@ -233,7 +230,7 @@ use different colormaps, crop the image, change some parts of the image.</p>
 <li><dl class="first docutils">
 <dt>The face is displayed in false colors. A colormap must be</dt>
 <dd><p class="first">specified for it to be displayed in grey.</p>
-<div class="last highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>    
+<div class="last highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>    
 <div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -241,10 +238,10 @@ use different colormaps, crop the image, change some parts of the image.</p>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>Create an array of the image with a narrower centering</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">for example,</span><dd><p class="first">remove 100 pixels from all the borders of the image. To check the result,
+<dt>Create an array of the image with a narrower centering <span class="classifier-delimiter">:</span> <span class="classifier">for example,</span></dt>
+<dd><p class="first">remove 100 pixels from all the borders of the image. To check the result,
 display this new array with <code class="docutils literal"><span class="pre">imshow</span></code>.</p>
-<div class="last highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">crop_face</span> <span class="o">=</span> <span class="n">face</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">:</span><span class="o">-</span><span class="mi">100</span><span class="p">]</span>
+<div class="last highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">crop_face</span> <span class="o">=</span> <span class="n">face</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">:</span><span class="o">-</span><span class="mi">100</span><span class="p">]</span>
 <div class="newline"></div></pre></div>
 </div>
 </dd>
@@ -255,7 +252,7 @@ display this new array with <code class="docutils literal"><span class="pre">ims
 <dd><p class="first">need to create a mask corresponding to the pixels we want to be
 black. The center of the face is around (660, 330), so we defined
 the mask by this condition <code class="docutils literal"><span class="pre">(y-300)**2</span> <span class="pre">+</span> <span class="pre">(x-660)**2</span></code></p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sy</span><span class="p">,</span> <span class="n">sx</span> <span class="o">=</span> <span class="n">face</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sy</span><span class="p">,</span> <span class="n">sx</span> <span class="o">=</span> <span class="n">face</span><span class="o">.</span><span class="n">shape</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ogrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">sy</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">sx</span><span class="p">]</span> <span class="c1"># x and y indices of pixels</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
 <div class="newline"></div><span class="go">((768, 1), (1, 1024))</span>
@@ -265,7 +262,7 @@ the mask by this condition <code class="docutils literal"><span class="pre">(y-3
 </div>
 <p>then we assign the value 0 to the pixels of the image corresponding
 to the mask. The syntax is extremely simple and intuitive:</p>
-<div class="last highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">face</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="last highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">face</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>    
 <div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at 0x...&gt;</span>
 <div class="newline"></div></pre></div>
@@ -288,7 +285,7 @@ to the mask. The syntax is extremely simple and intuitive:</p>
 <p>The data in <a class="reference download internal" href="../../_downloads/populations.txt" download=""><code class="xref download docutils literal"><span class="pre">populations.txt</span></code></a>
 describes the populations of hares and lynxes (and carrots) in
 northern Canada during 20 years:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/populations.txt&#39;</span><span class="p">)</span>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/populations.txt&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">year</span><span class="p">,</span> <span class="n">hares</span><span class="p">,</span> <span class="n">lynxes</span><span class="p">,</span> <span class="n">carrots</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span>  <span class="c1"># trick: columns to variables</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -300,9 +297,8 @@ northern Canada during 20 years:</p>
 <div class="newline"></div><span class="go">&lt;matplotlib.legend.Legend object at ...&gt;</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>[<a class="reference external" href="../../plot_directive/pyplots/numpy_intro_7.py">source code</a>, <a class="reference external" href="../../plot_directive/pyplots/numpy_intro_7.hires.png">hires.png</a>, <a class="reference external" href="../../plot_directive/pyplots/numpy_intro_7.pdf">pdf</a>]</p>
-<img alt="../../_images/numpy_intro_7.png" src="../../_images/numpy_intro_7.png" />
-<p>Computes and print, based on the data in <code class="docutils literal"><span class="pre">populations.txt</span></code>...</p>
+<a class="reference external image-reference" href="auto_examples/plot_populations.html"><img alt="../../_images/sphx_glr_plot_populations_001.png" class="align-center" src="../../_images/sphx_glr_plot_populations_001.png" style="width: 50%;" /></a>
+<p>Computes and print, based on the data in <code class="docutils literal"><span class="pre">populations.txt</span></code>…</p>
 <ol class="arabic simple">
 <li>The mean and std of the populations of each species for the years
 in the period.</li>
@@ -318,24 +314,24 @@ populations. (Hint: <code class="docutils literal"><span class="pre">argsort</sp
 <code class="docutils literal"><span class="pre">help(np.gradient)</span></code>) and the number of lynxes. Check correlation
 (see <code class="docutils literal"><span class="pre">help(np.corrcoef)</span></code>).</li>
 </ol>
-<p>... all without for-loops.</p>
+<p>… all without for-loops.</p>
 <p>Solution: <a class="reference download internal" href="../../_downloads/2_2_data_statistics.py" download=""><code class="xref download docutils literal"><span class="pre">Python</span> <span class="pre">source</span> <span class="pre">file</span></code></a></p>
 </div>
 <div class="section" id="crude-integral-approximations">
 <h2>1.3.5.4. Crude integral approximations<a class="headerlink" href="#crude-integral-approximations" title="Permalink to this headline">¶</a></h2>
-<p>Write a function <code class="docutils literal"><span class="pre">f(a,</span> <span class="pre">b,</span> <span class="pre">c)</span></code> that returns <img class="math" src="../../_images/math/674374f4154cdb0a1a5b9f2bca892a6fcd253885.png" alt="a^b - c" style="vertical-align: 0px"/>.  Form
+<p>Write a function <code class="docutils literal"><span class="pre">f(a,</span> <span class="pre">b,</span> <span class="pre">c)</span></code> that returns <img class="math" src="../../_images/math/ec389ce145218d2743bbfe817f6b702c0f13e67e.png" alt="a^b - c"/>.  Form
 a 24x12x6 array containing its values in parameter ranges <code class="docutils literal"><span class="pre">[0,1]</span> <span class="pre">x</span>
 <span class="pre">[0,1]</span> <span class="pre">x</span> <span class="pre">[0,1]</span></code>.</p>
 <p>Approximate the 3-d integral</p>
 <div class="math">
-<p><img src="../../_images/math/8ad7c14461d334764f577e821bdd44c2ad529fcc.png" alt="\int_0^1\int_0^1\int_0^1(a^b-c)da\,db\,dc"/></p>
-</div><p>over this volume with the mean.  The exact result is: <img class="math" src="../../_images/math/1ade2e8c5ff207361811547e636eb31deca0b4c6.png" alt="\ln 2 -
-\frac{1}{2}\approx0.1931\ldots" style="vertical-align: -10px"/> &#8212; what is your relative error?</p>
+<p><img src="../../_images/math/b8bb0840b51839d5ec1b8fc51a1017b42a6e5144.png" alt="\int_0^1\int_0^1\int_0^1(a^b-c)da\,db\,dc"/></p>
+</div><p>over this volume with the mean.  The exact result is: <img class="math" src="../../_images/math/ca2b1c2e84695e0152514c49ca76c930d76ea853.png" alt="\ln 2 -
+\frac{1}{2}\approx0.1931\ldots"/> — what is your relative error?</p>
 <p>(Hints: use elementwise operations and broadcasting.
 You can make <code class="docutils literal"><span class="pre">np.ogrid</span></code> give a number of points in given range
 with <code class="docutils literal"><span class="pre">np.ogrid[0:1:20j]</span></code>.)</p>
 <p><strong>Reminder</strong> Python functions:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
 <div class="newline"></div>    <span class="k">return</span> <span class="n">some_result</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -343,11 +339,10 @@ with <code class="docutils literal"><span class="pre">np.ogrid[0:1:20j]</span></
 </div>
 <div class="section" id="mandelbrot-set">
 <h2>1.3.5.5. Mandelbrot set<a class="headerlink" href="#mandelbrot-set" title="Permalink to this headline">¶</a></h2>
-<p>[<a class="reference external" href="../../plot_directive/intro/numpy/solutions/2_4_mandelbrot.py">source code</a>, <a class="reference external" href="../../plot_directive/intro/numpy/solutions/2_4_mandelbrot.hires.png">hires.png</a>, <a class="reference external" href="../../plot_directive/intro/numpy/solutions/2_4_mandelbrot.pdf">pdf</a>]</p>
-<img alt="../../_images/2_4_mandelbrot.png" src="../../_images/2_4_mandelbrot.png" />
+<a class="reference external image-reference" href="auto_examples/plot_mandelbrot.html"><img alt="../../_images/sphx_glr_plot_mandelbrot_001.png" class="align-center" src="../../_images/sphx_glr_plot_mandelbrot_001.png" style="width: 50%;" /></a>
 <p>Write a script that computes the Mandelbrot fractal. The Mandelbrot
 iteration:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">N_max</span> <span class="o">=</span> <span class="mi">50</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">N_max</span> <span class="o">=</span> <span class="mi">50</span>
 <div class="newline"></div><span class="n">some_threshold</span> <span class="o">=</span> <span class="mi">50</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">c</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">y</span>
@@ -357,7 +352,7 @@ iteration:</p>
 <div class="newline"></div>    <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">c</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Point (x, y) belongs to the Mandelbrot set if <img class="math" src="../../_images/math/912075e2d56b749aa71dcaa8554745b866e88ca6.png" alt="|z|" style="vertical-align: -7px"/> &lt;
+<p>Point (x, y) belongs to the Mandelbrot set if <img class="math" src="../../_images/math/68830be8aafe35ccc41e793bec1be7b25d9fb002.png" alt="|z|"/> &lt;
 <code class="docutils literal"><span class="pre">some_threshold</span></code>.</p>
 <p>Do this computation by:</p>
 <ol class="arabic simple">
@@ -367,7 +362,7 @@ iteration:</p>
 <li>Save the result to an image with:</li>
 </ol>
 <blockquote>
-<div><div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div><div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span> 
 <div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at ...&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">gray</span><span class="p">()</span>
@@ -384,7 +379,7 @@ iteration:</p>
 the states <code class="docutils literal"><span class="pre">p</span></code>:</p>
 <ol class="arabic simple">
 <li><code class="docutils literal"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">P[i,j]</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code>: probability to go from state <code class="docutils literal"><span class="pre">i</span></code> to state <code class="docutils literal"><span class="pre">j</span></code></li>
-<li>Transition rule: <img class="math" src="../../_images/math/f27f32ee44af93330adb140fd94e98a69f314db0.png" alt="p_{new} = P^T p_{old}" style="vertical-align: -6px"/></li>
+<li>Transition rule: <img class="math" src="../../_images/math/c7f7d985ca0cc8ad6402e5654e994fd60a621695.png" alt="p_{new} = P^T p_{old}"/></li>
 <li><code class="docutils literal"><span class="pre">all(sum(P,</span> <span class="pre">axis=1)</span> <span class="pre">==</span> <span class="pre">1)</span></code>, <code class="docutils literal"><span class="pre">p.sum()</span> <span class="pre">==</span> <span class="pre">1</span></code>: normalization</li>
 </ol>
 <p>Write a script that works with 5 states, and:</p>
@@ -396,7 +391,7 @@ is a transition matrix.</li>
 <li>Computes the stationary distribution: the eigenvector of <code class="docutils literal"><span class="pre">P.T</span></code>
 with eigenvalue 1 (numerically: closest to 1) =&gt; <code class="docutils literal"><span class="pre">p_stationary</span></code></li>
 </ul>
-<p>Remember to normalize the eigenvector &#8212; I didn&#8217;t...</p>
+<p>Remember to normalize the eigenvector — I didn’t…</p>
 <ul class="simple">
 <li>Checks if <code class="docutils literal"><span class="pre">p_50</span></code> and <code class="docutils literal"><span class="pre">p_stationary</span></code> are equal to tolerance 1e-5</li>
 </ul>
@@ -455,7 +450,7 @@ reductions, <code class="docutils literal"><span class="pre">abs()</span></code>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../matplotlib/index.html" title="1.4. Matplotlib: plotting"
+          <a href="gallery.html" title="1.3.6. Full code examples"
              >next</a></li>
         <li class="right" >
           <a href="advanced_operations.html" title="1.3.4. Advanced operations"
@@ -486,8 +481,8 @@ reductions, <code class="docutils literal"><span class="pre">abs()</span></code>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012,2013,2015,2016.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+        &#169; Copyright 2012,2013,2015,2016,2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>
